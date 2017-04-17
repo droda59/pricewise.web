@@ -1,0 +1,16 @@
+<template>
+    <section>
+        <h2 class="ui header">${heading}</h2>
+
+        <div class="ui grid">
+            <div class="four wide column">
+                <div class="ui secondary vertical pointing menu">
+                    <a repeat.for="row of router.navigation" class="item ${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a>
+                </div>
+            </div>
+            <div class="twelve wide column">
+                <router-view></router-view>
+            </div>
+        </div>
+    </section>
+</template>

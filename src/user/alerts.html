@@ -1,0 +1,104 @@
+<template>
+    <div class="ui text menu">
+        <div class="item">
+            <h3 class="ui header">Alerts</h3>
+        </div>
+        <div class="item">
+            <div class="ui basic circular icon button" click.delegate="addAlert()" hide.bind="isAdding">
+                <i class="plus icon"></i>
+            </div>
+        </div>
+        <div class="right item">
+            <div class="ui icon input">
+                <input value.bind="searchString & debounce:400" placeholder="Search..." type="text">
+                <i class="search link icon" hide.bind="searchString.length"></i>
+                <i class="remove icon" show.bind="searchString.length" click.delegate="clearSearch()"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+    
+    <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
+        <div class="ui text loader">Updating</div>
+    </div>
+
+    <div show.bind="isAdding">
+        <form class="ui ${isCreatingAlert ? 'loading' : ''} form" submit.delegate="create()" role="form">
+            <h4 class="ui sub header">New Alert</h4>
+            <p>Add a new alert to your collection!</p>
+
+            <div class="field six columns wide">
+                <div class="ui right action input">
+                    <input value.bind="newAlertUrl" type="url" placeholder="Url">
+                    <button class="ui teal button ${newAlertUrl.length ? '' : 'disabled'}">
+                        <i class="add icon"></i>
+                        Add
+                    </button>
+                </div>
+            </div>
+            
+            <div class="ui button" click.delegate="cancel()">Cancel</div>
+        </form>
+
+        <div class="ui divider"></div>
+    </div>
+
+    <div class="ui divided items">
+        <div class="${alert.isActive ? '' : 'inactive'} item" repeat.for="alert of alerts">
+            <div class="ui tiny image">
+                <img src.bind="alert.imageUrl">
+            </div>
+            <div class="content">
+                <a class="header" route-href="route: alert; params.one-time: { alertId: alert.id }">${alert.title}</a>
+                <div class="description">
+                    <p>
+                        Current best price: ${alert.bestCurrentPrice | price}
+                    </p>
+                </div>
+                <div class="extra">
+                    <span show.bind="alert.isActive">Last updated ${alert.lastUpdate | timeAgo}</span>
+                    <span hide.bind="alert.isActive">Deactivated</span>
+                </div>
+                <div class="extra">
+                    <div class="ui buttons">
+                        <div class="ui basic green button" click.delegate="activateAlert(alert)" if.bind="!alert.isActive">Activate</div>
+                        <div class="ui basic button" click.delegate="activateAlert(alert)" if.bind="alert.isActive">Deactivate</div>
+                        <div class="ui basic red button" click.delegate="removeAlert(alert)">
+                            <i class="remove icon"></i>
+                            Delete
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="ui cards">
+        <div class="${alert.isActive ? 'green' : ''} card" repeat.for="alert of alerts">
+            <div class="content">
+                <img class="right floated mini ui image" src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+                <div class="header">
+                    <a route-href="route: alert; params.one-time: { alertId: alert.id }">${alert.title}</a>
+                </div>
+                
+                <div class="meta">
+                    Last updated ${alert.lastUpdate | timeAgo}
+                </div>
+                <div class="description">
+                    Current best price: ${alert.bestCurrentPrice | price}
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="ui two buttons">
+                    <div class="ui basic green button" click.delegate="activateAlert(alert)" if.bind="!alert.isActive">Activate</div>
+                    <div class="ui basic button" click.delegate="activateAlert(alert)" if.bind="alert.isActive">Deactivate</div>
+                    <div class="ui basic red button" click.delegate="removeAlert(alert)">
+                        <i class="remove icon"></i>
+                        Delete
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</template>

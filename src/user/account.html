@@ -1,0 +1,23 @@
+<template>
+    <form class="ui form" submit.delegate="save()" role="form">
+        <h4 class="ui dividing header">Information</h4>
+        <div class="field">
+            <label>Name</label>
+            <div class="two fields">
+                <div class="field">
+                    <input value.bind="user.firstName" type="text" name="information[first-name]" placeholder="First Name">
+                </div>
+                <div class="field">
+                    <input value.bind="user.lastName" type="text" name="information[last-name]" placeholder="Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Email</label>
+            <input value.bind="user.email" type="email" name="information[email]" placeholder="Email">
+        </div>
+        
+        <button class="ui primary button" tabindex="0">Save</button>
+        <div class="ui button" click.delegate="cancel()">Cancel</div>
+    </form>
+</template>

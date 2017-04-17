@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+}
+
+.page-host {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media print {
+  .page-host {
+    position: absolute;
+    left: 10px;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    overflow-y: inherit;
+    overflow-x: inherit;
+  }
+}
+
+section {
+  margin: 0 20px;
+}
+
+.navbar-nav li.loader {
+  margin: 12px 24px 0 6px;
+}
+
+/* animate page transitions */
+section.au-enter-active {
+  animation: fadeInRight 1s;
+}
+
+div.au-stagger {
+  /* 50ms will be applied between each successive enter operation */
+  animation-delay: 50ms;
+}
+
+/* animation definitions */
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0)
+  }
+  100% {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0)
+  }
+  100% {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.ui.form input:not([type]).h3, 
+.ui.form input[type=date].h3,
+.ui.form input[type=datetime-local].h3,
+.ui.form input[type=email].h3, 
+.ui.form input[type=file].h3, 
+.ui.form input[type=number].h3,
+.ui.form input[type=password].h3,
+.ui.form input[type=search].h3, 
+.ui.form input[type=tel].h3,
+.ui.form input[type=text].h3,
+.ui.form input[type=time].h3,
+.ui.form input[type=url].h3 {
+    font-size: 1.28571429rem;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+}
+
+.ui.form input:not([type]).transparent, 
+.ui.form input[type=date].transparent,
+.ui.form input[type=datetime-local].transparent,
+.ui.form input[type=email].transparent, 
+.ui.form input[type=file].transparent, 
+.ui.form input[type=number].transparent,
+.ui.form input[type=password].transparent,
+.ui.form input[type=search].transparent, 
+.ui.form input[type=tel].transparent,
+.ui.form input[type=text].transparent,
+.ui.form input[type=time].transparent,
+.ui.form input[type=url].transparent {
+    border-color: transparent;
+}
+.ui.form input:not([type]).transparent:hover, 
+.ui.form input[type=date].transparent:hover, 
+.ui.form input[type=datetime-local].transparent:hover, 
+.ui.form input[type=email].transparent:hover, 
+.ui.form input[type=file].transparent:hover, 
+.ui.form input[type=number].transparent:hover, 
+.ui.form input[type=password].transparent:hover, 
+.ui.form input[type=search].transparent:hover, 
+.ui.form input[type=tel].transparent:hover, 
+.ui.form input[type=text].transparent:hover, 
+.ui.form input[type=time].transparent:hover, 
+.ui.form input[type=url].transparent:hover { 
+    border-color: rgba(34,36,38,.15);
+}
+.ui.form input:not([type]).transparent:focus, 
+.ui.form input[type=date].transparent:focus, 
+.ui.form input[type=datetime-local].transparent:focus, 
+.ui.form input[type=email].transparent:focus, 
+.ui.form input[type=file].transparent:focus, 
+.ui.form input[type=number].transparent:focus, 
+.ui.form input[type=password].transparent:focus, 
+.ui.form input[type=search].transparent:focus, 
+.ui.form input[type=tel].transparent:focus, 
+.ui.form input[type=text].transparent:focus, 
+.ui.form input[type=time].transparent:focus, 
+.ui.form input[type=url].transparent:focus {
+    border-color: #85B7D9;
+}
+
+.ui.form input[disabled].no-input {
+    box-shadow: none;
+    border: none;
+    text-align: right;
+    opacity: 1;
+}
+
+.ui.items > .inactive.item > .image::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+}

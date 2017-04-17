@@ -1,0 +1,45 @@
+<template>
+    <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
+        <div class="ui text menu">
+            <div class="sixteen wide field">
+                <input type="text" value.bind="alert.title" class="h3 transparent">
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div class="ui relaxed items">
+            <div class="item" repeat.for="entry of alert.entries" if.bind="!entry.isDeleted">
+                <div class="eleven wide field">
+                    <input type="url" class="transparent" placeholder="Url" value.bind="entry.uri">
+                </div>
+                <div class="two wide field">
+                    <input type="text" class="no-input" disabled value.bind="entry.lastPrice | price">
+                </div>
+                <div class="three wide field">
+                    <div class="right floated content">
+                        <div class="ui basic circular red icon button" click.delegate="removeEntry(entry)">
+                            <i class="icon remove"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="eleven columns wide field">
+                    <div class="ui right action input">
+                        <input value.bind="newEntryUrl" type="url" placeholder="Url">
+                        <button class="ui teal button ${newEntryUrl.length ? '' : 'disabled'}" click.delegate="addEntry()">
+                            <i class="add icon"></i>
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <button class="ui primary button" tabindex="0">Save</button>
+        <div class="ui button" click.delegate="cancel()">Cancel</div>
+    </form>
+</template>
