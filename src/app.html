@@ -1,11 +1,5 @@
 <template>
-    <require from="./nav-bar.html"></require>
-
-    <nav-bar router.bind="router"></nav-bar>
-
-    <div class="page-host ui main container">
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 
     <div class="ui ${router.isNavigating ? 'active' : ''} inverted dimmer">
         <div class="ui loader"></div>

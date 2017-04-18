@@ -1,8 +1,46 @@
 <template>
-    <section>
-        <h2 class="ui center aligned icon header">
-            <i class="unmute icon"></i>
-            <div class="content"></div>
-        </h2>
-    </section>
+    <div id="welcome">
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui container">
+                <div class="ui large secondary inverted pointing menu">
+                    <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
+                        ${row.title}
+                    </a>
+                    <div class="right item">
+                        <a class="ui inverted button" route-href="route: login">Log in</a>
+                        <a class="ui inverted button">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui text container">
+                <h1 class="ui inverted header">
+                    Imagine-a-Company
+                </h1>
+                <h2>Do whatever you want when you want to.</h2>
+                <a class="ui huge primary button" route-href="route: login">Get Started <i class="right arrow icon"></i></a>
+            </div>
+        </div>
+
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="eight wide column">
+                        <h3 class="ui header">We Help Companies and Companions</h3>
+                            <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
+                        <h3 class="ui header">We Make Bananas That Can Dance</h3>
+                        <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+                    </div>
+                    <div class="six wide right floated column">
+                        <img src="https://semantic-ui.com/examples/assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center aligned column">
+                        <a class="ui huge button" route-href="route: login">Check Them Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

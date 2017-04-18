@@ -158,3 +158,31 @@ div.au-stagger {
     position: absolute;
     background: rgba(255, 255, 255, 0.6);
 }
+
+#welcome .masthead.segment {
+    min-height: 700px;
+    padding: 1em 0em;
+}
+#welcome .masthead h1.ui.header {
+    margin-top: 3em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+#welcome .masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+}
+#welcome .ui.vertical.stripe {
+    padding: 8em 0em;
+}
+#welcome .masthead .ui.menu .ui.button {
+    margin-left: 0.5em;
+}
+
+#login {
+    height: 100%;
+}
+#login .column {
+    max-width: 450px;
+}
