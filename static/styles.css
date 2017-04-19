@@ -83,64 +83,85 @@ div.au-stagger {
   }
 }
 
-.ui.form input:not([type]).h3, 
-.ui.form input[type=date].h3,
-.ui.form input[type=datetime-local].h3,
-.ui.form input[type=email].h3, 
-.ui.form input[type=file].h3, 
-.ui.form input[type=number].h3,
-.ui.form input[type=password].h3,
-.ui.form input[type=search].h3, 
-.ui.form input[type=tel].h3,
-.ui.form input[type=text].h3,
-.ui.form input[type=time].h3,
-.ui.form input[type=url].h3 {
+.ui.form .field.h3 input:not([type]), 
+.ui.form .field.h3 input[type=date],
+.ui.form .field.h3 input[type=datetime-local],
+.ui.form .field.h3 input[type=email], 
+.ui.form .field.h3 input[type=file], 
+.ui.form .field.h3 input[type=number],
+.ui.form .field.h3 input[type=password],
+.ui.form .field.h3 input[type=search], 
+.ui.form .field.h3 input[type=tel],
+.ui.form .field.h3 input[type=text],
+.ui.form .field.h3 input[type=time],
+.ui.form .field.h3 input[type=url] {
     font-size: 1.28571429rem;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     font-weight: 700;
 }
 
-.ui.form input:not([type]).transparent, 
-.ui.form input[type=date].transparent,
-.ui.form input[type=datetime-local].transparent,
-.ui.form input[type=email].transparent, 
-.ui.form input[type=file].transparent, 
-.ui.form input[type=number].transparent,
-.ui.form input[type=password].transparent,
-.ui.form input[type=search].transparent, 
-.ui.form input[type=tel].transparent,
-.ui.form input[type=text].transparent,
-.ui.form input[type=time].transparent,
-.ui.form input[type=url].transparent {
-    border-color: transparent;
+.price-alerts .ui.transparent.icon.input > input {
+    padding-left: 1em !important;
+    padding-right: 3em !important;
 }
-.ui.form input:not([type]).transparent:hover, 
-.ui.form input[type=date].transparent:hover, 
-.ui.form input[type=datetime-local].transparent:hover, 
-.ui.form input[type=email].transparent:hover, 
-.ui.form input[type=file].transparent:hover, 
-.ui.form input[type=number].transparent:hover, 
-.ui.form input[type=password].transparent:hover, 
-.ui.form input[type=search].transparent:hover, 
-.ui.form input[type=tel].transparent:hover, 
-.ui.form input[type=text].transparent:hover, 
-.ui.form input[type=time].transparent:hover, 
-.ui.form input[type=url].transparent:hover { 
-    border-color: rgba(34,36,38,.15);
+
+.ui.icon.input.h3 > i.icon {
+    font-size: 1.28571429rem;
 }
-.ui.form input:not([type]).transparent:focus, 
-.ui.form input[type=date].transparent:focus, 
-.ui.form input[type=datetime-local].transparent:focus, 
-.ui.form input[type=email].transparent:focus, 
-.ui.form input[type=file].transparent:focus, 
-.ui.form input[type=number].transparent:focus, 
-.ui.form input[type=password].transparent:focus, 
-.ui.form input[type=search].transparent:focus, 
-.ui.form input[type=tel].transparent:focus, 
-.ui.form input[type=text].transparent:focus, 
-.ui.form input[type=time].transparent:focus, 
-.ui.form input[type=url].transparent:focus {
-    border-color: #85B7D9;
+.ui.icon.input.transparent > i.icon {
+    width: 2.67142857em !important;
+}
+.ui.icon.input.transparent > i.icon {
+    opacity: 0;
+}
+.ui.icon.input.transparent:hover > i.icon {
+    opacity: 0.5;
+}
+.ui.icon.input.transparent > input:focus ~ i.icon {
+    opacity: 1;
+}
+
+.ui.form .field.transparent input:not([type]), 
+.ui.form .field.transparent input[type=date],
+.ui.form .field.transparent input[type=datetime-local],
+.ui.form .field.transparent input[type=email], 
+.ui.form .field.transparent input[type=file], 
+.ui.form .field.transparent input[type=number],
+.ui.form .field.transparent input[type=password],
+.ui.form .field.transparent input[type=search], 
+.ui.form .field.transparent input[type=tel],
+.ui.form .field.transparent input[type=text],
+.ui.form .field.transparent input[type=time],
+.ui.form .field.transparent input[type=url] {
+    border-color: transparent !important;
+}
+.ui.form .field.transparent:hover input:not([type]), 
+.ui.form .field.transparent:hover input[type=date],
+.ui.form .field.transparent:hover input[type=datetime-local],
+.ui.form .field.transparent:hover input[type=email],
+.ui.form .field.transparent:hover input[type=file],
+.ui.form .field.transparent:hover input[type=number],
+.ui.form .field.transparent:hover input[type=password],
+.ui.form .field.transparent:hover input[type=search],
+.ui.form .field.transparent:hover input[type=tel],
+.ui.form .field.transparent:hover input[type=text],
+.ui.form .field.transparent:hover input[type=time],
+.ui.form .field.transparent:hover input[type=url] {
+    border-color: rgba(34,36,38,.15) !important;
+}
+.ui.form .field.transparent input:not([type]):focus, 
+.ui.form .field.transparent input[type=date]:focus,
+.ui.form .field.transparent input[type=datetime-local]:focus,
+.ui.form .field.transparent input[type=email]:focus, 
+.ui.form .field.transparent input[type=file]:focus,
+.ui.form .field.transparent input[type=number]:focus,
+.ui.form .field.transparent input[type=password]:focus,
+.ui.form .field.transparent input[type=search]:focus,
+.ui.form .field.transparent input[type=tel]:focus,
+.ui.form .field.transparent input[type=text]:focus,
+.ui.form .field.transparent input[type=time]:focus,
+.ui.form .field.transparent input[type=url]:focus {
+    border-color: #85B7D9 !important;
 }
 
 .ui.form input[disabled].no-input {

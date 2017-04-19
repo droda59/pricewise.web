@@ -51,13 +51,13 @@
             </div>
             <div class="content">
                 <a class="header" route-href="route: alert; params.one-time: { alertId: alert.id }">${alert.title}</a>
-                <div class="description">
+                <div class="description" if.bind="alert.isActive">
                     <p>
-                        Current best price: ${alert.bestCurrentPrice | price}
+                        Current best price: ${alert.bestCurrentDeal.price | price} at <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank">${alert.bestCurrentDeal.productUrl | hostName}</a>
                     </p>
                 </div>
                 <div class="extra">
-                    <span show.bind="alert.isActive">Last updated ${alert.lastUpdate | timeAgo}</span>
+                    <span show.bind="alert.isActive">Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</span>
                     <span hide.bind="alert.isActive">Deactivated</span>
                 </div>
                 <div class="extra">

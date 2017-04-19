@@ -1,3 +1,4 @@
+import { Deal } from "./deal";
 import { AlertEntry } from "./alert-entry";
 
 export class UserAlert implements IUserAlert {
@@ -5,8 +6,7 @@ export class UserAlert implements IUserAlert {
     title: string;
     imageUrl: string;
     isActive: boolean;
-    bestCurrentPrice: number;
-    lastUpdate: Date;
+    bestCurrentDeal: Deal;
     entries: Array<AlertEntry>;
 
     constructor();
@@ -25,7 +25,6 @@ interface IUserAlert {
     title: string;
     imageUrl: string;
     isActive: boolean;
-    bestCurrentPrice: number;
-    lastUpdate: Date;
+    bestCurrentDeal: Deal;
     entries: Array<AlertEntry>;
 }

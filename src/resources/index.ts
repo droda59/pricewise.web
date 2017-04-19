@@ -8,6 +8,7 @@ export function configure(config: FrameworkConfiguration) {
     var valueConverters = [
         PLATFORM.moduleName("./value-converters/price"),
         PLATFORM.moduleName("./value-converters/time-ago"),
+        PLATFORM.moduleName("./value-converters/host-name"),
     ];
 
     var attributes = [

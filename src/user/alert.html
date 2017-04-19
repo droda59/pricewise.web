@@ -1,8 +1,9 @@
 <template>
     <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
         <div class="ui text menu">
-            <div class="sixteen wide field">
-                <input type="text" value.bind="alert.title" class="h3 transparent">
+            <div class="ui sixteen wide h3 transparent icon input field">
+                <input type="text" value.bind="alert.title">
+                <i class="edit icon"></i>
             </div>
         </div>
 
@@ -10,8 +11,9 @@
 
         <div class="ui relaxed items">
             <div class="item" repeat.for="entry of alert.entries" if.bind="!entry.isDeleted">
-                <div class="eleven wide field">
-                    <input type="url" class="transparent" placeholder="Url" value.bind="entry.uri">
+                <div class="ui eleven wide transparent icon input field">
+                    <input type="url" placeholder="Url" value.bind="entry.uri">
+                    <i class="edit icon"></i>
                 </div>
                 <div class="two wide field">
                     <input type="text" class="no-input" disabled value.bind="entry.lastPrice | price">

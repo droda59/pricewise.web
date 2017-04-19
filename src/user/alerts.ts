@@ -53,11 +53,11 @@ export class Alerts {
         this.isUpdatingAlert = true;
 
         if (alert.isActive) {
-            alert.isActive = false
+            alert.isActive = false;
         } else {
             alert.isActive = true;
         }
-        await this._alertService.update(this._userId, alert);
+        alert = await this._alertService.update(this._userId, alert);
 
         this.isUpdatingAlert = false;
     }
