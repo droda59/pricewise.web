@@ -24,7 +24,7 @@ export class Alerts {
     constructor(userService: UserService, alertService: AlertService) {
         this._alertService = alertService;
         this._userService = userService;
-        this._userId = "58ee6d988f0e11f301e93bc3";
+        this._userId = "58f8081a2056374cba79de41";
     }
 
     async activate(): Promise<void> {

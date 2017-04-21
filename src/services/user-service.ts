@@ -16,6 +16,7 @@ export class UserService {
 				.withDefaults({
 					headers: {
 						"Accept": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem('id_token')}`,
 						"X-Requested-With": "Fetch"
 					}
 				})
@@ -34,14 +35,25 @@ export class UserService {
         return new User(await response.json());
 	}
 
-	async update(user: User): Promise<boolean> {
+	async update(user: User): Promise<User> {
         await fetchPolyfill;
 
-        const response = await this._httpClient.fetch(`${user.id}`, {
+        const response = await this._httpClient.fetch(`${user.userId}`, {
 			method: "put",
 			body: json(user)
 		});
 
-        return await response.json();
+        return new User(await response.json());
+	}
+
+	async create(user: User): Promise<User> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${user.userId}`, {
+			method: "post",
+			body: json(user)
+		});
+
+        return new User(await response.json());
 	}
 }

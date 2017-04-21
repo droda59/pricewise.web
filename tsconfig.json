@@ -3,6 +3,7 @@
     "target": "es5",
     "module": "es2015",
     "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "allowJs": true,

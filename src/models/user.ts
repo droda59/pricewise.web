@@ -1,21 +1,27 @@
 import { UserAlert } from "./user-alert";
 
 export class User implements IUser {
-    id: string;
-    name: string;
+    userId: string;
+    firstName: string;
+    lastName: string;
     email: string;
     alerts: Array<UserAlert>;
 
-    constructor(dto: IUser) {
-        (<any>Object).assign(this, dto);
-        
-        this.alerts = dto.alerts.map(alertDto => new UserAlert(alertDto));
+    constructor();
+    constructor(dto: IUser);
+    constructor(dto?: IUser) {
+        if (dto) {
+            (<any>Object).assign(this, dto);
+            
+            this.alerts = dto.alerts.map(alertDto => new UserAlert(alertDto));
+        }
     }
 }
 
 interface IUser {
-    id: string;
-    name: string;
+    userId: string;
+    firstName: string;
+    lastName: string;
     email: string;
     alerts: Array<UserAlert>;
 }

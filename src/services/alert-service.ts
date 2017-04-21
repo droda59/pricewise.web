@@ -16,6 +16,7 @@ export class AlertService {
                 .withDefaults({
                     headers: {
                         "Accept": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem('id_token')}`,
                         "X-Requested-With": "Fetch"
                     }
                 })

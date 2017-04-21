@@ -1,31 +1,56 @@
-import { autoinject } from "aurelia-framework";
-import { AuthService } from "aurelia-authentication";
+// import { autoinject } from "aurelia-framework";
+// import { WebAuth } from "auth0-js";
+// import { UserService } from "../services/user-service";
+// import { User } from "../models/user";
 
-@autoinject()
-export class Login{
-    private _auth: AuthService;
+export class Login {
+    // private _webAuth: WebAuth;
+    // private _userService: UserService;
 
     heading = "Login";
-    email='';
-    password='';
+    email: string = "";
+    password: string = "";
     providers = [];
 
-    constructor(auth: AuthService){
-        this._auth = auth;
-    };
+    // constructor(userService: UserService) {
+    //     this._userService = userService;
 
-    async login(): Promise<void> {
-        const response = await this._auth.login(this.email, this.password)
-        
-        console.log("success logged " + response);
-    };
+    //     this._webAuth = new WebAuth({
+    //         domain: "price-alerts.auth0.com",
+    //         clientID: "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0"
+    //     });
+    // }
 
-    async authenticate(name: string): Promise<void> {
-        // const response = await this._auth.authenticate(name, false, null);
-        
-        // console.log("auth response " + response);
+    // async login(): Promise<void> {
+    // };
 
-        const response = await this._auth.authenticate(name);
-        this.providers[name] = true;
-    }
+    // authenticate(name: string): void {
+    //     var self = this;
+
+    //     this._webAuth.authorize({
+    //         connection: name
+    //     });
+
+    //     this._webAuth.parseHash(window.location.hash, function(err, authResult) {
+    //         if (err) {
+    //             return console.log(err);
+    //         }
+
+    //         this._webAuth.client.userInfo(authResult.accessToken, async function(err, user) {
+    //             let repoUser: User;
+
+    //             try {
+    //                 repoUser = await self._userService.get(user.user_id);
+    //             } catch(e) {
+    //                 var newUser = new User();
+    //                 newUser.userId = user.user_id;
+    //                 newUser.firstName = user.given_name;
+    //                 newUser.lastName = user.family_name;
+    //                 newUser.email = user.email;
+
+    //                 repoUser = await self._userService.create(newUser);
+    //             }
+    //         });
+    //     });
+    // }
 }
