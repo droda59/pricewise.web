@@ -1,5 +1,6 @@
 export class AlertEntry implements IAlertEntry {
     uri: string;
+    title: string;
     lastPrice: number;
     lastUpdate: Date;
     isDeleted: boolean;
@@ -15,6 +16,7 @@ export class AlertEntry implements IAlertEntry {
 
 interface IAlertEntry {
     uri: string;
+    title: string;
     lastPrice: number;
     lastUpdate: Date;
     isDeleted: boolean;

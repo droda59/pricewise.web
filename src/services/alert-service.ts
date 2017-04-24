@@ -56,6 +56,17 @@ export class AlertService {
         return new UserAlert(await response.json());
     }
 
+    async createEntry(userId: string, alertId: string, uri: string): Promise<UserAlert> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${alertId}/entry`, {
+            method: "post",
+            body: json(uri)
+        });
+
+        return new UserAlert(await response.json());
+    }
+
     async update(userId: string, alert: UserAlert): Promise<UserAlert> {
         await fetchPolyfill;
 

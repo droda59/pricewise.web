@@ -11,12 +11,13 @@
 
         <div class="ui relaxed items">
             <div class="item" repeat.for="entry of alert.entries" if.bind="!entry.isDeleted">
-                <div class="ui eleven wide transparent icon input field">
-                    <input type="url" placeholder="Url" value.bind="entry.uri">
-                    <i class="edit icon"></i>
+                <div class="ui eleven wide field">
+                    <p>
+                        ${entry.title} at <a href.bind="entry.uri" target="_blank">${entry.uri | hostName}</a>
+                    </p>
                 </div>
                 <div class="two wide field">
-                    <input type="text" class="no-input" disabled value.bind="entry.lastPrice | price">
+                    <input type="text" class="no-input" disabled show.bind="entry.lastPrice" value.bind="entry.lastPrice | price">
                 </div>
                 <div class="three wide field">
                     <div class="right floated content">
@@ -44,4 +45,6 @@
         <button class="ui primary button" tabindex="0">Save</button>
         <div class="ui button" click.delegate="cancel()">Cancel</div>
     </form>
+
+    <confirmation-modal header="Delete alert" message="Are you sure you want to delete the selected entry in this alert?"></confirmation-modal>
 </template>

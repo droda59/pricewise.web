@@ -5,20 +5,23 @@ import { AlertService } from "../services/alert-service";
 import { AlertEntry } from "../models/alert-entry";
 import { UserAlert } from "../models/user-alert";
 import { User } from "../models/user";
+import { ConfirmationModalController } from "../confirmation-modal-controller";
 
 @autoinject()
 export class Alert {
     private _router: Router;
     private _alertService: AlertService;
+    private _modalController: ConfirmationModalController;
     private _userId: string;
     private _alertId: string;
 
     alert: UserAlert;
     newEntryUrl: string;
 
-    constructor(alertService: AlertService, router: Router) {
+    constructor(alertService: AlertService, router: Router, modalController: ConfirmationModalController) {
         this._router = router;
         this._alertService = alertService;
+        this._modalController = modalController;
         this._userId = localStorage.getItem("user-id");
     }
 
@@ -58,7 +61,9 @@ export class Alert {
     }
 
     removeEntry(entry: AlertEntry): void {
-        entry.isDeleted = true;
+        this._modalController.openModal(async () => { 
+            entry.isDeleted = true;
+        });
     }
 
     cancel(): void {

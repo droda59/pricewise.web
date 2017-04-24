@@ -1,5 +1,5 @@
 export class PriceValueConverter {
     toView(value: string) {
-        return `$${value}`;
+        return `$${parseFloat(value).toFixed(2)}`;
     }
 }
