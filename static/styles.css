@@ -171,6 +171,11 @@ div.au-stagger {
     opacity: 1;
 }
 
+.ui.basic.modal .content {
+    text-align: center; 
+}
+
+.ui.cards > .inactive.card > .content > .image::before,
 .ui.items > .inactive.item > .image::before {
     content: "";
     display: block;

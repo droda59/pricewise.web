@@ -5,11 +5,13 @@ import { AlertService } from "../services/alert-service";
 import { UserService } from "../services/user-service";
 import { UserAlert } from "../models/user-alert";
 import { User } from "../models/user";
+import { ConfirmationModalController } from "../confirmation-modal-controller";
 
 @autoinject()
 export class Alerts {
     private _alertService: AlertService;
     private _userService: UserService;
+    private _modalController: ConfirmationModalController;
     private _userId: string;
     private _originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
@@ -21,9 +23,10 @@ export class Alerts {
     newAlertUrl: string;
     alerts: Array<UserAlert> = new Array<UserAlert>();
 
-    constructor(userService: UserService, alertService: AlertService) {
+    constructor(userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
         this._alertService = alertService;
         this._userService = userService;
+        this._modalController = modalController;
         this._userId = localStorage.getItem("user-id");
     }
 
@@ -62,19 +65,21 @@ export class Alerts {
         this.isUpdatingAlert = false;
     }
 
-    async removeAlert(alert: UserAlert): Promise<void> {
-        this.isUpdatingAlert = true;
+    removeAlert(alert: UserAlert): void {
+        this._modalController.openModal(async () => { 
+            this.isUpdatingAlert = true;
 
-        const alertDeleted = await this._alertService.delete(this._userId, alert.id);
-        if (alertDeleted) {
-            this._originalAlerts.remove(alert);
+            const alertDeleted = await this._alertService.delete(this._userId, alert.id);
+            if (alertDeleted) {
+                this._originalAlerts.remove(alert);
 
-            if (this.alerts.indexOf(alert) > -1) {
-                this.alerts.remove(alert);
+                if (this.alerts.indexOf(alert) > -1) {
+                    this.alerts.remove(alert);
+                }
             }
-        }
 
-        this.isUpdatingAlert = false;
+            this.isUpdatingAlert = false;
+        });
     }
 
     addAlert(): void {

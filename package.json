@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "@types/auth0-js": "*",
-    "@types/auth0-lock": "^10.10.1",
     "@types/jwt-decode": "^1.4.28",
     "@types/lodash": "^4.14.62",
     "@types/node": "^7.0.12",
