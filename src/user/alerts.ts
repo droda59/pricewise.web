@@ -24,7 +24,7 @@ export class Alerts {
     constructor(userService: UserService, alertService: AlertService) {
         this._alertService = alertService;
         this._userService = userService;
-        this._userId = "58f8081a2056374cba79de41";
+        this._userId = localStorage.getItem("user-id");
     }
 
     async activate(): Promise<void> {

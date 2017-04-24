@@ -1,72 +1,52 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
-import Auth0Lock from "auth0-lock";
 import { UserService } from "./services/user-service";
+import { AuthenticationService } from "./services/authentication-service";
 import { User } from "./models/user";
 
 @autoinject()
 export class Welcome {
-    private _lock: Auth0LockStatic;
     private _userService: UserService;
+    private _authenticationService: AuthenticationService;
 
-    isAuthenticated: boolean = false;
+    isAuthenticated: boolean;
     router: Router;
 
-    constructor(router: Router, userService: UserService) {
+    constructor(router: Router, userService: UserService, authenticationService: AuthenticationService) {
         this.router = router;
         this._userService = userService;
+        this._authenticationService = authenticationService;
+    }
 
-        this._lock = new Auth0Lock(
-            "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
-            "price-alerts.auth0.com", 
-            {
-                auth: {
-                    redirect: false
-                }
-            }
-        );
-
-        this._lock.on("authenticated", (authResult: any) => {
-            this._lock.getUserInfo(authResult.accessToken, async (error: Auth0Error, profile: Auth0UserProfile) => {
-                if (error) {
-                    return;
-                }
-
-                let repoUser: User;
-
-                try {
-                    repoUser = await userService.get(profile.user_id);
-                } catch(e) {
-                    var newUser = new User();
-                    newUser.userId = profile.user_id;
-                    newUser.firstName = profile.given_name;
-                    newUser.lastName = profile.family_name;
-                    newUser.email = profile.email;
-
-                    repoUser = await userService.create(newUser);
-                }
-
-                this.isAuthenticated = true;
-                localStorage.setItem("accessToken", authResult.accessToken);
-                localStorage.setItem("profile", JSON.stringify(profile));
-                this._lock.hide();
-
-                this.router.navigateToRoute("user-page");
-            });
-        });
+    activate(): void {
+        this.isAuthenticated = this._authenticationService.isAuthenticated();
     }
 
     login(): void {
-        this._lock.show();
+        this._authenticationService.login(this.onAuthenticated.bind(this));
     }
 
     logout(): void {
-        localStorage.removeItem("profile");
-        localStorage.removeItem("id_token");
         this.isAuthenticated = false;
 
-        this._lock.logout({
-            returnTo: "http://localhost:8080/#/"
-        });
+        this._authenticationService.logout();
+    }
+
+    private async onAuthenticated(profile: Auth0UserProfile): Promise<void> {
+        try {
+            await this._userService.get(profile.user_id);
+        } catch(e) {
+            var newUser = new User();
+            newUser.userId = profile.user_id;
+            newUser.firstName = profile.given_name;
+            newUser.lastName = profile.family_name;
+            newUser.email = profile.email;
+
+            await this._userService.create(newUser);
+        }
+
+        this.isAuthenticated = true;
+
+        this.router.navigateToRoute("user-page");
     }
 }

@@ -1,4 +1,3 @@
-import { lazy } from "aurelia-framework";
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { UserAlert } from "../models/user-alert";
@@ -16,8 +15,19 @@ export class AlertService {
                 .withDefaults({
                     headers: {
                         "Accept": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem('id_token')}`,
                         "X-Requested-With": "Fetch"
+                    }
+                })
+                .withInterceptor({
+                    request(request)
+                    {
+                        if (request.headers.has("Authorization")) {
+                            request.headers.delete("Authorization");
+                        }
+
+                        request.headers.append("Authorization", `Bearer ${localStorage.getItem('access-token')}`);
+                        
+                        return request;
                     }
                 })
                 .rejectErrorResponses()

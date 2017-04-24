@@ -19,7 +19,7 @@ export class Alert {
     constructor(alertService: AlertService, router: Router) {
         this._router = router;
         this._alertService = alertService;
-        this._userId = "58f8081a2056374cba79de41";
+        this._userId = localStorage.getItem("user-id");
     }
 
     async activate(route, routeConfig): Promise<void> {
