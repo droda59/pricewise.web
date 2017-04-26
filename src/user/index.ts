@@ -4,8 +4,6 @@ import { PLATFORM } from "aurelia-pal";
 export class UserPage {
     router: Router;
 
-    heading = "Child Router";
-
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
             { route: ["", "alerts"],    name: "alerts",   moduleId: PLATFORM.moduleName("./alerts"),   nav: true,  title: "Alerts" },

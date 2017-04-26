@@ -72,10 +72,7 @@ export class Alerts {
             const alertDeleted = await this._alertService.delete(this._userId, alert.id);
             if (alertDeleted) {
                 this._originalAlerts.remove(alert);
-
-                if (this.alerts.indexOf(alert) > -1) {
-                    this.alerts.remove(alert);
-                }
+                this.alerts.remove(alert);
             }
 
             this.isUpdatingAlert = false;

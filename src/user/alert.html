@@ -2,7 +2,7 @@
     <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
         <div class="ui text menu">
             <div class="ui sixteen wide h3 transparent icon input field">
-                <input type="text" value.bind="alert.title">
+                <input type="text" value.bind="title & updateTrigger:'blur'">
                 <i class="edit icon"></i>
             </div>
         </div>
@@ -36,14 +36,23 @@
                             Add
                         </button>
                     </div>
+
+                    <div class="ui tiny visible info message">
+                        <div class="header">
+                            At the moment, these sites are supported: 
+                        </div>
+                        <ul class="list">
+                            <li>Amazon</li>
+                            <li>BestBuy</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="ui divider"></div>
 
-        <button class="ui primary button" tabindex="0">Save</button>
-        <div class="ui button" click.delegate="cancel()">Cancel</div>
+        <a class="ui button" tabindex="0" route-href="route: alerts">Back</a>
     </form>
 
     <confirmation-modal header="Delete alert" message="Are you sure you want to delete the selected entry in this alert?"></confirmation-modal>

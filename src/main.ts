@@ -1,10 +1,12 @@
 ﻿import "../static/styles.css";
 import "../semantic/dist/semantic.min.css";
 import "../semantic/dist/semantic.min.js";
+import "../node_modules/toastr/build/toastr.min.css";
 
 import { Aurelia } from "aurelia-framework";
 import { PLATFORM } from "aurelia-pal";
 import * as Bluebird from "bluebird";
+import * as Toastr from "toastr";
 import * as moment from "moment";
 
 Bluebird.config({ warnings: { wForgottenReturn: false } });
