@@ -13,7 +13,7 @@ export class User implements IUser {
         if (dto) {
             (<any>Object).assign(this, dto);
             
-            this.alerts = dto.alerts.map(alertDto => new UserAlert(alertDto));
+            this.alerts = dto.alerts ? dto.alerts.map(alertDto => new UserAlert(alertDto)) : new Array<UserAlert>();
         }
     }
 }

@@ -16,7 +16,14 @@ export class AuthenticationService {
             {
                 auth: {
                     redirect: false
-                }
+                },
+				autoclose: true,
+				avatar: null,
+				socialButtonStyle: "small",
+				theme: {
+					primaryColor: "#31324F",
+					logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
+				},
             }
         );
 
@@ -77,8 +84,6 @@ export class AuthenticationService {
 
 			localStorage.setItem("access-token", token.access_token);
 			localStorage.setItem("user-id", profile.user_id);
-
-			this._lock.hide();
 
 			if (resultCallback) {
 				await resultCallback(profile);

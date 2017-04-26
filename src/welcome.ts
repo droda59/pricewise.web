@@ -35,14 +35,16 @@ export class Welcome {
     private async onAuthenticated(profile: Auth0UserProfile): Promise<void> {
         try {
             await this._userService.get(profile.user_id);
-        } catch(e) {
-            var newUser = new User();
-            newUser.userId = profile.user_id;
-            newUser.firstName = profile.given_name;
-            newUser.lastName = profile.family_name;
-            newUser.email = profile.email;
+        } catch(err) {
+            if (err.status === 404) {
+                var newUser = new User();
+                newUser.userId = profile.user_id;
+                newUser.firstName = profile.given_name;
+                newUser.lastName = profile.family_name;
+                newUser.email = profile.email;
 
-            await this._userService.create(newUser);
+                await this._userService.create(newUser);
+            }
         }
 
         this.isAuthenticated = true;

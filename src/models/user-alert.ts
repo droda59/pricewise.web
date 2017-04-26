@@ -15,7 +15,7 @@ export class UserAlert implements IUserAlert {
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            this.entries = dto.entries.map(entryDto => new AlertEntry(entryDto));
+            this.entries = dto.entries ? dto.entries.map(entryDto => new AlertEntry(entryDto)) : new Array<AlertEntry>();
         }
     }
 }
