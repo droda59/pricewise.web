@@ -1,6 +1,7 @@
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { UserAlert } from "../models/user-alert";
+import { Deal } from "../models/deal";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
 
@@ -43,6 +44,16 @@ export class AlertService {
         });
 		
         return new UserAlert(await response.json());
+    }
+
+    async getHistory(userId: string, alertId: string): Promise<Array<Deal>> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${alertId}/history`, {
+            method: "get"
+        });
+		
+        return (<Array<any>>(await response.json())).map(x => new Deal(x));
     }
 
     async create(userId: string, uri: string): Promise<UserAlert> {

@@ -15,7 +15,8 @@ export async function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .developmentLogging()
-        .plugin(PLATFORM.moduleName("resources"));
+        .plugin(PLATFORM.moduleName("resources"))
+        .plugin(PLATFORM.moduleName("aurelia-chart"));
 
     await aurelia.start();
     await aurelia.setRoot(PLATFORM.moduleName("app"));

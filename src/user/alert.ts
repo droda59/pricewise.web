@@ -5,6 +5,7 @@ import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { AlertService } from "../services/alert-service";
 import { AlertEntry } from "../models/alert-entry";
 import { UserAlert } from "../models/user-alert";
+import { Deal } from "../models/deal";
 
 @autoinject()
 export class Alert {
@@ -16,6 +17,7 @@ export class Alert {
     @bindable title: string;
 
     alert: UserAlert;
+    alertHistory: Array<Deal>;
     newEntryUrl: string;
 
     constructor(alertService: AlertService, modalController: ConfirmationModalController) {
@@ -28,7 +30,12 @@ export class Alert {
         if (route.alertId) {
             this._alertId = route.alertId;
 
-            this.alert = await this._alertService.get(this._userId, this._alertId);
+            let [alertPromise, alertHistoryPromise] = await Promise.all([
+                this._alertService.get(this._userId, this._alertId), 
+                this._alertService.getHistory(this._userId, this._alertId)]);
+
+            this.alert = alertPromise;
+            this.alertHistory = alertHistoryPromise;
             this.title = this.alert.title;
 
             routeConfig.navModel.title = this.alert.title;
