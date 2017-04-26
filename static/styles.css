@@ -202,6 +202,9 @@ div.au-stagger {
 #welcome .ui.vertical.stripe {
     padding: 8em 0em;
 }
+#welcome .ui.alternate.stripe {
+    background-color: #F2F3F5;
+}
 #welcome .masthead .ui.menu .ui.button {
     margin-left: 0.5em;
 }

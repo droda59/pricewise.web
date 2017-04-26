@@ -47,6 +47,6 @@ export class Welcome {
 
         this.isAuthenticated = true;
 
-        this.router.navigateToRoute("user-page");
+        this.router.navigateToRoute("user");
     }
 }
