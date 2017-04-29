@@ -5,7 +5,7 @@ import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { AlertService } from "../services/alert-service";
 import { AlertEntry } from "../models/alert-entry";
 import { UserAlert } from "../models/user-alert";
-import { Deal } from "../models/deal";
+import { ProductHistory } from "../models/product-history";
 
 @autoinject()
 export class Alert {
@@ -17,7 +17,7 @@ export class Alert {
     @bindable title: string;
 
     alert: UserAlert;
-    alertHistory: Array<Deal>;
+    alertHistory: Array<ProductHistory>;
     newEntryUrl: string;
 
     constructor(alertService: AlertService, modalController: ConfirmationModalController) {
