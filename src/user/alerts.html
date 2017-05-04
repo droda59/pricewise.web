@@ -60,7 +60,7 @@
     </div>
 
     <div class="ui divided items">
-        <div class="${alert.isActive ? '' : 'inactive'} item" repeat.for="alert of alerts">
+        <div class="${alert.isActive ? '' : 'inactive'} item" repeat.for="alert of alerts | sort:'lastModifiedDate':'descending'">
             <div class="ui tiny image">
                 <img src.bind="alert.imageUrl">
             </div>
