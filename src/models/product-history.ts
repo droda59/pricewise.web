@@ -13,7 +13,7 @@ export class ProductHistory implements IProductHistory {
 
 interface IProductHistory {
     title: string;
-    url: URL;
+    url: string;
     priceHistory: Array<PriceChange>;
 }
 
