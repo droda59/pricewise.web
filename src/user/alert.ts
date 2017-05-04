@@ -82,6 +82,8 @@ export class Alert {
             if (updatedAlert) {
                 this.alert = updatedAlert;
                 this.title = this.alert.title;
+
+                this.alertHistory = await this._alertService.getHistory(this._userId, this._alertId);
             }
         }
     }
