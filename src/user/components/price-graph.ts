@@ -21,50 +21,66 @@ export class PriceGraph {
     private dataChanged(newValue: Array<ProductHistory>): void {
         var datasets = new Array<Dataset>();
 
+        for (var i = 0; i < newValue.length; i++) {
+            for (var j = 0; j < newValue.length; j++) {
+                var iPriceHistoryLength = newValue[i].priceHistory.length;
+                var jPriceHistoryLength = newValue[j].priceHistory.length;
+
+                if (iPriceHistoryLength > jPriceHistoryLength) {
+                    var emptyPriceHistory = this.createEmptyArray(iPriceHistoryLength - jPriceHistoryLength, null);
+                    newValue[j].priceHistory = emptyPriceHistory.concat(newValue[j].priceHistory);
+                }
+            }
+        }
+
         newValue.forEach(product => {
-            let pointColor = this.pickColor(product.url);
+            let pointColor = this.pickColor(product.hostName);
             let dataset = <Dataset>{
                 label: product.title.length > 50 ? `${product.title.substring(0, 50)}...` : product.title.length,
-                backgroundColor: this.pickColor(product.url, "0.2"),
                 borderColor: pointColor,
                 pointColor: pointColor,
                 pointStrokeColor: "#b7b7b7",
                 pointHighlightFill: "#b7b7b7",
                 pointHighlightStroke: pointColor,
-                data: product.priceHistory.map(x => x.price)
+                data: product.priceHistory.map(x => x == null ? null : x.price)
             };
 
             datasets.push(dataset);
         });
 
-        var labels = new Array<string>();
-        newValue.forEach(element => {
-            labels = [...element.priceHistory.map(x => x.modifiedAt.toDateString())]
-        });
-
+        var labels = newValue.filter(x => !x.priceHistory.includes(null))[0].priceHistory.map(y => y.modifiedAt.toDateString());
         this.simpleLineData = <LineData>{
             labels: labels,
             datasets: datasets
         };
     }
+    
+    private createEmptyArray(size: number, value: any): Array<any> {
+        var newArray = new Array(size);
 
-    private pickColor(productUrl: URL, alpha: string = "1"): string {
+        while (size) {
+            newArray[--size] = value;
+        }
+
+        return newArray;
+    }
+
+    private pickColor(productUrl: string, alpha: string = "1"): string {
         var color = `rgba(220, 220, 220, ${alpha})`
-        var hostName = productUrl.hostname;
 
-        if (hostName.includes("amazon")) {
+        if (productUrl.includes("amazon")) {
             color = `rgba(254, 189, 105, ${alpha})`;
-        } else if (hostName.includes("bestbuy")) {
+        } else if (productUrl.includes("bestbuy")) {
             color = `rgba(255, 242, 0, ${alpha})`;
-        } else if (hostName.includes("toysrus")) {
+        } else if (productUrl.includes("toysrus")) {
             color = `rgba(0, 86, 175, ${alpha})`;
-        } else if (hostName.includes("newegg")) {
+        } else if (productUrl.includes("newegg")) {
             color = `rgba(247, 140, 27, ${alpha})`;
-        } else if (hostName.includes("lego")) {
+        } else if (productUrl.includes("lego")) {
             color = `rgba(194, 4, 18, ${alpha})`;
-        } else if (hostName.includes("tigerdirect")) {
+        } else if (productUrl.includes("tigerdirect")) {
             color = `rgba(254, 212, 67, ${alpha})`;
-        } else if (hostName.includes("staples")) {
+        } else if (productUrl.includes("staples")) {
             color = `rgba(204, 0, 0, ${alpha})`;
         }
 

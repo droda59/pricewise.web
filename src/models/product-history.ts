@@ -1,12 +1,13 @@
 export class ProductHistory implements IProductHistory {
     title: string;
-    url: URL;
+    url: string;
+    hostName: string;
     priceHistory: Array<PriceChange>;
 
     constructor(dto: IProductHistory) {
         (<any>Object).assign(this, dto);
 
-        this.url = new URL(dto.url);
+        this.hostName = new URL(dto.url).hostname;
         this.priceHistory = dto.priceHistory ? dto.priceHistory.map(changeDto => new PriceChange(changeDto)) : new Array<PriceChange>();
     }
 }
