@@ -82,6 +82,12 @@ export class PriceGraph {
             color = `rgba(254, 212, 67, ${alpha})`;
         } else if (productUrl.includes("staples")) {
             color = `rgba(204, 0, 0, ${alpha})`;
+        } else if (productUrl.includes("renaud-bray")) {
+            color = `rgba(46, 46, 46, ${alpha})`;
+        } else if (productUrl.includes("archambault")) {
+            color = `rgba(224, 0, 37, ${alpha})`;
+        } else if (productUrl.includes("canadiantire")) {
+            color = `rgba(235, 40, 40, ${alpha})`;
         }
 
         return color;
