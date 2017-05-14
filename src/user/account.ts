@@ -1,6 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
-import * as toastr from "toastr";
+import * as Toastr from "toastr";
 import { UserService } from "../services/user-service";
 import { User } from "../models/user";
 
@@ -23,15 +23,17 @@ export class Account {
     }
 
     async save(): Promise<void> {
-        var updateSuccessful = await this._userService.update(this.user);
-        if (updateSuccessful) {
-            toastr.success("User information saved successfully!", "Success", { timeOut: 3000 });
+        var updatedUser = await this._userService.update(this.user);
+        if (updatedUser) {
+            Toastr.success("User information saved successfully!", "Success", { timeOut: 3000 });
+
+            this.user = updatedUser;
         } else {
-            toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+            Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
         }
     }
 
     cancel(): void {
-        this._router.navigateToRoute("profile");
+        this._router.navigateToRoute("account");
     }
 }
