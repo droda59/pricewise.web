@@ -18,7 +18,6 @@ export class Alert {
 
     alert: UserAlert;
     alertHistory: Array<ProductHistory>;
-    newEntryUrl: string;
 
     constructor(alertService: AlertService, modalController: ConfirmationModalController) {
         this._alertService = alertService;
@@ -42,15 +41,16 @@ export class Alert {
         }
     }
 
-    async addEntry(): Promise<void> {
+    async addEntry(newEntryUrl): Promise<void> {
         var newEntry = new AlertEntry();
-        newEntry.uri = this.newEntryUrl;
+        newEntry.uri = newEntryUrl;
 
         this.alert.entries.push(newEntry);
 
         await this.updateAlert();
+    }
 
-        this.newEntryUrl = "";
+    cancel(): void {
     }
 
     async removeEntry(entry: AlertEntry): Promise<void> {

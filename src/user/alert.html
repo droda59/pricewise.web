@@ -1,5 +1,6 @@
 <template>
     <require from="./components/price-graph"></require>
+    <require from="./components/add-source"></require>
 
     <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
         <div class="ui text menu">
@@ -29,34 +30,10 @@
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="eleven columns wide field">
-                    <div class="ui right action input">
-                        <input value.bind="newEntryUrl" type="url" placeholder="Url">
-                        <button class="ui teal button ${newEntryUrl.length ? '' : 'disabled'}" click.delegate="addEntry()">
-                            <i class="add icon"></i>
-                            Add
-                        </button>
-                    </div>
-
-                    <div class="ui tiny visible info message">
-                        <div class="header">
-                            At the moment, these sites are supported: 
-                        </div>
-                        <ul class="list">
-                            <li>Amazon</li>
-                            <li>BestBuy</li>
-                            <li>Lego</li>
-                            <li>Newegg</li>
-                            <li>Staples</li>
-                            <li>Tiger Direct</li>
-                            <li>Toys R Us</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </form>
+
+    <add-source class="${isCreatingAlert ? 'loading' : ''}" add.call="addEntry(newAlertUrl)" cancel.call="cancel()"></add-source>
 
     <div class="ui divider"></div>
     <div class="ui stackable center aligned grid container">

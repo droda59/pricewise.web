@@ -1,11 +1,11 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import * as toastr from "toastr";
+import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { AlertService } from "../services/alert-service";
 import { UserService } from "../services/user-service";
 import { UserAlert } from "../models/user-alert";
 import { User } from "../models/user";
-import { ConfirmationModalController } from "../confirmation-modal-controller";
 
 @autoinject()
 export class Alerts {
@@ -20,7 +20,6 @@ export class Alerts {
     isAdding: boolean;
     isUpdatingAlert: boolean;
     isCreatingAlert: boolean;
-    newAlertUrl: string;
     alerts: Array<UserAlert> = new Array<UserAlert>();
 
     constructor(userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
@@ -37,17 +36,16 @@ export class Alerts {
         this.alerts = user.alerts;
     }
 
-    async create(): Promise<void> {
+    async create(newAlertUrl: string): Promise<void> {
         this.isCreatingAlert = true;
 
-        const newAlert = await this._alertService.create(this._userId, this.newAlertUrl);
+        const newAlert = await this._alertService.create(this._userId, newAlertUrl);
         this._originalAlerts.push(newAlert);
 
         if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
             this.alerts.push(newAlert);
         }
 
-        this.newAlertUrl = "";
         this.isCreatingAlert = false;
         this.isAdding = false;
     }

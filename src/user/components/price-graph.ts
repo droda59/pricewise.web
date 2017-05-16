@@ -1,15 +1,20 @@
-import { bindable } from "aurelia-framework";
+import { autoinject, bindable } from "aurelia-framework";
 import { Coordinates } from "../../resources/models/coordinates";
 import { LineData, Dataset } from "../../resources/models/line-data";
 import { ProductHistory } from "../../models/product-history";
+import { SourcesService } from "../../services/sources-service";
 
+@autoinject()
 export class PriceGraph {
     @bindable data: Array<ProductHistory>;
     
+    private _sourcesService: SourcesService;
+
     simpleLineData: LineData;
     nativeOptions: any = {};
 
-    constructor() {
+    constructor(sourcesService: SourcesService) {
+        this._sourcesService = sourcesService;
         this.simpleLineData = <LineData>{
             labels: [],
             datasets: []
@@ -65,29 +70,12 @@ export class PriceGraph {
         return newArray;
     }
 
-    private pickColor(productUrl: string, alpha: string = "1"): string {
-        var color = `rgba(220, 220, 220, ${alpha})`
+    private pickColor(productUrl: string): string {
+        var color = "rgb(220, 220, 220)";
 
-        if (productUrl.includes("amazon")) {
-            color = `rgba(254, 189, 105, ${alpha})`;
-        } else if (productUrl.includes("bestbuy")) {
-            color = `rgba(255, 242, 0, ${alpha})`;
-        } else if (productUrl.includes("toysrus")) {
-            color = `rgba(0, 86, 175, ${alpha})`;
-        } else if (productUrl.includes("newegg")) {
-            color = `rgba(247, 140, 27, ${alpha})`;
-        } else if (productUrl.includes("lego")) {
-            color = `rgba(194, 4, 18, ${alpha})`;
-        } else if (productUrl.includes("tigerdirect")) {
-            color = `rgba(254, 212, 67, ${alpha})`;
-        } else if (productUrl.includes("staples")) {
-            color = `rgba(204, 0, 0, ${alpha})`;
-        } else if (productUrl.includes("renaud-bray")) {
-            color = `rgba(46, 46, 46, ${alpha})`;
-        } else if (productUrl.includes("archambault")) {
-            color = `rgba(224, 0, 37, ${alpha})`;
-        } else if (productUrl.includes("canadiantire")) {
-            color = `rgba(235, 40, 40, ${alpha})`;
+        var sources = this._sourcesService.sources.filter(source => productUrl.includes(source.domain));
+        if (sources.length) {
+            color = sources[0].color;
         }
 
         return color;

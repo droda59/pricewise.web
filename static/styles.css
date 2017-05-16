@@ -185,6 +185,18 @@ div.au-stagger {
     background: rgba(255, 255, 255, 0.6);
 }
 
+.price-alerts .ui.cards > .card > .image {
+    height: 200px;
+    background: white;
+}
+.price-alerts .ui.cards > .card > .image > img {
+    height: 100%;
+    width: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: .875em .75em;
+}
+
 .ui.range input[type="range"] {
     width: 100%;
     -webkit-appearance: none;
