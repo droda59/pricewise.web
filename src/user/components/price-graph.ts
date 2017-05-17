@@ -73,9 +73,9 @@ export class PriceGraph {
     private pickColor(productUrl: string): string {
         var color = "rgb(220, 220, 220)";
 
-        var sources = this._sourcesService.sources.filter(source => productUrl.includes(source.domain));
-        if (sources.length) {
-            color = sources[0].color;
+        var source = SourcesService.getSource(productUrl);
+        if (source != null) {
+            color = source.color;
         }
 
         return color;

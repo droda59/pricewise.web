@@ -16,7 +16,7 @@
             <div class="item" repeat.for="entry of alert.entries" if.bind="!entry.isDeleted">
                 <div class="ui eleven wide field">
                     <p>
-                        ${entry.title} at <a href.bind="entry.uri" target="_blank">${entry.uri | hostName}</a>
+                        ${entry.title} at <a href.bind="entry.uri" target="_blank">${entry.source.name}</a>
                     </p>
                 </div>
                 <div class="two wide field">
