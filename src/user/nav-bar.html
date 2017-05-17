@@ -1,12 +1,30 @@
 <template>
-    <div class="ui secondary pointing menu">
-        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
-            ${row.title}
-        </a>
-        <div class="right menu">
-            <a class="ui item" click.delegate="logout()">
-            Logout
-            </a>
+    <div style="background: rgb(6, 37, 40); color: white;">
+        <div class="ui container" style="position: relative;">
+            <div class="ui inverted secondary pointing menu" style="padding: 1em 0;">
+                <a route-href="route: alerts" class="item">
+                    <img src="http://hemsolucoesfinanceira.com.br/img/logo.png">
+                </a>
+                
+                <div class="right text menu item">
+                    <div class="ui right dropdown item">
+                        Account
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item">
+                                <a route-href="route: account">Account settings</a>
+                            </div>
+                            <div class="item">
+                                <a route-href="route: settings">Alert settings</a>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="item">
+                                <a click.delegate="logout()">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

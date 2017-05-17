@@ -1,119 +1,69 @@
 <template>
     <require from="./components/add-source"></require>
 
-    <div class="ui text menu">
-        <div class="item">
-            <h3 class="ui header">Alerts</h3>
-        </div>
-        <div class="item">
-            <div class="ui basic circular icon button" click.delegate="addAlert()" hide.bind="isAdding">
+    <div style="background: rgb(6, 37, 40); color: white;">
+        <div class="ui container" style="position: relative;">
+            <div class="ui text menu" style="margin: 0; padding: 3em 0;">
+                <div class="item">
+                    <h1 class="ui header" style="color: white; font-size: 3rem;">Watched products</h1>
+                </div>
+        
+                <div class="right item" show.bind="alerts.length">
+                    <div class="ui icon input">
+                        <input value.bind="searchString &amp; debounce:400" placeholder="Search..." type="text" class="au-target">
+                        <i class="search link icon au-target" hide.bind="searchString.length"></i>
+                        <i class="remove icon au-target aurelia-hide" show.bind="searchString.length" click.delegate="clearSearch()"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="ui big circular icon red button au-target" click.delegate="addAlert()" hide.bind="isAdding" 
+                style="position: absolute; bottom: calc(-0.78571429em - 0.5rem); right: 20%;">
                 <i class="plus icon"></i>
             </div>
         </div>
-        <div class="right item">
-            <div class="ui icon input">
-                <input value.bind="searchString & debounce:400" placeholder="Search..." type="text">
-                <i class="search link icon" hide.bind="searchString.length"></i>
-                <i class="remove icon" show.bind="searchString.length" click.delegate="clearSearch()"></i>
-            </div>
+    </div>
+
+    <div class="ui container">
+        <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
+            <div class="ui text loader">Updating</div>
         </div>
-    </div>
 
-    <div class="ui divider"></div>
-    
-    <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
-        <div class="ui text loader">Updating</div>
-    </div>
+        <confirmation-modal header="Delete alert" message="Are you sure you want to delete this alert?"></confirmation-modal>
 
-    <div show.bind="isAdding">
-        <add-source class="${isCreatingAlert ? 'loading' : ''}" add.call="create(newAlertUrl)" cancel.call="cancel()"></add-source>
-
-        <div class="ui divider"></div>
-    </div>
-
-    <div class="ui divided items">
-        <div class="${alert.isActive ? '' : 'inactive'} item" repeat.for="alert of alerts | sort:'lastModifiedDate':'descending'">
-            <div class="ui tiny image">
-                <img src.bind="alert.imageUrl">
-            </div>
-            <div class="content">
-                <a class="header" route-href="route: alert; params.one-time: { alertId: alert.id }">${alert.title}</a>
-                <div class="description" if.bind="alert.isActive">
-                    <p>
-                        Current best price: ${alert.bestCurrentDeal.price | price} at <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank">${alert.bestCurrentDeal.productUrl | hostName}</a>
-                    </p>
-                </div>
-                <div class="extra">
-                    <span show.bind="alert.isActive">Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</span>
-                    <span hide.bind="alert.isActive">Deactivated</span>
-                </div>
-                <div class="extra">
-                    <div class="ui buttons">
-                        <div class="ui basic green button" click.delegate="activateAlert(alert)" if.bind="!alert.isActive">Activate</div>
-                        <div class="ui basic button" click.delegate="activateAlert(alert)" if.bind="alert.isActive">Deactivate</div>
-                        <div class="ui basic red button" click.delegate="removeAlert(alert)">
-                            <i class="remove icon"></i>
-                            Delete
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div show.bind="isAdding">
+            <add-source class="${isCreatingAlert ? 'loading' : ''}" add.call="create(newAlertUrl)" cancel.call="cancel()"></add-source>
         </div>
-    </div>
 
-    <div class="ui section divider"></div>
-
-    <div class="ui cards">
-        <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts">
-            <div class="content">
-                <div class="right floated mini ui image">
+        <div class="ui link cards" show.bind="alerts.length">
+            <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts">
+                <div class="image">
                     <img src.bind="alert.imageUrl">
                 </div>
-                <div class="header">
-                    <a route-href="route: alert; params.one-time: { alertId: alert.id }">${alert.title}</a>
+                <div class="content">
+                    <div class="header">${alert.title}</div>
+                    <div class="meta">
+                        <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank">${alert.bestCurrentDeal.price | price} at ${alert.bestCurrentDeal.productUrl | hostName}</a>
+                    </div>
                 </div>
-                
-                <div class="meta">
-                    <span show.bind="alert.isActive">Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</span>
-                    <span hide.bind="alert.isActive">Deactivated</span>
-                </div>
-                <div class="description" if.bind="alert.isActive">
-                    Current best price: ${alert.bestCurrentDeal.price | price} at <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank">${alert.bestCurrentDeal.productUrl | hostName}</a>
+                <div class="extra content">
+                    <span class="right floated" show.bind="alert.isActive">
+                        Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}
+                    </span>
                 </div>
             </div>
-            <div class="extra content">
-                <div class="ui two buttons">
-                    <div class="ui basic green button" click.delegate="activateAlert(alert)" if.bind="!alert.isActive">Activate</div>
-                    <div class="ui basic button" click.delegate="activateAlert(alert)" if.bind="alert.isActive">Deactivate</div>
-                    <div class="ui basic red button" click.delegate="removeAlert(alert)">
-                        <i class="remove icon"></i>
-                        Delete
+        </div>
+
+        <div class="ui overlay" hide.bind="alerts.length || isAdding">
+            <div style="width: 100%; position: absolute; top: 50%; left: 0;">
+                <p style="text-align: center;">You are not watching any product right now.</p>
+                <p style="text-align: center;">Get started!</p>
+                <div style="text-align: center;">
+                    <div class="ui primary button" click.delegate="addAlert()">
+                        <i class="plus icon"></i>
+                        Create a product alert
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="ui section divider"></div>
-
-    <div class="ui link cards">
-        <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts">
-            <div class="image">
-                <img src.bind="alert.imageUrl">
-            </div>
-            <div class="content">
-                <div class="header">${alert.title}</div>
-                <div class="meta">
-                    <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank">${alert.bestCurrentDeal.price | price} at ${alert.bestCurrentDeal.productUrl | hostName}</a>
-                </div>
-            </div>
-            <div class="extra content">
-                <span class="right floated" show.bind="alert.isActive">
-                    Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <confirmation-modal header="Delete alert" message="Are you sure you want to delete this alert?"></confirmation-modal>
 </template>

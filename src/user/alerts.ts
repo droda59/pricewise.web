@@ -1,5 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
+import { Router } from "aurelia-router";
 import * as toastr from "toastr";
 import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { AlertService } from "../services/alert-service";
@@ -17,12 +18,14 @@ export class Alerts {
 
     @bindable searchString: string;
 
+    router: Router;
     isAdding: boolean;
     isUpdatingAlert: boolean;
     isCreatingAlert: boolean;
     alerts: Array<UserAlert> = new Array<UserAlert>();
 
-    constructor(userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
+    constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
+        this.router = router;
         this._alertService = alertService;
         this._userService = userService;
         this._modalController = modalController;
@@ -30,10 +33,10 @@ export class Alerts {
     }
 
     async activate(): Promise<void> {
-        const user = await this._userService.get(this._userId);
+        // const user = await this._userService.get(this._userId);
 
-        this._originalAlerts = user.alerts;
-        this.alerts = user.alerts;
+        this._originalAlerts = [];//user.alerts;
+        this.alerts = [];//user.alerts;
     }
 
     async create(newAlertUrl: string): Promise<void> {

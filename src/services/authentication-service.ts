@@ -10,50 +10,34 @@ export class AuthenticationService {
 	private _httpClient: HttpClient;
 
 	constructor(httpClient: HttpClient) {
-        this._lock = new Auth0Lock(
-            "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
-            "price-alerts.auth0.com", 
-            {
-                auth: {
-                    redirect: false
-                },
-				autoclose: true,
-				avatar: null,
-				socialButtonStyle: "small",
-				theme: {
-					primaryColor: "#31324F",
-					logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
-				},
-            }
-        );
+        // this._lock = new Auth0Lock(
+        //     "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
+        //     "price-alerts.auth0.com", 
+        //     {
+        //         auth: {
+        //             redirect: false
+        //         },
+		// 		autoclose: true,
+		// 		avatar: null,
+		// 		socialButtonStyle: "small",
+		// 		theme: {
+		// 			primaryColor: "#31324F",
+		// 			logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
+		// 		},
+        //     }
+        // );
 
-		this._httpClient = httpClient.configure(config => {
-			config
-				.useStandardConfiguration()
-				.withDefaults({
-					headers: {
-						"Accept": "application/json",
-					}
-				})
-                .rejectErrorResponses()
-				.withBaseUrl("https://price-alerts.auth0.com/oauth/");
-		});
-	}
-
-	async getToken(): Promise<any> {
-        await fetchPolyfill;
-
-        const response = await this._httpClient.fetch("token", {
-			method: "post",
-			body: json({
-				"client_id":"BWCrCxu7EhYDJx05x0jE4zJBBZr5vHlD",
-				"client_secret":"8DGZlsuYLIzbtxaZbo009wZAvTYHt5tVQ0cbV7-Kz85aLBQ-gZp-7nH_X5aQArNT",
-				"audience":"https://price-alerts.auth0.com/api/v2/",
-				"grant_type":"client_credentials"
-			})
-		});
-		
-        return await response.json();
+		// this._httpClient = httpClient.configure(config => {
+		// 	config
+		// 		.useStandardConfiguration()
+		// 		.withDefaults({
+		// 			headers: {
+		// 				"Accept": "application/json",
+		// 			}
+		// 		})
+        //         .rejectErrorResponses()
+		// 		.withBaseUrl("https://price-alerts.auth0.com/oauth/");
+		// });
 	}
 
 	isAuthenticated(): boolean {
@@ -90,4 +74,20 @@ export class AuthenticationService {
 			}
 		});
     }
+
+	private async getToken(): Promise<any> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch("token", {
+			method: "post",
+			body: json({
+				"client_id":"BWCrCxu7EhYDJx05x0jE4zJBBZr5vHlD",
+				"client_secret":"8DGZlsuYLIzbtxaZbo009wZAvTYHt5tVQ0cbV7-Kz85aLBQ-gZp-7nH_X5aQArNT",
+				"audience":"https://price-alerts.auth0.com/api/v2/",
+				"grant_type":"client_credentials"
+			})
+		});
+		
+        return await response.json();
+	}
 }

@@ -12,7 +12,7 @@ export class App {
 
         config.map([
             { route: ["", "welcome"], name: "welcome", moduleId: PLATFORM.moduleName("./welcome"),    nav: true,  title: "Home" },
-            { route: "user",          name: "user",    moduleId: PLATFORM.moduleName("./user/index"), nav: true,  title: "Alerts", authRoute: true },
+            { route: "user",          name: "user",    moduleId: PLATFORM.moduleName("./user/index"), nav: true,  title: "Alerts"/*, authRoute: true*/ },
         ]);
         
         this.router = router;
