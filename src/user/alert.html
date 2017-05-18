@@ -2,29 +2,42 @@
     <require from="./components/price-graph"></require>
     <require from="./components/add-source"></require>
 
-    <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
-        <div class="ui text menu">
-            <div class="ui sixteen wide h3 transparent icon input field">
-                <input type="text" value.bind="title & updateTrigger:'blur'">
-                <i class="edit icon"></i>
+    <div style="background: rgb(6, 37, 40); color: white;">
+        <div class="ui container" style="position: relative; padding: 3em 0 0 0;">
+            <h3 style="font-weight: 200; margin: 0 0 0 2em;">Product Alert</h3>
+            <h1 class="ui sixteen wide h3 transparent icon input field" style="margin-top: 1em;">
+                <i class="edit icon" style="color: white; position: absolute; left: 0; background: rgba(255, 255, 255, 0.3); border-radius: .28571429rem 0 0 .28571429rem; width: 2.67142857rem !important;"></i>
+                <textarea type="text" value.bind="title &amp; updateTrigger:'blur'" class="au-target input" au-target-id="21" style="color: white;font-size: 3rem;word-break: break-word;word-wrap: break-word;resize: none;padding: 0 !important;margin-left: 2.67142857rem !important;padding-left: 1rem !important;border-top: 1px solid rgba(255, 255, 255, 0.3) !important;border-right: 1px solid rgba(255, 255, 255, 0.3) !important;border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;border-radius: 0 .28571429rem .28571429rem 0;" row="10" wrap="">Star Wars: The Force Awakens (Blu-Ray)</textarea>                
+            </h1>
+
+            <div class="ui inverted secondary pointing text menu">
+                <div class="item">
+                    <a style="color: inherit;" href="/history">Watched sources</a>
+                </div>
+                <div class="item">
+                    <a style="color: inherit;" href="/history">History</a>
+                </div>
+            </div>
+
+            <div class="ui big circular icon red button au-target" click.delegate="addAlert()" hide.bind="isAdding" 
+                style="position: absolute; bottom: calc(-0.78571429em - 0.5rem); right: 20%;">
+                <i class="plus icon"></i>
             </div>
         </div>
+    </div>
 
-        <div class="ui divider"></div>
-
+    <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
         <div class="ui relaxed items">
-            <div class="item" repeat.for="entry of alert.entries" if.bind="!entry.isDeleted">
-                <div class="ui eleven wide field">
-                    <p>
-                        ${entry.title} at <a href.bind="entry.uri" target="_blank">${entry.source.name}</a>
-                    </p>
+            <div class="item" style="margin: 2.5em 0;">
+                <a class="image" style="width: initial;" href.bind="entry.uri">
+                    <img src="http://hemsolucoesfinanceira.com.br/img/logo.png" style="width: 50px; height: 50px; margin: 0;">
+                </a>
+                <div class="middle aligned content">
+                    <a class="header" href.bind="entry.uri">${entry.lastPrice | price}</a>
                 </div>
-                <div class="two wide field">
-                    <input type="text" class="no-input" disabled show.bind="entry.lastPrice" value.bind="entry.lastPrice | price">
-                </div>
-                <div class="three wide field">
-                    <div class="right floated content">
-                        <div class="ui basic circular red icon button" click.delegate="removeEntry(entry)">
+                <div class="three wide field extra">
+                    <div class="left floated content">
+                        <div class="ui basic circular red icon button au-target" click.delegate="removeEntry(entry)" au-target-id="26">
                             <i class="icon remove"></i>
                         </div>
                     </div>
