@@ -1,0 +1,23 @@
+<template>
+    <div style="background: rgb(6, 37, 40); color: white;">
+        <div class="ui container" style="position: relative; padding: 3em 0 0 0;">
+            <h3 style="font-weight: 200; margin: 0 0 0 2em;">Product Alert</h3>
+            <h1 class="ui sixteen wide h3 transparent icon input field" style="margin-top: 1em;">
+                <i class="edit icon" style="color: white; position: absolute; left: 0; background: rgba(255, 255, 255, 0.3); border-radius: .28571429rem 0 0 .28571429rem; width: 2.67142857rem !important;"></i>
+                <textarea value.bind="title & updateTrigger:'blur'" class="input" rows="2"></textarea>
+            </h1>
+
+            <div class="ui inverted secondary pointing text menu">
+                <div repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item">
+                    <a style="color: inherit;"  href.bind="row.href">${row.title}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui container" style="position: relative;">
+        <router-view></router-view>
+
+        <a class="ui button" tabindex="0" route-href="route: alerts">Back</a>
+    </div>
+</template>

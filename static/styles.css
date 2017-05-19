@@ -132,7 +132,8 @@ div.au-stagger {
 .ui.form .field.transparent input[type=tel],
 .ui.form .field.transparent input[type=text],
 .ui.form .field.transparent input[type=time],
-.ui.form .field.transparent input[type=url] {
+.ui.form .field.transparent input[type=url],
+.ui.form .field.transparent textarea {
     border-color: transparent !important;
 }
 .ui.form .field.transparent:hover input:not([type]), 
@@ -146,7 +147,8 @@ div.au-stagger {
 .ui.form .field.transparent:hover input[type=tel],
 .ui.form .field.transparent:hover input[type=text],
 .ui.form .field.transparent:hover input[type=time],
-.ui.form .field.transparent:hover input[type=url] {
+.ui.form .field.transparent:hover input[type=url],
+.ui.form .field.transparent:hover textarea {
     border-color: rgba(34,36,38,.15) !important;
 }
 .ui.form .field.transparent input:not([type]):focus, 
@@ -160,8 +162,33 @@ div.au-stagger {
 .ui.form .field.transparent input[type=tel]:focus,
 .ui.form .field.transparent input[type=text]:focus,
 .ui.form .field.transparent input[type=time]:focus,
-.ui.form .field.transparent input[type=url]:focus {
+.ui.form .field.transparent input[type=url]:focus,
+.ui.form .field.transparent textarea:focus {
     border-color: #85B7D9 !important;
+}
+
+.price-alerts .ui.icon.input.transparent:hover > i.icon {
+    opacity: 1;
+}
+.price-alerts .ui.input.transparent textarea {
+    color: white;
+    font-size: 3rem;
+    line-height: 1.21428571em;
+    word-break: break-word;
+    word-wrap: break-word;
+    resize: none;
+    padding: 0 !important;
+    margin-left: 2.67142857rem !important;
+    padding-left: 1rem !important;
+    border-radius: 0 .28571429rem .28571429rem 0; 
+    background: transparent!important;
+    border-top: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+    border-bottom: 1px solid transparent !important;
+    border-left: none !important;
+}
+.price-alerts .ui.input.transparent:hover textarea {
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 .ui.form input[disabled].no-input {
@@ -239,6 +266,19 @@ div.au-stagger {
     background: #fff -moz-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     border-radius: 100%;
     box-shadow: 0 1px 2px 0 rgba(34,36,38,.15),0 0 0 1px rgba(34,36,38,.15) inset;
+}
+
+.price-alerts .ui.secondary.inverted.pointing.menu .item {
+    color: rgba(255,255,255,.3);
+}
+.price-alerts .ui.secondary.pointing.menu .active.item {
+    font-weight: normal;
+    border-bottom: 2px solid;
+}
+.price-alerts .ui.secondary.inverted.menu .item:hover, 
+.price-alerts .ui.secondary.inverted.menu .link.item:hover, 
+.price-alerts .ui.secondary.inverted.menu a.item:hover {
+    color: #fff!important;
 }
 
 .price-alerts .ui.menu .dropdown.item .menu {
