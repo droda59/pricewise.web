@@ -7,9 +7,14 @@
             <div class="header">
                 At the moment, these sites are supported: 
             </div>
-            <ul class="list">
-                <li repeat.for="source of sources">
-                    <a target="_blank" href.one-time="source.url">${source.name}</a>
+            <ul class="ui divided items">
+                <li repeat.for="source of sources" class="item">
+                    <div class="ui tiny image">
+                        <img src="/images/${source.domain}.png" alt.bind="source.name">
+                    </div>
+                    <a class="middle aligned content" target="_blank" href.one-time="source.url">
+                        ${source.name}
+                    </a>
                 </li>
             </ul>
         </div>

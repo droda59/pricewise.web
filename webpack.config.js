@@ -73,6 +73,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       { test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jQuery" },
       // embed small images and fonts as Data Urls and larger ones as files:
       { test: /\.(png|gif|jpg|cur)$/i, loader: "url-loader", options: { limit: 8192 } },
+      { test: /\.(png|gif|jpg|cur)$/i, loader: "file-loader", options: { name: "./images/[name].[ext]" } },
       { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: "url-loader", options: { limit: 10000, mimetype: "application/font-woff2" } },
       { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: "url-loader", options: { limit: 10000, mimetype: "application/font-woff" } },
       // load these fonts normally, as files:
@@ -104,15 +105,16 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
         title, server, baseUrl
       },
     }),
+    new CopyWebpackPlugin([
+      { from: "static/favicon.ico", to: "favicon.ico" },
+      { from: "src/images", to: "images" }
+    ]),
     ...when(extractCss, new ExtractTextPlugin({
       filename: production ? "[contenthash].css" : "[id].css",
       allChunks: true,
     })),
     ...when(production, new CommonsChunkPlugin({
       name: ["common"]
-    })),
-    ...when(production, new CopyWebpackPlugin([
-      { from: "static/favicon.ico", to: "favicon.ico" }
-    ]))
+    }))
   ],
 })

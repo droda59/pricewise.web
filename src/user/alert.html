@@ -7,7 +7,7 @@
             <h3 style="font-weight: 200; margin: 0 0 0 2em;">Product Alert</h3>
             <h1 class="ui sixteen wide h3 transparent icon input field" style="margin-top: 1em;">
                 <i class="edit icon" style="color: white; position: absolute; left: 0; background: rgba(255, 255, 255, 0.3); border-radius: .28571429rem 0 0 .28571429rem; width: 2.67142857rem !important;"></i>
-                <textarea type="text" value.bind="title &amp; updateTrigger:'blur'" class="au-target input" au-target-id="21" style="color: white;font-size: 3rem;word-break: break-word;word-wrap: break-word;resize: none;padding: 0 !important;margin-left: 2.67142857rem !important;padding-left: 1rem !important;border-top: 1px solid rgba(255, 255, 255, 0.3) !important;border-right: 1px solid rgba(255, 255, 255, 0.3) !important;border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;border-radius: 0 .28571429rem .28571429rem 0;" row="10" wrap="">Star Wars: The Force Awakens (Blu-Ray)</textarea>                
+                <textarea value.bind="title & updateTrigger:'blur'" class="input" style="color: white;font-size: 3rem;line-height: 1.21428571em;word-break: break-word;word-wrap: break-word;resize: none;padding: 0 !important;margin-left: 2.67142857rem !important;padding-left: 1rem !important;border-top: 1px solid rgba(255, 255, 255, 0.3) !important;border-right: 1px solid rgba(255, 255, 255, 0.3) !important;border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;border-radius: 0 .28571429rem .28571429rem 0; background: transparent!important;" rows="2"></textarea>
             </h1>
 
             <div class="ui inverted secondary pointing text menu">
@@ -19,48 +19,52 @@
                 </div>
             </div>
 
-            <div class="ui big circular icon red button au-target" click.delegate="addAlert()" hide.bind="isAdding" 
+            <div class="ui big circular icon red button" click.delegate="addSource()" hide.bind="isAdding" 
                 style="position: absolute; bottom: calc(-0.78571429em - 0.5rem); right: 20%;">
                 <i class="plus icon"></i>
             </div>
         </div>
     </div>
 
-    <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
-        <div class="ui relaxed items">
-            <div class="item" style="margin: 2.5em 0;">
-                <a class="image" style="width: initial;" href.bind="entry.uri">
-                    <img src="http://hemsolucoesfinanceira.com.br/img/logo.png" style="width: 50px; height: 50px; margin: 0;">
-                </a>
-                <div class="middle aligned content">
-                    <a class="header" href.bind="entry.uri">${entry.lastPrice | price}</a>
-                </div>
-                <div class="three wide field extra">
-                    <div class="left floated content">
-                        <div class="ui basic circular red icon button au-target" click.delegate="removeEntry(entry)" au-target-id="26">
-                            <i class="icon remove"></i>
+    <div class="ui container">
+        <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
+            <div class="ui relaxed items" style="width: 80%; margin: 0 auto;">
+                <div repeat.for="entry of alert.entries" class="item" style="margin: 2.5em 0;">
+                    <a class="image" style="width: initial;" href.bind="entry.uri">
+                        <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+                    </a>
+                    <div class="middle aligned content">
+                        <a class="header" href.bind="entry.uri">${entry.lastPrice | price}</a>
+                    </div>
+                    <div class="six wide field extra">
+                        <div class="left floated content">
+                            <div class="ui basic circular red icon button" click.delegate="removeEntry(entry)">
+                                <i class="icon remove"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </form>
+
+        <div show.bind="isAdding">
+            <add-source class="${isCreatingAlert ? 'loading' : ''}" add.call="create(newAlertUrl)" cancel.call="cancel()"></add-source>
         </div>
-    </form>
 
-    <add-source class="${isCreatingAlert ? 'loading' : ''}" add.call="addEntry(newAlertUrl)" cancel.call="cancel()"></add-source>
-
-    <div class="ui divider"></div>
-    <div class="ui stackable center aligned grid container">
-        <div class="fourteen wide column">
-            <div class="ui stackable center aligned vertically padded grid">
-                <div class="twelve wide column">
-                    <h3 class="ui header">Price history</h3>
-                    <!--<price-graph title.one-time="title" data.one-way="alertHistory"></price-graph>-->
+        <!--<div class="ui divider"></div>
+        <div class="ui stackable center aligned grid container">
+            <div class="fourteen wide column">
+                <div class="ui stackable center aligned vertically padded grid">
+                    <div class="twelve wide column">
+                        <h3 class="ui header">Price history</h3>
+                        <price-graph title.one-time="title" data.one-way="alertHistory"></price-graph>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>-->
 
-    <a class="ui button" tabindex="0" route-href="route: alerts">Back</a>
+        <a class="ui button" tabindex="0" route-href="route: alerts">Back</a>
+    </div>
 
     <confirmation-modal header="Delete alert" message="Are you sure you want to delete the selected entry in this alert?"></confirmation-modal>
 </template>

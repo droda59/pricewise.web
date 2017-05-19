@@ -16,6 +16,7 @@ export class Alert {
 
     @bindable title: string;
 
+    isAdding: boolean;
     alert: UserAlert;
     alertHistory: Array<ProductHistory>;
 
@@ -48,9 +49,16 @@ export class Alert {
         this.alert.entries.push(newEntry);
 
         await this.updateAlert();
+
+        this.isAdding = false;
     }
 
     cancel(): void {
+        this.isAdding = false;
+    }
+
+    addSource(): void {
+        this.isAdding = true;
     }
 
     async removeEntry(entry: AlertEntry): Promise<void> {
