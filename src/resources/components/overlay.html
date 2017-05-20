@@ -1,10 +1,10 @@
 <template>
-    <div class="overlay ui inverted page dimmer">
-        <div class="ui big circular right floated icon basic button" click.delegate="closeOverlay()" style="position: fixed; top: 0.5rem; right: 0.5rem; margin: 1.3em;">
-            <i class="x icon"></i>
-        </div>
-        <div class="content">
-            <slot></slot>
+    <div class="ui overlay page dimmer">
+        <div class="ui fullscreen modal">
+            <i class="close icon"></i>
+            <div class="content">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>

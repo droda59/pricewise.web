@@ -12,7 +12,6 @@ export class Sources {
     private _userId: string;
     private _alertId: string;
 
-    isAdding: boolean;
     alert: UserAlert;
 
     constructor(alertService: AlertService, modalController: ConfirmationModalController) {
@@ -29,13 +28,8 @@ export class Sources {
         }
     }
 
-    cancel(): void {
-        this.isAdding = false;
-    }
-
     addSource(): void {
-        this.isAdding = true;
-        $(".ui.overlay.dimmer").dimmer("show");
+        $(".ui.dimmer .modal").modal("show");
     }
 
     async addEntry(newEntryUrl: string): Promise<void> {
@@ -45,8 +39,6 @@ export class Sources {
         this.alert.entries.push(newEntry);
 
         await this.updateAlert();
-
-        this.isAdding = false;
     }
 
     async removeEntry(entry: AlertEntry): Promise<void> {

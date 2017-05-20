@@ -316,7 +316,7 @@ div.au-stagger {
     max-width: 450px;
 }
 
-.price-alerts .overlay {
+/*.price-alerts .overlay {
     position: fixed;
     left: 0;
     top: 1em;
@@ -328,7 +328,7 @@ div.au-stagger {
     padding: 10em 7em 5em;
     margin: 0 0.5%;
     border-radius: 2px;
-}
+}*/
 
 .price-alerts .source-list .logo {
     opacity: 0.5;
