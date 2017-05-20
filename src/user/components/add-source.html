@@ -1,34 +1,33 @@
 <template>
-    <form class="ui ${class} form" submit.delegate="createSource()" role="form">
-        <h4 class="ui sub header">New Alert</h4>
-        <p>Add a new alert to your collection!</p>
-
-        <div class="ui tiny visible info message">
-            <div class="header">
-                At the moment, these sites are supported: 
-            </div>
-            <ul class="ui divided items">
-                <li repeat.for="source of sources" class="item">
-                    <div class="ui tiny image">
-                        <img src="/images/${source.domain}.png" alt.bind="source.name">
+    <overlay close.call="cancelSource()">
+        <div class="ui middle aligned center aligned grid"> 
+            <div class="column" style="max-width: 60%;">
+                <form submit.delegate="createSource()" role="form" class="ui large form">
+                    <p>Browse your favourite shopping site and paste the product URL</p>
+                    <div class="ui large right action input">
+                        <input value.bind="newAlertUrl" type="url" placeholder="Url" autofocus>
+                        <button class="ui teal button ${newAlertUrl.length ? '' : 'disabled'}">
+                            <i class="add icon"></i>
+                            Add
+                        </button>
                     </div>
-                    <a class="middle aligned content" target="_blank" href.one-time="source.url">
-                        ${source.name}
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="field six columns wide">
-            <div class="ui right action input">
-                <input value.bind="newAlertUrl" type="url" placeholder="Url">
-                <button class="ui teal button ${newAlertUrl.length ? '' : 'disabled'}">
-                    <i class="add icon"></i>
-                    Add
-                </button>
+                </form>
             </div>
         </div>
-        
-        <div class="ui button" click.delegate="cancelSource()">Cancel</div>
-    </form>
+
+        <div class="ui padded basic segment source-list">
+            <!--<h3 class="ui centered header">At the moment, these sites are supported: </h3>-->
+            <div class="ui four column center aligned relaxed stackable grid container">
+                <div class="row">
+                    <div repeat.for="source of sources" class="column">
+                        <a href.bind="source.url" target="_blank">
+                            <h2 class="ui icon header logo">
+                                <img class="ui icon image" src="/images/${source.domain}.png" alt.bind="source.name">
+                            </h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </overlay>
 </template>

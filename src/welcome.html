@@ -54,66 +54,9 @@
             </div>
             <div class="ui four column center aligned divided relaxed stackable grid container">
                 <div class="row">
-                    <div class="column">
+                    <div repeat.for="source of sources" class="column">
                         <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Best Buy" src="./images/bestbuy.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Amazon" src="./images/amazon.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Toys R Us" src="./images/toysrus.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Newegg" src="./images/newegg.png">
-                        </h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Lego" src="./images/lego.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Tiger Direct" src="./images/tigerdirect.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Staples" src="./images/staples.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Renaud-Bray" src="./images/renaud-bray.png">
-                        </h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Archambault" src="./images/archambault.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                            <img class="ui icon image" alt="Canadian Tire" src="./images/canadiantire.png">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
-                        </h2>
-                    </div>
-                    <div class="column">
-                        <h2 class="ui icon header">
+                            <img class="ui icon image" src="/images/${source.domain}.png" alt.bind="source.name">
                         </h2>
                     </div>
                 </div>

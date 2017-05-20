@@ -2,24 +2,30 @@ import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
 import { UserService } from "./services/user-service";
 import { AuthenticationService } from "./services/authentication-service";
+import { SourcesService } from "./services/sources-service";
 import { User } from "./models/user";
+import { Source } from "./models/source";
 
 @autoinject()
 export class Welcome {
     private _userService: UserService;
     private _authenticationService: AuthenticationService;
+    private _sourcesService: SourcesService;
 
     isAuthenticated: boolean;
     router: Router;
+    sources: Array<Source>;
 
-    constructor(router: Router, userService: UserService, authenticationService: AuthenticationService) {
+    constructor(router: Router, userService: UserService, authenticationService: AuthenticationService, sourcesService: SourcesService) {
         this.router = router;
         this._userService = userService;
         this._authenticationService = authenticationService;
+        this._sourcesService = sourcesService;
     }
 
     activate(): void {
         this.isAuthenticated = this._authenticationService.isAuthenticated();
+        this.sources = this._sourcesService.sources;
     }
 
     login(): void {

@@ -35,6 +35,7 @@ export class Sources {
 
     addSource(): void {
         this.isAdding = true;
+        $(".ui.overlay.dimmer").dimmer("show");
     }
 
     async addEntry(newEntryUrl: string): Promise<void> {

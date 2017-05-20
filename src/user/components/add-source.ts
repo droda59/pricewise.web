@@ -9,11 +9,17 @@ export class AddSource {
     @bindable add;
     @bindable cancel;
 
+    private _sourcesService: SourcesService;
+
     newAlertUrl: string;
     sources: Array<Source>;
 
     constructor(sourcesService: SourcesService) {
-        this.sources = sourcesService.sources;
+        this._sourcesService = sourcesService;
+    }
+
+    bind(): void {
+        this.sources = this._sourcesService.sources;
     }
 
     createSource() {
@@ -23,5 +29,6 @@ export class AddSource {
 
     cancelSource() {
         this.cancel();
+        this.newAlertUrl = "";
     }
 }
