@@ -19,7 +19,6 @@ export class Alerts {
     @bindable searchString: string;
 
     router: Router;
-    isAdding: boolean;
     isUpdatingAlert: boolean;
     isCreatingAlert: boolean;
     alerts: Array<UserAlert> = new Array<UserAlert>();
@@ -39,6 +38,10 @@ export class Alerts {
         this.alerts = [];//user.alerts;
     }
 
+    detached() {
+        $(".ui.modals.page.dimmer").remove();
+    }
+
     async create(newAlertUrl: string): Promise<void> {
         this.isCreatingAlert = true;
 
@@ -50,20 +53,6 @@ export class Alerts {
         }
 
         this.isCreatingAlert = false;
-        this.isAdding = false;
-    }
-
-    async activateAlert(alert: UserAlert): Promise<void> {
-        this.isUpdatingAlert = true;
-
-        if (alert.isActive) {
-            alert.isActive = false;
-        } else {
-            alert.isActive = true;
-        }
-        alert = await this._alertService.update(this._userId, alert);
-
-        this.isUpdatingAlert = false;
     }
 
     removeAlert(alert: UserAlert): void {
@@ -81,11 +70,7 @@ export class Alerts {
     }
 
     addAlert(): void {
-        this.isAdding = true;
-    }
-
-    cancel(): void {
-        this.isAdding = false;
+        $(".ui.dimmer .overlay.modal").modal("show");
     }
 
     clearSearch(): void {

@@ -12,7 +12,8 @@ export class AlertPage {
     private _alertId: string;
 
     @bindable title: string;
-
+    
+    isActive: boolean;
     router: Router;
 
     constructor(alertService: AlertService) {
@@ -36,9 +37,14 @@ export class AlertPage {
             var alert = await this._alertService.get(this._userId, this._alertId);
 
             this.title = alert.title;
+            this.isActive = alert.isActive;
 
             routeConfig.navModel.title = alert.title;
         }
+    }
+
+    attached() {
+        $(".ui.checkbox").checkbox();
     }
 
     async titleChanged(newValue: string, oldValue: string): Promise<void> {
@@ -47,15 +53,21 @@ export class AlertPage {
         }
     }
 
+    async changeActive(): Promise<void> {
+        await this.updateAlert();
+    }
+
     private async updateAlert(): Promise<void> {
         try {
             var currentAlert = await this._alertService.get(this._userId, this._alertId);
             currentAlert.title = this.title;
+            currentAlert.isActive = this.isActive;
 
             var updatedAlert = await this._alertService.update(this._userId, currentAlert);
 
             if (updatedAlert) {
                 this.title = updatedAlert.title;
+                this.isActive = updatedAlert.isActive;
             }
 
             Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });

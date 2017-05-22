@@ -28,8 +28,12 @@ export class Sources {
         }
     }
 
+    detached() {
+        $(".ui.modals.page.dimmer").remove();
+    }
+
     addSource(): void {
-        $(".ui.dimmer .modal").modal("show");
+        $(".ui.dimmer .overlay.modal").modal("show");
     }
 
     async addEntry(newEntryUrl: string): Promise<void> {

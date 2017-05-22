@@ -198,6 +198,13 @@ div.au-stagger {
     opacity: 1;
 }
 
+.ui.mini.form .ui.checkbox label {
+    font-size: .78571429rem;
+}
+.ui.tiny.form .ui.checkbox label {
+    font-size: .85714286rem;
+}
+
 .ui.basic.modal .content {
     text-align: center; 
 }
