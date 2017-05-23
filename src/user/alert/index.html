@@ -1,5 +1,5 @@
 <template>
-    <div style="background: rgb(6, 37, 40); color: white;">
+    <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative; padding: 3em 0 0 0;">
             <h3 style="font-weight: 200; margin: 0 0 2em 2em;">Product Alert</h3>
             <img class="ui small inline image" src="https://images-na.ssl-images-amazon.com/images/I/71kliP%2BCIfL._SX522_.jpg" style="vertical-align: bottom;">
@@ -19,7 +19,7 @@
                 </div>
             </span>
 
-            <div class="ui inverted secondary pointing text menu">
+            <div class="ui inverted secondary pointing text menu" style="margin-bottom: 0;">
                 <div repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item">
                     <a style="color: inherit;"  href.bind="row.href">${row.title}</a>
                 </div>
@@ -27,8 +27,10 @@
         </div>
     </div>
 
-    <div class="ui container" style="position: relative;">
-        <router-view></router-view>
+    <div class="primary-light" style="position: relative;">
+        <div class="ui padded basic segment">
+            <router-view></router-view>
+        </div>
 
         <div class="ui padded basic segment">
             <a class="ui button" tabindex="0" route-href="route: alerts">Back</a>

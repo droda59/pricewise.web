@@ -2,6 +2,19 @@ body {
   margin: 0;
 }
 
+.primary-light {
+    background: #fefdf7;
+}
+.primary-dark {
+    background: #182325;
+}
+.primary-action {
+    background-color: #67b78d;
+}
+.ui.primary.button.primary-action {
+    background-color: #67b78d;
+}
+
 .page-host {
   position: absolute;
   left: 0;
@@ -277,6 +290,13 @@ div.au-stagger {
 
 .price-alerts .ui.secondary.inverted.pointing.menu .item {
     color: rgba(255,255,255,.3);
+}
+.price-alerts .ui.secondary.inverted.pointing.menu a.item {
+    opacity: 0.3;
+    transition: opacity .1s ease;
+}
+.price-alerts .ui.secondary.inverted.pointing.menu a.item:hover {
+    opacity: 1;
 }
 .price-alerts .ui.secondary.pointing.menu .active.item {
     font-weight: normal;
