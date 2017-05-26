@@ -56,6 +56,7 @@ export class AlertService {
             bestCurrentDeal: <Deal>{
                 price: 24.96,
                 title: "The Force Awakens Blu Ray Special DVD Bonus",
+                productUrl: "http://www.amazon.ca/star-wars",
                 modifiedAt: new Date("2017-05-11T00:11:24.694Z")
             },
             entries: [

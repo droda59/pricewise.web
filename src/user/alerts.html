@@ -5,10 +5,10 @@
         <div class="ui container" style="position: relative;">
             <div class="ui text menu" style="margin: 0; padding: 3em 0;">
                 <div class="item">
-                    <h1 class="ui header" style="color: white; font-size: 3rem;">Watched products</h1>
+                    <h1 class="ui header" style="color: white; font-size: 3rem; font-weight: 200;">Watched products</h1>
                 </div>
         
-                <div class="right item" show.bind="alerts.length">
+                <div class="right item" show.bind="originalAlerts.length">
                     <div class="ui icon input">
                         <input value.bind="searchString &amp; debounce:400" placeholder="Search..." type="text" class="au-target">
                         <i class="search link icon au-target" hide.bind="searchString.length"></i>
@@ -24,28 +24,28 @@
     </div>
 
     <div class="primary-light">
-        <div class="ui container" show.bind="alerts.length">
+        <div class="ui container" show.bind="originalAlerts.length">
             <div class="ui link cards">
                 <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts">
-                    <div class="image">
+                    <a route-href="route: alert; params.bind: { alertId: alert.id }" class="image">
                         <img src.bind="alert.imageUrl">
-                    </div>
-                    <div class="content">
+                    </a>
+                    <a route-href="route: alert; params.bind: { alertId: alert.id }" class="content">
                         <div class="header">${alert.title}</div>
                         <div class="meta">
-                            <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank">${alert.bestCurrentDeal.price | price} at ${alert.bestCurrentDeal.productUrl | hostName}</a>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <span class="right floated" show.bind="alert.isActive">
                             Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}
-                        </span>
+                        </div>
+                    </a>
+                    <div class="extra content" show.bind="alert.isActive">
+                        <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank" class="right floated">
+                            ${alert.bestCurrentDeal.price | price} at ${alert.bestCurrentDeal.source.name}
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="ui overlay" hide.bind="alerts.length">
+        <div class="ui overlay" hide.bind="originalAlerts.length">
             <div style="width: 100%; position: absolute; top: 50%; left: 0;">
                 <p style="text-align: center;">You are not watching any product right now.</p>
                 <p style="text-align: center;">Get started!</p>

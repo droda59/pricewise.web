@@ -6,7 +6,7 @@ body {
     background: #fefdf7;
 }
 .primary-dark {
-    background: #182325;
+    background: #182325 !important;
 }
 .primary-action {
     background-color: #67b78d;
@@ -222,6 +222,12 @@ div.au-stagger {
     text-align: center; 
 }
 
+.price-alerts .ui.cards a.card:hover, 
+.price-alerts .ui.link.card:hover, 
+.price-alerts .ui.link.cards .card:hover, 
+.price-alerts a.ui.card:hover {
+    transform: none;
+}
 .ui.cards > .inactive.card > .content > .image::before,
 .ui.items > .inactive.item > .image::before {
     content: "";
@@ -310,6 +316,12 @@ div.au-stagger {
 
 .price-alerts .ui.menu .dropdown.item .menu {
     background: rgba(255, 255, 255, 0.1);
+}
+.price-alerts .ui.menu .ui.dropdown .menu>.item {
+    opacity: 0.7;
+}
+.price-alerts .ui.menu .ui.dropdown .menu>.item:hover {
+    opacity: 1;
 }
 
 #welcome .masthead.segment {

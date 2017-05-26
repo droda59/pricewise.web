@@ -14,7 +14,6 @@ export class Alerts {
     private _userService: UserService;
     private _modalController: ConfirmationModalController;
     private _userId: string;
-    private _originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
     @bindable searchString: string;
 
@@ -22,6 +21,7 @@ export class Alerts {
     isUpdatingAlert: boolean;
     isCreatingAlert: boolean;
     alerts: Array<UserAlert> = new Array<UserAlert>();
+    originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
     constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
         this.router = router;
@@ -32,10 +32,10 @@ export class Alerts {
     }
 
     async activate(): Promise<void> {
-        // const user = await this._userService.get(this._userId);
+        const user = await this._userService.get(this._userId);
 
-        this._originalAlerts = [];//user.alerts;
-        this.alerts = [];//user.alerts;
+        this.originalAlerts = user.alerts;
+        this.alerts = user.alerts;
     }
 
     detached() {
@@ -46,7 +46,7 @@ export class Alerts {
         this.isCreatingAlert = true;
 
         const newAlert = await this._alertService.create(this._userId, newAlertUrl);
-        this._originalAlerts.push(newAlert);
+        this.originalAlerts.push(newAlert);
 
         if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
             this.alerts.push(newAlert);
@@ -61,7 +61,7 @@ export class Alerts {
 
             const alertDeleted = await this._alertService.delete(this._userId, alert.id);
             if (alertDeleted) {
-                this._originalAlerts.remove(alert);
+                this.originalAlerts.remove(alert);
                 this.alerts.remove(alert);
             }
 
@@ -80,6 +80,6 @@ export class Alerts {
     private searchStringChanged(newValue: string, oldValue: string): void {
         const uppercaseNewValue = newValue.toUpperCase();
 
-        this.alerts = this._originalAlerts.filter(x => x.title.toUpperCase().indexOf(uppercaseNewValue) > -1);
+        this.alerts = this.originalAlerts.filter(x => x.title.toUpperCase().indexOf(uppercaseNewValue) > -1);
     }
 }
