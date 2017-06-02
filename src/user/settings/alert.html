@@ -1,0 +1,50 @@
+<template>
+    <div class="ui container">
+        <div class="ui big circular icon red button" click.delegate="addSource()"
+            style="position: absolute; top: calc(-1.3em); right: 20%;">
+            <i class="plus icon"></i>
+        </div>
+
+        <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
+            <div class="ui relaxed basic section" style="width: 80%; margin: 0 auto;">
+                <div class="ui text menu">
+                    <div class="item">
+                        <h3 class="ui header">Alert Settings</h3>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.alertOnPriceDrop">
+                        <label>Alert me when the best price of an alert drops</label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.alertOnPriceRaise">
+                        <label>Alert me when the best price of an alert raises</label>
+                    </div>
+                </div>
+
+                <div class="inline fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.specifyChangePercentage">
+                            <label>Alert me only when the price changes by at least: </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui right labeled ${settings.specifyChangePercentage ? '' : 'disabled'} input">
+                            <input type="number" value.bind="changePercentage" min="0" max="100" step="1" placeholder="Change">
+                            <div class="ui label">%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="ui primary primary-action button">Save</button>
+            </div>
+        </form>
+    </div>
+</template>

@@ -1,19 +1,16 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { Router } from "aurelia-router";
 import * as Toastr from "toastr";
-import { UserService } from "../services/user-service";
-import { User } from "../models/user";
+import { UserService } from "../../services/user-service";
+import { User } from "../../models/user";
 
 @autoinject()
-export class Account {
-    private _router: Router;
+export class AccountSettings {
     private _userService: UserService;
     private _userId: string;
 
     user: User;
 
-    constructor(userService: UserService, router: Router) {
-        this._router = router;
+    constructor(userService: UserService) {
         this._userService = userService;
         this._userId = localStorage.getItem("user-id");
     }
@@ -31,9 +28,5 @@ export class Account {
         } else {
             Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
         }
-    }
-
-    cancel(): void {
-        this._router.navigateToRoute("account");
     }
 }
