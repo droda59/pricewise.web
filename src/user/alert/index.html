@@ -1,7 +1,15 @@
 <template>
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative; padding: 3em 0 0 0;">
-            <h3 style="font-weight: 200; margin: 0 0 2em 2em;">Product Alert</h3>
+
+            
+            <h2 style="font-weight: 200; margin: 0 0 1em 0;">
+                <a class="basic circular ui icon inverted button" route-href="route: alerts;">
+                    <i class="large inverted chevron left icon"></i>
+                </a>
+                Product Alert
+            </h2>
+
             <img class="ui small inline image" src="https://images-na.ssl-images-amazon.com/images/I/71kliP%2BCIfL._SX522_.jpg" style="vertical-align: bottom;">
             <span style="margin-left: 1em; display: inline-block;">
                 <h1 class="ui sixteen wide h3 transparent icon input field" style="margin-top: 1em;">
@@ -30,10 +38,6 @@
     <div class="primary-light" style="position: relative;">
         <div class="ui padded basic segment">
             <router-view></router-view>
-        </div>
-
-        <div class="ui padded basic segment">
-            <a class="ui button" tabindex="0" route-href="route: alerts">Back</a>
         </div>
     </div>
 </template>
