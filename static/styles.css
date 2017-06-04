@@ -5,6 +5,9 @@ body {
 .primary-light {
     background: #fefdf7;
 }
+.primary-action-hover:hover {
+    color: #67b78d !important;
+}
 .primary-dark {
     background: #182325 !important;
 }
@@ -228,8 +231,7 @@ div.au-stagger {
 .price-alerts a.ui.card:hover {
     transform: none;
 }
-.ui.cards > .inactive.card > .content > .image::before,
-.ui.items > .inactive.item > .image::before {
+.ui.cards > .inactive.card > .image::before {
     content: "";
     display: block;
     height: 100%;

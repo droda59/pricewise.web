@@ -55,6 +55,18 @@ export class Alerts {
         this.isCreatingAlert = false;
     }
 
+    async activateAlert(alert: UserAlert): Promise<void> {
+        this.isUpdatingAlert = true;
+
+        alert.isActive = true;
+
+        const updatedAlert = await this._alertService.update(this._userId, alert);
+
+        alert = updatedAlert;
+
+        this.isUpdatingAlert = false;
+    }
+
     removeAlert(alert: UserAlert): void {
         this._modalController.openModal(async () => { 
             this.isUpdatingAlert = true;

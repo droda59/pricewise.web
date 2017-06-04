@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="ui big circular icon red button au-target" click.delegate="addAlert()" hide.bind="isAdding" 
-                style="position: absolute; bottom: calc(-0.78571429em - 0.5rem); right: 20%;">
+                style="position: absolute; bottom: calc(-0.58571429em); right: 10%;">
                 <i class="plus icon"></i>
             </div>
         </div>
@@ -26,22 +26,27 @@
     <div class="primary-light">
         <div class="ui container" show.bind="originalAlerts.length">
             <div class="ui link cards">
-                <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts">
+                <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts" style="border-radius: 2px">
                     <div class="content">
                         <i class="right floated red circular remove icon" click.delegate="removeAlert(alert)"></i>
                         <a class="header" route-href="route: alert; params.bind: { alertId: alert.id }">${alert.title}</a>
                         <div class="meta">
-                            <small>Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</small>
+                            <small show.bind="alert.isActive">Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</small>
+                            <small hide.bind="alert.isActive">Deactivated</small>
                         </div>
                     </div>
                     <a route-href="route: alert; params.bind: { alertId: alert.id }" class="image">
                         <img src.bind="alert.imageUrl">
                     </a>
-                    <div class="extra content" show.bind="alert.isActive">
-                        <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank" class="right floated">
+                    <div class="extra content">
+                        <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank" class="right floated" show.bind="alert.isActive">
                             ${alert.bestCurrentDeal.price | price} at
                             <img class="ui avatar image" src="/images/${alert.bestCurrentDeal.source.domain}-small.png">
                             ${alert.bestCurrentDeal.source.name}
+                        </a>
+                        <a class="right floated primary-action-hover" click.delegate="activateAlert(alert)" hide.bind="alert.isActive">
+                            <i class="toggle on icon"></i>
+                            Activate
                         </a>
                     </div>
                 </div>
