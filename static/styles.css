@@ -3,7 +3,7 @@ body {
 }
 
 .primary-light {
-    background: #fefdf7;
+    background: #fefdf7 !important;
 }
 .primary-action-hover:hover {
     color: #67b78d !important;
@@ -16,6 +16,10 @@ body {
 }
 .ui.primary.button.primary-action {
     background-color: #67b78d;
+}
+.ui.primary.button.primary-action:hover, 
+.ui.primary.buttons .button.primary-action:hover {
+    background-color: #17918d;
 }
 
 .page-host {

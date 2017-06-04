@@ -1,11 +1,11 @@
 <template>
     <div id="welcome">
-        <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui inverted vertical masthead center aligned segment primary-dark">
             <div class="ui container">
                 <div class="ui large secondary inverted pointing menu">
-                    <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
+                    <!--<a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
                         ${row.title}
-                    </a>
+                    </a>-->
                     <div class="right item">
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()">Log in</a>
                         <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()">Log out</a>
@@ -19,11 +19,11 @@
                 </h1>
                 <h3>Planning to buy something?</h3>
                 <h2>Stop paying too much!</h2>
-                <a class="ui huge primary button">Get Started <i class="right arrow icon"></i></a>
+                <a class="ui huge primary primary-action button">Get Started <i class="right arrow icon"></i></a>
             </div>
         </div>
 
-        <div class="ui vertical stripe segment">
+        <div class="ui vertical stripe segment primary-light">
             <div class="ui middle aligned stackable grid container">
                 <div class="row">
                     <div class="eight wide column">
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="ui stripe vertical segment">
+        <div class="ui stripe vertical segment primary-light">
             <div class="ui stackable very relaxed grid container">
                 <div class="fourteen wide center aligned centered column">
                     <h1 class="ui header">Available sources</h1>
@@ -74,7 +74,7 @@
                         <div class="eight wide column">
                             <h3 class="ui header">Knowledge is your advantage</h3>
                             <p>Shop more wisely, and know when prices drop. That's when you can act!</p>
-                            <a class="ui large right labeled primary icon button">
+                            <a class="ui large right labeled primary primary-action icon button">
                                 <i class="right chevron icon"></i>
                                 Get Started Now
                             </a>
