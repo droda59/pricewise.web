@@ -10,34 +10,34 @@ export class AuthenticationService {
 	private _httpClient: HttpClient;
 
 	constructor(httpClient: HttpClient) {
-        // this._lock = new Auth0Lock(
-        //     "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
-        //     "price-alerts.auth0.com", 
-        //     {
-        //         auth: {
-        //             redirect: false
-        //         },
-		// 		autoclose: true,
-		// 		avatar: null,
-		// 		socialButtonStyle: "small",
-		// 		theme: {
-		// 			primaryColor: "#31324F",
-		// 			logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
-		// 		},
-        //     }
-        // );
+        this._lock = new Auth0Lock(
+            "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
+            "price-alerts.auth0.com", 
+            {
+                auth: {
+                    redirect: false
+                },
+				autoclose: true,
+				avatar: null,
+				socialButtonStyle: "small",
+				theme: {
+					primaryColor: "#31324F",
+					logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
+				},
+            }
+        );
 
-		// this._httpClient = httpClient.configure(config => {
-		// 	config
-		// 		.useStandardConfiguration()
-		// 		.withDefaults({
-		// 			headers: {
-		// 				"Accept": "application/json",
-		// 			}
-		// 		})
-        //         .rejectErrorResponses()
-		// 		.withBaseUrl("https://price-alerts.auth0.com/oauth/");
-		// });
+		this._httpClient = httpClient.configure(config => {
+			config
+				.useStandardConfiguration()
+				.withDefaults({
+					headers: {
+						"Accept": "application/json",
+					}
+				})
+                .rejectErrorResponses()
+				.withBaseUrl("https://price-alerts.auth0.com/oauth/");
+		});
 	}
 
 	isAuthenticated(): boolean {

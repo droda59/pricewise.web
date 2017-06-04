@@ -5,12 +5,12 @@
     <title><%- htmlWebpackPlugin.options.metadata.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
     <!-- imported CSS are concatenated and added automatically -->
   </head>
   <body aurelia-app="main" class="price-alerts">
-    <div class="splash">
-      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
-      <i class="fa fa-spinner fa-spin"></i>
+    <div class="ui inverted active dimmer">
+      <div class="ui huge indeterminate text loader"><%- htmlWebpackPlugin.options.metadata.title %></div>
     </div>
     <% if (htmlWebpackPlugin.options.metadata.server) { %>
     <!-- Webpack Dev Server reload -->

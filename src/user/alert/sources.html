@@ -7,7 +7,7 @@
             <i class="plus icon"></i>
         </div>
 
-        <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
+        <form class="ui form" submit.delegate="save()" role="form">
             <div class="ui relaxed items" style="width: 80%; margin: 0 auto;">
                 <div repeat.for="entry of alert.entries" class="item" style="margin: 2.5em 0;">
                     <a class="image" style="width: initial;" href.bind="entry.uri" target="_blank">
@@ -32,6 +32,10 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
+        <div class="ui text loader">Updating</div>
     </div>
 
     <add-source containerless class="${isCreatingAlert ? 'loading' : ''}" add.call="create(newAlertUrl)" cancel.call="cancel()"></add-source>

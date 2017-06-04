@@ -13,6 +13,7 @@ export class Sources {
     private _alertId: string;
 
     alert: UserAlert;
+    isUpdatingAlert: boolean;
 
     constructor(alertService: AlertService, modalController: ConfirmationModalController) {
         this._alertService = alertService;
@@ -45,7 +46,7 @@ export class Sources {
         await this.updateAlert();
     }
 
-    async removeEntry(entry: AlertEntry): Promise<void> {
+    removeEntry(entry: AlertEntry): void {
         this._modalController.openModal(async () => { 
             entry.isDeleted = true;
 
@@ -54,17 +55,22 @@ export class Sources {
     }
 
     private async updateAlert(): Promise<void> {
+        this.isUpdatingAlert = true; 
+
         try {
             var updatedAlert = await this._alertService.update(this._userId, this.alert);
-
             if (updatedAlert) {
                 // This might rebind everything, but we need it when we add an Entry. Maybe a dedicated route would help
                 this.alert = updatedAlert;
+            } else {
+                throw new Error();
             }
 
             Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
             Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+        } finally {
+            this.isUpdatingAlert = false;
         }
     }
 }

@@ -10,6 +10,7 @@ export class AlertSettings {
 
     settings: UserSettings;
     changePercentage: number;
+    isUpdatingUser: boolean;
 
     constructor(userService: UserService) {
         this._userService = userService;
@@ -27,15 +28,23 @@ export class AlertSettings {
     }
 
     async save(): Promise<void> {
-        this.settings.changePercentage = this.changePercentage / 100;
-        var updatedSettings = await this._userService.saveSettings(this._userId, this.settings);
-        if (updatedSettings) {
-            Toastr.success("User settings saved successfully!", "Success", { timeOut: 3000 });
+        this.isUpdatingUser = true;
+        
+        try {
+            this.settings.changePercentage = this.changePercentage / 100;
+            var updatedSettings = await this._userService.saveSettings(this._userId, this.settings);
+            if (updatedSettings) {
+                this.settings = updatedSettings;
+                this.changePercentage = updatedSettings.changePercentage * 100;
+            } else {
+                throw new Error();
+            }
 
-            this.settings = updatedSettings;
-            this.changePercentage = updatedSettings.changePercentage * 100;
-        } else {
+            Toastr.success("User settings saved successfully!", "Success", { timeOut: 3000 });
+        } catch(e) {
             Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+        } finally {
+            this.isUpdatingUser = false;
         }
     }
 }

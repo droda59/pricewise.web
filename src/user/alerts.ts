@@ -1,7 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
-import * as toastr from "toastr";
+import * as Toastr from "toastr";
 import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { AlertService } from "../services/alert-service";
 import { UserService } from "../services/user-service";
@@ -38,6 +38,16 @@ export class Alerts {
         this.alerts = user.alerts;
     }
 
+    getMeta(url) {
+        // var i = new Image(); 
+
+        // i.onload = function(){
+        // alert( i.width+", "+i.height );
+        // };
+
+        // i.src = url; 
+    }
+
     detached() {
         $(".ui.modals.page.dimmer").remove();
     }
@@ -45,39 +55,65 @@ export class Alerts {
     async create(newAlertUrl: string): Promise<void> {
         this.isCreatingAlert = true;
 
-        const newAlert = await this._alertService.create(this._userId, newAlertUrl);
-        this.originalAlerts.push(newAlert);
+        try {
+            const newAlert = await this._alertService.create(this._userId, newAlertUrl);
+            this.originalAlerts.push(newAlert);
 
-        if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
-            this.alerts.push(newAlert);
+            if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
+                this.alerts.push(newAlert);
+            } else {
+                throw new Error();
+            }
+
+            Toastr.success("Alert created successfully!", "Success", { timeOut: 3000 });
+        } catch(e) {
+            Toastr.error("An error ocurred during the creation.", "Error", { timeOut: 3000 });
+        } finally {
+            this.isCreatingAlert = false;
         }
-
-        this.isCreatingAlert = false;
     }
 
     async activateAlert(alert: UserAlert): Promise<void> {
         this.isUpdatingAlert = true;
 
-        alert.isActive = true;
+        try {
+            alert.isActive = true;
 
-        const updatedAlert = await this._alertService.update(this._userId, alert);
+            const updatedAlert = await this._alertService.update(this._userId, alert);
+            if (updatedAlert) {
+                // This might rebind everything, but we need it when we add an Entry. Maybe a dedicated route would help
+                alert = updatedAlert;
+            } else {
+                throw new Error();
+            }
 
-        alert = updatedAlert;
-
-        this.isUpdatingAlert = false;
+            Toastr.success("Alert activated successfully!", "Success", { timeOut: 3000 });
+        } catch(e) {
+            Toastr.error("An error ocurred during the activation.", "Error", { timeOut: 3000 });
+        } finally {
+            this.isUpdatingAlert = false;
+        }
     }
 
     removeAlert(alert: UserAlert): void {
         this._modalController.openModal(async () => { 
             this.isUpdatingAlert = true;
 
-            const alertDeleted = await this._alertService.delete(this._userId, alert.id);
-            if (alertDeleted) {
-                this.originalAlerts.remove(alert);
-                this.alerts.remove(alert);
-            }
+            try {
+                const alertDeleted = await this._alertService.delete(this._userId, alert.id);
+                if (alertDeleted) {
+                    this.originalAlerts.remove(alert);
+                    this.alerts.remove(alert);
+                } else {
+                    throw new Error();
+                }
 
-            this.isUpdatingAlert = false;
+                Toastr.success("Alert deleted successfully!", "Success", { timeOut: 3000 });
+            } catch(e) {
+                Toastr.error("An error ocurred during the deletion.", "Error", { timeOut: 3000 });
+            } finally {
+                this.isUpdatingAlert = false;
+            }
         });
     }
 

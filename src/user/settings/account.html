@@ -1,6 +1,6 @@
 <template>
     <div class="ui container">
-        <form class="ui ${loading ? 'loading' : ''} form" submit.delegate="save()" role="form">
+        <form class="ui form" submit.delegate="save()" role="form">
             <div class="ui relaxed basic section" style="width: 80%; margin: 0 auto;">
                 <div class="ui text menu">
                     <div class="item">
@@ -29,5 +29,9 @@
                 <button class="ui primary primary-action button">Save</button>
             </div>
         </form>
+    </div>
+
+    <div class="ui ${isUpdatingUser ? 'active': ''} inverted dimmer">
+        <div class="ui text loader">Updating</div>
     </div>
 </template>

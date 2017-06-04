@@ -9,6 +9,7 @@ export class AccountSettings {
     private _userId: string;
 
     user: User;
+    isUpdatingUser: boolean;
 
     constructor(userService: UserService) {
         this._userService = userService;
@@ -20,13 +21,21 @@ export class AccountSettings {
     }
 
     async save(): Promise<void> {
-        var updatedUser = await this._userService.update(this.user);
-        if (updatedUser) {
-            Toastr.success("User information saved successfully!", "Success", { timeOut: 3000 });
+        this.isUpdatingUser = true;
+        
+        try {
+            var updatedUser = await this._userService.update(this.user);
+            if (updatedUser) {
+                this.user = updatedUser;
+            } else {
+                throw new Error();
+            }
 
-            this.user = updatedUser;
-        } else {
+            Toastr.success("User information saved successfully!", "Success", { timeOut: 3000 });
+        } catch(e) {
             Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+        } finally {
+            this.isUpdatingUser = false;
         }
     }
 }

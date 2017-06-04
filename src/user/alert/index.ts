@@ -14,6 +14,7 @@ export class AlertPage {
     @bindable title: string;
     
     isActive: boolean;
+    imageUrl: string;
     router: Router;
 
     constructor(alertService: AlertService) {
@@ -38,6 +39,7 @@ export class AlertPage {
 
             this.title = alert.title;
             this.isActive = alert.isActive;
+            this.imageUrl = alert.imageUrl;            
 
             routeConfig.navModel.title = alert.title;
         }
@@ -68,6 +70,8 @@ export class AlertPage {
             if (updatedAlert) {
                 this.title = updatedAlert.title;
                 this.isActive = updatedAlert.isActive;
+            } else {
+                throw new Error();
             }
 
             Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });
