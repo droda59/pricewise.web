@@ -12,7 +12,7 @@ const when = (condition, config, negativeConfig) =>
   condition ? ensureArray(config) : ensureArray(negativeConfig)
 
 // primary config:
-const title = "Price alerts";
+const title = "PriceWise";
 const outDir = path.resolve(__dirname, "dist");
 const srcDir = path.resolve(__dirname, "src");
 const nodeModulesDir = path.resolve(__dirname, "node_modules");
@@ -106,7 +106,14 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       },
     }),
     new CopyWebpackPlugin([
+      { from: "static/android-chrome-192x192.png", to: "android-chrome-192x192.png" },
+      { from: "static/android-chrome-512x512.png", to: "android-chrome-512x512.png" },
+      { from: "static/apple-touch-icon.png", to: "apple-touch-icon.png" },
+      { from: "static/favicon-32x32.png", to: "favicon-32x32.png" },
+      { from: "static/favicon-16x16.png", to: "favicon-16x16.png" },
       { from: "static/favicon.ico", to: "favicon.ico" },
+      { from: "static/manifest.json", to: "manifest.json" },
+      { from: "static/safari-pinned-tab.svg", to: "safari-pinned-tab.svg" },
       { from: "src/images", to: "images" }
     ]),
     ...when(extractCss, new ExtractTextPlugin({

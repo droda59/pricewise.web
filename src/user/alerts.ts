@@ -38,16 +38,6 @@ export class Alerts {
         this.alerts = user.alerts;
     }
 
-    getMeta(url) {
-        // var i = new Image(); 
-
-        // i.onload = function(){
-        // alert( i.width+", "+i.height );
-        // };
-
-        // i.src = url; 
-    }
-
     detached() {
         $(".ui.modals.page.dimmer").remove();
     }

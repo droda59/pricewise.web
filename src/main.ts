@@ -1,5 +1,5 @@
 ﻿import "../static/styles.css";
-import "../semantic/dist/semantic.min.css";
+// import "../semantic/dist/semantic.min.css";
 import "../semantic/dist/semantic.min.js";
 import "../node_modules/toastr/build/toastr.min.css";
 

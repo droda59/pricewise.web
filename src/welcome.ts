@@ -12,6 +12,7 @@ export class Welcome {
     private _authenticationService: AuthenticationService;
     private _sourcesService: SourcesService;
 
+    isAuthenticating: boolean;
     isAuthenticated: boolean;
     router: Router;
     sources: Array<Source>;
@@ -39,6 +40,8 @@ export class Welcome {
     }
 
     private async onAuthenticated(profile: Auth0UserProfile): Promise<void> {
+        this.isAuthenticating = true;
+        
         try {
             await this._userService.get(profile.user_id);
         } catch(err) {
@@ -53,6 +56,7 @@ export class Welcome {
             }
         }
 
+        this.isAuthenticating = false;
         this.isAuthenticated = true;
 
         this.router.navigateToRoute("user");

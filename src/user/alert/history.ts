@@ -20,6 +20,8 @@ export class History {
             this._alertId = route.alertId;
 
             this.alertHistory = await this._alertService.getHistory(this._userId, this._alertId);
+
+            var b = true;
         }
     }
 }

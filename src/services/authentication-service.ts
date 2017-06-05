@@ -20,8 +20,11 @@ export class AuthenticationService {
 				autoclose: true,
 				avatar: null,
 				socialButtonStyle: "small",
+				languageDictionary: {
+					title: "PriceWise"
+				},
 				theme: {
-					primaryColor: "#31324F",
+					primaryColor: "#008179",
 					logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
 				},
             }

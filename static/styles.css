@@ -5,21 +5,21 @@ body {
 .primary-light {
     background: #fefdf7 !important;
 }
-.primary-action-hover:hover {
-    color: #67b78d !important;
-}
 .primary-dark {
-    background: #182325 !important;
+    background: #051615 !important;
 }
 .primary-action {
-    background-color: #67b78d;
+    background-color: #008179;
+}
+.primary-action-hover:hover {
+    color: #02776f !important;
 }
 .ui.primary.button.primary-action {
-    background-color: #67b78d;
+    background-color: #008179;
 }
 .ui.primary.button.primary-action:hover, 
 .ui.primary.buttons .button.primary-action:hover {
-    background-color: #17918d;
+    background-color: #02776f;
 }
 
 .page-host {
@@ -120,7 +120,7 @@ div.au-stagger {
     font-weight: 700;
 }
 
-.price-alerts .ui.transparent.icon.input > input {
+.pricewise .ui.transparent.icon.input > input {
     padding-left: 1em !important;
     padding-right: 3em !important;
 }
@@ -187,10 +187,17 @@ div.au-stagger {
     border-color: #85B7D9 !important;
 }
 
-.price-alerts .ui.icon.input.transparent:hover > i.icon {
+.pricewise .ui.inverted.dimmer .ui.loader:before {
+    border-color: rgba(0,129,121, 0.2);
+}
+.pricewise .ui.inverted.dimmer .ui.loader:after {
+    border-color: #02776f transparent transparent;
+}
+
+.pricewise .ui.icon.input.transparent:hover > i.icon {
     opacity: 1;
 }
-.price-alerts .ui.input.transparent textarea {
+.pricewise .ui.input.transparent textarea {
     color: white;
     font-size: 3rem;
     line-height: 1.21428571em;
@@ -207,7 +214,7 @@ div.au-stagger {
     border-bottom: 1px solid transparent !important;
     border-left: none !important;
 }
-.price-alerts .ui.input.transparent:hover textarea {
+.pricewise .ui.input.transparent:hover textarea {
     border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
@@ -229,10 +236,16 @@ div.au-stagger {
     text-align: center; 
 }
 
-.price-alerts .ui.cards a.card:hover, 
-.price-alerts .ui.link.card:hover, 
-.price-alerts .ui.link.cards .card:hover, 
-.price-alerts a.ui.card:hover {
+.pricewise .ui.cards > .green.card, 
+.pricewise .ui.green.card, 
+.pricewise .ui.green.cards > .card {
+    box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #008179, 0 1px 3px 0 #D4D4D5;
+}
+
+.pricewise .ui.cards a.card:hover, 
+.pricewise .ui.link.card:hover, 
+.pricewise .ui.link.cards .card:hover, 
+.pricewise a.ui.card:hover {
     transform: none;
 }
 .ui.inactive.card > .content > a.header, 
@@ -248,11 +261,11 @@ div.au-stagger {
     background: rgba(255, 255, 255, 0.6);
 }
 
-.price-alerts .ui.cards > .card > .image {
+.pricewise .ui.cards > .card > .image {
     height: 200px;
     background: white;
 }
-.price-alerts .ui.cards > .card > .image > img {
+.pricewise .ui.cards > .card > .image > img {
     height: 100%;
     width: auto;
     margin: 0 auto;
@@ -261,11 +274,11 @@ div.au-stagger {
     padding: .875em .75em;
 }
 
-.price-alerts .ui.cards > .card > .image > img.portrait {
+.pricewise .ui.cards > .card > .image > img.portrait {
     height: 100%;
     width: auto;
 }
-.price-alerts .ui.cards > .card > .image > img.landscape {
+.pricewise .ui.cards > .card > .image > img.landscape {
     height: auto;
     width: 100%;
 }
@@ -314,33 +327,33 @@ div.au-stagger {
     box-shadow: 0 1px 2px 0 rgba(34,36,38,.15),0 0 0 1px rgba(34,36,38,.15) inset;
 }
 
-.price-alerts .ui.secondary.inverted.pointing.menu .item {
+.pricewise .ui.secondary.inverted.pointing.menu .item {
     color: rgba(255,255,255,.3);
 }
-.price-alerts .ui.secondary.inverted.pointing.menu a.item {
-    opacity: 0.3;
+.pricewise .ui.secondary.inverted.pointing.menu a.item {
+    opacity: 0.5;
     transition: opacity .1s ease;
 }
-.price-alerts .ui.secondary.inverted.pointing.menu a.item:hover {
+.pricewise .ui.secondary.inverted.pointing.menu a.item:hover {
     opacity: 1;
 }
-.price-alerts .ui.secondary.pointing.menu .active.item {
+.pricewise .ui.secondary.pointing.menu .active.item {
     font-weight: normal;
     border-bottom: 2px solid;
 }
-.price-alerts .ui.secondary.inverted.menu .item:hover, 
-.price-alerts .ui.secondary.inverted.menu .link.item:hover, 
-.price-alerts .ui.secondary.inverted.menu a.item:hover {
+.pricewise .ui.secondary.inverted.menu .item:hover, 
+.pricewise .ui.secondary.inverted.menu .link.item:hover, 
+.pricewise .ui.secondary.inverted.menu a.item:hover {
     color: #fff!important;
 }
 
-.price-alerts .ui.menu .dropdown.item .menu {
+.pricewise .ui.menu .dropdown.item .menu {
     background: rgba(255, 255, 255, 0.1);
 }
-.price-alerts .ui.menu .ui.dropdown .menu>.item {
+.pricewise .ui.menu .ui.dropdown .menu>.item {
     opacity: 0.7;
 }
-.price-alerts .ui.menu .ui.dropdown .menu>.item:hover {
+.pricewise .ui.menu .ui.dropdown .menu>.item:hover {
     opacity: 1;
 }
 
@@ -375,7 +388,7 @@ div.au-stagger {
     max-width: 450px;
 }
 
-/*.price-alerts .overlay {
+/*.pricewise .overlay {
     position: fixed;
     left: 0;
     top: 1em;
@@ -389,10 +402,10 @@ div.au-stagger {
     border-radius: 2px;
 }*/
 
-.price-alerts .source-list .logo {
+.pricewise .source-list .logo {
     opacity: 0.5;
     transition: opacity .2s ease-in-out;
 }
-.price-alerts .source-list .logo:hover {
+.pricewise .source-list .logo:hover {
     opacity: 1;
 }
