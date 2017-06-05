@@ -38,7 +38,7 @@
         <div class="ui text loader">Updating</div>
     </div>
 
-    <add-source containerless class="${isCreatingAlert ? 'loading' : ''}" add.call="create(newAlertUrl)" cancel.call="cancel()"></add-source>
+    <add-source containerless class="${isCreatingAlert ? 'loading' : ''}" add.call="addEntry(newAlertUrl)" cancel.call="cancel()"></add-source>
 
     <confirmation-modal header="Delete alert" message="Are you sure you want to delete the selected entry in this alert?"></confirmation-modal>
 </template>

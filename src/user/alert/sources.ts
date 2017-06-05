@@ -68,7 +68,14 @@ export class Sources {
 
             Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+            var errorMessage = "An error ocurred during the update.";
+            if (e.status === 404) {
+                errorMessage += " The specified source is not yet supported.";
+            } else if (e.status === 400) {
+                errorMessage += " There was a problem parsing the source.";
+            }
+
+            Toastr.error(errorMessage, "Error", { timeOut: 3000 });
         } finally {
             this.isUpdatingAlert = false;
         }

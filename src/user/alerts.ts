@@ -57,7 +57,14 @@ export class Alerts {
 
             Toastr.success("Alert created successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error ocurred during the creation.", "Error", { timeOut: 3000 });
+            var errorMessage = "An error ocurred during the creation.";
+            if (e.status === 404) {
+                errorMessage += " The specified source is not yet supported.";
+            } else if (e.status === 400) {
+                errorMessage += " There was a problem parsing the source.";
+            }
+            
+            Toastr.error(errorMessage, "Error", { timeOut: 3000 });
         } finally {
             this.isCreatingAlert = false;
         }
