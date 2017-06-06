@@ -1,4 +1,5 @@
 import { autoinject, bindable } from "aurelia-framework";
+import * as moment from "moment";
 import { Coordinates } from "../../resources/models/coordinates";
 import { LineData, Dataset } from "../../resources/models/line-data";
 import { ProductHistory } from "../../models/product-history";
@@ -20,7 +21,32 @@ export class PriceGraph {
             datasets: []
         };
 
-        this.nativeOptions = { showLines: true, elements: { line: { fill: false, tension: 0 } }, segmentStrokeColor: '#fff', segmentStrokeWidth: 2 };
+        this.nativeOptions = { 
+            showLines: true, 
+            elements: { 
+                line: { 
+                    fill: false, 
+                    tension: 0 
+                } 
+            }, 
+            scales: {
+                xAxes: [
+                    {
+                        ticks: {
+                            callback: function(label, index, labels) {
+                                if (index % 2 !== 0) {
+                                    return "";
+                                }
+
+                                return moment(label).format("L");
+                            }
+                        }
+                    }
+                ]
+            },
+            segmentStrokeColor: '#fff', 
+            segmentStrokeWidth: 2 
+        };
     }
 
     private dataChanged(newValue: Array<ProductHistory>): void {
