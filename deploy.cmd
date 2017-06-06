@@ -120,7 +120,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\webpack.config.js" (
 )
 
 echo Deploying files...
-xcopy %DEPLOYMENT_SOURCE%\export %DEPLOYMENT_TARGET% /Y /s
+xcopy %DEPLOYMENT_SOURCE%\dist %DEPLOYMENT_TARGET% /Y /s
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
