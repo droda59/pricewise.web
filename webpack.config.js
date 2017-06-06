@@ -115,7 +115,8 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       { from: "static/manifest.json", to: "manifest.json" },
       { from: "static/safari-pinned-tab.svg", to: "safari-pinned-tab.svg" },
       { from: "static/config.json", to: "config.json" },
-      { from: "src/images", to: "images" }
+      { from: "src/images", to: "images" },
+      { from: "web.config", to: "web.config" }
     ]),
     ...when(extractCss, new ExtractTextPlugin({
       filename: production ? "[contenthash].css" : "[id].css",
