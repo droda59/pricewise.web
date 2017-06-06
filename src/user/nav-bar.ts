@@ -15,10 +15,6 @@ export class NavBar {
         this.isAuthenticated = this._authenticationService.isAuthenticated();
     }
 
-    attached(): void {
-        $(".ui.dropdown").dropdown();
-    }
-
     logout(): void {
         this._authenticationService.logout();
     }
