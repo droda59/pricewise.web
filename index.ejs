@@ -17,7 +17,17 @@
   </head>
   <body aurelia-app="main" class="pricewise">
     <div class="ui inverted active dimmer">
-      <div class="ui huge indeterminate text loader"><%- htmlWebpackPlugin.options.metadata.title %></div>
+      <style>
+        .pricewise .ui.inverted.dimmer .ui.loader:before {
+            border-color: rgba(0,129,121, 0.2);
+        }
+        .pricewise .ui.inverted.dimmer .ui.loader:after {
+            border-color: #02776f transparent transparent;
+        }
+      </style>
+      <div class="ui huge indeterminate text loader">
+          <%- htmlWebpackPlugin.options.metadata.title %>
+        </div>
     </div>
     <% if (htmlWebpackPlugin.options.metadata.server) { %>
     <!-- Webpack Dev Server reload -->
