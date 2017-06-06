@@ -28,7 +28,7 @@ export class AuthenticationService {
 				},
 				theme: {
 					primaryColor: "#008179",
-					logo: "http://hemsolucoesfinanceira.com.br/img/logo.png"
+					logo: "https://pricewise.azurewebsites.net/images/pricewise-logo.png"
 				},
             }
         );

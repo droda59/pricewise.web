@@ -37,7 +37,7 @@ export class UserService {
                     }
                 })
                 .rejectErrorResponses()
-				.withBaseUrl(`${configure.get("api")}/user/`);
+				.withBaseUrl(`${configure.get("api")}api/user/`);
 		});
 	}
 

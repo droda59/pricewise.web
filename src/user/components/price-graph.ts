@@ -41,7 +41,7 @@ export class PriceGraph {
         newValue.forEach(product => {
             let pointColor = this.pickColor(product.hostName);
             let dataset = <Dataset>{
-                label: product.title.length > 50 ? `${product.title.substring(0, 50)}...` : product.title.length,
+                label: product.source.name,
                 borderColor: pointColor,
                 pointColor: pointColor,
                 pointStrokeColor: "#b7b7b7",

@@ -35,7 +35,7 @@ export class AlertService {
                     }
                 })
                 .rejectErrorResponses()
-                .withBaseUrl(`${configure.get("api")}/userAlerts/`);
+                .withBaseUrl(`${configure.get("api")}api/userAlerts/`);
             });
 	}
 
