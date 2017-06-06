@@ -34,7 +34,7 @@ export class AlertService {
                     }
                 })
                 .rejectErrorResponses()
-                .withBaseUrl("http://localhost:5000/api/userAlerts/");
+                .withBaseUrl("http://price-alerts-api.azurewebsites.net/api/userAlerts/");
             });
 	}
 

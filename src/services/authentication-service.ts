@@ -57,7 +57,7 @@ export class AuthenticationService {
         localStorage.removeItem("access-token");
 
         this._lock.logout({
-            returnTo: "http://localhost:8080/"
+            returnTo: "http://pricewise.azurewebsites.net/"
         });
 	}
 
