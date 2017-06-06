@@ -1,5 +1,5 @@
 {
-  "name": "PriceWise",
+  "name": "pricewise",
   "version": "1.0.0",
   "description": "A web application to monitor product prices.",
   "main": "dist/app.bundle.js",
