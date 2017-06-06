@@ -114,7 +114,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
 IF EXIST "%DEPLOYMENT_SOURCE%\webpack.config.js" (
   echo Building app for production
   pushd "%DEPLOYMENT_SOURCE%"
-  call :ExecuteCmd npm build --production
+  call :ExecuteCmd npm start build --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )

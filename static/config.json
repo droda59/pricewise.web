@@ -1,0 +1,12 @@
+{
+    "api": "http://localhost:5000/",
+    "web": "http://localhost:8080/", 
+    "development": {
+        "api": "http://localhost:5000/",
+        "web": "http://localhost:8080/"
+    },
+    "production": {
+        "api": "http://price-alerts-api.azurewebsites.net/",
+        "web": "http://pricewise.azurewebsites.net/"
+    }
+}

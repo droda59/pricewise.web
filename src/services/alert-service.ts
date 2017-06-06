@@ -1,5 +1,6 @@
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
+import { AureliaConfiguration } from "aurelia-configuration";
 import { ProductHistory } from "../models/product-history";
 import { UserAlert } from "../models/user-alert";
 import { Deal } from "../models/deal";
@@ -7,11 +8,11 @@ import { AlertEntry } from "../models/alert-entry";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
 
-@inject(NewInstance.of(HttpClient))
+@inject(NewInstance.of(HttpClient), AureliaConfiguration)
 export class AlertService {
     private _httpClient: HttpClient;
 
-    constructor(httpClient: HttpClient) {
+    constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
         this._httpClient = httpClient.configure(config => {
             config
                 .useStandardConfiguration()
@@ -34,7 +35,7 @@ export class AlertService {
                     }
                 })
                 .rejectErrorResponses()
-                .withBaseUrl("http://price-alerts-api.azurewebsites.net/api/userAlerts/");
+                .withBaseUrl(`${configure.get("api")}/userAlerts/`);
             });
 	}
 

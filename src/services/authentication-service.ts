@@ -1,15 +1,18 @@
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
+import { AureliaConfiguration } from "aurelia-configuration";
 import Auth0Lock from "auth0-lock";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
 
-@inject(NewInstance.of(HttpClient))
+@inject(NewInstance.of(HttpClient), AureliaConfiguration)
 export class AuthenticationService {
     private _lock: Auth0LockStatic;
+	private _configure: AureliaConfiguration;
 	private _httpClient: HttpClient;
 
-	constructor(httpClient: HttpClient) {
+	constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
+		this._configure = configure;
         this._lock = new Auth0Lock(
             "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
             "price-alerts.auth0.com", 
@@ -57,7 +60,7 @@ export class AuthenticationService {
         localStorage.removeItem("access-token");
 
         this._lock.logout({
-            returnTo: "http://pricewise.azurewebsites.net/"
+            returnTo: this._configure.get("web")
         });
 	}
 

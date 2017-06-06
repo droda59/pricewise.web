@@ -1,4 +1,5 @@
 ﻿import "../static/styles.css";
+// import "../static/config.json";
 // import "../semantic/dist/semantic.min.css";
 import "../semantic/dist/semantic.min.js";
 import "../node_modules/toastr/build/toastr.min.css";
@@ -16,7 +17,14 @@ export async function configure(aurelia: Aurelia) {
         .standardConfiguration()
         .developmentLogging()
         .plugin(PLATFORM.moduleName("resources"))
-        .plugin(PLATFORM.moduleName("aurelia-chart"));
+        .plugin(PLATFORM.moduleName("aurelia-chart"))
+        .plugin(PLATFORM.moduleName("aurelia-configuration"), config => {
+            config.setDirectory("");
+            config.setEnvironments({
+                development: ["localhost"],
+                production: ["pricewise.azurewebsites.net"]
+            });
+        });
 
     await aurelia.start();
     await aurelia.setRoot(PLATFORM.moduleName("app"));

@@ -114,6 +114,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       { from: "static/favicon.ico", to: "favicon.ico" },
       { from: "static/manifest.json", to: "manifest.json" },
       { from: "static/safari-pinned-tab.svg", to: "safari-pinned-tab.svg" },
+      { from: "static/config.json", to: "config.json" },
       { from: "src/images", to: "images" }
     ]),
     ...when(extractCss, new ExtractTextPlugin({
