@@ -23,6 +23,21 @@ export async function configure(aurelia: Aurelia) {
                 development: ["localhost"],
                 production: ["pricewise.azurewebsites.net"]
             });
+        })
+        .plugin(PLATFORM.moduleName("aurelia-google-analytics"), config => {
+            config.init("UA-100559856-1");
+            config.attach({
+                logging: {
+                    enabled: false
+                },
+                pageTracking: {
+                    enabled: true
+                },
+                clickTracking: {
+                    enabled: true,
+                    filter: config._options.clickTracking.filter
+                }
+            });
         });
 
     await aurelia.start();
