@@ -11,14 +11,14 @@ export class Welcome {
     private _userService: UserService;
     private _authenticationService: AuthenticationService;
     private _sourcesService: SourcesService;
+    private _router: Router;
 
     isAuthenticating: boolean;
     isAuthenticated: boolean;
-    router: Router;
     sources: Array<Source>;
 
     constructor(router: Router, userService: UserService, authenticationService: AuthenticationService, sourcesService: SourcesService) {
-        this.router = router;
+        this._router = router;
         this._userService = userService;
         this._authenticationService = authenticationService;
         this._sourcesService = sourcesService;
@@ -59,6 +59,6 @@ export class Welcome {
         this.isAuthenticating = false;
         this.isAuthenticated = true;
 
-        this.router.navigateToRoute("user");
+        this._router.navigateToRoute("user");
     }
 }

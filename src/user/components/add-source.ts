@@ -5,9 +5,9 @@ import { Source } from "../../models/source";
 
 @autoinject()
 export class AddSource {
-    @bindable class: string;
+    @bindable className: string;
     @bindable add;
-    @bindable cancel;
+    @bindable close;
 
     private _sourcesService: SourcesService;
 
@@ -25,10 +25,6 @@ export class AddSource {
     createSource() {
         this.add({ newAlertUrl: this.newAlertUrl });
         this.newAlertUrl = "";
-    }
-
-    cancelSource() {
-        this.cancel();
-        this.newAlertUrl = "";
+        this.close();
     }
 }

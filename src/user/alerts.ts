@@ -12,19 +12,19 @@ import { User } from "../models/user";
 export class Alerts {
     private _alertService: AlertService;
     private _userService: UserService;
+    private _router: Router;
     private _modalController: ConfirmationModalController;
     private _userId: string;
 
-    @bindable searchString: string;
+    // @bindable searchString: string;
 
-    router: Router;
     isUpdatingAlert: boolean;
     isCreatingAlert: boolean;
     alerts: Array<UserAlert> = new Array<UserAlert>();
-    originalAlerts: Array<UserAlert> = new Array<UserAlert>();
+    // originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
     constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
-        this.router = router;
+        this._router = router;
         this._alertService = alertService;
         this._userService = userService;
         this._modalController = modalController;
@@ -34,7 +34,7 @@ export class Alerts {
     async activate(): Promise<void> {
         const user = await this._userService.get(this._userId);
 
-        this.originalAlerts = user.alerts;
+        // this.originalAlerts = user.alerts;
         this.alerts = user.alerts;
     }
 
@@ -47,15 +47,23 @@ export class Alerts {
 
         try {
             const newAlert = await this._alertService.create(this._userId, newAlertUrl);
-            this.originalAlerts.push(newAlert);
-
-            if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
+            if (newAlert) {
                 this.alerts.push(newAlert);
             } else {
                 throw new Error();
             }
 
+            // this.originalAlerts.push(newAlert);
+
+            // if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
+                // this.alerts.push(newAlert);
+            // } else {
+            //     throw new Error();
+            // }
+
             Toastr.success("Alert created successfully!", "Success", { timeOut: 3000 });
+
+            this._router.navigateToRoute("alert", { alertId: newAlert.id });
         } catch(e) {
             var errorMessage = "An error ocurred during the creation.";
             if (e.status === 404) {
@@ -99,7 +107,7 @@ export class Alerts {
             try {
                 const alertDeleted = await this._alertService.delete(this._userId, alert.id);
                 if (alertDeleted) {
-                    this.originalAlerts.remove(alert);
+                    // this.originalAlerts.remove(alert);
                     this.alerts.remove(alert);
                 } else {
                     throw new Error();
@@ -118,13 +126,17 @@ export class Alerts {
         $(".ui.dimmer .overlay.modal").modal("show");
     }
 
-    clearSearch(): void {
-        this.searchString = "";
+    removeModal(): void {
+        $(".ui.dimmer .overlay.modal").modal("hide");
     }
 
-    private searchStringChanged(newValue: string, oldValue: string): void {
-        const uppercaseNewValue = newValue.toUpperCase();
+    // clearSearch(): void {
+    //     this.searchString = "";
+    // }
 
-        this.alerts = this.originalAlerts.filter(x => x.title.toUpperCase().indexOf(uppercaseNewValue) > -1);
-    }
+    // private searchStringChanged(newValue: string, oldValue: string): void {
+    //     const uppercaseNewValue = newValue.toUpperCase();
+
+    //     this.alerts = this.originalAlerts.filter(x => x.title.toUpperCase().indexOf(uppercaseNewValue) > -1);
+    // }
 }

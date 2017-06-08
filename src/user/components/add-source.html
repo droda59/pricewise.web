@@ -1,8 +1,8 @@
 <template>
-    <overlay close.call="cancelSource()">
+    <overlay>
         <div class="ui middle aligned center aligned grid"> 
             <div class="column" style="max-width: 60%;">
-                <form submit.delegate="createSource()" role="form" class="ui large form">
+                <form submit.delegate="createSource()" role="form" class="ui large form ${className}">
                     <p>Browse your favourite shopping site and paste the product URL</p>
                     <div class="ui large right action input">
                         <input value.bind="newAlertUrl" type="url" placeholder="Url" autofocus>
