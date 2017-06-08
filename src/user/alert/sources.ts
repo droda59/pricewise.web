@@ -14,6 +14,7 @@ export class Sources {
 
     alert: UserAlert;
     isUpdatingAlert: boolean;
+    isAddingSource: boolean;
 
     constructor(alertService: AlertService, modalController: ConfirmationModalController) {
         this._alertService = alertService;
@@ -37,28 +38,21 @@ export class Sources {
         $(".ui.dimmer .overlay.modal").modal("show");
     }
 
+    removeModal(): void {
+        $(".ui.dimmer .overlay.modal").modal("hide");
+    }
+
     async addEntry(newEntryUrl: string): Promise<void> {
+        this.isAddingSource = true; 
+
         var newEntry = new AlertEntry();
         newEntry.uri = newEntryUrl;
 
-        this.alert.entries.push(newEntry);
-
-        await this.updateAlert();
-    }
-
-    removeEntry(entry: AlertEntry): void {
-        this._modalController.openModal(async () => { 
-            entry.isDeleted = true;
-
-            await this.updateAlert();
-        });
-    }
-
-    private async updateAlert(): Promise<void> {
-        this.isUpdatingAlert = true; 
+        var alertToUpdate = new UserAlert(this.alert);
+        alertToUpdate.entries.push(newEntry);
 
         try {
-            var updatedAlert = await this._alertService.update(this._userId, this.alert);
+            var updatedAlert = await this._alertService.update(this._userId, alertToUpdate);
             if (updatedAlert) {
                 // This might rebind everything, but we need it when we add an Entry. Maybe a dedicated route would help
                 this.alert = updatedAlert;
@@ -77,7 +71,31 @@ export class Sources {
 
             Toastr.error(errorMessage, "Error", { timeOut: 3000 });
         } finally {
-            this.isUpdatingAlert = false;
+            this.isAddingSource = false;
         }
+    }
+
+    removeEntry(entry: AlertEntry): void {
+        this._modalController.openModal(async () => { 
+            this.isUpdatingAlert = true; 
+
+            entry.isDeleted = true;
+
+            try {
+                var updatedAlert = await this._alertService.update(this._userId, this.alert);
+                if (updatedAlert) {
+                    // This might rebind everything, but we need it when we remove an Entry. Maybe a dedicated route would help
+                    this.alert = updatedAlert;
+                } else {
+                    throw new Error();
+                }
+
+                Toastr.success("Alert updated successfully!", "Success", { timeOut: 3000 });
+            } catch(e) {
+                Toastr.error("An error ocurred during the update.", "Error", { timeOut: 3000 });
+            } finally {
+                this.isUpdatingAlert = false;
+            }
+        });
     }
 }
