@@ -23,7 +23,7 @@ export class AlertPage {
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
-            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources"),  nav: true, title: "Watched Sources" },
+            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources"),  nav: true, title: "Sources" },
             { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history"),  nav: true, title: "History" },
         ]);
 
