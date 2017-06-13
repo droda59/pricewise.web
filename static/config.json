@@ -6,7 +6,7 @@
         "web": "http://localhost:8080/"
     },
     "production": {
-        "api": "http://price-alerts-api.azurewebsites.net/",
-        "web": "http://pricewise.azurewebsites.net/"
+        "api": "https://price-alerts-api.azurewebsites.net/",
+        "web": "https://pricewise.azurewebsites.net/"
     }
 }
