@@ -41,9 +41,15 @@ export class Welcome {
 
     private async onAuthenticated(profile: Auth0UserProfile): Promise<void> {
         this.isAuthenticating = true;
+
+        var user;
+        var navigateTo = "user";
         
         try {
-            await this._userService.get(profile.user_id);
+            user = await this._userService.get(profile.user_id);
+            if (!user.given_name) {
+                navigateTo = "user/settings/account";
+            }
         } catch(err) {
             if (err.status === 404) {
                 var newUser = new User();
@@ -52,13 +58,16 @@ export class Welcome {
                 newUser.lastName = profile.family_name;
                 newUser.email = profile.email;
 
-                await this._userService.create(newUser);
+                user = await this._userService.create(newUser);
+                if (!user.given_name) {
+                    navigateTo = "user/settings/account";
+                }
             }
         }
 
         this.isAuthenticating = false;
         this.isAuthenticated = true;
 
-        this._router.navigateToRoute("user");
+        this._router.navigate(navigateTo);
     }
 }
