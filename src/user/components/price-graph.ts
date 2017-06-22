@@ -65,7 +65,7 @@ export class PriceGraph {
         }
 
         newValue.forEach(product => {
-            let pointColor = this.pickColor(product.hostName);
+            let pointColor = this.pickColor(product.url);
             let dataset = <Dataset>{
                 label: product.source.name,
                 borderColor: pointColor,
