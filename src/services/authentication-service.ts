@@ -28,7 +28,7 @@ export class AuthenticationService {
 				},
 				theme: {
 					primaryColor: "#008179",
-					logo: "https://pricewise.azurewebsites.net/images/pricewise-logo.png"
+					logo: "https://pricewi.se/images/pricewise-logo.png"
 				},
             }
         );

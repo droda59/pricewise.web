@@ -22,7 +22,7 @@ export async function configure(aurelia: Aurelia) {
             config.setDirectory("");
             config.setEnvironments({
                 development: ["localhost"],
-                production: ["pricewise.azurewebsites.net"]
+                production: ["pricewise.azurewebsites.net", "pricewi.se"]
             });
         })
         .plugin(PLATFORM.moduleName("aurelia-google-analytics"), config => {

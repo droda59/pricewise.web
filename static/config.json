@@ -7,6 +7,6 @@
     },
     "production": {
         "api": "https://price-alerts-api.azurewebsites.net/",
-        "web": "https://pricewise.azurewebsites.net/"
+        "web": "https://pricewi.se/"
     }
 }
