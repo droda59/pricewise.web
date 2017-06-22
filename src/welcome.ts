@@ -47,7 +47,7 @@ export class Welcome {
         
         try {
             user = await this._userService.get(profile.user_id);
-            if (!user.given_name) {
+            if (!user.firstName) {
                 navigateTo = "user/settings/account";
             }
         } catch(err) {
@@ -59,7 +59,7 @@ export class Welcome {
                 newUser.email = profile.email;
 
                 user = await this._userService.create(newUser);
-                if (!user.given_name) {
+                if (!user.firstName) {
                     navigateTo = "user/settings/account";
                 }
             }
