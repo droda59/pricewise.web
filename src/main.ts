@@ -36,7 +36,12 @@ export async function configure(aurelia: Aurelia) {
                 },
                 clickTracking: {
                     enabled: true,
-                    filter: config._options.clickTracking.filter
+                    filter: element => {
+                        return element instanceof HTMLElement 
+                            && (element.classList.contains("button") 
+                                || element.nodeName.toLowerCase() === 'a' 
+                                || element.nodeName.toLowerCase() === 'button');
+                    }
                 }
             });
         });

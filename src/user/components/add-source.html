@@ -19,7 +19,10 @@
             <div class="ui four column center aligned relaxed stackable grid container">
                 <div class="row">
                     <div repeat.for="source of sources" class="column">
-                        <a href.bind="source.url" target="_blank">
+                        <a href.bind="source.url" target="_blank"
+                            data-analytics-category="Outbound Link"
+                            data-analytics-action="click"
+                            data-analytics-label.bind="source.url">
                             <h2 class="ui icon header logo">
                                 <img class="ui icon image" src="/images/${source.domain}.png" alt.bind="source.name">
                             </h2>
