@@ -66,6 +66,50 @@
                     </div>
                 </div>
             </div>
+
+            <div class="ui relaxed section">
+                <div class="ui ${isSearchingProducts ? 'active': ''} inverted dimmer">
+                    <div class="ui text loader">Searching for similar products...</div>
+                </div>
+
+                <div show.bind="suggestedProducts.length">
+                    <h4>You might also want to add these sources for your alert</h4>
+
+                    <div class="ui link cards">
+                        <div class="card" repeat.for="product of suggestedProducts'" style="border-radius: 2px">
+                            <div class="content">
+                                <i class="right floated green circular button plus icon" click.delegate="addEntry(product.url)"
+                                    data-analytics-category="sources"
+                                    data-analytics-action="add"
+                                    data-analytics-label="suggestion"></i>
+                                <a class="header" href.bind="product.url" target="_blank"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label.bind="product.url">${product.title}</a>
+                                <div class="meta">
+                                    <small>Last updated ${product.lastUpdate | timeAgo}</small>
+                                </div>
+                            </div>
+                            <a class="image" href.bind="product.url" target="_blank"
+                                data-analytics-category="Outbound Link"
+                                data-analytics-action="click"
+                                data-analytics-label.bind="product.url">
+                                <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
+                            </a>
+                            <div class="extra content">
+                                <a href.bind="product.url" target="_blank" class="right floated"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label.bind="product.url">
+                                    ${product.price | price} at
+                                    <img class="ui avatar image" src="/images/${product.source.domain}-small.png">
+                                    ${product.source.name}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 

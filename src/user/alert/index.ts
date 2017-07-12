@@ -43,6 +43,8 @@ export class AlertPage {
 
             routeConfig.navModel.title = alert.title;
         }
+
+        // TODO Return to the list if there is no alertId
     }
 
     attached() {

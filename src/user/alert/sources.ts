@@ -2,22 +2,28 @@ import { autoinject } from "aurelia-dependency-injection";
 import * as Toastr from "toastr";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 import { AlertService } from "../../services/alert-service";
+import { ProductService } from "../../services/product-service";
 import { AlertEntry } from "../../models/alert-entry";
 import { UserAlert } from "../../models/user-alert";
+import { ProductInfo } from "../../models/product-info";
 
 @autoinject()
 export class Sources {
     private _alertService: AlertService;
+    private _productService: ProductService;
     private _modalController: ConfirmationModalController;
     private _userId: string;
     private _alertId: string;
 
     alert: UserAlert;
+    isSearchingProducts: boolean;
     isUpdatingAlert: boolean;
     isAddingSource: boolean;
+    suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
-    constructor(alertService: AlertService, modalController: ConfirmationModalController) {
+    constructor(alertService: AlertService, productService: ProductService, modalController: ConfirmationModalController) {
         this._alertService = alertService;
+        this._productService = productService;
         this._modalController = modalController;
     }
 
@@ -27,6 +33,8 @@ export class Sources {
             this._alertId = route.alertId;
 
             this.alert = await this._alertService.get(this._userId, this._alertId);
+
+            this.searchForSameProducts();
         }
     }
 
@@ -56,6 +64,7 @@ export class Sources {
             if (updatedAlert) {
                 // This might rebind everything, but we need it when we add an Entry. Maybe a dedicated route would help
                 this.alert = updatedAlert;
+                this.searchForSameProducts();
             } else {
                 throw new Error();
             }
@@ -86,6 +95,7 @@ export class Sources {
                 if (updatedAlert) {
                     // This might rebind everything, but we need it when we remove an Entry. Maybe a dedicated route would help
                     this.alert = updatedAlert;
+                    this.searchForSameProducts();
                 } else {
                     throw new Error();
                 }
@@ -97,5 +107,29 @@ export class Sources {
                 this.isUpdatingAlert = false;
             }
         });
+    }
+
+    private async searchForSameProducts(): Promise<void> {
+        this.suggestedProducts = new Array<ProductInfo>();
+
+        // Look for similar products only if there is a product identifier present
+        var productIdentifiers = this.alert.entries.map(x => x.productIdentifier).filter(x => !!x);
+        if (productIdentifiers.length) {
+            this.isSearchingProducts = true;
+
+            var alertEntriesUrls = this.alert.entries.map(x => x.uri);
+
+            for (var i = 0; i < productIdentifiers.length; i++) {
+                // TODO Make this search asynchronously
+                var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers[i]);
+                for (var j = 0; j < searchResults.length; j++) {
+                    if (!alertEntriesUrls.includes(searchResults[j].url)) {
+                        this.suggestedProducts.push(searchResults[j]);
+                    }
+                }
+            }
+
+            this.isSearchingProducts = false;
+        }
     }
 }
