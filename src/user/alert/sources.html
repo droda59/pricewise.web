@@ -67,7 +67,7 @@
                 </div>
             </div>
 
-            <div class="ui relaxed section">
+            <div class="ui relaxed section" style="width: 80%; margin: 0 auto;">
                 <div class="ui ${isSearchingProducts ? 'active': ''} inverted dimmer">
                     <div class="ui text loader">Searching for similar products...</div>
                 </div>
@@ -76,7 +76,7 @@
                     <h4>You might also want to add these sources for your alert</h4>
 
                     <div class="ui link cards">
-                        <div class="card" repeat.for="product of suggestedProducts'" style="border-radius: 2px">
+                        <div class="card" repeat.for="product of suggestedProducts" style="border-radius: 2px">
                             <div class="content">
                                 <i class="right floated green circular button plus icon" click.delegate="addEntry(product.url)"
                                     data-analytics-category="sources"

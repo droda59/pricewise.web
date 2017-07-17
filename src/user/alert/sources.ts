@@ -113,17 +113,17 @@ export class Sources {
         this.suggestedProducts = new Array<ProductInfo>();
 
         // Look for similar products only if there is a product identifier present
-        var productIdentifiers = this.alert.entries.map(x => x.productIdentifier).filter(x => !!x);
+        var productIdentifiers = this.alert.entries.map(x => x.productIdentifier).filter(x => !!x).filter((v, i, a) => a.indexOf(v) === i);
         if (productIdentifiers.length) {
             this.isSearchingProducts = true;
 
-            var alertEntriesUrls = this.alert.entries.map(x => x.uri);
+            var alertEntriesUrls = this.alert.entries.map(x => x.source);
 
             for (var i = 0; i < productIdentifiers.length; i++) {
                 // TODO Make this search asynchronously
                 var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers[i]);
                 for (var j = 0; j < searchResults.length; j++) {
-                    if (!alertEntriesUrls.includes(searchResults[j].url)) {
+                    if (!alertEntriesUrls.includes(searchResults[j].source)) {
                         this.suggestedProducts.push(searchResults[j]);
                     }
                 }
