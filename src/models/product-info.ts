@@ -25,6 +25,10 @@ export class ProductInfo implements IProductInfo {
                 this.isPortaitSize = image.height > image.width;
                 this.isLandscapeSize = image.height < image.width;
             };
+            image.onerror = () => {
+                image.onerror = null;
+                this.imageUrl = "/images/pricewise-logo.png";
+            };
             image.src = dto.imageUrl;
 
             this.lastUpdate = new Date(dto.lastUpdate);

@@ -28,6 +28,10 @@ export class UserAlert implements IUserAlert {
                 this.isPortaitSize = image.height > image.width;
                 this.isLandscapeSize = image.height < image.width;
             };
+            image.onerror = () => {
+                image.onerror = null;
+                this.imageUrl = "/images/pricewise-logo.png";
+            };
             image.src = dto.imageUrl;
         }
     }

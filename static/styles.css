@@ -242,6 +242,10 @@ div.au-stagger {
     box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #008179, 0 1px 3px 0 #D4D4D5;
 }
 
+.pricewise .ui.cards > .card img.avatar {
+    margin-left: .25em;
+}
+
 .pricewise .ui.cards a.card:hover, 
 .pricewise .ui.link.card:hover, 
 .pricewise .ui.link.cards .card:hover, 

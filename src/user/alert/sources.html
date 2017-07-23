@@ -73,10 +73,10 @@
                 </div>
 
                 <div show.bind="suggestedProducts.length">
-                    <h4>You might also want to add these sources for your alert</h4>
+                    <h4>You might also want to add these sources to your alert</h4>
 
                     <div class="ui link cards">
-                        <div class="card" repeat.for="product of suggestedProducts" style="border-radius: 2px">
+                        <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
                             <div class="content">
                                 <i class="right floated green circular button plus icon" click.delegate="addEntry(product.url)"
                                     data-analytics-category="sources"

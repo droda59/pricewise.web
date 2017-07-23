@@ -39,7 +39,14 @@ export class AlertPage {
 
             this.title = alert.title;
             this.isActive = alert.isActive;
-            this.imageUrl = alert.imageUrl;            
+            this.imageUrl = alert.imageUrl;
+            
+            var image = new Image(); 
+            image.onerror = () => {
+                image.onerror = null;
+                this.imageUrl = "/images/pricewise-logo.png";
+            };
+            image.src = this.imageUrl;        
 
             routeConfig.navModel.title = alert.title;
         }
@@ -78,7 +85,7 @@ export class AlertPage {
 
             Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+            Toastr.error("An error occurred during the save.", "Error", { timeOut: 3000 });
         }
     }
 }

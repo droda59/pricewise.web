@@ -65,7 +65,7 @@ export class Alerts {
 
             this._router.navigateToRoute("alert", { alertId: newAlert.id });
         } catch(e) {
-            var errorMessage = "An error ocurred during the creation.";
+            var errorMessage = "An error occurred during the creation.";
             if (e.status === 404) {
                 errorMessage += " The specified source is not yet supported.";
             } else if (e.status === 400) {
@@ -94,7 +94,7 @@ export class Alerts {
 
             Toastr.success("Alert activated successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error ocurred during the activation.", "Error", { timeOut: 3000 });
+            Toastr.error("An error occurred during the activation.", "Error", { timeOut: 3000 });
         } finally {
             this.isUpdatingAlert = false;
         }
@@ -115,7 +115,7 @@ export class Alerts {
 
                 Toastr.success("Alert deleted successfully!", "Success", { timeOut: 3000 });
             } catch(e) {
-                Toastr.error("An error ocurred during the deletion.", "Error", { timeOut: 3000 });
+                Toastr.error("An error occurred during the deletion.", "Error", { timeOut: 3000 });
             } finally {
                 this.isUpdatingAlert = false;
             }

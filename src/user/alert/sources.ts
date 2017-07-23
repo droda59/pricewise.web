@@ -71,7 +71,7 @@ export class Sources {
 
             Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
-            var errorMessage = "An error ocurred during the update.";
+            var errorMessage = "An error occurred during the update.";
             if (e.status === 404) {
                 errorMessage += " The specified source is not yet supported.";
             } else if (e.status === 400) {
@@ -102,7 +102,7 @@ export class Sources {
 
                 Toastr.success("Alert updated successfully!", "Success", { timeOut: 3000 });
             } catch(e) {
-                Toastr.error("An error ocurred during the update.", "Error", { timeOut: 3000 });
+                Toastr.error("An error occurred during the update.", "Error", { timeOut: 3000 });
             } finally {
                 this.isUpdatingAlert = false;
             }
@@ -119,17 +119,19 @@ export class Sources {
 
             var alertEntriesUrls = this.alert.entries.map(x => x.source);
 
-            for (var i = 0; i < productIdentifiers.length; i++) {
-                // TODO Make this search asynchronously
-                var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers[i]);
-                for (var j = 0; j < searchResults.length; j++) {
-                    if (!alertEntriesUrls.includes(searchResults[j].source)) {
-                        this.suggestedProducts.push(searchResults[j]);
+            try {
+                for (var i = 0; i < productIdentifiers.length; i++) {
+                    // TODO Make this search asynchronously
+                    var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers[i]);
+                    for (var j = 0; j < searchResults.length; j++) {
+                        if (!alertEntriesUrls.includes(searchResults[j].source)) {
+                            this.suggestedProducts.push(searchResults[j]);
+                        }
                     }
                 }
+            } finally {
+                this.isSearchingProducts = false;
             }
-
-            this.isSearchingProducts = false;
         }
     }
 }

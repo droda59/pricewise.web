@@ -33,7 +33,7 @@ export class AccountSettings {
 
             Toastr.success("User information saved successfully!", "Success", { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error ocurred during the save.", "Error", { timeOut: 3000 });
+            Toastr.error("An error occurred during the save.", "Error", { timeOut: 3000 });
         } finally {
             this.isUpdatingUser = false;
         }
