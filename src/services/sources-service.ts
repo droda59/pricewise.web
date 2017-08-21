@@ -15,10 +15,12 @@ export class SourcesService {
         SourcesService._sources.push(this.createSource("Renaud-Bray", "renaud-bray", "http://www.renaud-bray.com/", "rgb(46, 46, 46)"));
         SourcesService._sources.push(this.createSource("Indigo", "indigo", "https://www.chapters.indigo.ca/", "rgb(71, 42, 73)"));
         SourcesService._sources.push(this.createSource("Carcajou", "carcajou", "http://www.librairiecarcajou.com/", "rgb(134, 0, 10)"));
-        SourcesService._sources.push(this.createSource("Canadian Tire", "canadiantire", "http://www.canadiantire.ca/", "rgb(235, 40, 40)"));
         SourcesService._sources.push(this.createSource("Sears", "sears", "http://www.sears.ca/", "rgb(0, 68, 149)"));
         SourcesService._sources.push(this.createSource("Leon's", "leons", "http://www.leons.ca/", "rgb(254, 242, 0)"));
         SourcesService._sources.push(this.createSource("Brault & Martineau", "braultmartineau", "http://www.braultetmartineau.com/", "rgb(238, 46, 36)"));
+        SourcesService._sources.push(this.createSource("Ikea", "ikea", "http://www.ikea.com/ca/", "rgb(0, 51, 153)"));
+        SourcesService._sources.push(this.createSource("Canadian Tire", "canadiantire", "http://www.canadiantire.ca/", "rgb(235, 40, 40)"));
+        SourcesService._sources.push(this.createSource("SAQ", "saq", "http://www.saq.com/", "rgb(122, 0, 60)"));
         SourcesService._sources.push(this.createSource("Toys R Us", "toysrus", "http://www.toysrus.ca/", "rgb(0, 86, 175)"));
         SourcesService._sources.push(this.createSource("Lego", "lego", "https://shop.lego.com/", "rgb(194, 4, 18)"));
     }
