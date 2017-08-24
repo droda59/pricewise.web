@@ -8,8 +8,6 @@ export class UserAlert implements IUserAlert {
     isActive: boolean;
     isPortaitSize: boolean;
     isLandscapeSize: boolean;
-    lastModifiedDate: Date;
-    lastModifiedAt: string;
     bestCurrentDeal: Deal;
     entries: Array<AlertEntry>;
 
@@ -19,7 +17,6 @@ export class UserAlert implements IUserAlert {
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            this.lastModifiedDate = new Date(dto.lastModifiedAt);
             this.bestCurrentDeal = new Deal(dto.bestCurrentDeal);
             this.entries = dto.entries ? dto.entries.map(entryDto => new AlertEntry(entryDto)) : new Array<AlertEntry>();
 
@@ -42,7 +39,6 @@ interface IUserAlert {
     title: string;
     imageUrl: string;
     isActive: boolean;
-    lastModifiedAt: string;
     bestCurrentDeal: Deal;
     entries: Array<AlertEntry>;
 }

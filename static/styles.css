@@ -413,3 +413,8 @@ div.au-stagger {
 .pricewise .source-list .logo:hover {
     opacity: 1;
 }
+
+.pricewise .alert .ui.small.image {
+    max-height: 160px;
+    width: auto;
+}

@@ -6,7 +6,6 @@ export class AlertEntry implements IAlertEntry {
     title: string;
     productIdentifier: string;
     lastPrice: number;
-    lastUpdate: Date;
     isDeleted: boolean;
     source: Source;
 
@@ -16,7 +15,6 @@ export class AlertEntry implements IAlertEntry {
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            this.lastUpdate = new Date(dto.lastUpdate);
             this.source = SourcesService.getSource(this.uri);
         }
     }
@@ -27,6 +25,5 @@ interface IAlertEntry {
     title: string;
     productIdentifier: string;
     lastPrice: number;
-    lastUpdate: Date;
     isDeleted: boolean;
 }

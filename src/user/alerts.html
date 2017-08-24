@@ -35,7 +35,7 @@
                             data-analytics-action="remove"></i>
                         <a class="header" route-href="route: alert; params.bind: { alertId: alert.id }">${alert.title}</a>
                         <div class="meta">
-                            <small show.bind="alert.isActive">Last updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</small>
+                            <small show.bind="alert.isActive">Best deal updated ${alert.bestCurrentDeal.modifiedAt | timeAgo}</small>
                             <small hide.bind="alert.isActive">Deactivated</small>
                         </div>
                     </div>
