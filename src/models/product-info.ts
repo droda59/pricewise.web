@@ -1,5 +1,4 @@
 import { Deal } from "./deal";
-import { AlertEntry } from "./alert-entry";
 import { Source } from "./source";
 import { SourcesService } from "../services/sources-service";
 

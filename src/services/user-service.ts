@@ -5,9 +5,6 @@ import { User } from "../models/user";
 import { UserAlert } from "../models/user-alert";
 import { UserSettings } from "../models/user-settings";
 
-import { AlertEntry } from "../models/alert-entry";
-import { Deal } from "../models/deal";
-
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
 
 @inject(NewInstance.of(HttpClient), AureliaConfiguration)

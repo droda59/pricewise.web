@@ -54,7 +54,7 @@ export class Sources {
         this.isAddingSource = true; 
 
         var newEntry = new AlertEntry();
-        newEntry.uri = newEntryUrl;
+        newEntry.originalUrl = newEntryUrl;
 
         var alertToUpdate = new UserAlert(this.alert);
         alertToUpdate.entries.push(newEntry);

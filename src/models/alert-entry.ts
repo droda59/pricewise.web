@@ -2,7 +2,8 @@ import { Source } from "./source";
 import { SourcesService } from "../services/sources-service";
 
 export class AlertEntry implements IAlertEntry {
-    uri: string;
+    originalUrl: string;
+    productUrl: string;
     title: string;
     productIdentifier: string;
     lastPrice: number;
@@ -15,13 +16,14 @@ export class AlertEntry implements IAlertEntry {
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            this.source = SourcesService.getSource(this.uri);
+            this.source = SourcesService.getSource(this.originalUrl);
         }
     }
 }
 
 interface IAlertEntry {
-    uri: string;
+    originalUrl: string;
+    productUrl: string;
     title: string;
     productIdentifier: string;
     lastPrice: number;
