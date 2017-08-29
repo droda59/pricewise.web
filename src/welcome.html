@@ -7,6 +7,12 @@
                         <img src="/images/pricewise-logo.png">
                     </div>
                     <div class="right item">
+                        <a href="https://www.facebook.com/PriceWiseCA/" target="_blank" class="ui facebook icon button mobile hidden">
+                            <i class="facebook icon"></i>
+                        </a>
+                        <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
+                            <i class="facebook icon"></i>
+                        </a>
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()">Log in</a>
                         <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()">Log out</a>
                     </div>
