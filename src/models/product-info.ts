@@ -3,7 +3,8 @@ import { Source } from "./source";
 import { SourcesService } from "../services/sources-service";
 
 export class ProductInfo implements IProductInfo {
-    url: string;
+    originalUrl: string;
+    productUrl: string;
     title: string;
     price: number;
     lastUpdate: Date;
@@ -31,13 +32,14 @@ export class ProductInfo implements IProductInfo {
             image.src = dto.imageUrl;
 
             this.lastUpdate = new Date(dto.lastUpdate);
-            this.source = SourcesService.getSource(this.url);
+            this.source = SourcesService.getSource(this.originalUrl);
         }
     }
 }
 
 interface IProductInfo {
-    url: string;
+    originalUrl: string;
+    productUrl: string;
     title: string;
     price: number;
     lastUpdate: Date;

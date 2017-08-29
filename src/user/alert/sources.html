@@ -78,29 +78,29 @@
                     <div class="ui link cards">
                         <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
                             <div class="content">
-                                <i class="right floated green circular button plus icon" click.delegate="addEntry(product.url)"
+                                <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
                                     data-analytics-category="sources"
                                     data-analytics-action="add"
                                     data-analytics-label="suggestion"></i>
-                                <a class="header" href.bind="product.url" target="_blank"
+                                <a class="header" href.bind="product.productUrl" target="_blank"
                                     data-analytics-category="Outbound Link"
                                     data-analytics-action="click"
-                                    data-analytics-label.bind="product.url">${product.title}</a>
+                                    data-analytics-label.bind="product.originalUrl">${product.title}</a>
                                 <div class="meta">
                                     <small>Last updated ${product.lastUpdate | timeAgo}</small>
                                 </div>
                             </div>
-                            <a class="image" href.bind="product.url" target="_blank"
+                            <a class="image" href.bind="product.productUrl" target="_blank"
                                 data-analytics-category="Outbound Link"
                                 data-analytics-action="click"
-                                data-analytics-label.bind="product.url">
+                                data-analytics-label.bind="product.originalUrl">
                                 <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
                             </a>
                             <div class="extra content">
-                                <a href.bind="product.url" target="_blank" class="right floated"
+                                <a href.bind="product.productUrl" target="_blank" class="right floated"
                                     data-analytics-category="Outbound Link"
                                     data-analytics-action="click"
-                                    data-analytics-label.bind="product.url">
+                                    data-analytics-label.bind="product.originalUrl">
                                     ${product.price | price} at
                                     <img class="ui avatar image" src="/images/${product.source.domain}-small.png">
                                     ${product.source.name}
