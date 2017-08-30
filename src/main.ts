@@ -4,8 +4,10 @@ import "../static/config.json";
 import "../semantic/dist/semantic.min.js";
 import "../node_modules/toastr/build/toastr.min.css";
 
+import { I18N, TCustomAttribute } from "aurelia-i18n";
 import { Aurelia } from "aurelia-framework";
 import { PLATFORM } from "aurelia-pal";
+import Backend from "i18next-xhr-backend";
 import * as Bluebird from "bluebird";
 import * as Toastr from "toastr";
 import * as moment from "moment";
@@ -25,6 +27,20 @@ export async function configure(aurelia: Aurelia) {
                 production: ["pricewise.azurewebsites.net", "pricewi.se"]
             });
         })
+        .plugin(PLATFORM.moduleName("aurelia-i18n"), (instance) => {
+            let aliases = ["t", "i18n"];
+            TCustomAttribute.configureAliases(aliases);
+            instance.i18next.use(Backend);
+            return instance.setup({
+                backend: {
+                    loadPath: "./locales/{{lng}}/{{ns}}.json",
+                },
+                attributes: aliases,
+                lng : "en",
+                fallbackLng : "en",
+                debug : false
+            });
+        })
         .plugin(PLATFORM.moduleName("aurelia-google-analytics"), config => {
             config.init("UA-100559856-1");
             config.attach({
@@ -39,8 +55,8 @@ export async function configure(aurelia: Aurelia) {
                     filter: element => {
                         return element instanceof HTMLElement 
                             && (element.classList.contains("button") 
-                                || element.nodeName.toLowerCase() === 'a' 
-                                || element.nodeName.toLowerCase() === 'button');
+                                || element.nodeName.toLowerCase() === "a" 
+                                || element.nodeName.toLowerCase() === "button");
                     }
                 }
             });

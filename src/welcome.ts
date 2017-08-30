@@ -1,5 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
+import { I18N } from "aurelia-i18n";
 import { UserService } from "./services/user-service";
 import { AuthenticationService } from "./services/authentication-service";
 import { SourcesService } from "./services/sources-service";
@@ -17,11 +18,13 @@ export class Welcome {
     isAuthenticated: boolean;
     sources: Array<Source>;
 
-    constructor(router: Router, userService: UserService, authenticationService: AuthenticationService, sourcesService: SourcesService) {
+    constructor(router: Router, userService: UserService, authenticationService: AuthenticationService, sourcesService: SourcesService, i18n: I18N) {
         this._router = router;
         this._userService = userService;
         this._authenticationService = authenticationService;
         this._sourcesService = sourcesService;
+
+        var tr = i18n.tr("lives_indefinite");
     }
 
     activate(): void {

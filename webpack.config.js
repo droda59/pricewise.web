@@ -84,7 +84,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
     new AureliaPlugin(),
     new ModuleDependenciesPlugin({
       "aurelia-chart": [ "./elements/chart-element", "./attributes/chart-attribute" ],
-      "parent-module": [ "child-module" ],
+      "parent-module": [ "child-module" ]
     }),
     new ProvidePlugin({
       "Promise": "bluebird",
@@ -106,17 +106,10 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       },
     }),
     new CopyWebpackPlugin([
-      { from: "static/android-chrome-192x192.png", to: "android-chrome-192x192.png" },
-      { from: "static/android-chrome-512x512.png", to: "android-chrome-512x512.png" },
-      { from: "static/apple-touch-icon.png", to: "apple-touch-icon.png" },
-      { from: "static/favicon-32x32.png", to: "favicon-32x32.png" },
-      { from: "static/favicon-16x16.png", to: "favicon-16x16.png" },
-      { from: "static/favicon.ico", to: "favicon.ico" },
-      { from: "static/manifest.json", to: "manifest.json" },
-      { from: "static/safari-pinned-tab.svg", to: "safari-pinned-tab.svg" },
-      { from: "static/config.json", to: "config.json" },
+      { from: "static", to: "" },
+      { from: "src/locales", to: "locales" },
       { from: "src/images", to: "images" },
-      { from: "web.config", to: "web.config" }
+      { from: "web.config" }
     ]),
     ...when(extractCss, new ExtractTextPlugin({
       filename: production ? "[contenthash].css" : "[id].css",
