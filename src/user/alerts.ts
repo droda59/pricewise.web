@@ -1,9 +1,8 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
-import { I18N } from "aurelia-i18n";
-import * as Toastr from "toastr";
 import { ConfirmationModalController } from "../confirmation-modal-controller";
+import { Toaster } from "../services/toaster";
 import { AlertService } from "../services/alert-service";
 import { UserService } from "../services/user-service";
 import { UserAlert } from "../models/user-alert";
@@ -15,7 +14,7 @@ export class Alerts {
     private _userService: UserService;
     private _router: Router;
     private _modalController: ConfirmationModalController;
-    private _i18n: I18N;
+    private _toaster: Toaster;
     private _userId: string;
 
     // @bindable searchString: string;
@@ -25,12 +24,12 @@ export class Alerts {
     alerts: Array<UserAlert> = new Array<UserAlert>();
     // originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
-    constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController, i18n: I18N) {
+    constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController, toaster: Toaster) {
         this._router = router;
         this._alertService = alertService;
         this._userService = userService;
         this._modalController = modalController;
-        this._i18n = i18n;
+        this._toaster = toaster;
         this._userId = localStorage.getItem("user-id");
     }
 
@@ -64,24 +63,17 @@ export class Alerts {
             //     throw new Error();
             // }
 
-            Toastr.success(
-                this._i18n.tr("alerts.alertCreated", { context: "success" }), 
-                this._i18n.tr("success"), 
-                { timeOut: 3000 });
-
+            this._toaster.showSuccess("alerts.alertCreated");
             this._router.navigateToRoute("alert", { alertId: newAlert.id });
         } catch(e) {
             var errorMessage = "";
             if (e.status === 404) {
-                errorMessage = this._i18n.tr("errors.sourceNotSupported");
+                errorMessage = "errors.sourceNotSupported";
             } else if (e.status === 400) {
-                errorMessage = this._i18n.tr("errors.parseError");
+                errorMessage = "errors.parseError";
             }
             
-            Toastr.error(
-                this._i18n.tr("alerts.alertCreated", { context: "exception", error: errorMessage }), 
-                this._i18n.tr("error"), 
-                { timeOut: 3000 });
+            this._toaster.showException("alerts.alertCreated", errorMessage);
         } finally {
             this.isCreatingAlert = false;
         }
@@ -101,15 +93,9 @@ export class Alerts {
                 throw new Error();
             }
 
-            Toastr.success(
-                this._i18n.tr("alerts.alertActivated", { context: "success" }), 
-                this._i18n.tr("success"), 
-                { timeOut: 3000 });
+            this._toaster.showSuccess("alerts.alertActivated");
         } catch(e) {
-            Toastr.error(
-                this._i18n.tr("alerts.alertActivated", { context: "failure" }), 
-                this._i18n.tr("error"), 
-                { timeOut: 3000 });
+            this._toaster.showError("alerts.alertActivated");
         } finally {
             this.isUpdatingAlert = false;
         }
@@ -128,15 +114,9 @@ export class Alerts {
                     throw new Error();
                 }
 
-                Toastr.success(
-                    this._i18n.tr("alerts.alertDeleted", { context: "success" }), 
-                    this._i18n.tr("success"), 
-                    { timeOut: 3000 });
+                this._toaster.showSuccess("alerts.alertDeleted");
             } catch(e) {
-                Toastr.error(
-                    this._i18n.tr("alerts.alertDeleted", { context: "failure" }), 
-                    this._i18n.tr("error"), 
-                    { timeOut: 3000 });
+                this._toaster.showError("alerts.alertDeleted");
             } finally {
                 this.isUpdatingAlert = false;
             }

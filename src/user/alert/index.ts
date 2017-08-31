@@ -3,13 +3,14 @@ import { autoinject } from "aurelia-dependency-injection";
 import { Router, RouterConfiguration } from "aurelia-router";
 import { I18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
-import * as Toastr from "toastr";
 import { AlertService } from "../../services/alert-service";
+import { Toaster } from "../../services/toaster";
 
 @autoinject()
 export class AlertPage {
     private _alertService: AlertService;
     private _i18n: I18N;
+    private _toaster: Toaster;
     private _userId: string;
     private _alertId: string;
 
@@ -19,9 +20,10 @@ export class AlertPage {
     imageUrl: string;
     router: Router;
 
-    constructor(alertService: AlertService, i18n: I18N) {
+    constructor(alertService: AlertService, i18n: I18N, toaster: Toaster) {
         this._alertService = alertService;
         this._i18n = i18n;
+        this._toaster = toaster;
     }
 
     configureRouter(config: RouterConfiguration, router: Router) {
@@ -86,15 +88,9 @@ export class AlertPage {
                 throw new Error();
             }
 
-            Toastr.success(
-                this._i18n.tr("alert.alertSaved", { context: "success" }), 
-                this._i18n.tr("success"), 
-                { timeOut: 3000 });
+            this._toaster.showSuccess("alert.alertSaved");
         } catch(e) {
-            Toastr.error(
-                this._i18n.tr("alert.alertSaved", { context: "failure" }), 
-                this._i18n.tr("error"), 
-                { timeOut: 3000 });
+            this._toaster.showError("alert.alertSaved");
         }
     }
 }

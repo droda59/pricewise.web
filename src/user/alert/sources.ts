@@ -1,9 +1,8 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { I18N } from "aurelia-i18n";
-import * as Toastr from "toastr";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 import { AlertService } from "../../services/alert-service";
 import { ProductService } from "../../services/product-service";
+import { Toaster } from "../../services/toaster";
 import { AlertEntry } from "../../models/alert-entry";
 import { UserAlert } from "../../models/user-alert";
 import { ProductInfo } from "../../models/product-info";
@@ -13,7 +12,7 @@ export class Sources {
     private _alertService: AlertService;
     private _productService: ProductService;
     private _modalController: ConfirmationModalController;
-    private _i18n: I18N;
+    private _toaster: Toaster;
     private _userId: string;
     private _alertId: string;
 
@@ -23,11 +22,11 @@ export class Sources {
     isAddingSource: boolean;
     suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
-    constructor(alertService: AlertService, productService: ProductService, modalController: ConfirmationModalController, i18n: I18N) {
+    constructor(alertService: AlertService, productService: ProductService, modalController: ConfirmationModalController, toaster: Toaster) {
         this._alertService = alertService;
         this._productService = productService;
         this._modalController = modalController;
-        this._i18n = i18n;
+        this._toaster = toaster;
     }
 
     async activate(route): Promise<void> {
@@ -72,22 +71,16 @@ export class Sources {
                 throw new Error();
             }
 
-            Toastr.success(
-                this._i18n.tr("alert.alertSaved", { context: "success" }), 
-                this._i18n.tr("success"), 
-                { timeOut: 3000 });
+            this._toaster.showSuccess("alert.alertSaved");
         } catch(e) {
             var errorMessage = "";
             if (e.status === 404) {
-                errorMessage = this._i18n.tr("errors.sourceNotSupported");
+                errorMessage = "errors.sourceNotSupported";
             } else if (e.status === 400) {
-                errorMessage = this._i18n.tr("errors.parseError");
+                errorMessage = "errors.parseError";
             }
 
-            Toastr.error(
-                this._i18n.tr("alert.alertSaved", { context: "exception", error: errorMessage }), 
-                this._i18n.tr("error"), 
-                { timeOut: 3000 });
+            this._toaster.showException("alert.alertSaved", errorMessage);
         } finally {
             this.isAddingSource = false;
         }
@@ -109,15 +102,9 @@ export class Sources {
                     throw new Error();
                 }
 
-                Toastr.success(
-                    this._i18n.tr("alert.alertSaved", { context: "success" }), 
-                    this._i18n.tr("success"), 
-                    { timeOut: 3000 });
+                this._toaster.showSuccess("alert.alertSaved");
             } catch(e) {
-                Toastr.error(
-                    this._i18n.tr("alert.alertSaved", { context: "failure" }), 
-                    this._i18n.tr("error"), 
-                    { timeOut: 3000 });
+                this._toaster.showError("alert.alertSaved");
             } finally {
                 this.isUpdatingAlert = false;
             }
