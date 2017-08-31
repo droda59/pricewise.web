@@ -1,6 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { I18N } from "aurelia-i18n";
 import * as Toastr from "toastr";
+import "../../node_modules/toastr/build/toastr.min.css";
 
 @autoinject()
 export class Toaster {
