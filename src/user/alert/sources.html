@@ -62,7 +62,7 @@
             <div class="ui relaxed items" style="width: 80%; margin: 0 auto;">
                 <div class="ui text menu">
                     <div class="item">
-                        <div i18n="[prepend]alert.bestDealUpdatedTime">${alert.bestCurrentDeal.modifiedAt | timeAgo}</div>
+                        <div i18n="[prepend]alert.bestDealUpdatedTime">${alert.bestCurrentDeal.modifiedAt | rt}</div>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                                     data-analytics-action="click"
                                     data-analytics-label.bind="product.originalUrl">${product.title}</a>
                                 <div class="meta">
-                                    <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate | timeAgo}</small>
+                                    <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate | rt}</small>
                                 </div>
                             </div>
                             <a class="image" href.bind="product.productUrl" target="_blank"

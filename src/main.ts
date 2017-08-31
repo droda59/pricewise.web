@@ -10,7 +10,6 @@ import { PLATFORM } from "aurelia-pal";
 import Backend from "i18next-xhr-backend";
 import * as Bluebird from "bluebird";
 import * as Toastr from "toastr";
-import * as moment from "moment";
 
 Bluebird.config({ warnings: { wForgottenReturn: false } });
 
@@ -64,12 +63,6 @@ export async function configure(aurelia: Aurelia) {
 
     await aurelia.start();
     await aurelia.setRoot(PLATFORM.moduleName("app"));
-
-	moment.relativeTimeThreshold("s", 60);
-	moment.relativeTimeThreshold("m", 60);
-	moment.relativeTimeThreshold("h", 24);
-	moment.relativeTimeThreshold("d", 28);
-	moment.relativeTimeThreshold("M", 12);
 
     Array.prototype.remove = function(object: any): void {
         var index = this.indexOf(object);
