@@ -4,21 +4,21 @@
             <div class="ui relaxed basic section" style="width: 80%; margin: 0 auto;">
                 <div class="ui text menu">
                     <div class="item">
-                        <h3 class="ui header">Alert Settings</h3>
+                        <h3 class="ui header" i18n="settings.alerts.alertSettings">Alert Settings</h3>
                     </div>
                 </div>
 
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.alertOnPriceDrop">
-                        <label>Alert me when the best price of an alert <b>drops</b></label>
+                        <label i18n="[html]settings.alerts.priceDrop">Alert me when the best price of an alert <b>drops</b></label>
                     </div>
                 </div>
 
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.alertOnPriceRaise">
-                        <label>Alert me when the best price of an alert <b>raises</b></label>
+                        <label i18n="[html]settings.alerts.priceRaise">Alert me when the best price of an alert <b>raises</b></label>
                     </div>
                 </div>
 
@@ -26,7 +26,7 @@
                     <div class="field">
                         <div class="ui checkbox">
                             <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.specifyChangePercentage">
-                            <label>Alert me only when the price changes by at least: </label>
+                            <label i18n="settings.alerts.changeThreshold">Alert me only when the price changes by at least: </label>
                         </div>
                     </div>
 
@@ -38,12 +38,12 @@
                     </div>
                 </div>
                 
-                <button class="ui primary primary-action button">Save</button>
+                <button class="ui primary primary-action button" i18n="[append]settings.save"><i class="save icon"></i></button>
             </div>
         </form>
     </div>
 
     <div class="ui ${isUpdatingUser ? 'active': ''} inverted dimmer">
-        <div class="ui text loader">Updating</div>
+        <div class="ui text loader" i18n="settings.updating">Updating</div>
     </div>
 </template>

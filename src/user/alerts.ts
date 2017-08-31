@@ -1,6 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
+import { I18N } from "aurelia-i18n";
 import * as Toastr from "toastr";
 import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { AlertService } from "../services/alert-service";
@@ -14,6 +15,7 @@ export class Alerts {
     private _userService: UserService;
     private _router: Router;
     private _modalController: ConfirmationModalController;
+    private _i18n: I18N;
     private _userId: string;
 
     // @bindable searchString: string;
@@ -23,11 +25,12 @@ export class Alerts {
     alerts: Array<UserAlert> = new Array<UserAlert>();
     // originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
-    constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController) {
+    constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController, i18n: I18N) {
         this._router = router;
         this._alertService = alertService;
         this._userService = userService;
         this._modalController = modalController;
+        this._i18n = i18n;
         this._userId = localStorage.getItem("user-id");
     }
 
@@ -61,18 +64,24 @@ export class Alerts {
             //     throw new Error();
             // }
 
-            Toastr.success("Alert created successfully!", "Success", { timeOut: 3000 });
+            Toastr.success(
+                this._i18n.tr("alerts.alertCreated", { context: "success" }), 
+                this._i18n.tr("success"), 
+                { timeOut: 3000 });
 
             this._router.navigateToRoute("alert", { alertId: newAlert.id });
         } catch(e) {
-            var errorMessage = "An error occurred during the creation.";
+            var errorMessage = "";
             if (e.status === 404) {
-                errorMessage += " The specified source is not yet supported.";
+                errorMessage = this._i18n.tr("errors.sourceNotSupported");
             } else if (e.status === 400) {
-                errorMessage += " There was a problem parsing the source.";
+                errorMessage = this._i18n.tr("errors.parseError");
             }
             
-            Toastr.error(errorMessage, "Error", { timeOut: 3000 });
+            Toastr.error(
+                this._i18n.tr("alerts.alertCreated", { context: "exception", error: errorMessage }), 
+                this._i18n.tr("error"), 
+                { timeOut: 3000 });
         } finally {
             this.isCreatingAlert = false;
         }
@@ -92,9 +101,15 @@ export class Alerts {
                 throw new Error();
             }
 
-            Toastr.success("Alert activated successfully!", "Success", { timeOut: 3000 });
+            Toastr.success(
+                this._i18n.tr("alerts.alertActivated", { context: "success" }), 
+                this._i18n.tr("success"), 
+                { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error occurred during the activation.", "Error", { timeOut: 3000 });
+            Toastr.error(
+                this._i18n.tr("alerts.alertActivated", { context: "failure" }), 
+                this._i18n.tr("error"), 
+                { timeOut: 3000 });
         } finally {
             this.isUpdatingAlert = false;
         }
@@ -113,9 +128,15 @@ export class Alerts {
                     throw new Error();
                 }
 
-                Toastr.success("Alert deleted successfully!", "Success", { timeOut: 3000 });
+                Toastr.success(
+                    this._i18n.tr("alerts.alertDeleted", { context: "success" }), 
+                    this._i18n.tr("success"), 
+                    { timeOut: 3000 });
             } catch(e) {
-                Toastr.error("An error occurred during the deletion.", "Error", { timeOut: 3000 });
+                Toastr.error(
+                    this._i18n.tr("alerts.alertDeleted", { context: "failure" }), 
+                    this._i18n.tr("error"), 
+                    { timeOut: 3000 });
             } finally {
                 this.isUpdatingAlert = false;
             }

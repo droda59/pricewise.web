@@ -1,11 +1,11 @@
 <template>
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative; padding: 3em 0 0 0;">
-            <h1 class="ui header" style="color: white; font-size: 3rem; font-weight: 200;">Settings</h1>
+            <h1 class="ui header" style="color: white; font-size: 3rem; font-weight: 200;" i18n="settings.title">Settings</h1>
 
             <div class="ui inverted secondary pointing text menu" style="margin-bottom: 0;">
                 <div repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item">
-                    <a style="color: inherit;"  href.bind="row.href">${row.title}</a>
+                    <a style="color: inherit;" href.bind="row.href">${row.title}</a>
                 </div>
             </div>
         </div>
@@ -15,9 +15,5 @@
         <div class="ui padded basic segment">
             <router-view></router-view>
         </div>
-    </div>
-
-    <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
-        <div class="ui text loader">Updating</div>
     </div>
 </template>

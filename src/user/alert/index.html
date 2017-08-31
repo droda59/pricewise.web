@@ -1,11 +1,10 @@
 <template>
     <div class="primary-dark" style="color: white;">
         <div class="ui container alert" style="position: relative; padding: 3em 0 0 0;">
-            <h2 style="font-weight: 200; margin: 0 0 1em 0;">
+            <h2 style="font-weight: 200; margin: 0 0 1em 0;" i18n="[append]alert.title">
                 <a class="basic circular ui icon inverted button" route-href="route: alerts;">
                     <i class="large inverted chevron left icon"></i>
                 </a>
-                Product Alert
             </h2>
 
             <img class="ui small inline image" src.bind="imageUrl" style="vertical-align: inherit;">
@@ -19,7 +18,7 @@
                     <div class="inline field">
                         <div class="ui checkbox">
                             <input type="checkbox" checked.bind="isActive" change.delegate="changeActive()">
-                            <label style="color: white !important;">Receive email notifications for this product</label>
+                            <label style="color: white !important;" i18n="alert.emailOption">Receive email notifications for this product</label>
                         </div>
                     </div>
                 </div>

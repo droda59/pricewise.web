@@ -1,13 +1,15 @@
-import { Router, RouterConfiguration } from "aurelia-router";
-import { PLATFORM } from "aurelia-pal";
 import { bindable } from "aurelia-framework";
 import { autoinject } from "aurelia-dependency-injection";
+import { Router, RouterConfiguration } from "aurelia-router";
+import { I18N } from "aurelia-i18n";
+import { PLATFORM } from "aurelia-pal";
 import * as Toastr from "toastr";
 import { AlertService } from "../../services/alert-service";
 
 @autoinject()
 export class AlertPage {
     private _alertService: AlertService;
+    private _i18n: I18N;
     private _userId: string;
     private _alertId: string;
 
@@ -17,14 +19,15 @@ export class AlertPage {
     imageUrl: string;
     router: Router;
 
-    constructor(alertService: AlertService) {
+    constructor(alertService: AlertService, i18n: I18N) {
         this._alertService = alertService;
+        this._i18n = i18n;
     }
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
-            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources"),  nav: true, title: "Sources" },
-            { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history"),  nav: true, title: "History" },
+            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources"),  nav: true, title: this._i18n.tr("alert.sources.title") },
+            { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history"),  nav: true, title: this._i18n.tr("alert.history.title") },
         ]);
 
         this.router = router;
@@ -83,9 +86,15 @@ export class AlertPage {
                 throw new Error();
             }
 
-            Toastr.success("Alert saved successfully!", "Success", { timeOut: 3000 });
+            Toastr.success(
+                this._i18n.tr("alert.alertSaved", { context: "success" }), 
+                this._i18n.tr("success"), 
+                { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error occurred during the save.", "Error", { timeOut: 3000 });
+            Toastr.error(
+                this._i18n.tr("alert.alertSaved", { context: "failure" }), 
+                this._i18n.tr("error"), 
+                { timeOut: 3000 });
         }
     }
 }

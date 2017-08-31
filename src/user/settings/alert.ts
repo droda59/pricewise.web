@@ -1,4 +1,5 @@
 import { autoinject } from "aurelia-dependency-injection";
+import { I18N } from "aurelia-i18n";
 import * as Toastr from "toastr";
 import { UserService } from "../../services/user-service";
 import { UserSettings } from "../../models/user-settings";
@@ -6,13 +7,15 @@ import { UserSettings } from "../../models/user-settings";
 @autoinject()
 export class AlertSettings {
     private _userService: UserService;
+    private _i18n: I18N;
     private _userId: string;
 
     settings: UserSettings;
     changePercentage: number;
     isUpdatingUser: boolean;
 
-    constructor(userService: UserService) {
+    constructor(userService: UserService, i18n: I18N) {
+        this._i18n = i18n;
         this._userService = userService;
         this._userId = localStorage.getItem("user-id");
     }
@@ -40,9 +43,15 @@ export class AlertSettings {
                 throw new Error();
             }
 
-            Toastr.success("User settings saved successfully!", "Success", { timeOut: 3000 });
+            Toastr.success(
+                this._i18n.tr("settings.alerts.settingsSaved", { context: "success" }), 
+                this._i18n.tr("success"), 
+                { timeOut: 3000 });
         } catch(e) {
-            Toastr.error("An error occurred during the save.", "Error", { timeOut: 3000 });
+            Toastr.error(
+                this._i18n.tr("settings.alerts.settingsSaved", { context: "failure" }), 
+                this._i18n.tr("error"), 
+                { timeOut: 3000 });
         } finally {
             this.isUpdatingUser = false;
         }

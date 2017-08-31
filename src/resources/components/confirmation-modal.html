@@ -1,20 +1,18 @@
-<template bindable="header,message" containerless>
+<template bindable="message" containerless>
     <div class="ui small basic confirmation modal">
         <div class="ui icon header">
             <i class="archive icon"></i>
-            ${header}
+            ${message | t: {context: 'title' } & oneTime}
         </div>
         <div class="content">
-            <p>${message}</p>
+            <p>${message | t: {context: 'description' } & oneTime}</p>
         </div>
         <div class="actions">
-            <div class="ui red basic cancel inverted button">
+            <div class="ui red basic cancel inverted button" i18n="[append]modal.no">
                 <i class="remove icon"></i>
-                No
             </div>
-            <div class="ui green ok inverted button">
+            <div class="ui green ok inverted button" i18n="[append]modal.yes">
                 <i class="checkmark icon"></i>
-                Yes
             </div>
         </div>
     </div>

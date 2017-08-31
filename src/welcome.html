@@ -13,18 +13,18 @@
                         <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
                             <i class="facebook icon"></i>
                         </a>
-                        <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()">Log in</a>
-                        <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()">Log out</a>
+                        <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
+                        <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
                     </div>
                 </div>
             </div>
 
             <div class="ui text container">
                 <h1 class="ui inverted header">PriceWise</h1>
-                <h3 t="lives_indefinite">Planning to buy something?</h3>
-                <h2>Stop paying too much!</h2>
-                <a class="ui huge primary primary-action button" click.delegate="login()">Get Started <i class="right arrow icon"></i></a>
-                <h5>Monitor products, and get notified when their price drops.</h5>
+                <h3 i18n="welcome.planning">Planning to buy something?</h3>
+                <h2 i18n="welcome.stopPaying">Stop paying too much!</h2>
+                <a class="ui huge primary primary-action button" click.delegate="login()" i18n="[prepend]welcome.getStarted">&nbsp;<i class="right arrow icon"></i></a>
+                <h5 i18n="welcome.shortDescription">Monitor products, and get notified when their price drops.</h5>
             </div>
         </div>
 
@@ -32,14 +32,14 @@
             <div class="ui middle aligned stackable grid container">
                 <div class="row">
                     <div class="eight wide column">
-                        <h3 class="ui header">Monitor multiple sources for your product</h3>
-                        <p>In a single alert, you can monitor a specific product on multiple websites. Or, you can monitor a general product and follow multiple versions of it!</p>
+                        <h3 class="ui header">${'welcome.features.monitor' | t: { context: 'title' }}</h3>
+                        <p>${'welcome.features.monitor' | t: { context: 'description' }}</p>
 
-                        <h3 class="ui header">Get notified when the price drops</h3>
-                        <p>Get notified by email when the product you want is on sale, or in clearance. Mucho dinero saved!</p>
+                        <h3 class="ui header">${'welcome.features.notifications' | t: { context: 'title' }}</h3>
+                        <p>${'welcome.features.monitor' | t: { context: 'description' }}</p>
 
-                        <h3 class="ui header">See the price history of a product</h3>
-                        <p>Analyse the patterns, see when the prices raised or dropped, and act accordingly.</p>
+                        <h3 class="ui header">${'welcome.features.history' | t: { context: 'title' }}</h3>
+                        <p>${'welcome.features.monitor' | t: { context: 'description' }}</p>
                     </div>
                     <div class="six wide right floated column">
                         <img src="/images/screen-graph.png" class="ui large bordered rounded image">
@@ -51,10 +51,10 @@
         <div class="ui stripe vertical segment primary-light">
             <div class="ui stackable very relaxed grid container">
                 <div class="fourteen wide center aligned centered column">
-                    <h1 class="ui header">Available sources</h1>
+                    <h1 class="ui header">${'welcome.features.sources' | t: { context: 'title' }}</h1>
                 </div>
                 <div class="eight wide center aligned centered column">
-                    <h3 class="ui header">You can monitor products from these websites. More will be added!</h3>
+                    <h3 class="ui header">${'welcome.features.sources' | t: { context: 'description' }}</h3>
                 </div>
             </div>
             <div class="ui four column center aligned divided relaxed stackable grid container">
@@ -72,16 +72,15 @@
             <div class="ui stackable center aligned grid container">
                 <div class="fourteen wide column">
                     <img class="ui centered small image" src="/images/pricewise-logo.png" style="margin-top: 3em;">
-                    <h1 class="ui center aligned header" style="font-weight: normal;font-size: 2.5rem;">
+                    <h1 class="ui center aligned header" style="font-weight: normal;font-size: 2.5rem;" i18n="welcome.startSaving">
                         Start saving money
                     </h1>
                     <div class="ui stackable center aligned vertically padded grid">
                         <div class="eight wide column">
-                            <h3 class="ui header">Knowledge is your advantage</h3>
-                            <p>Shop more wisely, and know when prices drop. That's when you can act!</p>
-                            <a class="ui large right labeled primary primary-action icon button" click.delegate="login()">
+                            <h3 class="ui header" i18n="welcome.knowledge">Knowledge is your advantage</h3>
+                            <p i18n="welcome.shopWisely">Shop more wisely, and know when prices drop. That's when you can act!</p>
+                            <a class="ui large right labeled primary primary-action icon button" click.delegate="login()" i18n="[prepend]welcome.getStartedNow">
                                 <i class="right chevron icon"></i>
-                                Get Started Now
                             </a>
                         </div>
                     </div>
@@ -90,7 +89,7 @@
         </div>
 
         <div class="ui ${isAuthenticating ? 'active': ''} inverted dimmer">
-            <div class="ui text loader">Authenticating</div>
+            <div class="ui text loader" i18n="welcome.authenticating">Authenticating</div>
         </div>
     </div>
 </template>

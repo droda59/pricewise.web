@@ -4,34 +4,34 @@
             <div class="ui relaxed basic section" style="width: 80%; margin: 0 auto;">
                 <div class="ui text menu">
                     <div class="item">
-                        <h3 class="ui header">Personal information</h3>
+                        <h3 class="ui header" i18n="settings.account.personalInformation">Personal information</h3>
                     </div>
                 </div>
 
                 <div class="field">
-                    <label>Name</label>
+                    <label i18n="settings.account.name">Name</label>
                     <div class="two fields">
                         <div class="field">
-                            <input value.bind="user.firstName" type="text" name="information[first-name]" placeholder="First Name">
+                            <input value.bind="user.firstName" type="text" name="information[first-name]" i18n="[placeholder]settings.account.firstName" placeholder="First Name">
                         </div>
                         <div class="field">
-                            <input value.bind="user.lastName" type="text" name="information[last-name]" placeholder="Last Name">
+                            <input value.bind="user.lastName" type="text" name="information[last-name]" i18n="[placeholder]settings.account.lastName" placeholder="Last Name">
                         </div>
                     </div>
                 </div>
                 <div class="fields">
                     <div class="eight wide field">
-                        <label>Email</label>
-                        <input value.bind="user.email" type="email" name="information[email]" placeholder="Email">
+                        <label i18n="settings.account.email">Email</label>
+                        <input value.bind="user.email" type="email" name="information[email]" i18n="[placeholder]settings.account.email" placeholder="Email">
                     </div>
                 </div>
                 
-                <button class="ui primary primary-action button">Save</button>
+                <button class="ui primary primary-action button" i18n="[append]settings.save"><i class="save icon"></i></button>
             </div>
         </form>
     </div>
 
     <div class="ui ${isUpdatingUser ? 'active': ''} inverted dimmer">
-        <div class="ui text loader">Updating</div>
+        <div class="ui text loader" i18n="settings.updating">Updating</div>
     </div>
 </template>

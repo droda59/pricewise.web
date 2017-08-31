@@ -4,7 +4,7 @@ import "../static/config.json";
 import "../semantic/dist/semantic.min.js";
 import "../node_modules/toastr/build/toastr.min.css";
 
-import { I18N, TCustomAttribute } from "aurelia-i18n";
+import { TCustomAttribute } from "aurelia-i18n";
 import { Aurelia } from "aurelia-framework";
 import { PLATFORM } from "aurelia-pal";
 import Backend from "i18next-xhr-backend";

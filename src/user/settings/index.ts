@@ -1,13 +1,22 @@
+import { autoinject } from "aurelia-dependency-injection";
 import { Router, RouterConfiguration } from "aurelia-router";
+import { I18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
 
+@autoinject()
 export class SettingsPage {
+    private _i18n: I18N;
+
     router: Router;
+
+    constructor(i18n: I18N) {
+        this._i18n = i18n;
+    }
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
-            { route: ["", "alert"], name: "alert",   moduleId: PLATFORM.moduleName("./alert"),   nav: true, title: "Alert" },
-            { route: "account",     name: "account", moduleId: PLATFORM.moduleName("./account"), nav: true, title: "Account" },
+            { route: ["", "alert"], name: "alert",   moduleId: PLATFORM.moduleName("./alert"),   nav: true, title: this._i18n.tr("settings.alerts.title") },
+            { route: "account",     name: "account", moduleId: PLATFORM.moduleName("./account"), nav: true, title: this._i18n.tr("settings.account.title") },
         ]);
 
         this.router = router;

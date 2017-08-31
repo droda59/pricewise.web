@@ -1,10 +1,105 @@
 {
-    "score": "Score: {{score}}",
-    "lives": "{{count}} life remaining",
-    "lives_plural": "{{count}} lives remaining",
-    "lives_indefinite": "a life remaining",
-    "lives_plural_indefinite": "some lives remaining",
-    "friend": "A friend",
-    "friend_male": "A boyfriend",
-    "friend_female": "A girlfriend"
+    "success": "Success",
+    "error": "Error",
+    "welcome": {
+        "authenticating": "Authenticating",
+        "planning": "Planning to buy something?",
+        "stopPaying": "Stop paying too much!",
+        "getStarted": "Get Started",
+        "getStartedNow": "Get Started Now",
+        "shortDescription": "Monitor products, and get notified when their price drops.",
+        "startSaving": "Start saving money",
+        "knowledge": "Knowledge is your advantage",
+        "shopWisely": "Shop more wisely, and know when prices drop. That's when you can act!",
+        "logIn": "Log in",
+        "logOut": "Log out",
+        "features": {
+            "monitor_title": "Monitor multiple sources for your product",
+            "monitor_description": "In a single alert, you can monitor a specific product on multiple websites. Or, you can monitor a general product and follow multiple versions of it!",
+            "notifications_title": "Get notified when the price drops",
+            "notifications_description": "Get notified by email when the product you want is on sale, or in clearance. Mucho dinero saved!",
+            "history_title": "See the price history of a product",
+            "history_description": "Analyse the patterns, see when the prices raised or dropped, and act accordingly.",
+            "sources_title": "Available sources",
+            "sources_description": "You can monitor products from these websites. More will be added!"
+        }
+    },
+    "modal": {
+        "yes": "Yes",
+        "no": "No"
+    },
+    "errors": {
+        "sourceNotSupported": "The specified source is not yet supported.",
+        "parseError": "There was a problem parsing the source."
+    },
+    "alert": {
+        "title": "Product Alert",
+        "emailOption": "Receive email notifications for this product",
+        "updating": "Updating",
+        "deactivated": "Deactivated",
+        "activate": "Activate",
+        "priceAt": "at",
+        "bestDealUpdatedTime": "Best deal updated ",
+        "lastUpdatedTime": "Last updated ",
+        "alertSaved_success": "Alert saved successfully!",
+        "alertSaved_failure": "An error occurred during the save.",
+        "alertSaved_exception": "An error occurred during the save. {{error}}",
+        "sources": {
+            "title": "Sources",
+            "source": "Source",
+            "price": "Price",
+            "addOtherSource": "Add another source for this product",
+            "searchingSimilar": "Searching for similar products...",
+            "addOtherSourceSuggestion": "You might also want to add these sources to your alert",
+            "deleteConfirmation_title": "Delete alert entry",
+            "deleteConfirmation_description": "Are you sure you want to delete the selected entry in this alert?"
+        },
+        "history": {
+            "title": "Price History"
+        }
+    },
+    "alerts": {
+        "title": "Alerts",
+        "watchedProducts": "Watched products",
+        "updating": "Updating",
+        "noAlert": "You are not watching any product right now.",
+        "getStarted": "Get Started!",
+        "createAlert": "Create a product alert",
+        "alertCreated_success": "Alert created successfully!",
+        "alertCreated_exception": "An error occurred during the creation. {{error}}",
+        "alertActivated_success": "Alert activated successfully!",
+        "alertActivated_failure": "An error occurred during the activation.",
+        "alertDeleted_success": "Alert deleted successfully!",
+        "alertDeleted_failure": "An error occurred during the deletion.",
+        "deleteConfirmation_title": "Delete alert",
+        "deleteConfirmation_description": "Are you sure you want to delete this product alert?"
+    },
+    "sources": {
+        "add": "Add",
+        "addSource": "Browse your favourite shopping site and paste the product URL"
+    },
+    "settings": {
+        "title": "Settings",
+        "save": "Save",
+        "updating": "Updating",
+        "account": {
+            "title": "Account",
+            "personalInformation": "Personal information",
+            "name": "Name",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "settingsSaved_success": "User information saved successfully!",
+            "settingsSaved_failure": "An error occurred during the save."
+        },
+        "alerts": {
+            "title": "Alert",
+            "alertSettings": "Alert Settings",
+            "priceDrop": "Alert me when the best price of an alert <b>drops</b>",
+            "priceRaise": "Alert me when the best price of an alert <b>raises</b>",
+            "changeThreshold": "Alert me only when the price changes by at least: ",
+            "settingsSaved_success": "User settings saved successfully!",
+            "settingsSaved_failure": "An error occurred during the save."
+        }
+    }
 }
