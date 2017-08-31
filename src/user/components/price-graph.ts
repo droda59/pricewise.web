@@ -1,5 +1,5 @@
 import { autoinject, bindable } from "aurelia-framework";
-import * as moment from "moment";
+import { I18N } from "aurelia-i18n";
 import { Coordinates } from "../../resources/models/coordinates";
 import { LineData, Dataset } from "../../resources/models/line-data";
 import { ProductHistory } from "../../models/product-history";
@@ -14,12 +14,17 @@ export class PriceGraph {
     simpleLineData: LineData;
     nativeOptions: any = {};
 
-    constructor(sourcesService: SourcesService) {
+    constructor(sourcesService: SourcesService, i18n: I18N) {
         this._sourcesService = sourcesService;
         this.simpleLineData = <LineData>{
             labels: [],
             datasets: []
         };
+        var dateFormat = i18n.df({
+            year: 'numeric', 
+            month: '2-digit', 
+            day: '2-digit'
+          });
 
         this.nativeOptions = { 
             showLines: true, 
@@ -38,7 +43,7 @@ export class PriceGraph {
                                     return "";
                                 }
 
-                                return moment(label).format("L");
+                                return dateFormat.format(new Date(label));
                             }
                         }
                     }
@@ -79,7 +84,7 @@ export class PriceGraph {
             datasets.push(dataset);
         });
 
-        var labels = newValue.filter(x => !x.priceHistory.includes(null))[0].priceHistory.map(y => y.modifiedAt.toDateString());
+        var labels = newValue.filter(x => !x.priceHistory.includes(null))[0].priceHistory.map(y => y.modifiedAt);
         this.simpleLineData = <LineData>{
             labels: labels,
             datasets: datasets

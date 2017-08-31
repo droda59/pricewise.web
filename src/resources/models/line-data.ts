@@ -1,5 +1,5 @@
 export class LineData {
-    labels: string[] = [];
+    labels: Date[] = [];
     datasets: Dataset[] = [];
 }
 
