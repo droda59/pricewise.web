@@ -33,8 +33,8 @@ export async function configure(aurelia: Aurelia) {
                     loadPath: "./locales/{{lng}}/{{ns}}.json",
                 },
                 attributes: aliases,
-                lng : "en",
-                fallbackLng : "en",
+                lng : "en-CA",
+                fallbackLng : "en-CA",
                 debug : false
             });
         })

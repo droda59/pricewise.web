@@ -47,7 +47,7 @@
                             data-analytics-category="Outbound Link"
                             data-analytics-action="click"
                             data-analytics-label.bind="alert.bestCurrentDeal.originalUrl">
-                            ${alert.bestCurrentDeal.price | price}
+                            ${alert.bestCurrentDeal.price | nf: { style: 'currency', currency: 'CAD'}}
                             <span i18n="alert.priceAt"></span>
                             <img class="ui avatar image" src="/images/${alert.bestCurrentDeal.source.domain}-small.png">
                             ${alert.bestCurrentDeal.source.name}

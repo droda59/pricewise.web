@@ -8,7 +8,6 @@ export function configure(config: FrameworkConfiguration) {
     ];
 
     var valueConverters = [
-        PLATFORM.moduleName("./value-converters/price"),
         PLATFORM.moduleName("./value-converters/sort"),
         PLATFORM.moduleName("./value-converters/host-name"),
     ];
