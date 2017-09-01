@@ -1,0 +1,105 @@
+{
+    "success": "Succès",
+    "error": "Erreur",
+    "welcome": {
+        "authenticating": "Authentication",
+        "planning": "Vous prévoyez acheter quelque chose?",
+        "stopPaying": "Arrêtez de payer trop cher!",
+        "getStarted": "Débuter",
+        "getStartedNow": "Débuter",
+        "shortDescription": "Surveillez des produits, et soyez notifié quand leurs prix changent.",
+        "startSaving": "Commencez à épargner",
+        "knowledge": "L'information est votre avantage",
+        "shopWisely": "Magasinez plus intelligemment, et sachez quand les prix baissent. Vous saurez quand acheter!",
+        "logIn": "Connexion",
+        "logOut": "Déconnexion",
+        "features": {
+            "monitor_title": "Surveillez pluieurs sources pour vos produits",
+            "monitor_description": "Dans une seule alerte, vous pouvez surveiller un produit sur plusieurs magasins en ligne, ou vous pouvez surveilleur plusieurs versions d'un produit!",
+            "notifications_title": "Soyez notifié quand les prix baissent",
+            "notifications_description": "Recevez une alerte quand les produits que vous voulez sont en venteou en liquidation. Beaucoup de dineros épargnés!",
+            "history_title": "Étudiez l'historique de prix d'un produit",
+            "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez quand c'est le temps.",
+            "sources_title": "Sources disponibles",
+            "sources_description": "Vous pouvez surveillez les produits de ces magasins en ligne. D'autres seront ajoutés!"
+        }
+    },
+    "modal": {
+        "yes": "Oui",
+        "no": "Non"
+    },
+    "errors": {
+        "sourceNotSupported": "La source spécifiée n'est pas encore supportée.",
+        "parseError": "Une erreur s'est produite lors de l'analyse."
+    },
+    "alert": {
+        "title": "Alerte de produit",
+        "emailOption": "Je veux recevoir des alertes par courriel pour ce produit",
+        "updating": "Mise à jour",
+        "deactivated": "Inactive",
+        "activate": "Activer",
+        "priceAt": "chez",
+        "bestDealUpdatedTime": "Meilleur prix mis à jour ",
+        "lastUpdatedTime": "Dernière mise à jour ",
+        "alertSaved_success": "Alerte sauvegardée avec succès!",
+        "alertSaved_failure": "Une erreur s'est produite lors de la sauvegarde.",
+        "alertSaved_exception": "Une erreur s'est produite lors de la sauvegarde. {{error}}",
+        "sources": {
+            "title": "Sources",
+            "source": "Source",
+            "price": "Prix",
+            "addOtherSource": "Ajouter une autre source pour ce produit",
+            "searchingSimilar": "Recherche de produits similaires...",
+            "addOtherSourceSuggestion": "Vous pourriez vouloir ajouter ces sources à votre alerte",
+            "deleteConfirmation_title": "Supprimer l'entrée de l'alerte",
+            "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer l'entrée sélectionnée de l'alerte?"
+        },
+        "history": {
+            "title": "Historique de prix"
+        }
+    },
+    "alerts": {
+        "title": "Alertes",
+        "watchedProducts": "Produits surveillés",
+        "updating": "Mise à jour",
+        "noAlert": "Vous n'avez aucun produit surveillé pour le moment.",
+        "getStarted": "Débutez maintenant!",
+        "createAlert": "Créez une alerte de produit",
+        "alertCreated_success": "Alerte créée avec succès!",
+        "alertCreated_exception": "Une erreur est survenue durant la création. {{error}}",
+        "alertActivated_success": "Alerte activée avec succès!",
+        "alertActivated_failure": "Une erreur est survenue durant l'activation.",
+        "alertDeleted_success": "Alerte supprimée avec succès!",
+        "alertDeleted_failure": "Une erreur est survenue durant la suppression.",
+        "deleteConfirmation_title": "Supprimer une alerte",
+        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer l'alerte de produit?"
+    },
+    "sources": {
+        "add": "Ajouter",
+        "addSource": "Naviguez sur vos magasins en ligne favoris et copiez l'URL de la page"
+    },
+    "settings": {
+        "title": "Préférences",
+        "save": "Enregistrer",
+        "updating": "Mise à jour",
+        "account": {
+            "title": "Compte",
+            "personalInformation": "Informations personnelles",
+            "name": "Nom",
+            "firstName": "Prénom",
+            "lastName": "Nom de famille",
+            "email": "Courriel",
+            "settingsSaved_success": "Informations enregistrées avec succès!",
+            "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."
+        },
+        "alerts": {
+            "title": "Alerte",
+            "alertSettings": "Préférences d'alertes",
+            "priceDrop": "Je veux être averti quand le meilleur prix d'une alerte <b>diminue</b>",
+            "priceRaise": "Je veux être averti quand le meilleur prix d'une alerte <b>augmente</b>",
+            "changeThreshold": "Je veux être averti seulement quand le meilleur prix d'une alerte change d'au moins: ",
+            "settingsSaved_success": "Informations enregistrées avec succès!",
+            "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."
+        }
+    }
+}
