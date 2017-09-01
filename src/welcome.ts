@@ -1,5 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
+import { EventAggregator } from "aurelia-event-aggregator";
+import { I18N, BaseI18N } from "aurelia-i18n";
 import { UserService } from "./services/user-service";
 import { AuthenticationService } from "./services/authentication-service";
 import { SourcesService } from "./services/sources-service";
@@ -7,21 +9,32 @@ import { User } from "./models/user";
 import { Source } from "./models/source";
 
 @autoinject()
-export class Welcome {
+export class Welcome extends BaseI18N {
     private _userService: UserService;
     private _authenticationService: AuthenticationService;
     private _sourcesService: SourcesService;
     private _router: Router;
+    private _i18n: I18N;
 
     isAuthenticating: boolean;
     isAuthenticated: boolean;
     sources: Array<Source>;
 
-    constructor(router: Router, userService: UserService, authenticationService: AuthenticationService, sourcesService: SourcesService) {
+    constructor(
+            router: Router, 
+            userService: UserService,
+            authenticationService: AuthenticationService, 
+            sourcesService: SourcesService,
+            i18n: I18N, 
+            element: Element, 
+            ea: EventAggregator) {
+        super(i18n, element, ea);
+
         this._router = router;
         this._userService = userService;
         this._authenticationService = authenticationService;
         this._sourcesService = sourcesService;
+        this._i18n = i18n;
     }
 
     activate(): void {
@@ -37,6 +50,11 @@ export class Welcome {
         this.isAuthenticated = false;
 
         this._authenticationService.logout();
+    }
+
+    changeLanguage(): void {
+        var language = this._i18n.tr("otherLanguageCode");
+        this._i18n.setLocale(language);
     }
 
     private async onAuthenticated(profile: Auth0UserProfile): Promise<void> {

@@ -1,6 +1,8 @@
 {
     "success": "Succès",
     "error": "Erreur",
+    "otherLanguage": "EN",
+    "otherLanguageCode": "en-CA",
     "welcome": {
         "authenticating": "Authentication",
         "planning": "Vous prévoyez acheter quelque chose?",
@@ -76,7 +78,7 @@
     },
     "sources": {
         "add": "Ajouter",
-        "addSource": "Naviguez sur vos magasins en ligne favoris et copiez l'URL de la page"
+        "addSource": "Naviguez sur le sites de vos magasins en ligne favoris et copiez l'URL de la page du produit"
     },
     "settings": {
         "title": "Préférences",

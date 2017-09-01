@@ -34,7 +34,7 @@ export async function configure(aurelia: Aurelia) {
                 },
                 attributes: aliases,
                 lng : "en-CA",
-                fallbackLng : "en-CA",
+                fallbackLng : "fr-CA",
                 debug : false
             });
         })

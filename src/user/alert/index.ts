@@ -1,13 +1,14 @@
 import { bindable } from "aurelia-framework";
 import { autoinject } from "aurelia-dependency-injection";
 import { Router, RouterConfiguration } from "aurelia-router";
-import { I18N } from "aurelia-i18n";
+import { EventAggregator } from "aurelia-event-aggregator";
+import { BaseI18N, I18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
 import { AlertService } from "../../services/alert-service";
 import { Toaster } from "../../services/toaster";
 
 @autoinject()
-export class AlertPage {
+export class AlertPage extends BaseI18N {
     private _alertService: AlertService;
     private _i18n: I18N;
     private _toaster: Toaster;
@@ -20,7 +21,9 @@ export class AlertPage {
     imageUrl: string;
     router: Router;
 
-    constructor(alertService: AlertService, i18n: I18N, toaster: Toaster) {
+    constructor(alertService: AlertService, toaster: Toaster, i18n: I18N, element: Element, ea: EventAggregator) {
+        super(i18n, element, ea);
+
         this._alertService = alertService;
         this._i18n = i18n;
         this._toaster = toaster;
@@ -28,8 +31,8 @@ export class AlertPage {
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
-            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources"),  nav: true, title: this._i18n.tr("alert.sources.title") },
-            { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history"),  nav: true, title: this._i18n.tr("alert.history.title") },
+            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources"), nav: true, title: this._i18n.tr("alert.sources.title") },
+            { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history"), nav: true, title: this._i18n.tr("alert.history.title") },
         ]);
 
         this.router = router;

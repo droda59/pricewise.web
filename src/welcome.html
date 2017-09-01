@@ -13,6 +13,7 @@
                         <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
                             <i class="facebook icon"></i>
                         </a>
+                        <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
                         <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
                     </div>
@@ -32,14 +33,14 @@
             <div class="ui middle aligned stackable grid container">
                 <div class="row">
                     <div class="eight wide column">
-                        <h3 class="ui header">${'welcome.features.monitor' | t: { context: 'title' }}</h3>
-                        <p>${'welcome.features.monitor' | t: { context: 'description' }}</p>
+                        <h3 class="ui header">${'welcome.features.monitor' & t: { context: 'title' }}</h3>
+                        <p>${'welcome.features.monitor' & t: { context: 'description' }}</p>
 
-                        <h3 class="ui header">${'welcome.features.notifications' | t: { context: 'title' }}</h3>
-                        <p>${'welcome.features.monitor' | t: { context: 'description' }}</p>
+                        <h3 class="ui header">${'welcome.features.notifications' & t: { context: 'title' }}</h3>
+                        <p>${'welcome.features.monitor' & t: { context: 'description' }}</p>
 
-                        <h3 class="ui header">${'welcome.features.history' | t: { context: 'title' }}</h3>
-                        <p>${'welcome.features.monitor' | t: { context: 'description' }}</p>
+                        <h3 class="ui header">${'welcome.features.history' & t: { context: 'title' }}</h3>
+                        <p>${'welcome.features.monitor' & t: { context: 'description' }}</p>
                     </div>
                     <div class="six wide right floated column">
                         <img src="/images/screen-graph.png" class="ui large bordered rounded image">
@@ -51,10 +52,10 @@
         <div class="ui stripe vertical segment primary-light">
             <div class="ui stackable very relaxed grid container">
                 <div class="fourteen wide center aligned centered column">
-                    <h1 class="ui header">${'welcome.features.sources' | t: { context: 'title' }}</h1>
+                    <h1 class="ui header">${'welcome.features.sources' & t: { context: 'title' }}</h1>
                 </div>
                 <div class="eight wide center aligned centered column">
-                    <h3 class="ui header">${'welcome.features.sources' | t: { context: 'description' }}</h3>
+                    <h3 class="ui header">${'welcome.features.sources' & t: { context: 'description' }}</h3>
                 </div>
             </div>
             <div class="ui four column center aligned divided relaxed stackable grid container">

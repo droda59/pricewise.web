@@ -1,4 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
+import { EventAggregator } from "aurelia-event-aggregator";
+import { BaseI18N, I18N } from "aurelia-i18n";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 import { AlertService } from "../../services/alert-service";
 import { ProductService } from "../../services/product-service";
@@ -8,7 +10,7 @@ import { UserAlert } from "../../models/user-alert";
 import { ProductInfo } from "../../models/product-info";
 
 @autoinject()
-export class Sources {
+export class Sources extends BaseI18N {
     private _alertService: AlertService;
     private _productService: ProductService;
     private _modalController: ConfirmationModalController;
@@ -22,7 +24,16 @@ export class Sources {
     isAddingSource: boolean;
     suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
-    constructor(alertService: AlertService, productService: ProductService, modalController: ConfirmationModalController, toaster: Toaster) {
+    constructor(
+            alertService: AlertService, 
+            productService: ProductService, 
+            modalController: ConfirmationModalController, 
+            toaster: Toaster,
+            i18n: I18N, 
+            element: Element, 
+            ea: EventAggregator) {
+        super(i18n, element, ea);
+
         this._alertService = alertService;
         this._productService = productService;
         this._modalController = modalController;

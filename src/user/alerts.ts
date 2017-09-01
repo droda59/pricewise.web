@@ -1,6 +1,8 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
+import { EventAggregator } from "aurelia-event-aggregator";
+import { I18N, BaseI18N } from "aurelia-i18n";
 import { ConfirmationModalController } from "../confirmation-modal-controller";
 import { Toaster } from "../services/toaster";
 import { AlertService } from "../services/alert-service";
@@ -9,7 +11,7 @@ import { UserAlert } from "../models/user-alert";
 import { User } from "../models/user";
 
 @autoinject()
-export class Alerts {
+export class Alerts extends BaseI18N {
     private _alertService: AlertService;
     private _userService: UserService;
     private _router: Router;
@@ -24,7 +26,17 @@ export class Alerts {
     alerts: Array<UserAlert> = new Array<UserAlert>();
     // originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
-    constructor(router: Router, userService: UserService, alertService: AlertService, modalController: ConfirmationModalController, toaster: Toaster) {
+    constructor(
+            router: Router, 
+            userService: UserService, 
+            alertService: AlertService, 
+            modalController: ConfirmationModalController, 
+            toaster: Toaster,
+            i18n: I18N, 
+            element: Element, 
+            ea: EventAggregator) {
+        super(i18n, element, ea);
+
         this._router = router;
         this._alertService = alertService;
         this._userService = userService;

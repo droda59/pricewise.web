@@ -1,6 +1,8 @@
 {
     "success": "Success",
     "error": "Error",
+    "otherLanguage": "FR",
+    "otherLanguageCode": "fr-CA",
     "welcome": {
         "authenticating": "Authenticating",
         "planning": "Planning to buy something?",

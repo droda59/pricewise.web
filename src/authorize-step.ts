@@ -5,6 +5,9 @@ export class AuthorizeStep {
     run(navigationInstruction, next) {
         if (navigationInstruction.getAllInstructions().some(i => i.config.authRoute)) {
             if (this.tokenIsExpired()) {
+                localStorage.removeItem("user-id");
+                localStorage.removeItem("access-token");
+                
                 return next.cancel(new RedirectToRoute("welcome"));
             }
         }
