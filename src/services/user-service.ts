@@ -1,6 +1,7 @@
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
+import { AuthorizationInterceptor } from "../authorization-interceptor";
 import { User } from "../models/user";
 import { UserAlert } from "../models/user-alert";
 import { UserSettings } from "../models/user-settings";
@@ -11,7 +12,7 @@ const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.
 export class UserService {
 	private _httpClient: HttpClient;
 
-	constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
+	constructor(httpClient: HttpClient, configure: AureliaConfiguration, interceptor: AuthorizationInterceptor) {
 		this._httpClient = httpClient.configure(config => {
 			config
 				.useStandardConfiguration()
@@ -21,18 +22,7 @@ export class UserService {
 						"X-Requested-With": "Fetch"
 					}
 				})
-                .withInterceptor({
-                    request(request)
-                    {
-                        if (request.headers.has("Authorization")) {
-                            request.headers.delete("Authorization");
-                        }
-
-                        request.headers.append("Authorization", `Bearer ${localStorage.getItem('access-token')}`);
-                        
-                        return request;
-                    }
-                })
+                .withInterceptor(interceptor)
                 .rejectErrorResponses()
 				.withBaseUrl(`${configure.get("api")}api/user/`);
 		});

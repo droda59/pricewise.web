@@ -1,7 +1,7 @@
-import { RedirectToRoute } from "aurelia-router";
+import { RedirectToRoute, PipelineStep } from "aurelia-router";
 import * as JwtDecode from "jwt-decode";
 
-export class AuthorizeStep {
+export class AuthorizeStep implements PipelineStep {
     run(navigationInstruction, next) {
         if (navigationInstruction.getAllInstructions().some(i => i.config.authRoute)) {
             if (this.tokenIsExpired()) {

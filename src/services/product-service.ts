@@ -1,6 +1,7 @@
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
+import { AuthorizationInterceptor } from "../authorization-interceptor";
 import { ProductInfo } from "../models/product-info";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
@@ -9,7 +10,7 @@ const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.
 export class ProductService {
     private _httpClient: HttpClient;
 
-    constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
+    constructor(httpClient: HttpClient, configure: AureliaConfiguration, interceptor: AuthorizationInterceptor) {
         this._httpClient = httpClient.configure(config => {
             config
                 .useStandardConfiguration()
@@ -19,18 +20,7 @@ export class ProductService {
                         "X-Requested-With": "Fetch"
                     }
                 })
-                .withInterceptor({
-                    request(request)
-                    {
-                        if (request.headers.has("Authorization")) {
-                            request.headers.delete("Authorization");
-                        }
-
-                        request.headers.append("Authorization", `Bearer ${localStorage.getItem('access-token')}`);
-                        
-                        return request;
-                    }
-                })
+                .withInterceptor(interceptor)
                 .rejectErrorResponses()
                 .withBaseUrl(`${configure.get("api")}api/product/`);
             });
