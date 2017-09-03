@@ -1,4 +1,5 @@
 import { autoinject } from "aurelia-dependency-injection";
+import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
 import { AlertService } from "../../shared/services/alert-service";
@@ -11,6 +12,7 @@ import { ConfirmationModalController } from "../../../confirmation-modal-control
 
 @autoinject()
 export class Sources extends BaseI18N {
+    private _router;
     private _alertService: AlertService;
     private _productService: ProductService;
     private _modalController: ConfirmationModalController;
@@ -25,6 +27,7 @@ export class Sources extends BaseI18N {
     suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
     constructor(
+            router: Router, 
             alertService: AlertService, 
             productService: ProductService, 
             modalController: ConfirmationModalController, 
@@ -34,6 +37,7 @@ export class Sources extends BaseI18N {
             ea: EventAggregator) {
         super(i18n, element, ea);
 
+        this._router = router;
         this._alertService = alertService;
         this._productService = productService;
         this._modalController = modalController;
@@ -100,24 +104,44 @@ export class Sources extends BaseI18N {
     removeEntry(entry: AlertEntry): void {
         this._modalController.openModal(async () => { 
             this.isUpdatingAlert = true; 
+            var deleteWholeAlert = false;
 
             entry.isDeleted = true;
 
-            try {
-                var updatedAlert = await this._alertService.update(this._userId, this.alert);
-                if (updatedAlert) {
-                    // This might rebind everything, but we need it when we remove an Entry. Maybe a dedicated route would help
-                    this.alert = updatedAlert;
-                    this.searchForSameProducts();
-                } else {
-                    throw new Error();
-                }
+            if (!this.alert.entries.filter(x => !x.isDeleted).length) {
+                deleteWholeAlert = true;
 
-                this._toaster.showSuccess("alert.alertSaved");
-            } catch(e) {
-                this._toaster.showError("alert.alertSaved");
-            } finally {
-                this.isUpdatingAlert = false;
+                try {
+                    const alertDeleted = await this._alertService.delete(this._userId, this.alert.id);
+                    if (alertDeleted) {
+                        this._router.navigateToRoute("user");
+                    } else {
+                        throw new Error();
+                    }
+    
+                    this._toaster.showSuccess("alerts.alertDeleted");
+                } catch(e) {
+                    this._toaster.showError("alerts.alertDeleted");
+                } finally {
+                    this.isUpdatingAlert = false;
+                }
+            } else {
+                try {
+                    var updatedAlert = await this._alertService.update(this._userId, this.alert);
+                    if (updatedAlert) {
+                        // This might rebind everything, but we need it when we remove an Entry. Maybe a dedicated route would help
+                        this.alert = updatedAlert;
+                        this.searchForSameProducts();
+                    } else {
+                        throw new Error();
+                    }
+
+                    this._toaster.showSuccess("alert.alertSaved");
+                } catch(e) {
+                    this._toaster.showError("alert.alertSaved");
+                } finally {
+                    this.isUpdatingAlert = false;
+                }
             }
         });
     }
