@@ -107,8 +107,8 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
     }),
     new CopyWebpackPlugin([
       { from: "static", to: "" },
-      { from: "src/locales", to: "locales" },
-      { from: "src/images", to: "images" },
+      { from: "src/shared/assets/locales", to: "shared/assets/locales" },
+      { from: "src/shared/assets/images", to: "images" },
       { from: "web.config" }
     ]),
     ...when(extractCss, new ExtractTextPlugin({

@@ -1,0 +1,124 @@
+<template>
+    <require from="../../shared/components/add-source/add-source"></require>
+
+    <div class="ui container">
+        <div class="ui big circular icon red button" click.delegate="addSource()"
+            style="position: absolute; top: calc(-1.3em); right: 20%;"
+            data-analytics-category="sources"
+            data-analytics-action="add"
+            data-analytics-label="top button">
+            <i class="plus icon"></i>
+        </div>
+
+        <form class="ui form" submit.delegate="save()" role="form">
+            <table class="ui very basic padded table" style="width: 60%; margin: 0 auto;">
+                <thead>
+                    <tr>
+                        <th i18n="alert.sources.source">Source</th>
+                        <th i18n="alert.sources.price">Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr repeat.for="entry of alert.entries | sort:'lastPrice'">
+                        <td class="collapsing">
+                            <div class="ui image header">
+                                <a class="image" style="width: initial;" href.bind="entry.productUrl" target="_blank"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label.bind="entry.originalUrl">
+                                    <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <h4>
+                                <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
+                            </h4>
+                        </td>
+                        <td class="collapsing">
+                            <div class="ui basic circular red icon button" click.delegate="removeEntry(entry)"
+                                data-analytics-category="sources"
+                                data-analytics-action="remove">
+                                <i class="icon remove"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="full-width">
+                    <tr>
+                        <th colspan="3">
+                            <div class="ui icon labeled medium primary primary-action button" click.delegate="addSource()"
+                                i18n="[append]alert.sources.addOtherSource"
+                                data-analytics-category="sources"
+                                data-analytics-action="add"
+                                data-analytics-label="list button">
+                                <i class="icon plus"></i>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="ui relaxed items" style="width: 80%; margin: 0 auto;">
+                <div class="ui text menu">
+                    <div class="item">
+                        <div i18n="[prepend]alert.bestDealUpdatedTime">${alert.bestCurrentDeal.modifiedAt | rt}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui relaxed section" style="width: 80%; margin: 0 auto;">
+                <div class="ui ${isSearchingProducts ? 'active': ''} inverted dimmer">
+                    <div class="ui text loader" i18n="alert.sources.searchingSimilar">Searching for similar products...</div>
+                </div>
+
+                <div show.bind="suggestedProducts.length">
+                    <h4 i18n="alert.sources.addOtherSourceSuggestion">You might also want to add these sources to your alert</h4>
+
+                    <div class="ui link cards">
+                        <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
+                            <div class="content">
+                                <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
+                                    data-analytics-category="sources"
+                                    data-analytics-action="add"
+                                    data-analytics-label="suggestion"></i>
+                                <a class="header" href.bind="product.productUrl" target="_blank"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label.bind="product.originalUrl">${product.title}</a>
+                                <div class="meta">
+                                    <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate | rt}</small>
+                                </div>
+                            </div>
+                            <a class="image" href.bind="product.productUrl" target="_blank"
+                                data-analytics-category="Outbound Link"
+                                data-analytics-action="click"
+                                data-analytics-label.bind="product.originalUrl">
+                                <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
+                            </a>
+                            <div class="extra content">
+                                <a href.bind="product.productUrl" target="_blank" class="right floated"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label.bind="product.originalUrl">
+                                    ${product.price | nf: { style: 'currency', currency: 'CAD'}}
+                                    <span i18n="alert.priceAt"></span>
+                                    <img class="ui avatar image" src="/images/${product.source.domain}-small.png">
+                                    ${product.source.name}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
+        <div class="ui text loader" i18n="alert.updating">Updating</div>
+    </div>
+
+    <add-source class-name="${isAddingSource ? 'loading' : ''}" close.call="removeModal()" add.call="addEntry(newAlertUrl)"></add-source>
+
+    <confirmation-modal message="alert.sources.deleteConfirmation"></confirmation-modal>
+</template>

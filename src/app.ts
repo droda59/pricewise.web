@@ -30,8 +30,8 @@ export class App {
         config.addPipelineStep("authorize", AuthorizeStep);
 
         config.map([
-            { route: ["", "welcome"], name: "welcome", moduleId: PLATFORM.moduleName("./welcome"),    nav: true },
-            { route: "user",          name: "user",    moduleId: PLATFORM.moduleName("./user/index"), activationStrategy: "replace", nav: true, authRoute: true },
+            { route: ["", "welcome"], name: "welcome", moduleId: PLATFORM.moduleName("./homepage/index"),    nav: true },
+            { route: "user",          name: "user",    moduleId: PLATFORM.moduleName("./app/index"), activationStrategy: "replace", nav: true, authRoute: true },
         ]);
         
         this.router = router;

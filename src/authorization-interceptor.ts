@@ -1,8 +1,7 @@
 import { Interceptor } from "aurelia-fetch-client";
 
 export class AuthorizationInterceptor implements Interceptor {
-    request(request)
-    {
+    request(request) {
         if (request.headers.has("Authorization")) {
             request.headers.delete("Authorization");
         }

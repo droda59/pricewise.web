@@ -15,7 +15,7 @@ export async function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .developmentLogging()
-        .plugin(PLATFORM.moduleName("resources"))
+        .plugin(PLATFORM.moduleName("shared"))
         .plugin(PLATFORM.moduleName("aurelia-chart"))
         .plugin(PLATFORM.moduleName("aurelia-configuration"), config => {
             config.setDirectory("");
@@ -30,7 +30,7 @@ export async function configure(aurelia: Aurelia) {
             instance.i18next.use(Backend);
             return instance.setup({
                 backend: {
-                    loadPath: "./locales/{{lng}}/{{ns}}.json",
+                    loadPath: "./shared/assets/locales/{{lng}}/{{ns}}.json",
                 },
                 attributes: aliases,
                 lng : "en-CA",
