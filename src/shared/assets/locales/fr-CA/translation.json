@@ -1,6 +1,8 @@
 {
     "success": "Succès",
     "error": "Erreur",
+    "english": "Anglais",
+    "french": "Français",
     "otherLanguage": "EN",
     "otherLanguageCode": "en-CA",
     "welcome": {
@@ -91,6 +93,7 @@
             "firstName": "Prénom",
             "lastName": "Nom de famille",
             "email": "Courriel",
+            "correspondenceLanguage": "Langue de Correspondance",
             "settingsSaved_success": "Informations enregistrées avec succès!",
             "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."
         },

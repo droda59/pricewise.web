@@ -16,7 +16,7 @@ export class AccountSettings extends BaseI18N {
 
     constructor(userService: UserService, toaster: Toaster, i18n: I18N, element: Element, ea: EventAggregator) {
         super(i18n, element, ea);
-        
+
         this._userService = userService;
         this._toaster = toaster;
         this._userId = localStorage.getItem("user-id");
@@ -26,9 +26,13 @@ export class AccountSettings extends BaseI18N {
         this.user = await this._userService.get(this._userId);
     }
 
+    attached(): void {
+        $(".ui.dropdown").dropdown();
+    }
+
     async save(): Promise<void> {
         this.isUpdatingUser = true;
-        
+
         try {
             var updatedUser = await this._userService.update(this.user);
             if (updatedUser) {

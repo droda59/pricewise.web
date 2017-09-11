@@ -1,6 +1,8 @@
 {
     "success": "Success",
     "error": "Error",
+    "english": "English",
+    "french": "French",
     "otherLanguage": "FR",
     "otherLanguageCode": "fr-CA",
     "welcome": {
@@ -91,6 +93,7 @@
             "firstName": "First Name",
             "lastName": "Last Name",
             "email": "Email",
+            "correspondenceLanguage": "Correspondence Language",
             "settingsSaved_success": "User information saved successfully!",
             "settingsSaved_failure": "An error occurred during the save."
         },

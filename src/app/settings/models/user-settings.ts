@@ -3,6 +3,7 @@ export class UserSettings {
     alertOnPriceRaise: boolean;
     specifyChangePercentage: boolean;
     changePercentage: number;
+    correspondenceLanguage: string;
 
     constructor(dto: IUserSettings) {
         (<any>Object).assign(this, dto);
@@ -14,4 +15,5 @@ interface IUserSettings {
     alertOnPriceRaise: boolean;
     specifyChangePercentage: boolean;
     changePercentage: number;
+    correspondenceLanguage: string;
 }
