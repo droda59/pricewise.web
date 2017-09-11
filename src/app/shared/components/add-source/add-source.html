@@ -1,23 +1,25 @@
 <template>
     <overlay>
-        <div class="ui middle aligned center aligned grid"> 
-            <div class="column" style="max-width: 60%;">
-                <form submit.delegate="createSource()" role="form" class="ui large form ${className}">
-                    <p i18n="sources.addSource">Browse your favourite shopping site and paste the product URL</p>
+        <form submit.delegate="createSource()" role="form" class="ui large form ${className}">
+            <div class="ui one column center aligned grid">
+                <div class="column" style="max-width: 60%;">
+                    <h3 i18n="sources.addSource">Browse your favourite shopping site and paste the product URL</h3>
+                </div>
+                <div class="column">
                     <div class="ui large right action input">
-                        <input value.bind="newAlertUrl" type="url" placeholder="Url" autofocus>
+                        <input value.bind="newAlertUrl" type="url" placeholder="Url" autofocus style="width: auto;">
                         <button class="ui primary primary-action button ${newAlertUrl.length ? '' : 'disabled'}" i18n="[append]sources.add">
                             <i class="add icon"></i>
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
 
         <div class="ui padded basic segment source-list">
-            <div class="ui four column center aligned relaxed stackable grid container">
+            <div class="ui four column doubling grid">
                 <div class="row">
-                    <div repeat.for="source of sources" class="column">
+                    <div repeat.for="source of sources" class="column source-item">
                         <a href.bind="source.url" target="_blank"
                             data-analytics-category="Outbound Link"
                             data-analytics-action="click"

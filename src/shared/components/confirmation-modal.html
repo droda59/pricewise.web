@@ -8,11 +8,25 @@
             <p>${message | t: {context: 'description' } & oneTime}</p>
         </div>
         <div class="actions">
-            <div class="ui red basic cancel inverted button" i18n="[append]modal.no">
-                <i class="remove icon"></i>
+            <div class="mobile hidden">
+                <div class="ui red basic cancel inverted button" i18n="[append]modal.no">
+                    <i class="remove icon"></i>
+                </div>
+                <div class="ui green ok inverted button" i18n="[append]modal.yes">
+                    <i class="checkmark icon"></i>
+                </div>
             </div>
-            <div class="ui green ok inverted button" i18n="[append]modal.yes">
-                <i class="checkmark icon"></i>
+            <div class="ui two column mobile only grid">
+                <div class="column">
+                    <div class="ui red basic cancel inverted button" i18n="[append]modal.no" style="display: block;">
+                        <i class="remove icon"></i>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui green ok inverted button" i18n="[append]modal.yes" style="display: block;">
+                        <i class="checkmark icon"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

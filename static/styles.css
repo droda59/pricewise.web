@@ -17,7 +17,7 @@ body {
 .ui.primary.button.primary-action {
     background-color: #008179;
 }
-.ui.primary.button.primary-action:hover, 
+.ui.primary.button.primary-action:hover,
 .ui.primary.buttons .button.primary-action:hover {
     background-color: #02776f;
 }
@@ -103,14 +103,14 @@ div.au-stagger {
   }
 }
 
-.ui.form .field.h3 input:not([type]), 
+.ui.form .field.h3 input:not([type]),
 .ui.form .field.h3 input[type=date],
 .ui.form .field.h3 input[type=datetime-local],
-.ui.form .field.h3 input[type=email], 
-.ui.form .field.h3 input[type=file], 
+.ui.form .field.h3 input[type=email],
+.ui.form .field.h3 input[type=file],
 .ui.form .field.h3 input[type=number],
 .ui.form .field.h3 input[type=password],
-.ui.form .field.h3 input[type=search], 
+.ui.form .field.h3 input[type=search],
 .ui.form .field.h3 input[type=tel],
 .ui.form .field.h3 input[type=text],
 .ui.form .field.h3 input[type=time],
@@ -141,14 +141,14 @@ div.au-stagger {
     opacity: 1;
 }
 
-.ui.form .field.transparent input:not([type]), 
+.ui.form .field.transparent input:not([type]),
 .ui.form .field.transparent input[type=date],
 .ui.form .field.transparent input[type=datetime-local],
-.ui.form .field.transparent input[type=email], 
-.ui.form .field.transparent input[type=file], 
+.ui.form .field.transparent input[type=email],
+.ui.form .field.transparent input[type=file],
 .ui.form .field.transparent input[type=number],
 .ui.form .field.transparent input[type=password],
-.ui.form .field.transparent input[type=search], 
+.ui.form .field.transparent input[type=search],
 .ui.form .field.transparent input[type=tel],
 .ui.form .field.transparent input[type=text],
 .ui.form .field.transparent input[type=time],
@@ -156,7 +156,7 @@ div.au-stagger {
 .ui.form .field.transparent textarea {
     border-color: transparent !important;
 }
-.ui.form .field.transparent:hover input:not([type]), 
+.ui.form .field.transparent:hover input:not([type]),
 .ui.form .field.transparent:hover input[type=date],
 .ui.form .field.transparent:hover input[type=datetime-local],
 .ui.form .field.transparent:hover input[type=email],
@@ -171,10 +171,10 @@ div.au-stagger {
 .ui.form .field.transparent:hover textarea {
     border-color: rgba(34,36,38,.15) !important;
 }
-.ui.form .field.transparent input:not([type]):focus, 
+.ui.form .field.transparent input:not([type]):focus,
 .ui.form .field.transparent input[type=date]:focus,
 .ui.form .field.transparent input[type=datetime-local]:focus,
-.ui.form .field.transparent input[type=email]:focus, 
+.ui.form .field.transparent input[type=email]:focus,
 .ui.form .field.transparent input[type=file]:focus,
 .ui.form .field.transparent input[type=number]:focus,
 .ui.form .field.transparent input[type=password]:focus,
@@ -187,6 +187,9 @@ div.au-stagger {
     border-color: #85B7D9 !important;
 }
 
+.pricewise .ui.dimmer {
+  position: fixed!important;
+}
 .pricewise .ui.inverted.dimmer .ui.loader:before {
     border-color: rgba(0,129,121, 0.2);
 }
@@ -207,7 +210,7 @@ div.au-stagger {
     padding: 0 !important;
     margin-left: 2.67142857rem !important;
     padding-left: 1rem !important;
-    border-radius: 0 .28571429rem .28571429rem 0; 
+    border-radius: 0 .28571429rem .28571429rem 0;
     background: transparent!important;
     border-top: 1px solid transparent !important;
     border-right: 1px solid transparent !important;
@@ -233,11 +236,11 @@ div.au-stagger {
 }
 
 .ui.basic.modal .content {
-    text-align: center; 
+    text-align: center;
 }
 
-.pricewise .ui.cards > .green.card, 
-.pricewise .ui.green.card, 
+.pricewise .ui.cards > .green.card,
+.pricewise .ui.green.card,
 .pricewise .ui.green.cards > .card {
     box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #008179, 0 1px 3px 0 #D4D4D5;
 }
@@ -246,13 +249,13 @@ div.au-stagger {
     margin-left: .25em;
 }
 
-.pricewise .ui.cards a.card:hover, 
-.pricewise .ui.link.card:hover, 
-.pricewise .ui.link.cards .card:hover, 
+.pricewise .ui.cards a.card:hover,
+.pricewise .ui.link.card:hover,
+.pricewise .ui.link.cards .card:hover,
 .pricewise a.ui.card:hover {
     transform: none;
 }
-.ui.inactive.card > .content > a.header, 
+.ui.inactive.card > .content > a.header,
 .ui.cards > .inactive.card > .content > a.header {
     color: rgba(0, 0, 0, 0.3);
 }
@@ -345,8 +348,8 @@ div.au-stagger {
     font-weight: normal;
     border-bottom: 2px solid;
 }
-.pricewise .ui.secondary.inverted.menu .item:hover, 
-.pricewise .ui.secondary.inverted.menu .link.item:hover, 
+.pricewise .ui.secondary.inverted.menu .item:hover,
+.pricewise .ui.secondary.inverted.menu .link.item:hover,
 .pricewise .ui.secondary.inverted.menu a.item:hover {
     color: #fff!important;
 }
@@ -429,8 +432,32 @@ div.au-stagger {
     [class*="or lower hidden"] {
       display: none !important;
     }
-  }
-  
+
+    #welcome .ui.vertical.stripe {
+        padding: 4em 1em;
+    }
+
+    .source-list {
+        padding: 0;
+    }
+    .source-list .source-item {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .pricewise .ui.cards > .card,
+    .pricewise .ui.card,
+    .pricewise .ui.cards > .card {
+        width: 100%;
+    }
+    .pricewise .ui.cards > .card > .image {
+        height: 140px;
+    }
+    .pricewise .ui.cards > .card > .image > img.landscape {
+        width: auto;
+    }
+}
+
   /* Tablet / iPad Portrait */
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     [class*="mobile only"]:not(.tablet),
@@ -442,7 +469,7 @@ div.au-stagger {
       display: none !important;
     }
   }
-  
+
   /* Computer / Desktop / iPad Landscape */
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     [class*="mobile only"]:not(.computer),
@@ -454,7 +481,7 @@ div.au-stagger {
       display: none !important;
     }
   }
-  
+
   /* Large Monitor */
   @media only screen and (min-width: 1200px) and (max-width: 1919px) {
     [class*="mobile only"]:not([class*="large monitor"]),
@@ -466,7 +493,7 @@ div.au-stagger {
       display: none !important;
     }
   }
-    
+
   /* Widescreen Monitor */
   @media only screen and (min-width: 1920px) {
     [class*="mobile only"]:not([class*="widescreen monitor"]),
@@ -478,4 +505,3 @@ div.au-stagger {
       display: none !important;
     }
   }
-  
