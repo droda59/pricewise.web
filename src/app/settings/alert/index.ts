@@ -1,7 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
-import { UserSettings } from "../models/user-settings";
+import { User } from "../../shared/models/user";
 import { Toaster } from "../../shared/services/toaster";
 import { UserService } from "../../shared/services/user-service";
 
@@ -11,7 +11,7 @@ export class AlertSettings extends BaseI18N {
     private _toaster: Toaster;
     private _userId: string;
 
-    settings: UserSettings;
+    user: User;
     changePercentage: number;
     isUpdatingUser: boolean;
 
@@ -24,9 +24,8 @@ export class AlertSettings extends BaseI18N {
     }
 
     async activate(): Promise<void> {
-        var user = await this._userService.get(this._userId);
-        this.settings = user.settings;
-        this.changePercentage = user.settings.changePercentage * 100;
+        this.user = await this._userService.get(this._userId);
+        this.changePercentage = this.user.settings.changePercentage * 100;
     }
 
     attached(): void {
@@ -35,20 +34,21 @@ export class AlertSettings extends BaseI18N {
 
     async save(): Promise<void> {
         this.isUpdatingUser = true;
-        
+
         try {
-            this.settings.changePercentage = this.changePercentage / 100;
-            var updatedSettings = await this._userService.saveSettings(this._userId, this.settings);
-            if (updatedSettings) {
-                this.settings = updatedSettings;
-                this.changePercentage = updatedSettings.changePercentage * 100;
+            this.user.settings.changePercentage = this.changePercentage / 100;
+
+            var updatedUser = await this._userService.update(this.user);
+            if (updatedUser) {
+                this.user = updatedUser;
+                this.changePercentage = updatedUser.settings.changePercentage * 100;
             } else {
                 throw new Error();
             }
 
-            this._toaster.showSuccess("settings.account.settingsSaved");
+            this._toaster.showSuccess("settings.alerts.settingsSaved");
         } catch(e) {
-            this._toaster.showError("settings.account.settingsSaved");
+            this._toaster.showError("settings.alerts.settingsSaved");
         } finally {
             this.isUpdatingUser = false;
         }

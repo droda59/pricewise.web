@@ -10,14 +10,14 @@
 
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.alertOnPriceDrop">
+                        <input type="checkbox" tabindex="0" class="hidden" checked.bind="user.settings.alertOnPriceDrop">
                         <label i18n="[html]settings.alerts.priceDrop">Alert me when the best price of an alert <b>drops</b></label>
                     </div>
                 </div>
 
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.alertOnPriceRaise">
+                        <input type="checkbox" tabindex="0" class="hidden" checked.bind="user.settings.alertOnPriceRaise">
                         <label i18n="[html]settings.alerts.priceRaise">Alert me when the best price of an alert <b>raises</b></label>
                     </div>
                 </div>
@@ -25,19 +25,19 @@
                 <div class="inline fields">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" tabindex="0" class="hidden" checked.bind="settings.specifyChangePercentage">
+                            <input type="checkbox" tabindex="0" class="hidden" checked.bind="user.settings.specifyChangePercentage">
                             <label i18n="settings.alerts.changeThreshold">Alert me only when the price changes by at least: </label>
                         </div>
                     </div>
 
                     <div class="field">
-                        <div class="ui right labeled ${settings.specifyChangePercentage ? '' : 'disabled'} input">
+                        <div class="ui right labeled ${user.settings.specifyChangePercentage ? '' : 'disabled'} input">
                             <input type="number" value.bind="changePercentage" min="0" max="100" step="1">
                             <div class="ui label">%</div>
                         </div>
                     </div>
                 </div>
-                
+
                 <button class="ui primary primary-action button" i18n="[append]settings.save"><i class="save icon"></i></button>
             </div>
         </form>

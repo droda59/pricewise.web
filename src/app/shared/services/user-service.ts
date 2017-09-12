@@ -2,7 +2,6 @@ import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { User } from "../models/user";
-import { UserSettings } from "../../settings/models/user-settings";
 import { AuthorizationInterceptor } from "../../../authorization-interceptor";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
@@ -33,7 +32,7 @@ export class UserService {
         const response = await this._httpClient.fetch(`${userId}`, {
 			method: "get"
 		});
-		
+
         return new User(await response.json());
 	}
 
@@ -46,17 +45,6 @@ export class UserService {
 		});
 
         return new User(await response.json());
-	}
-
-	async saveSettings(userId: string, settings: UserSettings): Promise<UserSettings> {
-        await fetchPolyfill;
-
-        const response = await this._httpClient.fetch(`${userId}/settings`, {
-			method: "put",
-			body: json(settings)
-		});
-
-        return new UserSettings(await response.json());
 	}
 
 	async create(user: User): Promise<User> {
