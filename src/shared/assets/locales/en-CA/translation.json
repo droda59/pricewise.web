@@ -26,6 +26,12 @@
             "history_description": "Analyse the patterns, see when the prices raised or dropped, and act accordingly.",
             "sources_title": "Available sources",
             "sources_description": "You can monitor products from these websites. More will be added!"
+        },
+        "chrome": {
+            "extensionAvailable": "PriceWise has a Chrome extension!",
+            "easily": "Get wise more easily!",
+            "description": "Create alerts for your products directly from your product page on our supported websites!",
+            "getApp": "Get the Chrome app now"
         }
     },
     "modal": {

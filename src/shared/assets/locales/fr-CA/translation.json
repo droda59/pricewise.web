@@ -26,6 +26,12 @@
             "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez quand c'est le temps.",
             "sources_title": "Sources disponibles",
             "sources_description": "Vous pouvez surveillez les produits de ces magasins en ligne. D'autres seront ajoutés!"
+        },
+        "chrome": {
+            "extensionAvailable": "PriceWise a une extension Chrome!",
+            "easily": "Magasinez intelligemment plus facilement!",
+            "description": "Créez des alertes pour vos produits directement de la page de vos produits sur nos sites supportés!",
+            "getApp": "Installez l'application Chrome"
         }
     },
     "modal": {

@@ -7,12 +7,13 @@
                         <img src="/images/pricewise-logo.png">
                     </div>
                     <div class="right item">
-                        <a href="https://www.facebook.com/PriceWiseCA/" target="_blank" class="ui facebook icon button mobile hidden">
-                            <i class="facebook icon"></i>
+                        <a href="https://www.facebook.com/PriceWiseCA/" target="_blank" class="ui facebook button mobile hidden">
+                            <i class="facebook icon"></i>Facebook
                         </a>
                         <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
                             <i class="facebook icon"></i>
                         </a>
+                        <a href="http://www.google.com" target="_blank" class="ui basic inverted icon button mobile hidden"><i class="chrome icon"></i></a>
                         <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
                         <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
@@ -49,7 +50,31 @@
             </div>
         </div>
 
-        <div class="ui stripe vertical segment primary-light">
+        <div class="ui vertical stripe mobile hidden segment alternate">
+            <div class="ui container">
+                <div class="ui stackable center aligned grid">
+                    <div class="fourteen wide column">
+                        <h1 class="ui header" i18n="welcome.chrome.extensionAvailable">PriceWise has a Chrome extension!</h1>
+                    </div>
+                    <div class="fourteen wide column">
+                        <a href="http://www.google.com" target="_blank" class="ui centered medium image">
+                            <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_496x150.png"></img>
+                        </a>
+                    </div>
+                </div>
+                <div class="ui stackable center aligned grid">
+                    <div class="eight wide column">
+                        <h3 class="ui header" i18n="welcome.chrome.easily">Get wise more easily!</h3>
+                        <p i18n="welcome.chrome.description">Create alerts for your products directly from your product page on our supported websites!</p>
+                        <a class="ui large right google plus button" href="http://www.google.com" target="_blank" i18n="[append]welcome.chrome.getApp">
+                            <i class="chrome icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui vertical stripe segment primary-light">
             <div class="ui stackable very relaxed grid container">
                 <div class="fourteen wide center aligned centered column">
                     <h1 class="ui header">${'welcome.features.sources' & t: { context: 'title' }}</h1>
