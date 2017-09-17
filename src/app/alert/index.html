@@ -49,9 +49,9 @@
             </div>
 
             <div class="ui inverted secondary pointing text menu" style="margin-bottom: 0;">
-                <div repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item">
-                    <a style="color: inherit;"  href.bind="row.href">${row.title}</a>
-                </div>
+                <a repeat.for="row of router.navigation" href.bind="row.href" class="${row.isActive ? 'active' : ''} item">
+                    ${row.title}
+                </a>
             </div>
         </div>
     </div>

@@ -27,13 +27,13 @@ export class Alerts extends BaseI18N {
     // originalAlerts: Array<UserAlert> = new Array<UserAlert>();
 
     constructor(
-            router: Router, 
-            userService: UserService, 
-            alertService: AlertService, 
-            modalController: ConfirmationModalController, 
+            router: Router,
+            userService: UserService,
+            alertService: AlertService,
+            modalController: ConfirmationModalController,
             toaster: Toaster,
-            i18n: I18N, 
-            element: Element, 
+            i18n: I18N,
+            element: Element,
             ea: EventAggregator) {
         super(i18n, element, ea);
 
@@ -84,7 +84,7 @@ export class Alerts extends BaseI18N {
             } else if (e.status === 400) {
                 errorMessage = "errors.parseError";
             }
-            
+
             this._toaster.showException("alerts.alertCreated", errorMessage);
         } finally {
             this.isCreatingAlert = false;
@@ -114,7 +114,7 @@ export class Alerts extends BaseI18N {
     }
 
     removeAlert(alert: UserAlert): void {
-        this._modalController.openModal(async () => { 
+        this._modalController.openModal(async () => {
             this.isUpdatingAlert = true;
 
             try {

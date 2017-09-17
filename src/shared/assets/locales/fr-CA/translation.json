@@ -18,13 +18,13 @@
         "logIn": "Connexion",
         "logOut": "Déconnexion",
         "features": {
-            "monitor_title": "Surveillez pluieurs sources pour vos produits",
+            "monitor_title": "Surveillez vos produits sur plusieurs magasins",
             "monitor_description": "Dans une seule alerte, vous pouvez surveiller un produit sur plusieurs magasins en ligne, ou vous pouvez surveilleur plusieurs versions d'un produit!",
             "notifications_title": "Soyez notifié quand les prix baissent",
             "notifications_description": "Recevez une alerte quand les produits que vous voulez sont en venteou en liquidation. Beaucoup de dineros épargnés!",
             "history_title": "Étudiez l'historique de prix d'un produit",
             "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez quand c'est le temps.",
-            "sources_title": "Sources disponibles",
+            "sources_title": "Magasins disponibles",
             "sources_description": "Vous pouvez surveillez les produits de ces magasins en ligne. D'autres seront ajoutés!"
         },
         "chrome": {
@@ -39,7 +39,7 @@
         "no": "Non"
     },
     "errors": {
-        "sourceNotSupported": "La source spécifiée n'est pas encore supportée.",
+        "sourceNotSupported": "Le magasin spécifié n'est pas encore supporté.",
         "parseError": "Une erreur s'est produite lors de l'analyse."
     },
     "alert": {
@@ -47,7 +47,7 @@
         "emailOption": "Je veux recevoir des alertes par courriel pour ce produit",
         "updating": "Mise à jour",
         "deactivated": "Inactive",
-        "activate": "Activer",
+        "activate": "Activer notifications courriel",
         "priceAt": "chez",
         "bestDealUpdatedTime": "Meilleur prix mis à jour ",
         "lastUpdatedTime": "Dernière mise à jour ",
@@ -55,12 +55,12 @@
         "alertSaved_failure": "Une erreur s'est produite lors de la sauvegarde.",
         "alertSaved_exception": "Une erreur s'est produite lors de la sauvegarde. {{error}}",
         "sources": {
-            "title": "Sources",
-            "source": "Source",
+            "title": "Magasins",
+            "source": "Magasin",
             "price": "Prix",
-            "addOtherSource": "Ajouter une autre source pour ce produit",
+            "addOtherSource": "Ajouter un magasin",
             "searchingSimilar": "Recherche de produits similaires...",
-            "addOtherSourceSuggestion": "Vous pourriez vouloir ajouter ces sources à votre alerte",
+            "addOtherSourceSuggestion": "Vous pourriez vouloir ajouter ces produits à votre alerte",
             "deleteConfirmation_title": "Supprimer l'entrée de l'alerte",
             "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer l'entrée sélectionnée de l'alerte?"
         },
@@ -70,7 +70,7 @@
     },
     "alerts": {
         "title": "Alertes",
-        "watchedProducts": "Produits surveillés",
+        "watchedProducts": "Mes produits",
         "updating": "Mise à jour",
         "noAlert": "Vous n'avez aucun produit surveillé pour le moment.",
         "getStarted": "Débutez maintenant!",

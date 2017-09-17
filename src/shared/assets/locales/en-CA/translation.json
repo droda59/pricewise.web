@@ -18,13 +18,13 @@
         "logIn": "Log in",
         "logOut": "Log out",
         "features": {
-            "monitor_title": "Monitor multiple sources for your product",
+            "monitor_title": "Monitor your product on multiple stores",
             "monitor_description": "In a single alert, you can monitor a specific product on multiple websites. Or, you can monitor a general product and follow multiple versions of it!",
             "notifications_title": "Get notified when the price drops",
             "notifications_description": "Get notified by email when the product you want is on sale, or in clearance. Mucho dinero saved!",
             "history_title": "See the price history of a product",
             "history_description": "Analyse the patterns, see when the prices raised or dropped, and act accordingly.",
-            "sources_title": "Available sources",
+            "sources_title": "Available stores",
             "sources_description": "You can monitor products from these websites. More will be added!"
         },
         "chrome": {
@@ -39,15 +39,15 @@
         "no": "No"
     },
     "errors": {
-        "sourceNotSupported": "The specified source is not yet supported.",
-        "parseError": "There was a problem parsing the source."
+        "sourceNotSupported": "The specified store is not yet supported.",
+        "parseError": "There was a problem parsing the product page."
     },
     "alert": {
         "title": "Product Alert",
         "emailOption": "Receive email notifications for this product",
         "updating": "Updating",
         "deactivated": "Deactivated",
-        "activate": "Activate",
+        "activate": "Activate email notifications",
         "priceAt": "at",
         "bestDealUpdatedTime": "Best deal updated ",
         "lastUpdatedTime": "Last updated ",
@@ -55,12 +55,12 @@
         "alertSaved_failure": "An error occurred during the save.",
         "alertSaved_exception": "An error occurred during the save. {{error}}",
         "sources": {
-            "title": "Sources",
-            "source": "Source",
+            "title": "Stores",
+            "source": "Store",
             "price": "Price",
-            "addOtherSource": "Add another source for this product",
+            "addOtherSource": "Add a store",
             "searchingSimilar": "Searching for similar products...",
-            "addOtherSourceSuggestion": "You might also want to add these sources to your alert",
+            "addOtherSourceSuggestion": "You might also want to add these products to your alert",
             "deleteConfirmation_title": "Delete alert entry",
             "deleteConfirmation_description": "Are you sure you want to delete the selected entry in this alert?"
         },
@@ -70,7 +70,7 @@
     },
     "alerts": {
         "title": "Alerts",
-        "watchedProducts": "Watched products",
+        "watchedProducts": "My products",
         "updating": "Updating",
         "noAlert": "You are not watching any product right now.",
         "getStarted": "Get Started!",

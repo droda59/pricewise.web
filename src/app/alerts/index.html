@@ -16,12 +16,6 @@
                     </div>
                 </div>-->
             </div>
-            <div class="ui big circular icon red mobile hidden button au-target" click.delegate="addAlert()" show.bind="alerts.length"
-                style="position: absolute; bottom: calc(-0.58571429em); right: 10%;"
-                data-analytics-category="alerts"
-                data-analytics-action="add">
-                <i class="plus icon"></i>
-            </div>
         </div>
     </div>
 
@@ -72,6 +66,14 @@
                                 </a>
                             </div>
                         </div>
+                        <a class="ui mobile hidden card" click.delegate="addAlert()"
+                            data-analytics-category="alerts"
+                            data-analytics-action="add">
+                            <div class="ui image" style="height: 100%;">
+                                <img src="/images/plus-icon.png"
+                                    style="width: 160px; height: 160px; top: calc(50% - 80px); left: calc(50% - 80px); position: absolute;">
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
