@@ -1,5 +1,6 @@
 <template>
     <require from="../shared/components/add-source/add-source"></require>
+    <require from="../shared/components/alert-card/alert-card.html"></require>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">
@@ -34,30 +35,13 @@
             <div class="ui one column grid">
                 <div class="column">
                     <div class="ui link cards">
-                        <div class="${alert.isActive ? 'green' : 'inactive'} card" repeat.for="alert of alerts | sort:'title'" style="border-radius: 2px">
-                            <div class="content">
+                        <alert-card repeat.for="alert of alerts | sort:'title'" alert.one-time="alert" style="border-radius: 2px;" containerless>
+                            <div slot="top-action">
                                 <i class="right floated red circular button remove icon" click.delegate="removeAlert(alert)"
                                     data-analytics-category="alerts"
                                     data-analytics-action="remove"></i>
-                                <a class="header" route-href="route: alert; params.bind: { alertId: alert.id }">${alert.title}</a>
-                                <div class="meta">
-                                    <small show.bind="alert.isActive" i18n="[prepend]alert.bestDealUpdatedTime">${alert.bestCurrentDeal.modifiedAt | rt}</small>
-                                    <small hide.bind="alert.isActive" i18n="alert.deactivated">Deactivated</small>
-                                </div>
                             </div>
-                            <a route-href="route: alert; params.bind: { alertId: alert.id }" class="image">
-                                <img class="${alert.isPortaitSize ? 'portrait' : ''} ${alert.isLandscapeSize ? 'landscape' : ''}" src.bind="alert.imageUrl">
-                            </a>
-                            <div class="extra content">
-                                <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank" class="right floated" show.bind="alert.isActive"
-                                    data-analytics-category="Outbound Link"
-                                    data-analytics-action="click"
-                                    data-analytics-label.bind="alert.bestCurrentDeal.originalUrl">
-                                    ${alert.bestCurrentDeal.price | nf: { style: 'currency', currency: 'CAD'}}
-                                    <span i18n="alert.priceAt"></span>
-                                    <img class="ui avatar image" src="/images/${alert.bestCurrentDeal.source.domain}-small.png">
-                                    ${alert.bestCurrentDeal.source.name}
-                                </a>
+                            <div slot="bottom-action">
                                 <a class="right floated primary-action-hover" click.delegate="activateAlert(alert)" hide.bind="alert.isActive"
                                     i18n="[append]alert.activate"
                                     data-analytics-category="alerts"
@@ -65,7 +49,7 @@
                                     <i class="toggle on icon"></i>
                                 </a>
                             </div>
-                        </div>
+                        </alert-card>
                         <a class="ui mobile hidden add-alert card" click.delegate="addAlert()"
                             data-analytics-category="alerts"
                             data-analytics-action="add">
