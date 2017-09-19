@@ -43,7 +43,7 @@
         "parseError": "Une erreur s'est produite lors de l'analyse."
     },
     "alert": {
-        "title": "Alerte de produit",
+        "title": "Retour aux alertes",
         "emailOption": "Je veux recevoir des alertes par courriel pour ce produit",
         "updating": "Mise à jour",
         "deactivated": "Inactive",

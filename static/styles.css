@@ -253,9 +253,9 @@ div.au-stagger {
 .pricewise .ui.green.cards > .card {
     box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #008179, 0 1px 3px 0 #D4D4D5;
 }
-.pricewise .ui.cards > .green.card:hover,
+.pricewise .ui.link.cards > .green.card:hover,
 .pricewise .ui.green.card:hover,
-.pricewise .ui.green.cards > .card:hover {
+.pricewise .ui.link.cards > .green.card:hover {
     box-shadow: 0 0 0 1px #d4d4d5, 0 2px 4px 0 #008179, 0 2px 10px 0 rgba(34,36,38,.15);
 }
 
@@ -269,9 +269,17 @@ div.au-stagger {
 .pricewise a.ui.card:hover {
     transform: none;
     background: #f6f6f6;
+    box-shadow: 0 0 0 1px #d4d4d5, 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15);
 }
 .pricewise .ui.link.cards .card:hover > .image {
     background: inherit;
+}
+
+.pricewise .ui.cards .add-alert.card .image {
+    opacity: 0.8;
+}
+.pricewise .ui.cards .add-alert.card:hover .image {
+    opacity: 1;
 }
 
 .ui.inactive.card > .content > a.header,

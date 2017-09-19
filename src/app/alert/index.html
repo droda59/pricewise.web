@@ -1,11 +1,15 @@
 <template>
     <div class="primary-dark" style="color: white;">
         <div class="ui container alert" style="position: relative; padding: 3em 0 0 0;">
-            <h2 style="font-weight: 200; margin: 0 0 1em 0;" i18n="[append]alert.title">
-                <a class="basic circular ui icon inverted button" route-href="route: alerts;">
-                    <i class="large inverted chevron left icon"></i>
+            <div class="ui inverted secondary pointing menu">
+                <a route-href="route: alerts;" class="item" style="padding-left: 0;">
+                    <h2 style="font-weight: 200;" i18n="[append]alert.title">
+                        <div class="basic circular ui icon inverted button">
+                            <i class="large inverted chevron left icon"></i>
+                        </div>
+                    </h2>
                 </a>
-            </h2>
+            </div>
 
             <div class="ui two column mobile only grid">
                 <div class="six wide column">

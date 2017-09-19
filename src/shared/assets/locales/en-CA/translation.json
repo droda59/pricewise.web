@@ -29,7 +29,7 @@
         },
         "chrome": {
             "extensionAvailable": "PriceWise has a Chrome extension!",
-            "easily": "Get wise more easily!",
+            "easily": "Shop wise more easily!",
             "description": "Create alerts for your products directly from your product page on our supported websites!",
             "getApp": "Get the Chrome app now"
         }
@@ -43,7 +43,7 @@
         "parseError": "There was a problem parsing the product page."
     },
     "alert": {
-        "title": "Product Alert",
+        "title": "Back to alerts",
         "emailOption": "Receive email notifications for this product",
         "updating": "Updating",
         "deactivated": "Deactivated",
