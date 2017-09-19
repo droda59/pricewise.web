@@ -13,7 +13,10 @@
                         <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
                             <i class="facebook icon"></i>
                         </a>
-                        <a href="http://www.google.com" target="_blank" class="ui basic inverted icon button mobile hidden"><i class="chrome icon"></i></a>
+                        <a href="http://www.google.com" target="_blank" class="ui basic inverted icon button mobile hidden"
+                            data-analytics-category="Chrome Store"
+                            data-analytics-action="click"
+                            data-analytics-label="nav-button"><i class="chrome icon"></i></a>
                         <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
                         <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
@@ -57,7 +60,10 @@
                         <h1 class="ui header" i18n="welcome.chrome.extensionAvailable">PriceWise has a Chrome extension!</h1>
                     </div>
                     <div class="fourteen wide column">
-                        <a href="http://www.google.com" target="_blank" class="ui centered medium image">
+                        <a href="http://www.google.com" target="_blank" class="ui centered medium image"
+                            data-analytics-category="Chrome Store"
+                            data-analytics-action="click"
+                            data-analytics-label="badge">
                             <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_496x150.png"></img>
                         </a>
                     </div>
@@ -66,7 +72,10 @@
                     <div class="eight wide column">
                         <h3 class="ui header" i18n="welcome.chrome.easily">Get wise more easily!</h3>
                         <p i18n="welcome.chrome.description">Create alerts for your products directly from your product page on our supported websites!</p>
-                        <a class="ui large right google plus button" href="http://www.google.com" target="_blank" i18n="[append]welcome.chrome.getApp">
+                        <a class="ui large right google plus button" href="http://www.google.com" target="_blank" i18n="[append]welcome.chrome.getApp"
+                            data-analytics-category="Chrome Store"
+                            data-analytics-action="click"
+                            data-analytics-label="button">
                             <i class="chrome icon"></i>
                         </a>
                     </div>

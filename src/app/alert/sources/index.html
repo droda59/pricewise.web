@@ -6,9 +6,9 @@
             <div class="column">
                 <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addSource()"
                     i18n="[append]alert.sources.addOtherSource"
-                    data-analytics-category="sources"
+                    data-analytics-category="Sources"
                     data-analytics-action="add"
-                    data-analytics-label="list button">
+                    data-analytics-label="button">
                     <i class="plus icon"></i>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                 </td>
                                 <td class="collapsing">
                                     <div class="ui basic circular red icon button" click.delegate="removeEntry(entry)"
-                                        data-analytics-category="sources"
+                                        data-analytics-category="Sources"
                                         data-analytics-action="remove">
                                         <i class="icon remove"></i>
                                     </div>
@@ -58,9 +58,9 @@
                                 <th colspan="3" style="border: none;">
                                     <div class="ui icon labeled medium primary primary-action button" click.delegate="addSource()"
                                         i18n="[append]alert.sources.addOtherSource"
-                                        data-analytics-category="sources"
+                                        data-analytics-category="Sources"
                                         data-analytics-action="add"
-                                        data-analytics-label="list button">
+                                        data-analytics-label="button">
                                         <i class="icon plus"></i>
                                     </div>
                                 </th>
@@ -73,9 +73,9 @@
             <div class="column">
                 <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addSource()"
                     i18n="[append]alert.sources.addOtherSource"
-                    data-analytics-category="sources"
+                    data-analytics-category="Sources"
                     data-analytics-action="add"
-                    data-analytics-label="list button">
+                    data-analytics-label="button">
                     <i class="plus icon"></i>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                             <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
                                 <div class="content">
                                     <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
-                                        data-analytics-category="sources"
+                                        data-analytics-category="Sources"
                                         data-analytics-action="add"
                                         data-analytics-label="suggestion"></i>
                                     <a class="header" href.bind="product.productUrl" target="_blank"
