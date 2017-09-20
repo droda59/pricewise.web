@@ -61,8 +61,8 @@
             "addOtherSource": "Add a store",
             "searchingSimilar": "Searching for similar products...",
             "addOtherSourceSuggestion": "You might also want to add these products to your alert",
-            "deleteConfirmation_title": "Delete alert entry",
-            "deleteConfirmation_description": "Are you sure you want to delete the selected entry in this alert?"
+            "deleteConfirmation_title": "Delete alert store",
+            "deleteConfirmation_description": "Are you sure you want to delete the selected store in this alert?"
         },
         "history": {
             "title": "Price History"
