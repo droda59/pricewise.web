@@ -16,7 +16,7 @@ export class AlertPage extends BaseI18N {
     private _alertId: string;
 
     @bindable title: string;
-    
+
     isActive: boolean;
     imageUrl: string;
     router: Router;
@@ -43,18 +43,18 @@ export class AlertPage extends BaseI18N {
             this._userId = localStorage.getItem("user-id");
             this._alertId = route.alertId;
 
-            var alert = await this._alertService.get(this._userId, this._alertId);
+            var alert = await this._alertService.getSummary(this._userId, this._alertId);
 
             this.title = alert.title;
             this.isActive = alert.isActive;
             this.imageUrl = alert.imageUrl;
-            
-            var image = new Image(); 
+
+            var image = new Image();
             image.onerror = () => {
                 image.onerror = null;
                 this.imageUrl = "/images/pricewise-logo.png";
             };
-            image.src = this.imageUrl;        
+            image.src = this.imageUrl;
 
             routeConfig.navModel.title = alert.title;
         }
@@ -68,26 +68,26 @@ export class AlertPage extends BaseI18N {
 
     async titleChanged(newValue: string, oldValue: string): Promise<void> {
         if (newValue != oldValue) {
-            await this.updateAlert();
+            try {
+                var currentAlert = await this._alertService.getSummary(this._userId, this._alertId);
+                currentAlert.title = this.title;
+
+                var updatedAlert = await this._alertService.updateSummary(this._userId, currentAlert);
+                if (!updatedAlert) {
+                    throw new Error();
+                }
+
+                this._toaster.showSuccess("alert.alertSaved");
+            } catch(e) {
+                this._toaster.showError("alert.alertSaved");
+            }
         }
     }
 
     async changeActive(): Promise<void> {
-        await this.updateAlert();
-    }
-
-    private async updateAlert(): Promise<void> {
         try {
-            var currentAlert = await this._alertService.get(this._userId, this._alertId);
-            currentAlert.title = this.title;
-            currentAlert.isActive = this.isActive;
-
-            var updatedAlert = await this._alertService.update(this._userId, currentAlert);
-
-            if (updatedAlert) {
-                this.title = updatedAlert.title;
-                this.isActive = updatedAlert.isActive;
-            } else {
+            const alertUpdated = await this._alertService.activate(this._userId, this._alertId, this.isActive);
+            if (!alertUpdated) {
                 throw new Error();
             }
 

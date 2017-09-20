@@ -27,13 +27,13 @@ export class Sources extends BaseI18N {
     suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
     constructor(
-            router: Router, 
-            alertService: AlertService, 
-            productService: ProductService, 
-            modalController: ConfirmationModalController, 
+            router: Router,
+            alertService: AlertService,
+            productService: ProductService,
+            modalController: ConfirmationModalController,
             toaster: Toaster,
-            i18n: I18N, 
-            element: Element, 
+            i18n: I18N,
+            element: Element,
             ea: EventAggregator) {
         super(i18n, element, ea);
 
@@ -68,18 +68,11 @@ export class Sources extends BaseI18N {
     }
 
     async addEntry(newEntryUrl: string): Promise<void> {
-        this.isAddingSource = true; 
-
-        var newEntry = new AlertEntry();
-        newEntry.originalUrl = newEntryUrl;
-
-        var alertToUpdate = new UserAlert(this.alert);
-        alertToUpdate.entries.push(newEntry);
+        this.isAddingSource = true;
 
         try {
-            var updatedAlert = await this._alertService.update(this._userId, alertToUpdate);
+            var updatedAlert = await this._alertService.createEntry(this._userId, this._alertId, newEntryUrl);
             if (updatedAlert) {
-                // This might rebind everything, but we need it when we add an Entry. Maybe a dedicated route would help
                 this.alert = updatedAlert;
                 this.searchForSameProducts();
             } else {
@@ -102,15 +95,12 @@ export class Sources extends BaseI18N {
     }
 
     removeEntry(entry: AlertEntry): void {
-        this._modalController.openModal(async () => { 
-            this.isUpdatingAlert = true; 
-            var deleteWholeAlert = false;
+        this._modalController.openModal(async () => {
+            this.isUpdatingAlert = true;
 
             entry.isDeleted = true;
 
             if (!this.alert.entries.filter(x => !x.isDeleted).length) {
-                deleteWholeAlert = true;
-
                 try {
                     const alertDeleted = await this._alertService.delete(this._userId, this.alert.id);
                     if (alertDeleted) {
@@ -118,7 +108,7 @@ export class Sources extends BaseI18N {
                     } else {
                         throw new Error();
                     }
-    
+
                     this._toaster.showSuccess("alerts.alertDeleted");
                 } catch(e) {
                     this._toaster.showError("alerts.alertDeleted");

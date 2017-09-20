@@ -14,7 +14,7 @@ export class History extends BaseI18N {
 
     constructor(alertService: AlertService, i18n: I18N, element: Element, ea: EventAggregator) {
         super(i18n, element, ea);
-        
+
         this._alertService = alertService;
     }
 
@@ -24,8 +24,6 @@ export class History extends BaseI18N {
             this._alertId = route.alertId;
 
             this.alertHistory = await this._alertService.getHistory(this._userId, this._alertId);
-
-            var b = true;
         }
     }
 }

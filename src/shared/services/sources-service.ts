@@ -5,13 +5,13 @@ export class SourcesService {
 
     static initialize() {
         SourcesService._sources = new Array<Source>();
-        
+
         SourcesService._sources.push(this.createSource("Amazon", "amazon", "https://www.amazon.ca/", "rgb(254, 189, 105)"));
-        SourcesService._sources.push(this.createSource("Best Buy", "bestbuy", "http://www.bestbuy.ca/", "rgb(255, 242, 0)"));
+        SourcesService._sources.push(this.createSource("Best Buy", "bestbuy", "https://www.bestbuy.ca/", "rgb(255, 242, 0)"));
         SourcesService._sources.push(this.createSource("Staples", "staples", "https://www.staples.ca/", "rgb(204, 0, 0)"));
         SourcesService._sources.push(this.createSource("Tiger Direct", "tigerdirect", "http://www.tigerdirect.ca/", "rgb(254, 212, 67)"));
         // SourcesService._sources.push(this.createSource("Newegg", "newegg", "https://www.newegg.ca/", "rgb(247, 140, 27)"));
-        SourcesService._sources.push(this.createSource("Archambault", "archambault", "http://www.archambault.ca/", "rgb(224, 0, 37)"));
+        SourcesService._sources.push(this.createSource("Archambault", "archambault", "https://www.archambault.ca/", "rgb(224, 0, 37)"));
         SourcesService._sources.push(this.createSource("Renaud-Bray", "renaud-bray", "http://www.renaud-bray.com/", "rgb(46, 46, 46)"));
         SourcesService._sources.push(this.createSource("Indigo", "indigo", "https://www.chapters.indigo.ca/", "rgb(71, 42, 73)"));
         SourcesService._sources.push(this.createSource("Carcajou", "carcajou", "http://www.librairiecarcajou.com/", "rgb(134, 0, 10)"));
@@ -53,7 +53,7 @@ export class SourcesService {
         return <Source> {
             name: name,
             domain: domain,
-            url: url, 
+            url: url,
             color: color
         };
     }

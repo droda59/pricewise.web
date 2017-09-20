@@ -1,34 +1,26 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N, BaseI18N } from "aurelia-i18n";
 import { Toaster } from "../shared/services/toaster";
 import { AlertService } from "../shared/services/alert-service";
-import { UserAlert } from "../shared/models/user-alert";
-import { User } from "../shared/models/user";
-import { UserService } from "../shared/services/user-service";
+import { UserAlertSummary } from "../shared/models/user-alert-summary";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 
 @autoinject()
 export class Alerts extends BaseI18N {
     private _alertService: AlertService;
-    private _userService: UserService;
     private _router: Router;
     private _modalController: ConfirmationModalController;
     private _toaster: Toaster;
     private _userId: string;
 
-    // @bindable searchString: string;
-
     isUpdatingAlert: boolean;
     isCreatingAlert: boolean;
-    alerts: Array<UserAlert> = new Array<UserAlert>();
-    // originalAlerts: Array<UserAlert> = new Array<UserAlert>();
+    alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
 
     constructor(
             router: Router,
-            userService: UserService,
             alertService: AlertService,
             modalController: ConfirmationModalController,
             toaster: Toaster,
@@ -39,17 +31,13 @@ export class Alerts extends BaseI18N {
 
         this._router = router;
         this._alertService = alertService;
-        this._userService = userService;
         this._modalController = modalController;
         this._toaster = toaster;
         this._userId = localStorage.getItem("user-id");
     }
 
     async activate(): Promise<void> {
-        const user = await this._userService.get(this._userId);
-
-        // this.originalAlerts = user.alerts;
-        this.alerts = user.alerts;
+        this.alerts = await this._alertService.getSummaries(this._userId);
     }
 
     detached() {
@@ -61,19 +49,9 @@ export class Alerts extends BaseI18N {
 
         try {
             const newAlert = await this._alertService.create(this._userId, newAlertUrl);
-            if (newAlert) {
-                this.alerts.push(newAlert);
-            } else {
+            if (!newAlert) {
                 throw new Error();
             }
-
-            // this.originalAlerts.push(newAlert);
-
-            // if (this.searchString && newAlert.title.toUpperCase().indexOf(this.searchString.toUpperCase()) > -1) {
-                // this.alerts.push(newAlert);
-            // } else {
-            //     throw new Error();
-            // }
 
             this._toaster.showSuccess("alerts.alertCreated");
             this._router.navigateToRoute("alert", { alertId: newAlert.id });
@@ -91,17 +69,14 @@ export class Alerts extends BaseI18N {
         }
     }
 
-    async activateAlert(alert: UserAlert): Promise<void> {
+    async activateAlert(alert: UserAlertSummary): Promise<void> {
         this.isUpdatingAlert = true;
 
         try {
             alert.isActive = true;
 
-            const updatedAlert = await this._alertService.update(this._userId, alert);
-            if (updatedAlert) {
-                // This might rebind everything, but we need it when we add an Entry. Maybe a dedicated route would help
-                alert = updatedAlert;
-            } else {
+            const alertUpdated = await this._alertService.activate(this._userId, alert.id, alert.isActive);
+            if (!alertUpdated) {
                 throw new Error();
             }
 
@@ -113,14 +88,13 @@ export class Alerts extends BaseI18N {
         }
     }
 
-    removeAlert(alert: UserAlert): void {
+    removeAlert(alert: UserAlertSummary): void {
         this._modalController.openModal(async () => {
             this.isUpdatingAlert = true;
 
             try {
                 const alertDeleted = await this._alertService.delete(this._userId, alert.id);
                 if (alertDeleted) {
-                    // this.originalAlerts.remove(alert);
                     this.alerts.remove(alert);
                 } else {
                     throw new Error();
@@ -142,14 +116,4 @@ export class Alerts extends BaseI18N {
     removeModal(): void {
         $(".ui.dimmer .overlay.modal").modal("hide");
     }
-
-    // clearSearch(): void {
-    //     this.searchString = "";
-    // }
-
-    // private searchStringChanged(newValue: string, oldValue: string): void {
-    //     const uppercaseNewValue = newValue.toUpperCase();
-
-    //     this.alerts = this.originalAlerts.filter(x => x.title.toUpperCase().indexOf(uppercaseNewValue) > -1);
-    // }
 }

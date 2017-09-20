@@ -3,6 +3,7 @@ import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { ProductHistory } from "../models/product-history";
 import { UserAlert } from "../models/user-alert";
+import { UserAlertSummary } from "../models/user-alert-summary";
 import { AuthorizationInterceptor } from "../../../authorization-interceptor";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
@@ -33,8 +34,28 @@ export class AlertService {
         const response = await this._httpClient.fetch(`${userId}/${alertId}`, {
             method: "get"
         });
-		
+
         return new UserAlert(await response.json());
+    }
+
+    async getSummary(userId: string, alertId: string): Promise<UserAlertSummary> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${alertId}/summary`, {
+            method: "get"
+        });
+
+        return new UserAlertSummary(await response.json());
+    }
+
+    async getSummaries(userId: string): Promise<Array<UserAlertSummary>> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}`, {
+            method: "get"
+        });
+
+        return (<Array<any>>(await response.json())).map(x => new UserAlertSummary(x));
     }
 
     async getHistory(userId: string, alertId: string): Promise<Array<ProductHistory>> {
@@ -43,11 +64,11 @@ export class AlertService {
         const response = await this._httpClient.fetch(`${userId}/${alertId}/history`, {
             method: "get"
         });
-		
+
         return (<Array<any>>(await response.json())).map(x => new ProductHistory(x));
     }
 
-    async create(userId: string, uri: string): Promise<UserAlert> {
+    async create(userId: string, uri: string): Promise<UserAlertSummary> {
         await fetchPolyfill;
 
         const response = await this._httpClient.fetch(`${userId}`, {
@@ -55,7 +76,29 @@ export class AlertService {
             body: json(uri)
         });
 
+        return new UserAlertSummary(await response.json());
+    }
+
+    async createEntry(userId: string, alertId: string, uri: string): Promise<UserAlert> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${alertId}/entry`, {
+            method: "post",
+            body: json(uri)
+        });
+
         return new UserAlert(await response.json());
+    }
+
+    async activate(userId: string, alertId: string, isActive: boolean): Promise<boolean> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${alertId}/activate`, {
+            method: "put",
+            body: json(isActive)
+        });
+
+        return await response.json();
     }
 
     async update(userId: string, alert: UserAlert): Promise<UserAlert> {
@@ -69,13 +112,24 @@ export class AlertService {
         return new UserAlert(await response.json());
     }
 
+    async updateSummary(userId: string, alert: UserAlertSummary): Promise<UserAlertSummary> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/summary`, {
+            method: "put",
+            body: json(alert)
+        });
+
+        return new UserAlertSummary(await response.json());
+    }
+
     async delete(userId: string, alertId: string): Promise<boolean> {
         await fetchPolyfill;
 
         const response = await this._httpClient.fetch(`${userId}/${alertId}`, {
             method: "delete"
         });
-		
+
         return await response.json();
     }
 }
