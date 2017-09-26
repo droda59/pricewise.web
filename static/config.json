@@ -6,8 +6,8 @@
         "web": "http://localhost:8080/"
     },
     "staging": {
-        "api": "http://pricewise-api-staging.azurewebsites.net",
-        "web": "http://pricewise-web-staging.azurewebsites.net/"
+        "api": "https://pricewise-api-staging.azurewebsites.net",
+        "web": "https://pricewise-web-staging.azurewebsites.net/"
     },
     "production": {
         "api": "https://price-alerts-api.azurewebsites.net/",
