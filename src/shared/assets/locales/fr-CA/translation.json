@@ -11,7 +11,7 @@
         "stopPaying": "Arrêtez de payer trop cher!",
         "getStarted": "Débuter",
         "getStartedNow": "Débuter",
-        "shortDescription": "Surveillez des produits, et soyez notifié quand leurs prix changent.",
+        "shortDescription": "Surveillez des produits, et soyez averti quand leurs prix changent.",
         "startSaving": "Commencez à épargner",
         "knowledge": "L'information est votre avantage",
         "shopWisely": "Magasinez plus intelligemment, et sachez quand les prix baissent. Vous saurez quand acheter!",
@@ -19,18 +19,18 @@
         "logOut": "Déconnexion",
         "features": {
             "monitor_title": "Surveillez vos produits sur plusieurs magasins",
-            "monitor_description": "Dans une seule alerte, vous pouvez surveiller un produit sur plusieurs magasins en ligne, ou vous pouvez surveilleur plusieurs versions d'un produit!",
-            "notifications_title": "Soyez notifié quand les prix baissent",
-            "notifications_description": "Recevez une alerte quand les produits que vous voulez sont en venteou en liquidation. Beaucoup de dineros épargnés!",
+            "monitor_description": "Dans une seule alerte, vous pouvez surveiller un produit sur plusieurs magasins en ligne, ou vous pouvez surveiller plusieurs versions d'un produit!",
+            "notifications_title": "Soyez averti quand les prix baissent",
+            "notifications_description": "Recevez une alerte quand les produits que vous voulez sont en vente ou en liquidation. Beaucoup de dineros épargnés!",
             "history_title": "Étudiez l'historique de prix d'un produit",
-            "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez quand c'est le temps.",
+            "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez lorsque c'est le temps.",
             "sources_title": "Magasins disponibles",
-            "sources_description": "Vous pouvez surveillez les produits de ces magasins en ligne. D'autres seront ajoutés!"
+            "sources_description": "Vous pouvez surveiller les produits de ces magasins en ligne. D'autres seront ajoutés!"
         },
         "chrome": {
             "extensionAvailable": "PriceWise a une extension Chrome!",
             "easily": "Magasinez intelligemment plus facilement!",
-            "description": "Créez des alertes pour vos produits directement de la page de vos produits sur nos sites supportés!",
+            "description": "Créez des alertes directement à partir de la page de vos produits sur nos sites supportés!",
             "getApp": "Installez l'application Chrome"
         }
     },

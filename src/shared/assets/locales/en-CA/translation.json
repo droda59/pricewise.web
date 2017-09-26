@@ -19,7 +19,7 @@
         "logOut": "Log out",
         "features": {
             "monitor_title": "Monitor your product on multiple stores",
-            "monitor_description": "In a single alert, you can monitor a specific product on multiple websites. Or, you can monitor a general product and follow multiple versions of it!",
+            "monitor_description": "In a single alert, you can monitor a specific product on multiple websites. Or, you can monitor a general item and follow multiple versions of it!",
             "notifications_title": "Get notified when the price drops",
             "notifications_description": "Get notified by email when the product you want is on sale, or in clearance. Mucho dinero saved!",
             "history_title": "See the price history of a product",
@@ -29,8 +29,8 @@
         },
         "chrome": {
             "extensionAvailable": "PriceWise has a Chrome extension!",
-            "easily": "Shop wise more easily!",
-            "description": "Create alerts for your products directly from your product page on our supported websites!",
+            "easily": "Shop wisely more easily!",
+            "description": "Create alerts directly from your product page on our supported websites!",
             "getApp": "Get the Chrome app now"
         }
     },
