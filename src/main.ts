@@ -21,6 +21,7 @@ export async function configure(aurelia: Aurelia) {
             config.setDirectory("");
             config.setEnvironments({
                 development: ["localhost"],
+                staging: ["pricewise-web-staging.azurewebsites.net"],
                 production: ["pricewise.azurewebsites.net", "pricewi.se"]
             });
         })
@@ -50,9 +51,9 @@ export async function configure(aurelia: Aurelia) {
                 clickTracking: {
                     enabled: true,
                     filter: element => {
-                        return element instanceof HTMLElement 
-                            && (element.classList.contains("button") 
-                                || element.nodeName.toLowerCase() === "a" 
+                        return element instanceof HTMLElement
+                            && (element.classList.contains("button")
+                                || element.nodeName.toLowerCase() === "a"
                                 || element.nodeName.toLowerCase() === "button");
                     }
                 }
