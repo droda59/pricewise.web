@@ -15,7 +15,7 @@ export class AuthenticationService {
 		this._configure = configure;
         this._lock = new Auth0Lock(
             "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
-            "price-alerts.auth0.com", 
+            "price-alerts.auth0.com",
             {
                 auth: {
                     redirect: false
@@ -28,7 +28,7 @@ export class AuthenticationService {
 				},
 				theme: {
 					primaryColor: "#008179",
-					logo: "https://pricewi.se/images/pricewise-logo.png"
+                    logo: `${configure.get("web")}images/pricewise-logo.png`
 				},
             }
         );
@@ -93,7 +93,7 @@ export class AuthenticationService {
 				"grant_type":"client_credentials"
 			})
 		});
-		
+
         return await response.json();
 	}
 }
