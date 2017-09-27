@@ -72,7 +72,7 @@
         "title": "Alertes",
         "watchedProducts": "Mes produits",
         "updating": "Mise à jour",
-        "noAlert": "Vous n'avez aucun produit surveillé pour le moment.",
+        "noAlert": "Vous ne surveillez aucun produit pour le moment.",
         "getStarted": "Débutez maintenant!",
         "createAlert": "Créez une alerte de produit",
         "alertCreated_success": "Alerte créée avec succès!",
@@ -86,7 +86,7 @@
     },
     "sources": {
         "add": "Ajouter",
-        "addSource": "Naviguez sur le sites de vos magasins en ligne favoris et copiez l'URL de la page du produit"
+        "addSource": "Naviguez sur les sites de vos magasins en ligne favoris et copiez l'URL de la page du produit"
     },
     "settings": {
         "title": "Préférences",
@@ -106,8 +106,8 @@
         "alerts": {
             "title": "Alerte",
             "alertSettings": "Préférences d'alertes",
-            "priceDrop": "Je veux être averti quand le meilleur prix d'une alerte <b>diminue</b>",
-            "priceRaise": "Je veux être averti quand le meilleur prix d'une alerte <b>augmente</b>",
+            "priceDrop": "Je veux être averti quand le meilleur prix d'un produit <b>diminue</b>",
+            "priceRaise": "Je veux être averti quand le meilleur prix d'un produit <b>augmente</b>",
             "changeThreshold": "Je veux être averti seulement quand le meilleur prix d'une alerte change d'au moins: ",
             "settingsSaved_success": "Informations enregistrées avec succès!",
             "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."

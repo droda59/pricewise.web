@@ -106,8 +106,8 @@
         "alerts": {
             "title": "Alert",
             "alertSettings": "Alert Settings",
-            "priceDrop": "Alert me when the best price of an alert <b>drops</b>",
-            "priceRaise": "Alert me when the best price of an alert <b>raises</b>",
+            "priceDrop": "Alert me when the best price of a product <b>drops</b>",
+            "priceRaise": "Alert me when the best price of a product <b>raises</b>",
             "changeThreshold": "Alert me only when the price changes by at least: ",
             "settingsSaved_success": "User settings saved successfully!",
             "settingsSaved_failure": "An error occurred during the save."
