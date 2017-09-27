@@ -275,6 +275,9 @@ div.au-stagger {
     background: inherit;
 }
 
+.pricewise .ui.cards .add-alert.card {
+    min-height: 400px;
+}
 .pricewise .ui.cards .add-alert.card .image {
     opacity: 0.8;
 }
