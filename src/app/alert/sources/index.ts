@@ -147,13 +147,10 @@ export class Sources extends BaseI18N {
             var alertEntriesUrls = this.alert.entries.map(x => x.source);
 
             try {
-                for (var i = 0; i < productIdentifiers.length; i++) {
-                    // TODO Make this search asynchronously
-                    var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers[i]);
-                    for (var j = 0; j < searchResults.length; j++) {
-                        if (!alertEntriesUrls.includes(searchResults[j].source)) {
-                            this.suggestedProducts.push(searchResults[j]);
-                        }
+                var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers);
+                for (var j = 0; j < searchResults.length; j++) {
+                    if (!alertEntriesUrls.includes(searchResults[j].source)) {
+                        this.suggestedProducts.push(searchResults[j]);
                     }
                 }
             } finally {
