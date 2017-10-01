@@ -2,6 +2,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N, BaseI18N } from "aurelia-i18n";
+import { AureliaConfiguration } from "aurelia-configuration";
 import { UserService } from "../app/shared/services/user-service";
 import { User } from "../app/shared/models/user";
 import { Source } from "../shared/models/source";
@@ -19,14 +20,16 @@ export class Welcome extends BaseI18N {
     isAuthenticating: boolean;
     isAuthenticated: boolean;
     sources: Array<Source>;
+    chromeAppUrl: string;
 
     constructor(
-            router: Router, 
+            router: Router,
             userService: UserService,
-            authenticationService: AuthenticationService, 
+            authenticationService: AuthenticationService,
             sourcesService: SourcesService,
-            i18n: I18N, 
-            element: Element, 
+            configure: AureliaConfiguration,
+            i18n: I18N,
+            element: Element,
             ea: EventAggregator) {
         super(i18n, element, ea);
 
@@ -35,6 +38,7 @@ export class Welcome extends BaseI18N {
         this._authenticationService = authenticationService;
         this._sourcesService = sourcesService;
         this._i18n = i18n;
+        this.chromeAppUrl = configure.get("chrome");
     }
 
     activate(): void {
@@ -66,7 +70,7 @@ export class Welcome extends BaseI18N {
 
         var user;
         var navigateTo = "user";
-        
+
         try {
             user = await this._userService.get(profile.user_id);
             if (!user.firstName) {
