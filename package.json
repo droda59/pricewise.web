@@ -56,7 +56,7 @@
     "aurelia-framework": "^1.1.2",
     "aurelia-google-analytics": "^2.2.0",
     "aurelia-history-browser": "^1.0.0",
-    "aurelia-i18n": "^1.6.2",
+    "aurelia-i18n": "git://github.com/droda59/i18n.git#patch-1",
     "aurelia-loader-webpack": "^2.1.0",
     "aurelia-logging-console": "^1.0.0",
     "aurelia-pal-browser": "^1.2.1",
