@@ -28,6 +28,15 @@
             <div class="ui one column grid">
                 <div class="column">
                     <div class="ui link cards">
+                        <a class="ui mobile hidden add-alert card" click.delegate="addAlert()"
+                            data-analytics-category="Alerts"
+                            data-analytics-action="add"
+                            data-analytics-label="card">
+                            <div class="ui image" style="height: 100%;">
+                                <img src="/images/plus-icon.png"
+                                    style="width: 160px; height: 160px; top: calc(50% - 80px); left: calc(50% - 80px); position: absolute;">
+                            </div>
+                        </a>
                         <alert-card repeat.for="alert of alerts | sort:'title'" alert.one-time="alert" style="border-radius: 2px;" containerless>
                             <div slot="top-action">
                                 <i class="right floated red circular button remove icon" click.delegate="removeAlert(alert)"
@@ -43,15 +52,6 @@
                                 </a>
                             </div>
                         </alert-card>
-                        <a class="ui mobile hidden add-alert card" click.delegate="addAlert()"
-                            data-analytics-category="Alerts"
-                            data-analytics-action="add"
-                            data-analytics-label="card">
-                            <div class="ui image" style="height: 100%;">
-                                <img src="/images/plus-icon.png"
-                                    style="width: 160px; height: 160px; top: calc(50% - 80px); left: calc(50% - 80px); position: absolute;">
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
