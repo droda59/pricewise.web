@@ -25,7 +25,7 @@
                                         <a class="image" style="width: initial;" href.bind="entry.productUrl" target="_blank"
                                             data-analytics-category="Outbound Link"
                                             data-analytics-action="click"
-                                            data-analytics-label.bind="entry.originalUrl">
+                                            data-analytics-label="originalUrl">
                                             <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
                                         </a>
                                     </div>
@@ -99,7 +99,7 @@
                                     <a class="header" href.bind="product.productUrl" target="_blank"
                                         data-analytics-category="Outbound Link"
                                         data-analytics-action="click"
-                                        data-analytics-label.bind="product.originalUrl">${product.title}</a>
+                                        data-analytics-label="originalUrl">${product.title}</a>
                                     <div class="meta">
                                         <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate | rt}</small>
                                     </div>
@@ -107,14 +107,14 @@
                                 <a class="image mobile hidden" href.bind="product.productUrl" target="_blank"
                                     data-analytics-category="Outbound Link"
                                     data-analytics-action="click"
-                                    data-analytics-label.bind="product.originalUrl">
+                                    data-analytics-label="originalUrl">
                                     <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
                                 </a>
                                 <div class="extra content">
                                     <a href.bind="product.productUrl" target="_blank" class="right floated"
                                         data-analytics-category="Outbound Link"
                                         data-analytics-action="click"
-                                        data-analytics-label.bind="product.originalUrl">
+                                        data-analytics-label="originalUrl">
                                         ${product.price | nf: { style: 'currency', currency: 'CAD'}}
                                         <span i18n="alert.priceAt"></span>
                                         <img class="ui avatar image" src="/images/${product.source.domain}-small.png">

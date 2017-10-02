@@ -14,7 +14,7 @@
             <a href.bind="alert.bestCurrentDeal.productUrl" target="_blank" class="right floated" show.bind="alert.isActive"
                 data-analytics-category="Outbound Link"
                 data-analytics-action="click"
-                data-analytics-label.bind="alert.bestCurrentDeal.originalUrl">
+                data-analytics-label="originalUrl">
                 ${alert.bestCurrentDeal.price | nf: { style: 'currency', currency: 'CAD'}}
                 <span i18n="alert.priceAt"></span>
                 <img class="ui avatar image" src="/images/${alert.bestCurrentDeal.source.domain}-small.png">
