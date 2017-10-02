@@ -7,16 +7,18 @@
                         <img src="/images/pricewise-logo.png">
                     </div>
                     <div class="right item">
+                        <a href.one-time="chromeAppUrl" target="_blank" class="ui button mobile hidden" style="padding: 0;"
+                            data-analytics-category="Chrome Store"
+                            data-analytics-action="click"
+                            data-analytics-label="nav-button">
+                            <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png" height="38px;">
+                        </a>
                         <a href="https://www.facebook.com/PriceWiseCA/" target="_blank" class="ui facebook button mobile hidden">
                             <i class="facebook icon"></i>Facebook
                         </a>
                         <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
                             <i class="facebook icon"></i>
                         </a>
-                        <a href.one-time="chromeAppUrl" target="_blank" class="ui basic inverted icon button mobile hidden"
-                            data-analytics-category="Chrome Store"
-                            data-analytics-action="click"
-                            data-analytics-label="nav-button"><i class="chrome icon"></i></a>
                         <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
                         <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
