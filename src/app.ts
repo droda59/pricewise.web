@@ -28,12 +28,14 @@ export class App {
     configureRouter(config: RouterConfiguration, router: Router) {
         config.title = "PriceWise";
         config.addPipelineStep("authorize", AuthorizeStep);
+        config.options.pushState = true;
 
         config.map([
-            { route: ["", "welcome"], name: "welcome", moduleId: PLATFORM.moduleName("./homepage/index"),    nav: true },
-            { route: "user",          name: "user",    moduleId: PLATFORM.moduleName("./app/index"), activationStrategy: "replace", nav: true, authRoute: true },
+            { route: ["", "welcome"], name: "welcome",  moduleId: PLATFORM.moduleName("./homepage/index"), nav: true },
+            { route: "callback",      name: "callback", moduleId: PLATFORM.moduleName("./callback/index"), nav: false, title: "Authenticating" },
+            { route: "user",          name: "user",     moduleId: PLATFORM.moduleName("./app/index"),      nav: true, activationStrategy: "replace", authRoute: true },
         ]);
-        
+
         this.router = router;
     }
 }

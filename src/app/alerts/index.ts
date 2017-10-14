@@ -29,11 +29,11 @@ export class Alerts extends BaseI18N {
             ea: EventAggregator) {
         super(i18n, element, ea);
 
+        this._userId = localStorage.getItem("user_id");
         this._router = router;
         this._alertService = alertService;
         this._modalController = modalController;
         this._toaster = toaster;
-        this._userId = localStorage.getItem("user-id");
     }
 
     async activate(): Promise<void> {

@@ -7,8 +7,6 @@ import { PLATFORM } from "aurelia-pal";
 export class UserPage {
     private _i18n: I18N;
 
-    router: Router;
-
     constructor(i18n: I18N) {
         this._i18n = i18n;
     }
@@ -19,7 +17,5 @@ export class UserPage {
             { route: "alerts/:alertId", name: "alert",    moduleId: PLATFORM.moduleName("./alert/index") },
             { route: "settings",        name: "settings", moduleId: PLATFORM.moduleName("./settings/index") },
         ]);
-
-        this.router = router;
     }
 }

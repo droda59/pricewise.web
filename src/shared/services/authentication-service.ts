@@ -1,37 +1,34 @@
 import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
-import Auth0Lock from "auth0-lock";
+import { EventAggregator } from "aurelia-event-aggregator";
+import { Router } from "aurelia-router";
+import { UserService } from "../../app/shared/services/user-service";
+import { User } from "../../app/shared/models/user";
+import auth0 from "auth0-js";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
 
-@inject(NewInstance.of(HttpClient), AureliaConfiguration)
+@inject(NewInstance.of(HttpClient), AureliaConfiguration, Router, EventAggregator, UserService)
 export class AuthenticationService {
-    private _lock: Auth0LockStatic;
-	private _configure: AureliaConfiguration;
 	private _httpClient: HttpClient;
+    private _router: Router;
+    private _auth0: auth0.WebAuth;
+    private _eventAggregator: EventAggregator;
+    private _userService: UserService;
 
-	constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
-		this._configure = configure;
-        this._lock = new Auth0Lock(
-            "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
-            "price-alerts.auth0.com",
-            {
-                auth: {
-                    redirect: false
-                },
-				autoclose: true,
-				avatar: null,
-				socialButtonStyle: "small",
-				languageDictionary: {
-					title: "PriceWise"
-				},
-				theme: {
-					primaryColor: "#008179",
-                    logo: `${configure.get("web")}images/pricewise-logo.png`
-				},
-            }
-        );
+	constructor(httpClient: HttpClient, configure: AureliaConfiguration, router: Router, ea: EventAggregator, userService: UserService) {
+        this._router = router;
+        this._eventAggregator = ea;
+        this._userService = userService;
+        this._auth0 = new auth0.WebAuth({
+            domain: "price-alerts.auth0.com",
+            clientID: "7ICWS6d4sFffNPX02SN5BDcUHZsbOCv0",
+            redirectUri: `${configure.get("web")}callback`,
+            audience: "https://price-alerts.auth0.com/userinfo",
+            responseType: "token id_token",
+            scope: "openid profile email"
+        });
 
 		this._httpClient = httpClient.configure(config => {
 			config
@@ -46,39 +43,75 @@ export class AuthenticationService {
 		});
 	}
 
+    handleAuthentication() {
+        this._auth0.parseHash(async (err, authResult) => {
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                await this.setSession(authResult);
+
+                var routeToNavigate = await this.getOrCreateUser(authResult.idTokenPayload);
+
+                this._eventAggregator.publish("authChange", { authenticated: true });
+                this._router.navigateToRoute(routeToNavigate);
+            } else if (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    async setSession(authResult) {
+        // Set the time that the access token will expire at
+        let expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime());
+
+        const token = await this.getToken();
+        localStorage.setItem("access_token", token.access_token);
+        localStorage.setItem("user_id", authResult.idTokenPayload.sub);
+        localStorage.setItem("expires_at", expiresAt);
+    }
+
 	isAuthenticated(): boolean {
-        return localStorage.getItem("user-id") !== null;
+        // Check whether the current time is past the access token"s expiry time
+        let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+        return new Date().getTime() < expiresAt;
 	}
 
-	login(resultCallback: any): void {
-        this._lock.on("authenticated", (authResult: any) => this.onAuthenticated(authResult, resultCallback));
-        this._lock.show();
+	login(): void {
+        this._auth0.authorize();
 	}
 
 	logout(): void {
-        localStorage.removeItem("user-id");
-        localStorage.removeItem("access-token");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("expires_at");
 
-        this._lock.logout({
-            returnTo: this._configure.get("web")
-        });
+        this._router.navigateToRoute("welcome");
+        this._eventAggregator.publish("authChange", false);
 	}
 
-    private onAuthenticated(authResult: any, resultCallback: any): void {
-        this._lock.getUserInfo(authResult.accessToken, async (error: Auth0Error, profile: Auth0UserProfile) => {
-			if (error) {
-				return;
-			}
+    private async getOrCreateUser(profile: any): Promise<string> {
+        var user;
+        var navigateTo = "user";
 
-			const token = await this.getToken();
+        try {
+            user = await this._userService.get(profile.sub);
+            if (!user.firstName) {
+                navigateTo = "user/settings/account";
+            }
+        } catch(err) {
+            if (err.status === 404) {
+                var newUser = new User();
+                newUser.userId = profile.sub;
+                newUser.firstName = profile.given_name;
+                newUser.lastName = profile.family_name;
+                newUser.email = profile.email;
 
-			localStorage.setItem("access-token", token.access_token);
-			localStorage.setItem("user-id", profile.user_id);
+                user = await this._userService.create(newUser);
+                if (!user.firstName) {
+                    navigateTo = "user/settings/account";
+                }
+            }
+        }
 
-			if (resultCallback) {
-				await resultCallback(profile);
-			}
-		});
+        return navigateTo;
     }
 
 	private async getToken(): Promise<any> {

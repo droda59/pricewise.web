@@ -6,8 +6,8 @@ export class AuthorizationInterceptor implements Interceptor {
             request.headers.delete("Authorization");
         }
 
-        request.headers.append("Authorization", `Bearer ${localStorage.getItem('access-token')}`);
-        
+        request.headers.append("Authorization", `Bearer ${localStorage.getItem('access_token')}`);
+
         return request;
     }
 }

@@ -40,7 +40,7 @@ export class AlertPage extends BaseI18N {
 
     async activate(route, routeConfig): Promise<void> {
         if (route.alertId) {
-            this._userId = localStorage.getItem("user-id");
+            this._userId = localStorage.getItem("user_id");
             this._alertId = route.alertId;
 
             var alert = await this._alertService.getSummary(this._userId, this._alertId);

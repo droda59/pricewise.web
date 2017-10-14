@@ -46,7 +46,7 @@ export class Sources extends BaseI18N {
 
     async activate(route): Promise<void> {
         if (route.alertId) {
-            this._userId = localStorage.getItem("user-id");
+            this._userId = localStorage.getItem("user_id");
             this._alertId = route.alertId;
 
             this.alert = await this._alertService.get(this._userId, this._alertId);

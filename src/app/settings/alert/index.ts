@@ -20,7 +20,7 @@ export class AlertSettings extends BaseI18N {
 
         this._userService = userService;
         this._toaster = toaster;
-        this._userId = localStorage.getItem("user-id");
+        this._userId = localStorage.getItem("user_id");
     }
 
     async activate(): Promise<void> {

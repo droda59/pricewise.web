@@ -44,6 +44,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
   },
   devServer: {
     contentBase: baseUrl,
+    historyApiFallback: true,
   },
   module: {
     rules: [
