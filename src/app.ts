@@ -13,6 +13,8 @@ export class App {
     router: Router;
 
     constructor(i18n: I18N, ea: EventAggregator) {
+        this._i18n = i18n;
+
         let language = localStorage.getItem("language");
         if (language) {
             i18n.setLocale(language);
@@ -32,7 +34,7 @@ export class App {
 
         config.map([
             { route: ["", "welcome"], name: "welcome",  moduleId: PLATFORM.moduleName("./homepage/index"), nav: true },
-            { route: "callback",      name: "callback", moduleId: PLATFORM.moduleName("./callback/index"), nav: false, title: "Authenticating" },
+            { route: "callback",      name: "callback", moduleId: PLATFORM.moduleName("./callback/index"), nav: false, title: this._i18n.tr("welcome.authenticating") },
             { route: "user",          name: "user",     moduleId: PLATFORM.moduleName("./app/index"),      nav: true, activationStrategy: "replace", authRoute: true },
         ]);
 
