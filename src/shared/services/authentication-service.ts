@@ -51,7 +51,7 @@ export class AuthenticationService {
                 var routeToNavigate = await this.getOrCreateUser(authResult.idTokenPayload);
 
                 this._eventAggregator.publish("authChange", { authenticated: true });
-                this._router.navigateToRoute(routeToNavigate);
+                this._router.navigate(routeToNavigate);
             } else if (err) {
                 console.log(err);
             }
@@ -104,10 +104,12 @@ export class AuthenticationService {
                 newUser.lastName = profile.family_name;
                 newUser.email = profile.email;
 
-                user = await this._userService.create(newUser);
-                if (!user.firstName) {
+				if (!profile.given_name) {
+					newUser.firstName = newUser.email;
                     navigateTo = "user/settings/account";
-                }
+				}
+
+                user = await this._userService.create(newUser);
             }
         }
 
