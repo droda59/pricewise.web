@@ -50,7 +50,6 @@ export class Sources extends BaseI18N {
             this._alertId = route.alertId;
 
             this.alert = await this._alertService.get(this._userId, this._alertId);
-
             this.searchForSameProducts();
         }
     }
@@ -65,6 +64,23 @@ export class Sources extends BaseI18N {
 
     removeModal(): void {
         $(".ui.dimmer .overlay.modal").modal("hide");
+    }
+
+    async save(): Promise<void> {
+        this.isUpdatingAlert = true;
+
+        try {
+            var updatedAlert = await this._alertService.update(this._userId, this.alert);
+            if (!updatedAlert) {
+                throw new Error();
+            }
+
+            this._toaster.showSuccess("alert.alertSaved");
+        } catch(e) {
+            this._toaster.showError("alert.alertSaved");
+        } finally {
+            this.isUpdatingAlert = false;
+        }
     }
 
     async addEntry(newEntryUrl: string): Promise<void> {

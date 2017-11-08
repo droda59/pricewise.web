@@ -58,6 +58,7 @@
             "title": "Magasins",
             "source": "Magasin",
             "price": "Prix",
+            "note": "Note",
             "addOtherSource": "Ajouter un magasin",
             "searchingSimilar": "Recherche de produits similaires...",
             "addOtherSourceSuggestion": "Vous pourriez vouloir ajouter ces produits à votre alerte",

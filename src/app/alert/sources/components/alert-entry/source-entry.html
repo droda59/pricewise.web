@@ -1,0 +1,29 @@
+<template>
+    <td class="collapsing">
+        <div class="ui image header">
+            <a class="image" style="width: initial;" href.bind="entry.productUrl" target="_blank"
+                data-analytics-category="Outbound Link"
+                data-analytics-action="click"
+                data-analytics-label="originalUrl">
+                <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+            </a>
+        </div>
+    </td>
+    <td>
+        <div class="ui transparent input">
+            <input value.bind="note & updateTrigger:'blur'" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+        </div>
+    </td>
+    <td>
+        <h4>
+            <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
+        </h4>
+    </td>
+    <td class="collapsing">
+        <div class="ui basic circular red icon button" click.delegate="remove()"
+            data-analytics-category="Sources"
+            data-analytics-action="remove">
+            <i class="icon remove"></i>
+        </div>
+    </td>
+</template>
