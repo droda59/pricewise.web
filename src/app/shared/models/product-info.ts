@@ -1,4 +1,3 @@
-import { Deal } from "./deal";
 import { Source } from "../../../shared/models/source";
 import { SourcesService } from "../../../shared/services/sources-service";
 
@@ -20,7 +19,7 @@ export class ProductInfo implements IProductInfo {
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            var image = new Image(); 
+            var image = new Image();
             image.onload = () => {
                 this.isPortaitSize = image.height > image.width;
                 this.isLandscapeSize = image.height < image.width;

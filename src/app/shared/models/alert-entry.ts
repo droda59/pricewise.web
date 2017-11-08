@@ -4,7 +4,6 @@ import { SourcesService } from "../../../shared/services/sources-service";
 export class AlertEntry implements IAlertEntry {
     originalUrl: string;
     productUrl: string;
-    title: string;
     productIdentifier: string;
     lastPrice: number;
     isDeleted: boolean;
@@ -24,7 +23,6 @@ export class AlertEntry implements IAlertEntry {
 interface IAlertEntry {
     originalUrl: string;
     productUrl: string;
-    title: string;
     productIdentifier: string;
     lastPrice: number;
     isDeleted: boolean;

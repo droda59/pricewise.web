@@ -1,4 +1,3 @@
-import { Deal } from "./deal";
 import { AlertEntry } from "./alert-entry";
 
 export class UserAlert implements IUserAlert {
@@ -8,7 +7,7 @@ export class UserAlert implements IUserAlert {
     isActive: boolean;
     isPortaitSize: boolean;
     isLandscapeSize: boolean;
-    bestCurrentDeal: Deal;
+    modifiedAt: Date;
     entries: Array<AlertEntry>;
 
     constructor();
@@ -17,10 +16,10 @@ export class UserAlert implements IUserAlert {
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            this.bestCurrentDeal = new Deal(dto.bestCurrentDeal);
+            this.modifiedAt = new Date(dto.modifiedAt);
             this.entries = dto.entries ? dto.entries.map(entryDto => new AlertEntry(entryDto)) : new Array<AlertEntry>();
 
-            var image = new Image(); 
+            var image = new Image();
             image.onload = () => {
                 this.isPortaitSize = image.height > image.width;
                 this.isLandscapeSize = image.height < image.width;
@@ -39,6 +38,6 @@ interface IUserAlert {
     title: string;
     imageUrl: string;
     isActive: boolean;
-    bestCurrentDeal: Deal;
+    modifiedAt: Date;
     entries: Array<AlertEntry>;
 }
