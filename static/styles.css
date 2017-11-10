@@ -393,6 +393,13 @@ section {
     width: auto;
 }
 
+.pricewise .add-source .title-column.column {
+    max-width: 50%;
+}
+.pricewise .add-source .input-column.column {
+    max-width: 60%;
+}
+
 /* Mobile */
 @media only screen and (max-width: 767px) {
     [class*="mobile hidden"],
@@ -426,6 +433,13 @@ section {
     }
     .pricewise .ui.cards > .card > .image > img.landscape {
         width: auto;
+    }
+
+    .pricewise .add-source .title-column.column {
+        max-width: 80%;
+    }
+    .pricewise .add-source .input-column.column {
+        max-width: 100%;
     }
 }
 
