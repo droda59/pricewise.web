@@ -6,7 +6,7 @@ export class SourcesService {
     static initialize() {
         SourcesService._sources = new Array<Source>();
 
-        SourcesService._sources.push(this.createSource("Amazon", "amazon", "https://www.amazon.ca/", "rgb(254, 189, 105)"));
+        SourcesService._sources.push(this.createSource("Amazon", "amazon-temp", "https://www.amazon.ca/", "rgb(254, 189, 105)"));
         SourcesService._sources.push(this.createSource("Lego", "lego", "https://shop.lego.com/", "rgb(194, 4, 18)"));
         SourcesService._sources.push(this.createSource("Toys R Us", "toysrus", "http://www.toysrus.ca/", "rgb(0, 86, 175)"));
         SourcesService._sources.push(this.createSource("SAQ", "saq", "https://www.saq.com/", "rgb(122, 0, 60)"));

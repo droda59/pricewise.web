@@ -5,6 +5,9 @@
     "french": "Français",
     "otherLanguage": "EN",
     "otherLanguageCode": "en-CA",
+    "disclaimer": {
+        "amazon": "Nous participons au programme Amazon Associates, un programme de publicité affilié conçu pour nous permettre de gagner des frais en reliant Amazon et ses sites affiliés."
+    },
     "welcome": {
         "authenticating": "Authentification",
         "planning": "Vous prévoyez acheter quelque chose?",

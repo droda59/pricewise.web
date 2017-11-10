@@ -5,6 +5,9 @@
     "french": "French",
     "otherLanguage": "FR",
     "otherLanguageCode": "fr-CA",
+    "disclaimer": {
+        "amazon": "We are a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon and affiliated sites."
+    },
     "welcome": {
         "authenticating": "Authenticating",
         "planning": "Planning to buy something?",
