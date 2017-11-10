@@ -1,29 +1,72 @@
 <template>
-    <td class="collapsing">
-        <div class="ui image header">
-            <a class="image" style="width: initial;" href.bind="entry.productUrl" target="_blank"
-                data-analytics-category="Outbound Link"
-                data-analytics-action="click"
-                data-analytics-label="originalUrl">
-                <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
-            </a>
-        </div>
-    </td>
-    <td>
-        <div class="ui transparent input">
-            <input value.bind="note & updateTrigger:'blur'" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
-        </div>
-    </td>
-    <td>
-        <h4>
-            <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
-        </h4>
-    </td>
-    <td class="collapsing">
-        <div class="ui basic circular red icon button" click.delegate="remove()"
-            data-analytics-category="Sources"
-            data-analytics-action="remove">
-            <i class="icon remove"></i>
-        </div>
+    <td style="padding: 0.5em 0;">
+        <table class="ui very basic padded unstackable mobile hidden table" style="margin: 0;">
+            <tbody>
+                <tr>
+                    <td class="collapsing">
+                        <div class="ui image header">
+                            <a class="image" style="width: initial;" href.bind="entry.productUrl" target="_blank"
+                                data-analytics-category="Outbound Link"
+                                data-analytics-action="click"
+                                data-analytics-label="originalUrl">
+                                <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ui transparent input">
+                            <input value.bind="note & updateTrigger:'blur'" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+                        </div>
+                    </td>
+                    <td>
+                        <h4>
+                            <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
+                        </h4>
+                    </td>
+                    <td class="collapsing">
+                        <div class="ui basic circular red icon button" click.delegate="remove()"
+                            data-analytics-category="Sources"
+                            data-analytics-action="remove">
+                            <i class="icon remove"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="ui very basic unstackable compact mobile only table">
+            <tbody>
+                <tr style="border-bottom: none;">
+                    <td class="collapsing">
+                        <div class="ui image header">
+                            <a class="image" style="width: initial;" href.bind="entry.productUrl" target="_blank"
+                                data-analytics-category="Outbound Link"
+                                data-analytics-action="click"
+                                data-analytics-label="originalUrl">
+                                <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+                            </a>
+                        </div>
+                    </td>
+                    <td class="collapsing">
+                        <h4>
+                            <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
+                        </h4>
+                    </td>
+                    <td class="right aligned collapsing">
+                        <div class="ui basic circular red icon button" click.delegate="remove()"
+                            data-analytics-category="Sources"
+                            data-analytics-action="remove">
+                            <i class="icon remove"></i>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="border-bottom: none;">
+                    <td style="border-top: none;">
+                        <div class="ui transparent input">
+                            <input value.bind="note & updateTrigger:'blur'" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </td>
 </template>
