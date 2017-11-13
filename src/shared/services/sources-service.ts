@@ -9,7 +9,7 @@ export class SourcesService {
         SourcesService._sources.push(this.createSource("Amazon", "amazon-temp", "https://www.amazon.ca/", "rgb(254, 189, 105)"));
         SourcesService._sources.push(this.createSource("Lego", "lego", "https://shop.lego.com/", "rgb(194, 4, 18)"));
         SourcesService._sources.push(this.createSource("Toys R Us", "toysrus", "http://www.toysrus.ca/", "rgb(0, 86, 175)"));
-        SourcesService._sources.push(this.createSource("Walmart", "walmart", "https://www.walmart.ca/", "rgb(202, 100, 76)"));
+        // SourcesService._sources.push(this.createSource("Walmart", "walmart", "https://www.walmart.ca/", "rgb(202, 100, 76)"));
 
         SourcesService._sources.push(this.createSource("Best Buy", "bestbuy", "https://www.bestbuy.ca/", "rgb(255, 242, 0)"));
         SourcesService._sources.push(this.createSource("Staples", "staples", "https://www.staples.ca/", "rgb(204, 0, 0)"));
