@@ -22,7 +22,7 @@ export class AlertEntry implements IAlertEntry {
             this.createdAt = new Date(dto.createdAt);
             this.note = !!dto.note ? dto.note : "";
             this.source = SourcesService.getSource(this.originalUrl);
-            this.percentageChange = ((this.lastPrice - this.originalPrice) / this.originalPrice) * 1;
+            this.percentageChange = (this.lastPrice - this.originalPrice) / this.originalPrice;
         }
     }
 }

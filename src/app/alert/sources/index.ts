@@ -12,7 +12,7 @@ import { ConfirmationModalController } from "../../../confirmation-modal-control
 
 @autoinject()
 export class Sources extends BaseI18N {
-    private _router;
+    private _router: Router;
     private _alertService: AlertService;
     private _productService: ProductService;
     private _modalController: ConfirmationModalController;
