@@ -8,7 +8,7 @@ import { SourcesService } from "../../../../../shared/services/sources-service";
 @autoinject()
 export class PriceGraph {
     @bindable data: Array<ProductHistory>;
-    
+
     private _sourcesService: SourcesService;
 
     simpleLineData: LineData;
@@ -20,21 +20,21 @@ export class PriceGraph {
             labels: [],
             datasets: []
         };
-        
+
         var dateFormat = i18n.df({
-            year: 'numeric', 
-            month: '2-digit', 
+            year: 'numeric',
+            month: '2-digit',
             day: '2-digit'
           });
 
-        this.nativeOptions = { 
-            showLines: true, 
-            elements: { 
-                line: { 
-                    fill: false, 
-                    tension: 0 
-                } 
-            }, 
+        this.nativeOptions = {
+            showLines: true,
+            elements: {
+                line: {
+                    fill: false,
+                    tension: 0
+                }
+            },
             scales: {
                 xAxes: [
                     {
@@ -50,8 +50,8 @@ export class PriceGraph {
                     }
                 ]
             },
-            segmentStrokeColor: '#fff', 
-            segmentStrokeWidth: 2 
+            segmentStrokeColor: '#fff',
+            segmentStrokeWidth: 2
         };
     }
 
@@ -71,7 +71,7 @@ export class PriceGraph {
         }
 
         newValue.forEach(product => {
-            let pointColor = this.pickColor(product.url);
+            let pointColor = this.pickColor(product);
             let dataset = <Dataset>{
                 label: product.source.name,
                 borderColor: pointColor,
@@ -91,7 +91,7 @@ export class PriceGraph {
             datasets: datasets
         };
     }
-    
+
     private createEmptyArray(size: number, value: any): Array<any> {
         var newArray = new Array(size);
 
@@ -102,12 +102,11 @@ export class PriceGraph {
         return newArray;
     }
 
-    private pickColor(productUrl: string): string {
+    private pickColor(product: ProductHistory): string {
         var color = "rgb(220, 220, 220)";
 
-        var source = SourcesService.getSource(productUrl);
-        if (source != null) {
-            color = source.color;
+        if (product.source != null) {
+            color = product.source.color;
         }
 
         return color;
