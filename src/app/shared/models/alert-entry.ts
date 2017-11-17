@@ -6,7 +6,10 @@ export class AlertEntry implements IAlertEntry {
     productUrl: string;
     productIdentifier: string;
     note: string;
+    createdAt: Date;
+    originalPrice: number;
     lastPrice: number;
+    percentageChange: number;
     isDeleted: boolean;
     source: Source;
 
@@ -16,8 +19,10 @@ export class AlertEntry implements IAlertEntry {
         if (dto) {
             (<any>Object).assign(this, dto);
 
+            this.createdAt = new Date(dto.createdAt);
             this.note = !!dto.note ? dto.note : "";
             this.source = SourcesService.getSource(this.originalUrl);
+            this.percentageChange = ((this.lastPrice - this.originalPrice) / this.originalPrice) * 1;
         }
     }
 }
@@ -27,6 +32,8 @@ interface IAlertEntry {
     productUrl: string;
     productIdentifier: string;
     note: string;
+    createdAt: Date;
+    originalPrice: number;
     lastPrice: number;
     isDeleted: boolean;
 }

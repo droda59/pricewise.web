@@ -22,6 +22,9 @@
                         <h4>
                             <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
                         </h4>
+                        <h6>
+                            ( ${entry.percentageChange | nf { style: 'percent' }} )
+                        </h6>
                     </td>
                     <td class="collapsing">
                         <div class="ui basic circular red icon button" click.delegate="remove()"
@@ -50,6 +53,9 @@
                         <h4>
                             <a class="header" href.bind="entry.productUrl" target="_blank">${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}</a>
                         </h4>
+                        <h6>
+                            ( ${entry.percentageChange | nf { style: 'percent' }} )
+                        </h6>
                     </td>
                     <td class="right aligned collapsing">
                         <div class="ui basic circular red icon button" click.delegate="remove()"
