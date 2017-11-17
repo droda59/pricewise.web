@@ -3,7 +3,6 @@ import { SourcesService } from "../../../shared/services/sources-service";
 
 export class Deal implements IDeal {
     price: number;
-    title: string;
     originalUrl: string;
     productUrl: string;
     modifiedAt: Date;
@@ -19,7 +18,6 @@ export class Deal implements IDeal {
 
 interface IDeal {
     price: number;
-    title: string;
     originalUrl: string;
     productUrl: string;
     modifiedAt: Date;
