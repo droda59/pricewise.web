@@ -10,6 +10,7 @@ export class AlertEntry implements IAlertEntry {
     originalPrice: number;
     lastPrice: number;
     percentageChange: number;
+    absolutePercentageChange: number;
     isDeleted: boolean;
     source: Source;
 
@@ -23,6 +24,7 @@ export class AlertEntry implements IAlertEntry {
             this.note = !!dto.note ? dto.note : "";
             this.source = SourcesService.getSource(this.originalUrl);
             this.percentageChange = (this.lastPrice - this.originalPrice) / this.originalPrice;
+            this.absolutePercentageChange = Math.abs(this.percentageChange);
         }
     }
 }

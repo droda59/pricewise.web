@@ -23,7 +23,9 @@
                             <a class="header" href.bind="entry.productUrl" target="_blank">
                                 ${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}
                                 &nbsp;
-                                <small hide.bind="entry.percentageChange == 0">( ${entry.percentageChange | nf: { style: 'percent' }} )</small>
+                                <small hide.bind="entry.percentageChange == 0">
+                                    ( ${entry.percentageChange > 0 ? '+' : '-'}&nbsp;${entry.absolutePercentageChange | nf: { style: 'percent' }} )
+                                </small>
                             </a>
                         </h4>
                     </td>
@@ -55,7 +57,9 @@
                             <a class="header" href.bind="entry.productUrl" target="_blank">
                                 ${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}
                                 &nbsp;
-                                <small hide.bind="entry.percentageChange == 0">( ${entry.percentageChange | nf: { style: 'percent' }} )</small>
+                                <small hide.bind="entry.percentageChange == 0">
+                                    ( ${entry.percentageChange > 0 ? '+' : '-'}&nbsp;${entry.absolutePercentageChange | nf: { style: 'percent' }} )
+                                </small>
                             </a>
                         </h4>
                     </td>
