@@ -9,6 +9,7 @@ export class SourcesService {
         SourcesService._sources.push(this.createSource("Amazon", "amazon-temp", "https://www.amazon.ca/", "rgb(254, 189, 105)"));
         SourcesService._sources.push(this.createSource("Lego", "lego", "https://shop.lego.com/", "rgb(194, 4, 18)"));
         SourcesService._sources.push(this.createSource("Toys R Us", "toysrus", "http://www.toysrus.ca/", "rgb(0, 86, 175)"));
+        SourcesService._sources.push(this.createSource("SAQ", "saq", "https://www.saq.com/", "rgb(122, 0, 60)"));
         // SourcesService._sources.push(this.createSource("Walmart", "walmart", "https://www.walmart.ca/", "rgb(202, 100, 76)"));
 
         SourcesService._sources.push(this.createSource("Best Buy", "bestbuy", "https://www.bestbuy.ca/", "rgb(255, 242, 0)"));
@@ -29,7 +30,6 @@ export class SourcesService {
         SourcesService._sources.push(this.createSource("Canadian Tire", "canadiantire", "http://www.canadiantire.ca/", "rgb(235, 40, 40)"));
         SourcesService._sources.push(this.createSource("Home Depot", "homedepot", "https://www.homedepot.ca/", "rgb(243, 130, 49)"));
         SourcesService._sources.push(this.createSource("Rona", "rona", "https://www.rona.ca/", "rgb(0, 46, 86)"));
-        SourcesService._sources.push(this.createSource("SAQ", "saq", "https://www.saq.com/", "rgb(122, 0, 60)"));
     }
 
     get sources(): Array<Source> {
