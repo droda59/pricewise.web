@@ -1,6 +1,6 @@
-<template>
+<template bindable="className">
     <div class="ui overlay page dimmer">
-        <div class="ui overlay modal">
+        <div class="ui overlay modal ${className}">
             <i class="close icon"></i>
             <div class="content primary-light">
                 <slot></slot>

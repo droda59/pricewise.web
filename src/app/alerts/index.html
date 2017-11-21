@@ -1,4 +1,5 @@
 <template>
+    <require from="./components/create-list/create-list"></require>
     <require from="../shared/components/add-source/add-source"></require>
     <require from="../shared/components/alert-card/alert-card.html"></require>
 
@@ -13,10 +14,28 @@
     </div>
 
     <div class="primary-light" style="padding-bottom: 2em;">
-        <div class="ui container" show.bind="alerts.length">
+        <div class="ui container">
+            <div class="ui text menu">
+                <div class="item">
+                    <a class="ui red large label" click.delegate="showModal('create-list')" i18n="[append]lists.createButton">
+                        <i class="plus icon"></i>
+                    </a>
+                </div>
+                <div class="item" show.one-way="lists.length">
+                    <a class="ui ${currentListFilter ? 'transparent' : 'primary-action'} large label" click.delegate="filterList()" i18n="lists.noFilter">
+                        All
+                    </a>
+                </div>
+                <div repeat.for="list of lists | sort:'name'" class="item">
+                    <a class="ui ${currentListFilter == list ? 'primary-action' : 'transparent'} large label" click.delegate="filterList(list)">
+                        ${list.name & oneTime}
+                    </a>
+                </div>
+            </div>
+
             <div class="ui one column grid">
                 <div class="column">
-                    <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addAlert()" show.bind="alerts.length"
+                    <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="showModal('add-source')" show.bind="alerts.length"
                         i18n="[append]alerts.createAlert"
                         data-analytics-category="Alerts"
                         data-analytics-action="add"
@@ -28,7 +47,7 @@
             <div class="ui one column grid">
                 <div class="column">
                     <div class="ui link cards">
-                        <a class="ui mobile hidden add-alert card" click.delegate="addAlert()"
+                        <a class="ui mobile hidden add-alert card" click.delegate="showModal('add-source')"
                             data-analytics-category="Alerts"
                             data-analytics-action="add"
                             data-analytics-label="card">
@@ -57,7 +76,7 @@
             </div>
             <div class="ui one column grid">
                 <div class="column">
-                    <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addAlert()" show.bind="alerts.length"
+                    <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="showModal('add-source')" show.bind="alerts.length"
                         i18n="[append]alerts.createAlert"
                         data-analytics-category="Alerts"
                         data-analytics-action="add"
@@ -73,7 +92,7 @@
                 <p style="text-align: center;" i18n="alerts.noAlert">You are not watching any products right now.</p>
                 <p style="text-align: center;" i18n="alerts.getStarted">Get started!</p>
                 <div style="text-align: center;">
-                    <div class="ui primary primary-action button" click.delegate="addAlert()"
+                    <div class="ui primary primary-action button" click.delegate="showModal('add-source')"
                         i18n="[append]alerts.createAlert"
                         data-analytics-category="Alerts"
                         data-analytics-action="add"
@@ -90,6 +109,7 @@
 
         <confirmation-modal message="alerts.deleteConfirmation"></confirmation-modal>
 
-        <add-source class="add-source-modal" class-name="${isCreatingAlert ? 'loading' : ''}" close.call="removeModal()" add.call="create(newAlertUrl)"></add-source>
+        <create-list class="create-list-modal" class-name="${isCreatingList ? 'loading' : ''}" alerts.one-time="alerts" close.call="removeModal('create-list')" create.call="createList(name, alerts)"></create-list>
+        <add-source class="add-source-modal" class-name="${isCreatingAlert ? 'loading' : ''}" close.call="removeModal('add-source')" add.call="create(newAlertUrl)"></add-source>
     </div>
 </template>

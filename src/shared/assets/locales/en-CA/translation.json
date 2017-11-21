@@ -88,6 +88,17 @@
         "deleteConfirmation_title": "Delete alert",
         "deleteConfirmation_description": "Are you sure you want to delete this product alert?"
     },
+    "lists": {
+        "create": {
+            "title": "Create a list with the alerts you want",
+            "name": "Name",
+            "create": "Create"
+        },
+        "noFilter": "All",
+        "createButton": "Create list",
+        "listCreated_success": "List created successfully!",
+        "listCreated_failure": "An error occurred during the creation."
+    },
     "sources": {
         "add": "Add",
         "addSource": "Browse your favourite shopping site and paste the product URL"

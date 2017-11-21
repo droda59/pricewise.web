@@ -14,6 +14,8 @@ body {
 .primary-action-hover:hover {
     color: #02776f !important;
 }
+.ui.menu .item > .label.primary-action,
+.ui.label.primary-action,
 .ui.button.primary-action {
     background-color: #008179;
     color: #fff;
@@ -21,10 +23,23 @@ body {
 .ui.primary.button.primary-action {
     background-color: #008179;
 }
+.ui.menu .item > .label.primary-action:hover,
+.ui.label.primary-action:hover,
 .ui.button.primary-action:hover,
 .ui.primary.button.primary-action:hover,
 .ui.primary.buttons .button.primary-action:hover {
     background-color: #02776f;
+}
+
+.ui.transparent.label,
+.ui.transparent.labels .label {
+    background-color: rgba(0, 0, 0, .03) !important;
+    border-color: rgba(0, 0, 0, .03) !important;
+    color: #051615 !important;
+}
+.ui.transparent.label:hover,
+.ui.transparent.labels .label:hover {
+    background-color: rgba(0, 0, 0, .1) !important;
 }
 
 section {
