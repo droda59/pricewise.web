@@ -90,14 +90,18 @@
     },
     "lists": {
         "create": {
-            "title": "Create a list with the alerts you want",
+            "title": "Create a list with the products you want",
             "name": "Name",
             "create": "Create"
         },
         "noFilter": "All",
         "createButton": "Create list",
         "listCreated_success": "List created successfully!",
-        "listCreated_failure": "An error occurred during the creation."
+        "listCreated_failure": "An error occurred during the creation.",
+        "listDeleted_success": "List deleted successfully!",
+        "listDeleted_failure": "An error occurred during the deletion.",
+        "deleteConfirmation_title": "Delete list",
+        "deleteConfirmation_description": "Are you sure you want to delete this list? It will not delete its products, only the list itself."
     },
     "sources": {
         "add": "Add",

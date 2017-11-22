@@ -1,5 +1,5 @@
 <template>
-    <require from="./components/create-list/create-list"></require>
+    <require from="./components/list-menu/list-menu"></require>
     <require from="../shared/components/add-source/add-source"></require>
     <require from="../shared/components/alert-card/alert-card.html"></require>
 
@@ -15,23 +15,7 @@
 
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
-            <div class="ui text menu">
-                <div class="item">
-                    <a class="ui red large label" click.delegate="showModal('create-list')" i18n="[append]lists.createButton">
-                        <i class="plus icon"></i>
-                    </a>
-                </div>
-                <div class="item" show.one-way="lists.length">
-                    <a class="ui ${currentListFilter ? 'transparent' : 'primary-action'} large label" click.delegate="filterList()" i18n="lists.noFilter">
-                        All
-                    </a>
-                </div>
-                <div repeat.for="list of lists | sort:'name'" class="item">
-                    <a class="ui ${currentListFilter == list ? 'primary-action' : 'transparent'} large label" click.delegate="filterList(list)">
-                        ${list.name & oneTime}
-                    </a>
-                </div>
-            </div>
+            <list-menu alerts.one-way="alerts" selected-list.two-way="currentListFilter"></list-menu>
 
             <div class="ui one column grid">
                 <div class="column">
@@ -107,9 +91,8 @@
             <div class="ui text loader" i18n="alerts.updating">Updating</div>
         </div>
 
-        <confirmation-modal message="alerts.deleteConfirmation"></confirmation-modal>
+        <confirmation-modal message="alerts.deleteConfirmation" class-name="delete-alert"></confirmation-modal>
 
-        <create-list class="create-list-modal" class-name="${isCreatingList ? 'loading' : ''}" alerts.one-time="alerts" close.call="removeModal('create-list')" create.call="createList(name, alerts)"></create-list>
         <add-source class="add-source-modal" class-name="${isCreatingAlert ? 'loading' : ''}" close.call="removeModal('add-source')" add.call="create(newAlertUrl)"></add-source>
     </div>
 </template>

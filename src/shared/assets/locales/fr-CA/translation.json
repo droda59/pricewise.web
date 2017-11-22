@@ -90,14 +90,18 @@
     },
     "lists": {
         "create": {
-            "title": "Créez une liste avec les alertes que vous désirez",
+            "title": "Créez une liste avec les produits que vous désirez",
             "name": "Nom",
             "create": "Créer"
         },
         "noFilter": "Toutes",
         "createButton": "Créer liste",
         "listCreated_success": "Liste créée avec succès!",
-        "listCreated_failure": "Une erreur est survenue durant la création."
+        "listCreated_failure": "Une erreur est survenue durant la création.",
+        "listDeleted_success": "List supprimée avec succès!",
+        "listDeleted_failure": "Une erreur est survenue durant la suppression.",
+        "deleteConfirmation_title": "Supprimer une list",
+        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste."
     },
     "sources": {
         "add": "Ajouter",
