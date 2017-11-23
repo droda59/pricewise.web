@@ -21,5 +21,5 @@
 
     <confirmation-modal message="lists.deleteConfirmation" class-name="delete-list"></confirmation-modal>
 
-    <create-list-modal class="create-list-modal" class-name="${isCreatingList ? 'loading' : ''}" alerts.one-time="alerts" close.call="removeModal('create-list')" create.call="createList(name, alerts)"></create-list-modal>
+    <create-list-modal class="create-list-modal" class-name="${isCreatingList ? 'loading' : ''}" alerts.one-way="alerts" close.call="removeModal('create-list')" save.call="createList(name, alerts)"></create-list-modal>
 </template>

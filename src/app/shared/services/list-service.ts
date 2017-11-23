@@ -58,6 +58,17 @@ export class ListService {
         return new ListSummary(await response.json());
     }
 
+    async update(userId: string, list: List): Promise<List> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}`, {
+            method: "put",
+            body: json(list)
+        });
+
+        return new List(await response.json());
+    }
+
     async delete(userId: string, listId: string): Promise<boolean> {
         await fetchPolyfill;
 

@@ -92,14 +92,16 @@
         "create": {
             "title": "Créez une liste avec les produits que vous désirez",
             "name": "Nom",
-            "create": "Créer"
+            "save": "Enregistrer"
         },
         "noFilter": "Toutes",
         "createButton": "Créer liste",
         "listCreated_success": "Liste créée avec succès!",
         "listCreated_failure": "Une erreur est survenue durant la création.",
-        "listDeleted_success": "List supprimée avec succès!",
+        "listDeleted_success": "Liste supprimée avec succès!",
         "listDeleted_failure": "Une erreur est survenue durant la suppression.",
+        "listUpdated_success": "Liste enregistrée avec succès!",
+        "listUpdated_failure": "Une erreur est survenue durant la mise à jour.",
         "deleteConfirmation_title": "Supprimer une list",
         "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste."
     },

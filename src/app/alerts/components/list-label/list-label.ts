@@ -36,19 +36,21 @@ export class ListLabel {
         this.click({ list: this.list });
     }
 
-    deleteList() {
-        this._modalController.openModal(async () => {
-            try {
-                const listDeleted = await this._listService.delete(this._userId, this.list.id);
-                if (!listDeleted) {
-                    throw new Error();
-                }
+    confirmDeleteList() {
+        this._modalController.openModal(async () => { await this.deleteList(); }, "delete-list");
+    }
 
-                this.delete({ list: this.list });
-                this._toaster.showSuccess("lists.listDeleted");
-            } catch(e) {
-                this._toaster.showError("lists.listDeleted");
+    async deleteList() {
+        try {
+            const listDeleted = await this._listService.delete(this._userId, this.list.id);
+            if (!listDeleted) {
+                throw new Error();
             }
-        }, "delete-list");
+
+            this.delete({ list: this.list });
+            this._toaster.showSuccess("lists.listDeleted");
+        } catch(e) {
+            this._toaster.showError("lists.listDeleted");
+        }
     }
 }

@@ -31,7 +31,7 @@
             <div class="ui one column grid">
                 <div class="column">
                     <div class="ui link cards">
-                        <a class="ui mobile hidden add-alert card" click.delegate="showModal('add-source')"
+                        <a class="ui mobile hidden add-alert card" click.delegate="showModal('add-source')" show.bind="alerts.length || currentListFilter"
                             data-analytics-category="Alerts"
                             data-analytics-action="add"
                             data-analytics-label="card">
@@ -42,7 +42,7 @@
                         </a>
                         <alert-card repeat.for="alert of alerts | sort:'title'" alert.one-time="alert" style="border-radius: 2px;" containerless>
                             <div slot="top-action">
-                                <i class="right floated red circular button remove icon" click.delegate="removeAlert(alert)"
+                                <i class="right floated red circular button remove icon" click.delegate="confirmRemoveAlert(alert)"
                                     data-analytics-category="Alerts"
                                     data-analytics-action="remove"></i>
                             </div>
@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div class="ui overlay" hide.bind="alerts.length">
+        <div class="ui overlay" hide.bind="alerts.length || currentListFilter">
             <div style="width: 100%; position: absolute; top: 50%; left: 0;">
                 <p style="text-align: center;" i18n="alerts.noAlert">You are not watching any products right now.</p>
                 <p style="text-align: center;" i18n="alerts.getStarted">Get started!</p>
