@@ -197,15 +197,9 @@ export class Alerts extends BaseI18N {
                 throw new Error();
             }
 
-            this.alerts.remove(alert);
-            this.allAlerts.remove(alert);
+            this.alerts.removeWhere(x => x.id == alert.id);
+            this.allAlerts.removeWhere(x => x.id == alert.id);
             this._ea.publish("alertDeleted", { alert: alert });
-
-            if (this.currentList) {
-                this.currentList.alerts.remove(alert);
-
-                this._listService.update(this._userId, this.currentList);
-            }
 
             this._toaster.showSuccess("alerts.alertDeleted");
         } catch(e) {
@@ -221,6 +215,8 @@ export class Alerts extends BaseI18N {
 
     async currentListFilterChanged(newValue: ListSummary, oldValue: ListSummary) {
         if (newValue != oldValue) {
+            this.isUpdating = true;
+
             if (!newValue) {
                 this.currentList = undefined;
                 this.allAlerts = await this._alertService.getSummaries(this._userId);
@@ -229,6 +225,8 @@ export class Alerts extends BaseI18N {
                 this.currentList = await this._listService.get(this._userId, newValue.id);
                 this.alerts = this.currentList.alerts;
             }
+
+            this.isUpdating = false;
         }
     }
  }

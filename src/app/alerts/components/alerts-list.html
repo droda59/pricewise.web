@@ -25,12 +25,12 @@
                 </a>
                 <alert-card repeat.for="alert of alerts | sort:'title'" alert.one-time="alert" style="border-radius: 2px;" containerless>
                     <div slot="top-action">
-                        <i class="right floated red circular button remove icon" click.delegate="confirmRemoveAlert(alert)"
+                        <i class="right floated red circular button remove icon" click.delegate="confirmDeleteAlert(alert)"
                             data-analytics-category="Alerts"
                             data-analytics-action="remove"></i>
                     </div>
                     <div slot="bottom-action">
-                        <a class="right floated primary-action-hover" click.delegate="activateAlert(alert)" hide.bind="alert.isActive"
+                        <a class="right floated primary-action-hover" click.delegate="activate({ alert: alert })" hide.bind="alert.isActive"
                             i18n="[append]alert.activate"
                             data-analytics-category="Alerts"
                             data-analytics-action="activate">

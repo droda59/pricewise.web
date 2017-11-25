@@ -69,10 +69,18 @@ export async function configure(aurelia: Aurelia) {
             this.splice(index, 1);
         }
     }
+
+    Array.prototype.removeWhere = function(callback): void {
+        var itemsToRemove = this.filter(callback);
+        for (var i = 0; i < itemsToRemove.length; i++) {
+            this.remove(itemsToRemove[i]);
+        }
+    }
 }
 
 declare global {
 	interface Array<T> {
 		remove(object: any): void;
+		removeWhere(callback): void;
 	}
 }

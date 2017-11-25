@@ -14,6 +14,7 @@ export class AlertsList {
     @bindable alerts: Array<UserAlertSummary>;
     @bindable delete;
     @bindable add;
+    @bindable activate;
 
     constructor(ea: EventAggregator, modalController: ConfirmationModalController) {
         this._ea = ea;
@@ -30,7 +31,7 @@ export class AlertsList {
         // this._alertDeletedSubscription.dispose();
     }
 
-    confirmDeleteList(alert: UserAlertSummary) {
+    confirmDeleteAlert(alert: UserAlertSummary) {
         this._modalController.openModal(async () => {
             this.delete({ alert: alert });
         }, "delete-alert");

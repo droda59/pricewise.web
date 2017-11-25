@@ -40,7 +40,9 @@
             <alerts-list
                 show.bind="allAlerts.length"
                 alerts.one-way="alerts"
-                add.call="showModal(addSourceModal)">
+                delete.call="removeAlert(alert)"
+                add.call="showModal(addSourceModal)"
+                activate.call="activateAlert(alert)">
             </alerts-list>
         </div>
 
