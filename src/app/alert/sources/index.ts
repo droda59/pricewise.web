@@ -62,10 +62,6 @@ export class Sources extends BaseI18N {
         $(".ui.dimmer .overlay.modal").modal("show");
     }
 
-    removeModal(): void {
-        $(".ui.dimmer .overlay.modal").modal("hide");
-    }
-
     async save(): Promise<void> {
         this.isUpdatingAlert = true;
 

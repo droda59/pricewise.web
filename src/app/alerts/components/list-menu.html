@@ -1,25 +1,22 @@
 <template>
-    <require from="../create-list-modal/create-list-modal"></require>
-    <require from="../list-label/list-label"></require>
+    <require from="./list-label"></require>
 
     <div class="ui text menu">
         <div class="item">
-            <a class="ui red large label" click.delegate="showModal('create-list')" i18n="[append]lists.createButton">
+            <a class="ui red large label" click.delegate="add()" i18n="[append]lists.createButton">
                 <i class="plus icon"></i>
             </a>
         </div>
         <list-label if.bind="lists.length"
-            click.call="filterList(list)"
+            click.call="selectList()"
             label="${'lists.noFilter' | t}"
             class-name="${selectedList ? 'transparent' : 'primary-action'}"></list-label>
         <list-label repeat.for="list of lists | sort:'name'"
             list.one-time="list"
-            click.call="filterList(list)"
-            delete.call="deleteList(list)"
+            click.call="selectList(list)"
+            delete.call="confirmDeleteList(list)"
             class-name="${$parent.selectedList == list ? 'primary-action' : 'transparent'}"></list-label>
     </div>
 
     <confirmation-modal message="lists.deleteConfirmation" class-name="delete-list"></confirmation-modal>
-
-    <create-list-modal class="create-list-modal" class-name="${isCreatingList ? 'loading' : ''}" alerts.one-way="alerts" close.call="removeModal('create-list')" save.call="createList(name, alerts)"></create-list-modal>
 </template>

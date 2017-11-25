@@ -1,6 +1,6 @@
 <template>
-    <require from="../../shared/components/add-source/add-source"></require>
-    <require from="./components/alert-entry/source-entry"></require>
+    <require from="../../shared/components/add-source-modal"></require>
+    <require from="./components/source-entry"></require>
 
     <div class="ui container">
         <div class="ui one column grid">
@@ -111,7 +111,7 @@
         <div class="ui text loader" i18n="alert.updating">Updating</div>
     </div>
 
-    <add-source class-name="${isAddingSource ? 'loading' : ''}" close.call="removeModal()" add.call="addEntry(newAlertUrl)"></add-source>
+    <add-source-modal class-name="${isAddingSource ? 'loading' : ''}" add.call="addEntry(newAlertUrl)"></add-source-modal>
 
     <confirmation-modal message="alert.sources.deleteConfirmation"></confirmation-modal>
 </template>

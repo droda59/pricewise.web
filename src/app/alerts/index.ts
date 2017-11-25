@@ -9,6 +9,9 @@ import { ListService } from "../shared/services/list-service";
 import { UserAlertSummary } from "../shared/models/user-alert-summary";
 import { List } from "../shared/models/list";
 import { ListSummary } from "../shared/models/list-summary";
+import { CreateListModal } from "./components/create-list-modal";
+import { AddSourceModal } from "../shared/components/add-source-modal";
+import { Modal } from "../../shared/modal";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 
 @autoinject()
@@ -21,11 +24,13 @@ export class Alerts extends BaseI18N {
     private _toaster: Toaster;
     private _userId: string;
 
-    isUpdatingAlert: boolean;
-    isCreatingAlert: boolean;
-    isUpdatingList: boolean;
+    createListModal: CreateListModal;
+    addSourceModal: AddSourceModal;
+    isUpdating: boolean;
     currentList: List;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
+    allAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
+    lists: Array<ListSummary> = new Array<ListSummary>();
 
     @bindable currentListFilter: ListSummary;
 
@@ -50,7 +55,14 @@ export class Alerts extends BaseI18N {
     }
 
     async activate(): Promise<void> {
-        this.alerts = await this._alertService.getSummaries(this._userId);
+        var alertPromise = this._alertService.getSummaries(this._userId);
+        var listPromise = this._listService.getSummaries(this._userId);
+
+        const [alerts, lists] = await Promise.all([alertPromise, listPromise]);
+
+        this.allAlerts = alerts;
+        this.lists = lists;
+        this.alerts = this.allAlerts;
     }
 
     detached() {
@@ -58,7 +70,7 @@ export class Alerts extends BaseI18N {
     }
 
     async updateList(name: string, alerts: Array<UserAlertSummary>): Promise<void> {
-        this.isUpdatingList = true;
+        this.isUpdating = true;
 
         try {
             var list = new List();
@@ -76,12 +88,56 @@ export class Alerts extends BaseI18N {
         } catch(e) {
             this._toaster.showError("lists.listUpdated");
         } finally {
-            this.isUpdatingList = false;
+            this.isUpdating = false;
+        }
+    }
+
+    async createList(name: string, alerts: Array<UserAlertSummary>): Promise<void> {
+        this.isUpdating = true;
+
+        try {
+            var list = new List();
+            list.name = name;
+            list.alerts = alerts;
+
+            const newList = await this._listService.create(this._userId, list);
+            if (!newList) {
+                throw new Error();
+            }
+
+            this.lists.push(newList);
+            this._ea.publish("listCreated", { list: newList });
+
+            this._toaster.showSuccess("lists.listCreated");
+        } catch(e) {
+            this._toaster.showError("lists.listCreated");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
+    async deleteList(list: ListSummary) {
+        this.isUpdating = true;
+
+        try {
+            const listDeleted = await this._listService.delete(this._userId, list.id);
+            if (!listDeleted) {
+                throw new Error();
+            }
+
+            this.lists.remove(list);
+            this._ea.publish("listDeleted", { list: list });
+
+            this._toaster.showSuccess("lists.listDeleted");
+        } catch(e) {
+            this._toaster.showError("lists.listDeleted");
+        } finally {
+            this.isUpdating = false;
         }
     }
 
     async create(newAlertUrl: string): Promise<void> {
-        this.isCreatingAlert = true;
+        this.isUpdating = true;
 
         try {
             const newAlert = await this._alertService.create(this._userId, newAlertUrl);
@@ -109,12 +165,12 @@ export class Alerts extends BaseI18N {
 
             this._toaster.showException("alerts.alertCreated", errorMessage);
         } finally {
-            this.isCreatingAlert = false;
+            this.isUpdating = false;
         }
     }
 
     async activateAlert(alert: UserAlertSummary): Promise<void> {
-        this.isUpdatingAlert = true;
+        this.isUpdating = true;
 
         try {
             alert.isActive = true;
@@ -128,12 +184,12 @@ export class Alerts extends BaseI18N {
         } catch(e) {
             this._toaster.showError("alerts.alertActivated");
         } finally {
-            this.isUpdatingAlert = false;
+            this.isUpdating = false;
         }
     }
 
     async removeAlert(alert: UserAlertSummary): Promise<void> {
-        this.isUpdatingAlert = true;
+        this.isUpdating = true;
 
         try {
             const alertDeleted = await this._alertService.delete(this._userId, alert.id);
@@ -142,6 +198,7 @@ export class Alerts extends BaseI18N {
             }
 
             this.alerts.remove(alert);
+            this.allAlerts.remove(alert);
             this._ea.publish("alertDeleted", { alert: alert });
 
             if (this.currentList) {
@@ -154,27 +211,20 @@ export class Alerts extends BaseI18N {
         } catch(e) {
             this._toaster.showError("alerts.alertDeleted");
         } finally {
-            this.isUpdatingAlert = false;
+            this.isUpdating = false;
         }
     }
 
-    confirmRemoveAlert(alert: UserAlertSummary): void {
-        this._modalController.openModal(async () => { await this.removeAlert(alert); }, "delete-alert");
-    }
-
-    showModal(modalIdentifier: string): void {
-        $(`.ui.dimmer .overlay.modal.${modalIdentifier}`).modal("show");
-    }
-
-    removeModal(modalIdentifier: string): void {
-        $(`.ui.dimmer .overlay.modal.${modalIdentifier}`).modal("hide");
+    showModal(modal: Modal): void {
+        this._modalController.openOverlayModal(modal);
     }
 
     async currentListFilterChanged(newValue: ListSummary, oldValue: ListSummary) {
         if (newValue != oldValue) {
             if (!newValue) {
                 this.currentList = undefined;
-                this.alerts = await this._alertService.getSummaries(this._userId);
+                this.allAlerts = await this._alertService.getSummaries(this._userId);
+                this.alerts = this.allAlerts;
             } else {
                 this.currentList = await this._listService.get(this._userId, newValue.id);
                 this.alerts = this.currentList.alerts;

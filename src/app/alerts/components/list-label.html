@@ -1,0 +1,8 @@
+<template>
+    <div class="item">
+        <a class="ui ${className} large label" click.delegate="click({ list: list })">
+            ${label}
+            <i if.one-time="delete" class="delete icon" click.delegate="delete({ list: list })"></i>
+        </a>
+    </div>
+</template>

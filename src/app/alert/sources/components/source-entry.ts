@@ -2,7 +2,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
-import { AlertEntry } from "../../../../shared/models/alert-entry";
+import { AlertEntry } from "../../../shared/models/alert-entry";
 
 @autoinject()
 export class SourceEntry extends BaseI18N {

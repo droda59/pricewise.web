@@ -1,3 +1,5 @@
+import { Modal } from "./shared/modal";
+
 export class ConfirmationModalController {
     openModal(onApprove, modalIdentifier?: string): void {
         var modalSelector = ".ui.confirmation.modal";
@@ -9,5 +11,9 @@ export class ConfirmationModalController {
             onApprove: onApprove
         })
         .modal("show");
+    }
+
+    openOverlayModal(modal: Modal): void {
+        $(`.ui.dimmer .overlay.modal.${modal.id}`).modal("show");
     }
 }
