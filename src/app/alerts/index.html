@@ -65,6 +65,6 @@
         </div>
 
         <create-list-modal view-model.ref="createListModal" class-name="${isUpdating ? 'loading' : ''}" alerts.one-way="allAlerts" save.call="createList(name, alerts)"></create-list-modal>
-        <add-source-modal view-model.ref="addSourceModal" class-name="${isUpdating ? 'loading' : ''}" add.call="create(newAlertUrl)"></add-source-modal>
+        <add-source-modal view-model.ref="addSourceModal" class-name="${isUpdating ? 'loading' : ''}" add.call="createAlert(newAlertUrl)"></add-source-modal>
     </div>
 </template>

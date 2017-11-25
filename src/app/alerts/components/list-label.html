@@ -1,8 +1,12 @@
 <template>
     <div class="item">
-        <a class="ui ${className} large label" click.delegate="click({ list: list })">
+        <a class="ui ${className} large label" click.delegate="click({ list: list })"
+            data-analytics-category="List"
+            data-analytics-action="filter">
             ${label}
-            <i if.one-time="delete" class="delete icon" click.delegate="delete({ list: list })"></i>
+            <i if.one-time="delete" class="delete icon" click.delegate="delete({ list: list })"
+                data-analytics-category="List"
+                data-analytics-action="delete"></i>
         </a>
     </div>
 </template>

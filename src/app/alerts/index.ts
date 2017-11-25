@@ -136,7 +136,7 @@ export class Alerts extends BaseI18N {
         }
     }
 
-    async create(newAlertUrl: string): Promise<void> {
+    async createAlert(newAlertUrl: string): Promise<void> {
         this.isUpdating = true;
 
         try {
