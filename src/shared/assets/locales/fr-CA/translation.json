@@ -28,7 +28,9 @@
             "history_title": "Étudiez l'historique de prix d'un produit",
             "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez lorsque c'est le temps.",
             "sources_title": "Magasins disponibles",
-            "sources_description": "Vous pouvez surveiller les produits de ces magasins en ligne. D'autres seront ajoutés!"
+            "sources_description": "Vous pouvez surveiller les produits de ces magasins en ligne. D'autres seront ajoutés!",
+            "lists_title": "Organizez vos produits",
+            "lists_description": "Organizez vos produits en catégories de votre choix : Liste de Noël, cadeaux de fête, livres à lire. Personnalisez comme vous le voulez!"
         },
         "chrome": {
             "extensionAvailable": "PriceWise a une extension Chrome!",

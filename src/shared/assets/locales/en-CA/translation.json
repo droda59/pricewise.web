@@ -28,7 +28,9 @@
             "history_title": "See the price history of a product",
             "history_description": "Analyse the patterns, see when the prices raised or dropped, and act accordingly.",
             "sources_title": "Available stores",
-            "sources_description": "You can monitor products from these websites. More will be added!"
+            "sources_description": "You can monitor products from these websites. More will be added!",
+            "lists_title": "Organize your products",
+            "lists_description": "Organize your products into categories of your choice: Christmas wish list, birthday gifts, books to buy. Customize as you like!"
         },
         "chrome": {
             "extensionAvailable": "PriceWise has a Chrome extension!",
