@@ -113,5 +113,5 @@
 
     <add-source-modal class-name="${isAddingSource ? 'loading' : ''}" add.call="addEntry(newAlertUrl)"></add-source-modal>
 
-    <confirmation-modal message="alert.sources.deleteConfirmation"></confirmation-modal>
+    <confirmation-modal view-model.ref="confirmationModal" message="alert.sources.deleteConfirmation"></confirmation-modal>
 </template>

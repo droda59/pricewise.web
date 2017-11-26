@@ -1,13 +1,8 @@
 import { Modal } from "./shared/modal";
 
 export class ConfirmationModalController {
-    openModal(onApprove, modalIdentifier?: string): void {
-        var modalSelector = ".ui.confirmation.modal";
-        if (modalIdentifier) {
-            modalSelector += `.${modalIdentifier}`;
-        }
-
-        $(modalSelector).modal({
+    openConfirmationModal(modal: Modal, onApprove): void {
+        $(`.ui.confirmation.modal.${modal.id}`).modal({
             onApprove: onApprove
         })
         .modal("show");

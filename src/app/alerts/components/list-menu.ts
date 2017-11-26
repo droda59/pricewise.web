@@ -2,6 +2,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { EventAggregator, Subscription } from "aurelia-event-aggregator";
 import { ListSummary } from "../../shared/models/list-summary";
+import { ConfirmationModal } from "../../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../../confirmation-modal-controller";
 
 @autoinject()
@@ -10,6 +11,8 @@ export class ListMenu {
     private _modalController: ConfirmationModalController;
     private _listCreatedSubscription: Subscription;
     private _listDeletedSubscription: Subscription;
+
+    confirmationModal: ConfirmationModal;
 
     @bindable selectedList: ListSummary;
     @bindable lists: Array<ListSummary>;
@@ -40,9 +43,9 @@ export class ListMenu {
     }
 
     confirmDeleteList(list: ListSummary) {
-        this._modalController.openModal(async () => {
+        this._modalController.openConfirmationModal(this.confirmationModal, async () => {
             this.delete({ list: list });
             this.selectList();
-        }, "delete-list");
+        });
     }
 }

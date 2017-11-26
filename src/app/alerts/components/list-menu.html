@@ -18,5 +18,5 @@
             class-name="${$parent.selectedList == list ? 'primary-action' : 'transparent'}"></list-label>
     </div>
 
-    <confirmation-modal message="lists.deleteConfirmation" class-name="delete-list"></confirmation-modal>
+    <confirmation-modal view-model.ref="confirmationModal" message="lists.deleteConfirmation"></confirmation-modal>
 </template>

@@ -2,6 +2,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { EventAggregator, Subscription } from "aurelia-event-aggregator";
 import { UserAlertSummary } from "../../shared/models/user-alert-summary";
+import { ConfirmationModal } from "../../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../../confirmation-modal-controller";
 
 @autoinject()
@@ -10,6 +11,8 @@ export class AlertsList {
     private _modalController: ConfirmationModalController;
     private _alertCreatedSubscription: Subscription;
     private _alertDeletedSubscription: Subscription;
+
+    confirmationModal: ConfirmationModal;
 
     @bindable alerts: Array<UserAlertSummary>;
     @bindable delete;
@@ -32,8 +35,8 @@ export class AlertsList {
     }
 
     confirmDeleteAlert(alert: UserAlertSummary) {
-        this._modalController.openModal(async () => {
+        this._modalController.openConfirmationModal(this.confirmationModal, async () => {
             this.delete({ alert: alert });
-        }, "delete-alert");
+        });
     }
 }

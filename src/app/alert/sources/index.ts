@@ -8,6 +8,7 @@ import { Toaster } from "../../shared/services/toaster";
 import { AlertEntry } from "../../shared/models/alert-entry";
 import { UserAlert } from "../../shared/models/user-alert";
 import { ProductInfo } from "../../shared/models/product-info";
+import { ConfirmationModal } from "../../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../../confirmation-modal-controller";
 
 @autoinject()
@@ -20,6 +21,7 @@ export class Sources extends BaseI18N {
     private _userId: string;
     private _alertId: string;
 
+    confirmationModal: ConfirmationModal;
     alert: UserAlert;
     isSearchingProducts: boolean;
     isUpdatingAlert: boolean;
@@ -107,7 +109,7 @@ export class Sources extends BaseI18N {
     }
 
     removeEntry(entry: AlertEntry): void {
-        this._modalController.openModal(async () => {
+        this._modalController.openConfirmationModal(this.confirmationModal, async () => {
             this.isUpdatingAlert = true;
 
             entry.isDeleted = true;

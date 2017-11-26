@@ -1,5 +1,5 @@
-<template bindable="message,className" containerless>
-    <div class="ui small basic confirmation modal ${className}">
+<template>
+    <div class="ui small basic confirmation modal ${id}">
         <div class="ui icon header">
             <i class="archive icon"></i>
             ${message | t: {context: 'title' } & oneTime}
