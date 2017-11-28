@@ -1,33 +1,29 @@
-import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { UserAlertSummary } from "../../shared/models/user-alert-summary";
+import { List } from "../../shared/models/list";
 import { Modal } from "../../../shared/modal";
 
-@autoinject()
 export class CreateListModal extends Modal {
     private _userId: string;
 
-    @bindable className: string;
-    @bindable name: string;
-    @bindable alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
-    @bindable selectedAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
-    @bindable save;
+    isUpdating: boolean;
+    idMatcher = (a: UserAlertSummary, b: UserAlertSummary) => a.id === b.id;
 
-    constructor() {
-        super();
-    }
+    @bindable list: List = new List();
+    @bindable isWorking: boolean;
+    @bindable alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
+    @bindable save;
 
     attached() {
         $(".ui.checkbox").checkbox();
     }
 
     createList() {
-        this.save({ name: this.name, alerts: this.selectedAlerts });
+        this.save({ list: this.list });
         this.close();
     }
 
     protected reset(): void {
-        this.name = "";
-        this.selectedAlerts = new Array<UserAlertSummary>();
+        this.list = new List();
     }
 }

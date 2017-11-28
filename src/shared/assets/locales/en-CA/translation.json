@@ -98,6 +98,7 @@
         },
         "noFilter": "All",
         "createButton": "Create list",
+        "updateButton": "Change list",
         "listCreated_success": "List created successfully!",
         "listCreated_failure": "An error occurred during the creation.",
         "listDeleted_success": "List deleted successfully!",

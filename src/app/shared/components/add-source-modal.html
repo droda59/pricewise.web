@@ -1,6 +1,6 @@
 <template>
     <overlay class-name="add-source ${id}">
-        <form submit.delegate="createSource()" role="form" class="ui large add-source form ${className}">
+        <form submit.delegate="createSource()" role="form" class="ui large add-source form ${isWorking ? 'loading' : ''}">
             <div class="ui one column center aligned grid">
                 <div class="title-column column">
                     <h3 i18n="sources.addSource">Browse your favourite shopping site and paste the product URL</h3>

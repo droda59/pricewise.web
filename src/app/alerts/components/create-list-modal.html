@@ -1,11 +1,11 @@
 <template>
     <overlay class-name="${id}">
-        <form submit.delegate="createList()" role="form" class="ui large form ${className}">
+        <form submit.delegate="saveList()" role="form" class="ui large form ${isWorking ? 'loading' : ''}">
             <h3 class="ui centered header" i18n="lists.create.title">Create a list with the alerts you want</h3>
             <div class="field">
                 <div class="ui centered grid">
                     <div class="eight wide column">
-                        <input value.bind="name" type="text" placeholder="Name" autofocus="" i18n="[placeholder]lists.create.name">
+                        <input value.bind="list.name" type="text" placeholder="Name" autofocus="" i18n="[placeholder]lists.create.name">
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                                 <div class="inline field">
                                     <img class="ui avatar image" src.one-time="alert.imageUrl">
                                     <div class="ui checkbox">
-                                        <input type="checkbox" class="hidden" model.bind="alert" checked.bind="selectedAlerts">
+                                        <input type="checkbox" class="hidden" model.bind="alert" matcher.bind="idMatcher" checked.bind="list.selectedAlerts">
                                         <label>${alert.title}</label>
                                     </div>
                                 </div>

@@ -23,25 +23,25 @@
                 add.call="showModal(createListModal)">
             </list-menu>
 
-            <!-- <div show.bind="currentListFilter">
-                <a class="ui primary-action button" click.delegate="showModal('update-list')" i18n="[append]lists.createButton">
+            <div show.bind="currentList">
+                <a class="ui primary-action button" click.delegate="showModal(updateListModal)" i18n="[append]lists.updateButton">
                     <i class="plus icon"></i>
                 </a>
 
-                <create-list-modal class="update-list-modal"
+                <create-list-modal
+                    view-model.ref="updateListModal"
+                    is-working.one-way="isUpdating"
                     alerts.one-way="allAlerts"
-                    selectedAlerts.one-way="currentList.alerts"
-                    name.one-way="currentList.name"
-                    close.call="removeModal('update-list')"
-                    save.call="updateList(name, alerts)">
+                    list.one-way="currentList"
+                    save.call="saveList(list)">
                 </create-list-modal>
-            </div> -->
+            </div>
 
             <alerts-list
                 show.bind="allAlerts.length"
                 alerts.one-way="alerts"
                 delete.call="removeAlert(alert)"
-                add.call="showModal(addSourceModal)"
+                add.call="showModal(createAlertModal)"
                 activate.call="activateAlert(alert)">
             </alerts-list>
         </div>
@@ -66,7 +66,7 @@
             <div class="ui text loader" i18n="alerts.updating">Updating</div>
         </div>
 
-        <create-list-modal view-model.ref="createListModal" class-name="${isUpdating ? 'loading' : ''}" alerts.one-way="allAlerts" save.call="createList(name, alerts)"></create-list-modal>
-        <add-source-modal view-model.ref="addSourceModal" class-name="${isUpdating ? 'loading' : ''}" add.call="createAlert(newAlertUrl)"></add-source-modal>
+        <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="allAlerts" save.call="saveList(list)"></create-list-modal>
+        <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
     </div>
 </template>

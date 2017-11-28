@@ -1,7 +1,7 @@
 import { Modal } from "./shared/modal";
 
 export class ConfirmationModalController {
-    openConfirmationModal(modal: Modal, onApprove): void {
+    confirm(modal: Modal, onApprove): void {
         $(`.ui.confirmation.modal.${modal.id}`).modal({
             onApprove: onApprove
         })

@@ -111,7 +111,6 @@
         <div class="ui text loader" i18n="alert.updating">Updating</div>
     </div>
 
-    <add-source-modal class-name="${isAddingSource ? 'loading' : ''}" add.call="addEntry(newAlertUrl)"></add-source-modal>
-
+    <add-source-modal view-model.ref="addSourceModal" is-working.one-way="isAddingSource" add.call="addEntry(newAlertUrl)"></add-source-modal>
     <confirmation-modal view-model.ref="confirmationModal" message="alert.sources.deleteConfirmation"></confirmation-modal>
 </template>

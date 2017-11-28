@@ -25,7 +25,7 @@ export class Alerts extends BaseI18N {
     private _userId: string;
 
     createListModal: CreateListModal;
-    addSourceModal: AddSourceModal;
+    createAlertModal: AddSourceModal;
     isUpdating: boolean;
     currentList: List;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
@@ -69,50 +69,11 @@ export class Alerts extends BaseI18N {
         $(".ui.modals.page.dimmer").remove();
     }
 
-    async updateList(name: string, alerts: Array<UserAlertSummary>): Promise<void> {
-        this.isUpdating = true;
-
-        try {
-            var list = new List();
-            list.name = name;
-            list.alerts = alerts;
-
-            const updatedList = await this._listService.create(this._userId, list);
-            if (!updatedList) {
-                throw new Error();
-            }
-
-            this.currentListFilter = updatedList;
-
-            this._toaster.showSuccess("lists.listUpdated");
-        } catch(e) {
-            this._toaster.showError("lists.listUpdated");
-        } finally {
-            this.isUpdating = false;
-        }
-    }
-
-    async createList(name: string, alerts: Array<UserAlertSummary>): Promise<void> {
-        this.isUpdating = true;
-
-        try {
-            var list = new List();
-            list.name = name;
-            list.alerts = alerts;
-
-            const newList = await this._listService.create(this._userId, list);
-            if (!newList) {
-                throw new Error();
-            }
-
-            this.lists.push(newList);
-            this._ea.publish("listCreated", { list: newList });
-
-            this._toaster.showSuccess("lists.listCreated");
-        } catch(e) {
-            this._toaster.showError("lists.listCreated");
-        } finally {
-            this.isUpdating = false;
+    async saveList(list: List): Promise<void> {
+        if (list.id) {
+            await this._updateList(list);
+        } else {
+            await this._createList(list);
         }
     }
 
@@ -226,6 +187,46 @@ export class Alerts extends BaseI18N {
                 this.alerts = this.currentList.alerts;
             }
 
+            this.isUpdating = false;
+        }
+    }
+
+    private async _updateList(list: List): Promise<void> {
+        this.isUpdating = true;
+
+        try {
+            const updatedList = await this._listService.update(this._userId, list);
+            if (!updatedList) {
+                throw new Error();
+            }
+
+            this.currentListFilter = updatedList;
+
+            this._ea.publish("listUpdated", { list: updatedList });
+            this._toaster.showSuccess("lists.listUpdated");
+        } catch(e) {
+            this._toaster.showError("lists.listUpdated");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
+    private async _createList(list: List): Promise<void> {
+        this.isUpdating = true;
+
+        try {
+            const newList = await this._listService.create(this._userId, list);
+            if (!newList) {
+                throw new Error();
+            }
+
+            this.lists.push(newList);
+
+            this._ea.publish("listCreated", { list: newList });
+            this._toaster.showSuccess("lists.listCreated");
+        } catch(e) {
+            this._toaster.showError("lists.listCreated");
+        } finally {
             this.isUpdating = false;
         }
     }

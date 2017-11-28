@@ -11,7 +11,7 @@ export class AddSourceModal extends Modal {
     newAlertUrl: string;
     sources: Array<Source>;
 
-    @bindable className: string;
+    @bindable isWorking: boolean;
     @bindable add;
 
     constructor(sourcesService: SourcesService) {

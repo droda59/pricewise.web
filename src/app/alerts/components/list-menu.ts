@@ -1,16 +1,12 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
-import { EventAggregator, Subscription } from "aurelia-event-aggregator";
 import { ListSummary } from "../../shared/models/list-summary";
 import { ConfirmationModal } from "../../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../../confirmation-modal-controller";
 
 @autoinject()
 export class ListMenu {
-    private _ea: EventAggregator;
     private _modalController: ConfirmationModalController;
-    private _listCreatedSubscription: Subscription;
-    private _listDeletedSubscription: Subscription;
 
     confirmationModal: ConfirmationModal;
 
@@ -19,19 +15,8 @@ export class ListMenu {
     @bindable delete;
     @bindable add;
 
-    constructor(ea: EventAggregator, modalController: ConfirmationModalController) {
-        this._ea = ea;
+    constructor(modalController: ConfirmationModalController) {
         this._modalController = modalController;
-    }
-
-    attached() {
-        // this._listCreatedSubscription = this._ea.subscribe("listCreated", list => this.lists.push(list));
-        // this._listDeletedSubscription = this._ea.subscribe("listDeleted", list => this.lists.remove(list));
-    }
-
-    detached() {
-        // this._listCreatedSubscription.dispose();
-        // this._listDeletedSubscription.dispose();
     }
 
     selectList(list?: ListSummary): void {
@@ -43,7 +28,7 @@ export class ListMenu {
     }
 
     confirmDeleteList(list: ListSummary) {
-        this._modalController.openConfirmationModal(this.confirmationModal, async () => {
+        this._modalController.confirm(this.confirmationModal, async () => {
             this.delete({ list: list });
             this.selectList();
         });

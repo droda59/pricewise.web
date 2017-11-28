@@ -98,6 +98,7 @@
         },
         "noFilter": "Toutes",
         "createButton": "Créer liste",
+        "updateButton": "Changer liste",
         "listCreated_success": "Liste créée avec succès!",
         "listCreated_failure": "Une erreur est survenue durant la création.",
         "listDeleted_success": "Liste supprimée avec succès!",
