@@ -46,7 +46,5 @@
         </form>
     </div>
 
-    <div class="ui ${isUpdatingUser ? 'active': ''} inverted dimmer">
-        <div class="ui text loader" i18n="settings.updating">Updating</div>
-    </div>
+    <loader is-active.one-way="isUpdatingUser" text="settings.updating"></loader>
 </template>

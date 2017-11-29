@@ -8,12 +8,14 @@ export class List implements IList {
     constructor();
     constructor(dto: IList);
     constructor(dto?: IList) {
+        this.alerts = new Array<UserAlertSummary>();
+
         if (dto) {
             (<any>Object).assign(this, dto);
 
-            this.alerts = dto.alerts
-                ? dto.alerts.map(alertDto => new UserAlertSummary(alertDto)) 
-                : new Array<UserAlertSummary>();
+            if (dto.alerts) {
+                this.alerts = dto.alerts.map(alertDto => new UserAlertSummary(alertDto)) ;
+            }
         }
     }
 }

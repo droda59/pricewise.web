@@ -7,18 +7,24 @@ export class CreateListModal extends Modal {
     private _userId: string;
 
     isUpdating: boolean;
-    idMatcher = (a: UserAlertSummary, b: UserAlertSummary) => a.id === b.id;
+    idMatcher = (a, b) => a.id === b.id;
 
     @bindable list: List = new List();
     @bindable isWorking: boolean;
     @bindable alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     @bindable save;
 
+    bind() {
+        if (!this.list) {
+            this.list = new List();
+        }
+    }
+
     attached() {
         $(".ui.checkbox").checkbox();
     }
 
-    createList() {
+    saveList() {
         this.save({ list: this.list });
         this.close();
     }

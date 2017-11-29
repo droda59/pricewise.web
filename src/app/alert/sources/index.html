@@ -60,9 +60,7 @@
 
             <div class="column">
                 <div>
-                    <div class="ui ${isSearchingProducts ? 'active': ''} inverted dimmer">
-                        <div class="ui text loader" i18n="alert.sources.searchingSimilar">Searching for similar products...</div>
-                    </div>
+                    <loader is-active.one-way="isSearchingProducts" text="alert.sources.searchingSimilar"></loader>
 
                     <div show.bind="suggestedProducts.length">
                         <h3 i18n="alert.sources.addOtherSourceSuggestion">You might also want to add these sources to your alert</h3>
@@ -107,10 +105,7 @@
         </div>
     </div>
 
-    <div class="ui ${isUpdatingAlert ? 'active': ''} inverted dimmer">
-        <div class="ui text loader" i18n="alert.updating">Updating</div>
-    </div>
-
+    <loader is-active.one-way="isUpdatingAlert" text="alert.updating"></loader>
     <add-source-modal view-model.ref="addSourceModal" is-working.one-way="isAddingSource" add.call="addEntry(newAlertUrl)"></add-source-modal>
     <confirmation-modal view-model.ref="confirmationModal" message="alert.sources.deleteConfirmation"></confirmation-modal>
 </template>

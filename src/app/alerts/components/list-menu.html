@@ -12,10 +12,11 @@
             label="${'lists.noFilter' | t}"
             class-name="${selectedList ? 'transparent' : 'primary-action'}"></list-label>
         <list-label repeat.for="list of lists | sort:'name'"
-            list.one-time="list"
+            list.one-way="list"
+            label.one-way="list.name"
             click.call="selectList(list)"
             delete.call="confirmDeleteList(list)"
-            class-name="${$parent.selectedList == list ? 'primary-action' : 'transparent'}"></list-label>
+            class-name="${$parent.selectedList.id === list.id ? 'primary-action' : 'transparent'}"></list-label>
     </div>
 
     <confirmation-modal view-model.ref="confirmationModal" message="lists.deleteConfirmation"></confirmation-modal>

@@ -201,6 +201,8 @@ export class Alerts extends BaseI18N {
             }
 
             this.currentListFilter = updatedList;
+            var listIndex = this.lists.findIndex(x => x.id === updatedList.id);
+            this.lists.splice(listIndex, 1, updatedList);
 
             this._ea.publish("listUpdated", { list: updatedList });
             this._toaster.showSuccess("lists.listUpdated");

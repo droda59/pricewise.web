@@ -26,6 +26,10 @@ export class SourceEntry extends BaseI18N {
         this._loaded = true;
     }
 
+    detached() {
+        this._loaded = false;
+    }
+
     noteChanged(newValue: string, oldValue: string) {
         if (this._loaded && newValue != oldValue) {
             this.entry.note = newValue;

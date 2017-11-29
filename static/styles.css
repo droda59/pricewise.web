@@ -415,6 +415,31 @@ section {
     max-width: 60%;
 }
 
+/* COMPONENTS */
+
+.pricewise .ui.secondary.pointing.menu .back-button.item,
+.pricewise .back-button {
+    padding-left: 0;
+}
+.pricewise .back-button .title {
+    font-weight: 200;
+}
+
+.pricewise .ui.header-title.header {
+    color: white;
+    font-size: 3rem;
+    font-weight: 200;
+}
+
+.pricewise .sub-menu {
+    margin-bottom: 0;
+}
+.pricewise .sub-menu a,
+.pricewise .ui.inverted.sub-menu.menu .item,
+.pricewise .ui.inverted.sub-menu.menu .item > a:not(.ui) {
+    color: inherit;
+}
+
 /* Mobile */
 @media only screen and (max-width: 767px) {
     [class*="mobile hidden"],

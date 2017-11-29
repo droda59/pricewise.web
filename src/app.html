@@ -1,7 +1,5 @@
 <template>
     <router-view></router-view>
-
-    <div class="ui ${router.isNavigating ? 'active' : ''} inverted dimmer">
-        <div class="ui loader"></div>
-    </div>
+    
+    <loader is-active.one-way="router.isNavigating"></loader>
 </template>

@@ -163,7 +163,7 @@ export class Sources extends BaseI18N {
             var alertEntriesUrls = this.alert.entries.map(x => x.source);
 
             try {
-                var searchResults = await this._productService.searchByProductIdentifier(productIdentifiers);
+                var searchResults = [];//await this._productService.searchByProductIdentifier(productIdentifiers);
                 for (var j = 0; j < searchResults.length; j++) {
                     if (!alertEntriesUrls.includes(searchResults[j].source)) {
                         this.suggestedProducts.push(searchResults[j]);

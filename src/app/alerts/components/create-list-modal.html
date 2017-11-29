@@ -13,11 +13,11 @@
                 <div class="ui centered grid">
                     <div class="ten wide column">
                         <div class="ui middle aligned very relaxed divided selection list">
-                            <div repeat.for="alert of alerts | sort:'title'"  class="item">
+                            <div repeat.for="alert of alerts | sort:'title'" class="item">
                                 <div class="inline field">
                                     <img class="ui avatar image" src.one-time="alert.imageUrl">
                                     <div class="ui checkbox">
-                                        <input type="checkbox" class="hidden" model.bind="alert" matcher.bind="idMatcher" checked.bind="list.selectedAlerts">
+                                        <input type="checkbox" class="hidden" model.bind="alert" matcher.bind="idMatcher" checked.bind="list.alerts">
                                         <label>${alert.title}</label>
                                     </div>
                                 </div>

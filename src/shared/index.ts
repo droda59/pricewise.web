@@ -6,6 +6,7 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName("./components/confirmation-modal"),
         PLATFORM.moduleName("./components/footer/footer"),
         PLATFORM.moduleName("./components/overlay.html"),
+        PLATFORM.moduleName("./components/loader.html"),
     ];
 
     var valueConverters = [

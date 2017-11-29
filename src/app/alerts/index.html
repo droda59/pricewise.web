@@ -3,12 +3,13 @@
     <require from="./components/create-list-modal"></require>
     <require from="./components/alerts-list"></require>
     <require from="../shared/components/add-source-modal"></require>
+    <require from="../shared/components/header-title"></require>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">
             <div class="ui text menu" style="margin: 0; padding: 3em 0;">
                 <div class="item">
-                    <h1 class="ui header" style="color: white; font-size: 3rem; font-weight: 200;" i18n="alerts.watchedProducts">Watched products</h1>
+                    <header-title text="alerts.watchedProducts"></h1>
                 </div>
             </div>
         </div>
@@ -17,7 +18,7 @@
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
             <list-menu class="mobile hidden"
-                lists.one-time="lists"
+                lists.one-way="lists"
                 selected-list.two-way="currentListFilter"
                 delete.call="deleteList(list)"
                 add.call="showModal(createListModal)">
@@ -62,10 +63,7 @@
             </div>
         </div>
 
-        <div class="ui ${isUpdating ? 'active': ''} inverted dimmer">
-            <div class="ui text loader" i18n="alerts.updating">Updating</div>
-        </div>
-
+        <loader text="alerts.updating" is-active.one-way="isUpdating"></loader>
         <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="allAlerts" save.call="saveList(list)"></create-list-modal>
         <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
     </div>

@@ -10,8 +10,8 @@ export class ListLabel {
     @bindable delete;
 
     bind() {
-        if (!this.label && this.list) {
-            this.label = this.list.name;
-        }
+        // if (!this.label && this.list) {
+        //     this.label = this.list.name;
+        // }
     }
 }

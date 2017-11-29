@@ -1,15 +1,10 @@
 <template>
+    <require from="../shared/components/back-button"></require>
+    <require from="../shared/components/sub-menu.html"></require>
+
     <div class="primary-dark" style="color: white;">
         <div class="ui container alert" style="position: relative; padding: 3em 0 0 0;">
-            <div class="ui inverted secondary pointing menu">
-                <a route-href="route: alerts;" class="item" style="padding-left: 0;">
-                    <h2 style="font-weight: 200;" i18n="[append]alert.title">
-                        <div class="basic circular ui icon inverted button">
-                            <i class="large inverted chevron left icon"></i>
-                        </div>
-                    </h2>
-                </a>
-            </div>
+            <back-button></back-button>
 
             <div class="ui two column mobile only grid">
                 <div class="six wide column">
@@ -52,11 +47,7 @@
                 </span>
             </div>
 
-            <div class="ui inverted secondary pointing text menu" style="margin-bottom: 0;">
-                <a repeat.for="row of router.navigation" href.bind="row.href" class="${row.isActive ? 'active' : ''} item">
-                    ${row.title}
-                </a>
-            </div>
+            <sub-menu routes.bind="router.navigation"></sub-menu>
         </div>
     </div>
 
