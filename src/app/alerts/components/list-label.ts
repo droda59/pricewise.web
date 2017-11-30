@@ -8,10 +8,4 @@ export class ListLabel {
     @bindable list: ListSummary;
     @bindable click;
     @bindable delete;
-
-    bind() {
-        // if (!this.label && this.list) {
-        //     this.label = this.list.name;
-        // }
-    }
 }

@@ -2,7 +2,7 @@
     <require from="./list-label"></require>
 
     <div class="ui text menu">
-        <div class="item">
+        <div class="item" if.bind="add">
             <a class="ui red large label" click.delegate="add()" i18n="[append]lists.createButton">
                 <i class="plus icon"></i>
             </a>

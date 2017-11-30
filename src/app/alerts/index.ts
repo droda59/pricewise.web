@@ -11,6 +11,7 @@ import { List } from "../shared/models/list";
 import { ListSummary } from "../shared/models/list-summary";
 import { CreateListModal } from "./components/create-list-modal";
 import { AddSourceModal } from "../shared/components/add-source-modal";
+import { ConfirmationModal } from "../../shared/components/confirmation-modal";
 import { Modal } from "../../shared/modal";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 
@@ -26,10 +27,12 @@ export class Alerts extends BaseI18N {
 
     createListModal: CreateListModal;
     createAlertModal: AddSourceModal;
+    confirmationModal: ConfirmationModal;
     isUpdating: boolean;
     currentList: List;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     allAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
+    selectedAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     lists: Array<ListSummary> = new Array<ListSummary>();
 
     @bindable currentListFilter: ListSummary;
@@ -63,6 +66,10 @@ export class Alerts extends BaseI18N {
         this.allAlerts = alerts;
         this.lists = lists;
         this.alerts = this.allAlerts;
+    }
+
+    attached() {
+        $(".ui.dropdown").dropdown();
     }
 
     detached() {
@@ -149,25 +156,26 @@ export class Alerts extends BaseI18N {
         }
     }
 
-    async removeAlert(alert: UserAlertSummary): Promise<void> {
-        this.isUpdating = true;
+    async removeFromList(alerts: Array<UserAlertSummary>): Promise<void> {
+        alerts.forEach(alert => this.currentList.alerts.remove(alert));
 
-        try {
-            const alertDeleted = await this._alertService.delete(this._userId, alert.id);
-            if (!alertDeleted) {
-                throw new Error();
-            }
+        await this.saveList(this.currentList);
+    }
 
-            this.alerts.removeWhere(x => x.id == alert.id);
-            this.allAlerts.removeWhere(x => x.id == alert.id);
-            this._ea.publish("alertDeleted", { alert: alert });
+    async addToList(alerts: Array<UserAlertSummary>, list: ListSummary): Promise<void> {
+        // TODO Change this
+        var selectedList = await this._listService.get(this._userId, list.id);
+        alerts.forEach(alert => selectedList.alerts.push(alert));
 
-            this._toaster.showSuccess("alerts.alertDeleted");
-        } catch(e) {
-            this._toaster.showError("alerts.alertDeleted");
-        } finally {
-            this.isUpdating = false;
-        }
+        await this.saveList(selectedList);
+    }
+
+    clearSelection(): void {
+        this.selectedAlerts = new Array<UserAlertSummary>();
+    }
+
+    confirmDeleteAlert(alerts: Array<UserAlertSummary>): void {
+        this._modalController.confirm(this.confirmationModal, async () => await this._deleteAlerts(alerts));
     }
 
     showModal(modal: Modal): void {
@@ -223,11 +231,35 @@ export class Alerts extends BaseI18N {
             }
 
             this.lists.push(newList);
+            this.selectedAlerts = new Array<UserAlertSummary>();
 
             this._ea.publish("listCreated", { list: newList });
             this._toaster.showSuccess("lists.listCreated");
         } catch(e) {
             this._toaster.showError("lists.listCreated");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
+    private async _deleteAlerts(alerts: Array<UserAlertSummary>): Promise<void> {
+        this.isUpdating = true;
+
+        try {
+            alerts.forEach(async alert => {
+                const alertDeleted = await this._alertService.delete(this._userId, alert.id);
+                if (!alertDeleted) {
+                    throw new Error();
+                }
+
+                this.alerts.removeWhere(x => x.id == alert.id);
+                this.allAlerts.removeWhere(x => x.id == alert.id);
+            });
+            this._ea.publish("alertDeleted", { alert: alert });
+
+            this._toaster.showSuccess("alerts.alertDeleted");
+        } catch(e) {
+            this._toaster.showError("alerts.alertDeleted");
         } finally {
             this.isUpdating = false;
         }

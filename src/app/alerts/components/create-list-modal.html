@@ -5,33 +5,13 @@
             <div class="field">
                 <div class="ui centered grid">
                     <div class="eight wide column">
-                        <input value.bind="list.name" type="text" placeholder="Name" autofocus="" i18n="[placeholder]lists.create.name">
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui centered grid">
-                    <div class="ten wide column">
-                        <div class="ui middle aligned very relaxed divided selection list">
-                            <div repeat.for="alert of alerts | sort:'title'" class="item">
-                                <div class="inline field">
-                                    <img class="ui avatar image" src.one-time="alert.imageUrl">
-                                    <div class="ui checkbox">
-                                        <input type="checkbox" class="hidden" model.bind="alert" matcher.bind="idMatcher" checked.bind="list.alerts">
-                                        <label>${alert.title}</label>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="ui large right action input" style="width: 100%;">
+                            <input value.bind="name" type="text" placeholder="Name" i18n="[placeholder]lists.create.name" autofocus style="width: auto;">
+                            <button class="ui primary primary-action button ${name ? '' : 'disabled'}" i18n="[append]lists.create.save">
+                                <i class="add icon"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="ui centered grid">
-                <div class="ten wide column">
-                    <button class="ui right floated primary-action primary button" type="submit" i18n="lists.create.save"
-                        data-analytics-category="List"
-                        data-analytics-action="create">Save</button>
                 </div>
             </div>
         </form>

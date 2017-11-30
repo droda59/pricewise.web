@@ -20,31 +20,54 @@
             <list-menu class="mobile hidden"
                 lists.one-way="lists"
                 selected-list.two-way="currentListFilter"
-                delete.call="deleteList(list)"
-                add.call="showModal(createListModal)">
+                delete.call="deleteList(list)">
             </list-menu>
-
-            <div show.bind="currentList">
-                <a class="ui primary-action button" click.delegate="showModal(updateListModal)" i18n="[append]lists.updateButton">
-                    <i class="plus icon"></i>
-                </a>
-
-                <create-list-modal
-                    view-model.ref="updateListModal"
-                    is-working.one-way="isUpdating"
-                    alerts.one-way="allAlerts"
-                    list.one-way="currentList"
-                    save.call="saveList(list)">
-                </create-list-modal>
-            </div>
 
             <alerts-list
                 show.bind="allAlerts.length"
                 alerts.one-way="alerts"
-                delete.call="removeAlert(alert)"
+                selected-alerts.two-way="selectedAlerts"
                 add.call="showModal(createAlertModal)"
                 activate.call="activateAlert(alert)">
             </alerts-list>
+
+            <div class="ui bottom fixed labeled icon borderless inverted menu" style="justify-content: center;" show.bind="selectedAlerts.length">
+                <a class="item" click.delegate="clearSelection()" style="font-size: 0.8em;">
+                    <i class="remove icon"></i>
+                    Clear selection
+                </a>
+                <a class="item" show.bind="!currentList" click.delegate="showModal(createListModal)" style="font-size: 0.8em;"
+                    data-analytics-category="List"
+                    data-analytics-action="create"
+                    data-analytics-label="footer">
+                    <i class="list icon"></i>
+                    Create list
+                </a>
+                <div class="ui dropdown item" show.bind="!currentList" style="font-size: 0.8em;"
+                    data-analytics-category="List"
+                    data-analytics-action="add"
+                    data-analytics-label="footer">
+                    <i class="indent icon"></i>
+                    <div class="text">Add to list</div>
+                    <div class="menu">
+                        <div repeat.for="list of lists | sort:'name'" class="item" click.delegate="addToList(selectedAlerts, list)">${list.name}</div>
+                    </div>
+                </div>
+                <a class="item" show.bind="currentList" click.delegate="removeFromList(selectedAlerts)" style="font-size: 0.8em;"
+                    data-analytics-category="List"
+                    data-analytics-action="remove"
+                    data-analytics-label="footer">
+                    <i class="outdent icon"></i>
+                    Remove from list
+                </a>
+                <a class="item" click.delegate="confirmDeleteAlert(selectedAlerts)" style="font-size: 0.8em;"
+                    data-analytics-category="Alerts"
+                    data-analytics-action="delete"
+                    data-analytics-label="footer">
+                    <i class="archive icon"></i>
+                    Delete
+                </a>
+            </div>
         </div>
 
         <div class="ui overlay" hide.bind="allAlerts.length">
@@ -64,7 +87,8 @@
         </div>
 
         <loader text="alerts.updating" is-active.one-way="isUpdating"></loader>
-        <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="allAlerts" save.call="saveList(list)"></create-list-modal>
+        <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
         <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
+        <confirmation-modal view-model.ref="confirmationModal" message="alerts.deleteConfirmation"></confirmation-modal>
     </div>
 </template>
