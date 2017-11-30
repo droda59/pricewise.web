@@ -88,7 +88,14 @@
         "alertDeleted_success": "Alert deleted successfully!",
         "alertDeleted_failure": "An error occurred during the deletion.",
         "deleteConfirmation_title": "Delete alert",
-        "deleteConfirmation_description": "Are you sure you want to delete this product alert?"
+        "deleteConfirmation_description": "Are you sure you want to delete the selected product alerts?",
+        "actions": {
+            "clearSelection": "Clear selection",
+            "createList": "Create list",
+            "addToList": "Add to list",
+            "removeFromList": "Remove from list",
+            "deleteAlert": "Delete"
+        }
     },
     "lists": {
         "create": {

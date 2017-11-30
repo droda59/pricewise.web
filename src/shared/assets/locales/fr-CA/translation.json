@@ -88,7 +88,14 @@
         "alertDeleted_success": "Alerte supprimée avec succès!",
         "alertDeleted_failure": "Une erreur est survenue durant la suppression.",
         "deleteConfirmation_title": "Supprimer une alerte",
-        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer l'alerte de produit?"
+        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer les alertes de produit?",
+        "actions": {
+            "clearSelection": "Effacer la sélection",
+            "createList": "Créer une liste",
+            "addToList": "Ajouter à une liste",
+            "removeFromList": "Retirer d'une liste",
+            "deleteAlert": "Supprimer"
+        }
     },
     "lists": {
         "create": {
