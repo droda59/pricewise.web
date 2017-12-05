@@ -4,6 +4,8 @@
     <require from="./components/alerts-list"></require>
     <require from="../shared/components/add-source-modal"></require>
     <require from="../shared/components/header-title"></require>
+    <require from="../shared/components/actions-menu.html"></require>
+    <require from="../shared/components/actions-menu-action.html"></require>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">
@@ -17,7 +19,7 @@
 
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
-            <list-menu class="mobile hidden"
+            <list-menu 
                 lists.one-way="lists"
                 selected-list.two-way="currentListFilter"
                 delete.call="deleteList(list)">
@@ -31,39 +33,28 @@
                 activate.call="activateAlert(alert)">
             </alerts-list>
 
-            <div class="ui bottom fixed labeled icon borderless secondary inverted primary-dark menu" style="justify-content: center;" show.bind="selectedAlerts.length">
-                <a class="item" click.delegate="clearSelection()" style="font-size: 0.8em;" i18n="[append]alerts.actions.clearSelection">
-                    <i class="remove icon"></i>
-                </a>
-                <a class="item" show.bind="!currentList" click.delegate="showModal(createListModal)" style="font-size: 0.8em;" i18n="[append]alerts.actions.createList"
-                    data-analytics-category="List"
-                    data-analytics-action="create"
-                    data-analytics-label="footer">
-                    <i class="list icon"></i>
-                </a>
-                <div class="ui dropdown link item" show.bind="!currentList" style="font-size: 0.8em;"
-                    data-analytics-category="List"
-                    data-analytics-action="add"
-                    data-analytics-label="footer">
+            <actions-menu show.bind="selectedAlerts.length">
+                <actions-menu-action text="alerts.actions.clearSelection" icon="remove" action.call="clearSelection()"></actions-menu-action>
+                <actions-menu-action text="alerts.actions.createList" icon="list" action.call="showModal(createListModal)" hide.bind="currentList"
+                    analytics-category="List"
+                    analytics-action="create"></actions-menu-action>
+                <div class="ui dropdown link item" hide.bind="currentList">
                     <i class="outdent icon"></i>
-                    <div class="text" i18n="alerts.actions.addToList">Add to list</div>
+                    ${'alerts.actions.addToList' | t}
                     <div class="menu">
-                        <div repeat.for="list of lists | sort:'name'" class="item" click.delegate="addToList(selectedAlerts, list)">${list.name}</div>
+                        <a repeat.for="list of lists | sort:'name'" class="item" click.delegate="addToList(selectedAlerts, list)"
+                            data-analytics-category="List"
+                            data-analytics-action="add"
+                            data-analytics-label="footer">${list.name}</a>
                     </div>
                 </div>
-                <a class="item" show.bind="currentList" click.delegate="removeFromList(selectedAlerts)" style="font-size: 0.8em;" i18n="[append]alerts.actions.removeFromList"
-                    data-analytics-category="List"
-                    data-analytics-action="remove"
-                    data-analytics-label="footer">
-                    <i class="indent icon"></i>
-                </a>
-                <a class="item" click.delegate="confirmDeleteAlert(selectedAlerts)" style="font-size: 0.8em;" i18n="[append]alerts.actions.deleteAlert"
-                    data-analytics-category="Alerts"
-                    data-analytics-action="delete"
-                    data-analytics-label="footer">
-                    <i class="archive icon"></i>
-                </a>
-            </div>
+                <actions-menu-action text="alerts.actions.removeFromList" icon="indent" action.call="removeFromList(selectedAlerts)" show.bind="currentList"
+                    analytics-category="List"
+                    analytics-action="remove"></actions-menu-action>
+                <actions-menu-action text="alerts.actions.deleteAlert" icon="indent" action.call="confirmDeleteAlert(selectedAlerts)" show.bind="currentList"
+                    analytics-category="List"
+                    analytics-action="delete"></actions-menu-action>
+            </actions-menu>
         </div>
 
         <div class="ui overlay" hide.bind="allAlerts.length">

@@ -1,6 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
-import { ListSummary } from "../../shared/models/list-summary";
+import { List } from "../../shared/models/list";
 import { ConfirmationModal } from "../../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../../confirmation-modal-controller";
 
@@ -10,8 +10,8 @@ export class ListMenu {
 
     confirmationModal: ConfirmationModal;
 
-    @bindable selectedList: ListSummary;
-    @bindable lists: Array<ListSummary>;
+    @bindable selectedList: List;
+    @bindable lists: Array<List>;
     @bindable delete;
     @bindable add;
 
@@ -19,7 +19,7 @@ export class ListMenu {
         this._modalController = modalController;
     }
 
-    selectList(list?: ListSummary): void {
+    selectList(list?: List): void {
         if (!list && this.selectedList != null) {
             this.selectedList = null;
         } else if (this.selectedList != list) {
@@ -27,7 +27,7 @@ export class ListMenu {
         }
     }
 
-    confirmDeleteList(list: ListSummary) {
+    confirmDeleteList(list: List) {
         this._modalController.confirm(this.confirmationModal, async () => {
             this.delete({ list: list });
             this.selectList();

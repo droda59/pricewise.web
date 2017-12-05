@@ -8,7 +8,6 @@ import { AlertService } from "../shared/services/alert-service";
 import { ListService } from "../shared/services/list-service";
 import { UserAlertSummary } from "../shared/models/user-alert-summary";
 import { List } from "../shared/models/list";
-import { ListSummary } from "../shared/models/list-summary";
 import { CreateListModal } from "./components/create-list-modal";
 import { AddSourceModal } from "../shared/components/add-source-modal";
 import { ConfirmationModal } from "../../shared/components/confirmation-modal";
@@ -33,9 +32,9 @@ export class Alerts extends BaseI18N {
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     allAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     selectedAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
-    lists: Array<ListSummary> = new Array<ListSummary>();
+    lists: Array<List> = new Array<List>();
 
-    @bindable currentListFilter: ListSummary;
+    @bindable currentListFilter: List;
 
     constructor(
             router: Router,
@@ -84,7 +83,7 @@ export class Alerts extends BaseI18N {
         }
     }
 
-    async deleteList(list: ListSummary) {
+    async deleteList(list: List) {
         this.isUpdating = true;
 
         try {
@@ -162,12 +161,10 @@ export class Alerts extends BaseI18N {
         await this.saveList(this.currentList);
     }
 
-    async addToList(alerts: Array<UserAlertSummary>, list: ListSummary): Promise<void> {
-        // TODO Change this
-        var selectedList = await this._listService.get(this._userId, list.id);
-        alerts.forEach(alert => selectedList.alerts.push(alert));
+    async addToList(alerts: Array<UserAlertSummary>, list: List): Promise<void> {
+        alerts.forEach(alert => list.alerts.push(alert));
 
-        await this.saveList(selectedList);
+        await this.saveList(list);
     }
 
     clearSelection(): void {
@@ -182,7 +179,7 @@ export class Alerts extends BaseI18N {
         this._modalController.openOverlayModal(modal);
     }
 
-    async currentListFilterChanged(newValue: ListSummary, oldValue: ListSummary) {
+    async currentListFilterChanged(newValue: List, oldValue: List) {
         if (newValue != oldValue) {
             this.isUpdating = true;
 

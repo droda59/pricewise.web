@@ -2,7 +2,6 @@ import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { List } from "../models/list";
-import { ListSummary } from "../models/list-summary";
 import { AuthorizationInterceptor } from "../../../authorization-interceptor";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
@@ -37,17 +36,17 @@ export class ListService {
         return new List(await response.json());
     }
 
-    async getSummaries(userId: string): Promise<Array<ListSummary>> {
+    async getSummaries(userId: string): Promise<Array<List>> {
         await fetchPolyfill;
 
         const response = await this._httpClient.fetch(`${userId}`, {
             method: "get"
         });
 
-        return (<Array<any>>(await response.json())).map(x => new ListSummary(x));
+        return (<Array<any>>(await response.json())).map(x => new List(x));
     }
 
-    async create(userId: string, list: List): Promise<ListSummary> {
+    async create(userId: string, list: List): Promise<List> {
         await fetchPolyfill;
 
         const response = await this._httpClient.fetch(`${userId}`, {
@@ -55,10 +54,10 @@ export class ListService {
             body: json(list)
         });
 
-        return new ListSummary(await response.json());
+        return new List(await response.json());
     }
 
-    async update(userId: string, list: List): Promise<ListSummary> {
+    async update(userId: string, list: List): Promise<List> {
         await fetchPolyfill;
 
         const response = await this._httpClient.fetch(`${userId}`, {
@@ -66,7 +65,7 @@ export class ListService {
             body: json(list)
         });
 
-        return new ListSummary(await response.json());
+        return new List(await response.json());
     }
 
     async delete(userId: string, listId: string): Promise<boolean> {

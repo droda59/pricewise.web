@@ -1,11 +1,11 @@
 import { bindable, containerless } from "aurelia-framework";
-import { ListSummary } from "../../shared/models/list-summary";
+import { List } from "../../shared/models/list";
 
 @containerless
 export class ListLabel {
     @bindable className: string;
     @bindable label: string;
-    @bindable list: ListSummary;
+    @bindable list: List;
     @bindable click;
     @bindable delete;
 }
