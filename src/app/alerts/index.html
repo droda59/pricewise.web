@@ -19,10 +19,11 @@
 
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
-            <list-menu 
+            <list-menu
                 lists.one-way="lists"
                 selected-list.two-way="currentListFilter"
-                delete.call="deleteList(list)">
+                delete.call="deleteList(list)"
+                share.call="shareList(list)">
             </list-menu>
 
             <alerts-list

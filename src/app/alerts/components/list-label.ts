@@ -8,4 +8,5 @@ export class ListLabel {
     @bindable list: List;
     @bindable click;
     @bindable delete;
+    @bindable share;
 }

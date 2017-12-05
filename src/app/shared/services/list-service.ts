@@ -77,4 +77,14 @@ export class ListService {
 
         return await response.json();
     }
+
+    async share(userId: string, listId: string): Promise<string> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${listId}/share`, {
+            method: "post"
+        });
+
+        return await response.json();
+    }
 }

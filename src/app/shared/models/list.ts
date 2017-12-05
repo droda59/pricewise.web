@@ -4,6 +4,7 @@ export class List implements IList {
     id: string;
     name: string;
     alerts: Array<UserAlertSummary>;
+    isPublic: boolean;
 
     constructor();
     constructor(dto: IList);
@@ -24,4 +25,5 @@ interface IList {
     id: string;
     name: string;
     alerts: Array<UserAlertSummary>;
+    isPublic: boolean;
 }

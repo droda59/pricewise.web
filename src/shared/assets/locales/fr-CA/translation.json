@@ -110,6 +110,8 @@
         "listCreated_failure": "Une erreur est survenue durant la création.",
         "listDeleted_success": "Liste supprimée avec succès!",
         "listDeleted_failure": "Une erreur est survenue durant la suppression.",
+        "listShared_success": "Liste partagée avec succès!",
+        "listShared_failure": "Une erreur est survenue durant le partage.",
         "listUpdated_success": "Liste enregistrée avec succès!",
         "listUpdated_failure": "Une erreur est survenue durant la mise à jour.",
         "deleteConfirmation_title": "Supprimer une list",

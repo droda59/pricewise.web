@@ -110,6 +110,8 @@
         "listCreated_failure": "An error occurred during the creation.",
         "listDeleted_success": "List deleted successfully!",
         "listDeleted_failure": "An error occurred during the deletion.",
+        "listShared_success": "List shared successfully!",
+        "listShared_failure": "An error occurred during the share.",
         "listUpdated_success": "List saved successfully!",
         "listUpdated_failure": "An error occurred during the update.",
         "deleteConfirmation_title": "Delete list",

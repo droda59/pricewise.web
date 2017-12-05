@@ -75,34 +75,6 @@ export class Alerts extends BaseI18N {
         $(".ui.modals.page.dimmer").remove();
     }
 
-    async saveList(list: List): Promise<void> {
-        if (list.id) {
-            await this._updateList(list);
-        } else {
-            await this._createList(list);
-        }
-    }
-
-    async deleteList(list: List) {
-        this.isUpdating = true;
-
-        try {
-            const listDeleted = await this._listService.delete(this._userId, list.id);
-            if (!listDeleted) {
-                throw new Error();
-            }
-
-            this.lists.remove(list);
-            this._ea.publish("listDeleted", { list: list });
-
-            this._toaster.showSuccess("lists.listDeleted");
-        } catch(e) {
-            this._toaster.showError("lists.listDeleted");
-        } finally {
-            this.isUpdating = false;
-        }
-    }
-
     async createAlert(newAlertUrl: string): Promise<void> {
         this.isUpdating = true;
 
@@ -155,16 +127,57 @@ export class Alerts extends BaseI18N {
         }
     }
 
+    async deleteList(list: List) {
+        this.isUpdating = true;
+
+        try {
+            const listDeleted = await this._listService.delete(this._userId, list.id);
+            if (!listDeleted) {
+                throw new Error();
+            }
+
+            this.lists.remove(list);
+            this._ea.publish("listDeleted", { list: list });
+
+            this._toaster.showSuccess("lists.listDeleted");
+        } catch(e) {
+            this._toaster.showError("lists.listDeleted");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
+    async shareList(list: List): Promise<void> {
+        this.isUpdating = true;
+
+        try {
+            const sharedListUrl = await this._listService.share(this._userId, list.id);
+            if (!sharedListUrl) {
+                throw new Error();
+            }
+
+            list.isPublic = true;
+
+            this._ea.publish("listShared", { list: list });
+
+            this._toaster.showSuccess("lists.listShared");
+        } catch(e) {
+            this._toaster.showError("lists.listShared");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
     async removeFromList(alerts: Array<UserAlertSummary>): Promise<void> {
         alerts.forEach(alert => this.currentList.alerts.remove(alert));
 
-        await this.saveList(this.currentList);
+        await this._saveList(this.currentList);
     }
 
     async addToList(alerts: Array<UserAlertSummary>, list: List): Promise<void> {
         alerts.forEach(alert => list.alerts.push(alert));
 
-        await this.saveList(list);
+        await this._saveList(list);
     }
 
     clearSelection(): void {
@@ -193,6 +206,14 @@ export class Alerts extends BaseI18N {
             }
 
             this.isUpdating = false;
+        }
+    }
+
+    private async _saveList(list: List): Promise<void> {
+        if (list.id) {
+            await this._updateList(list);
+        } else {
+            await this._createList(list);
         }
     }
 

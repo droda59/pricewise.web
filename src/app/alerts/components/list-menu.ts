@@ -8,11 +8,13 @@ import { ConfirmationModalController } from "../../../confirmation-modal-control
 export class ListMenu {
     private _modalController: ConfirmationModalController;
 
-    confirmationModal: ConfirmationModal;
+    deleteConfirmationModal: ConfirmationModal;
+    shareConfirmationModal: ConfirmationModal;
 
     @bindable selectedList: List;
     @bindable lists: Array<List>;
     @bindable delete;
+    @bindable share;
     @bindable add;
 
     constructor(modalController: ConfirmationModalController) {
@@ -27,8 +29,17 @@ export class ListMenu {
         }
     }
 
+    shareList(list: List): void {
+        if (list.isPublic) {
+        } else {
+            this._modalController.confirm(this.shareConfirmationModal, async () => {
+                this.share({ list: list });
+            });
+        }
+    }
+
     confirmDeleteList(list: List) {
-        this._modalController.confirm(this.confirmationModal, async () => {
+        this._modalController.confirm(this.deleteConfirmationModal, async () => {
             this.delete({ list: list });
             this.selectList();
         });

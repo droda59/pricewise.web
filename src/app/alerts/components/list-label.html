@@ -4,6 +4,9 @@
             data-analytics-category="List"
             data-analytics-action="filter">
             ${label}
+            <i if.one-time="share" class="share icon button" click.delegate="share({ list: list })"
+                data-analytics-category="List"
+                data-analytics-action="share"></i>
             <i if.one-time="delete" class="delete icon button" click.delegate="delete({ list: list })"
                 data-analytics-category="List"
                 data-analytics-action="delete"></i>

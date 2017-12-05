@@ -16,8 +16,10 @@
             label.one-way="list.name"
             click.call="selectList(list)"
             delete.call="confirmDeleteList(list)"
+            share.call="shareList(list)"
             class-name="${$parent.selectedList.id === list.id ? 'primary-action' : 'transparent'}"></list-label>
     </div>
 
-    <confirmation-modal view-model.ref="confirmationModal" message="lists.deleteConfirmation"></confirmation-modal>
+    <confirmation-modal view-model.ref="deleteConfirmationModal" message="lists.deleteConfirmation"></confirmation-modal>
+    <confirmation-modal view-model.ref="shareConfirmationModal" message="lists.deleteConfirmation"></confirmation-modal>
 </template>
