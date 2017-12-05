@@ -1,0 +1,8 @@
+<template bindable="action, text, icon, analyticsCategory, analyticsAction">
+    <a class="item" click.delegate="action()" i18n="[append]${text}"
+        data-analytics-category.one-time="analyticsCategory"
+        data-analytics-action.one-time="analyticsAction"
+        data-analytics-label="footer">
+        <i show.bind="icon" class="${icon} icon"></i>
+    </a>
+</template>
