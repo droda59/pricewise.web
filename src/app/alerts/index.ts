@@ -81,6 +81,8 @@ export class Alerts extends BaseI18N {
         } else {
             await this._createList(list);
         }
+
+        this.clearSelection();
     }
 
     async deleteList(list: List) {
@@ -192,6 +194,8 @@ export class Alerts extends BaseI18N {
                 this.alerts = this.currentList.alerts;
             }
 
+            this.clearSelection();
+
             this.isUpdating = false;
         }
     }
@@ -228,7 +232,6 @@ export class Alerts extends BaseI18N {
             }
 
             this.lists.push(newList);
-            this.selectedAlerts = new Array<UserAlertSummary>();
 
             this._ea.publish("listCreated", { list: newList });
             this._toaster.showSuccess("lists.listCreated");
@@ -252,6 +255,9 @@ export class Alerts extends BaseI18N {
                 this.alerts.removeWhere(x => x.id == alert.id);
                 this.allAlerts.removeWhere(x => x.id == alert.id);
             });
+
+            this.clearSelection();
+
             this._ea.publish("alertDeleted", { alert: alert });
 
             this._toaster.showSuccess("alerts.alertDeleted");
