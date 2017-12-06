@@ -99,7 +99,7 @@
     },
     "lists": {
         "create": {
-            "title": "Create a list with the products you want",
+            "title": "Name your new list for the products you selected.",
             "name": "Name",
             "save": "Save"
         },

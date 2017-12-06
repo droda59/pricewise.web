@@ -99,7 +99,7 @@
     },
     "lists": {
         "create": {
-            "title": "Créez une liste avec les produits que vous désirez",
+            "title": "Donnez un nom à votre liste qui contiendra les produits sélectionnés.",
             "name": "Nom",
             "save": "Enregistrer"
         },
