@@ -158,7 +158,7 @@ export class Alerts extends BaseI18N {
     }
 
     async removeFromList(alerts: Array<UserAlertSummary>): Promise<void> {
-        alerts.forEach(alert => this.currentList.alerts.remove(alert));
+        alerts.forEach(alert => this.currentList.alerts.removeWhere(x => x.id == alert.id));
 
         await this.saveList(this.currentList);
     }

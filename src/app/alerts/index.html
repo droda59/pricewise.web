@@ -38,7 +38,7 @@
                 <actions-menu-action text="alerts.actions.createList" icon="list" action.call="showModal(createListModal)" hide.bind="currentList"
                     analytics-category="List"
                     analytics-action="create"></actions-menu-action>
-                <div class="ui dropdown link item" hide.bind="currentList">
+                <div class="ui dropdown link item" hide.bind="currentList || !lists.length">
                     <i class="outdent icon"></i>
                     ${'alerts.actions.addToList' | t}
                     <div class="menu">
