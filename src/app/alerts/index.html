@@ -21,7 +21,7 @@
         <div class="ui container">
             <list-menu
                 lists.one-way="lists"
-                selected-list.two-way="currentListFilter"
+                selected-list.two-way="currentList"
                 delete.call="deleteList(list)">
             </list-menu>
 
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-        <loader text="alerts.updating" is-active.one-way="isUpdating"></loader>
+        <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
         <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
         <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
         <confirmation-modal view-model.ref="confirmationModal" message="alerts.deleteConfirmation"></confirmation-modal>

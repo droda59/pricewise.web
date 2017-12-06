@@ -78,6 +78,7 @@
         "title": "Alertes",
         "watchedProducts": "Mes produits",
         "updating": "Mise à jour",
+        "working": "En cours",
         "noAlert": "Vous ne surveillez aucun produit pour le moment.",
         "getStarted": "Débutez maintenant!",
         "createAlert": "Créez une alerte de produit",

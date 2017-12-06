@@ -28,13 +28,12 @@ export class Alerts extends BaseI18N {
     createAlertModal: AddSourceModal;
     confirmationModal: ConfirmationModal;
     isUpdating: boolean;
-    currentList: List;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     allAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     selectedAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     lists: Array<List> = new Array<List>();
 
-    @bindable currentListFilter: List;
+    @bindable currentList: List;
 
     constructor(
             router: Router,
@@ -95,6 +94,7 @@ export class Alerts extends BaseI18N {
             }
 
             this.lists.remove(list);
+            this.currentList = undefined;
             this._ea.publish("listDeleted", { list: list });
 
             this._toaster.showSuccess("lists.listDeleted");
@@ -181,20 +181,19 @@ export class Alerts extends BaseI18N {
         this._modalController.openOverlayModal(modal);
     }
 
-    async currentListFilterChanged(newValue: List, oldValue: List) {
+    async currentListChanged(newValue: List, oldValue: List) {
         if (newValue != oldValue) {
             this.isUpdating = true;
 
+            this.clearSelection();
+
             if (!newValue) {
-                this.currentList = undefined;
                 this.allAlerts = await this._alertService.getSummaries(this._userId);
                 this.alerts = this.allAlerts;
             } else {
-                this.currentList = await this._listService.get(this._userId, newValue.id);
-                this.alerts = this.currentList.alerts;
+                var selectedList = await this._listService.get(this._userId, newValue.id);
+                this.alerts = selectedList.alerts;
             }
-
-            this.clearSelection();
 
             this.isUpdating = false;
         }
@@ -209,9 +208,9 @@ export class Alerts extends BaseI18N {
                 throw new Error();
             }
 
-            this.currentListFilter = updatedList;
             var listIndex = this.lists.findIndex(x => x.id === updatedList.id);
             this.lists.splice(listIndex, 1, updatedList);
+            this.currentList = updatedList;
 
             this._ea.publish("listUpdated", { list: updatedList });
             this._toaster.showSuccess("lists.listUpdated");
