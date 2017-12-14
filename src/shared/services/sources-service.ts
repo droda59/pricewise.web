@@ -27,6 +27,10 @@ export class SourcesService {
         SourcesService._sources.push(this.createSource("Ikea", "ikea", "http://www.ikea.com/ca/", "rgb(0, 51, 153)"));
         SourcesService._sources.push(this.createSource("Canadian Tire", "canadiantire", "http://www.canadiantire.ca/", "rgb(235, 40, 40)"));
 
+        SourcesService._sources.push(this.createSource("Sail", "sail", "https://www.sail.ca/", "rgb(228, 124, 57)"));
+        SourcesService._sources.push(this.createSource("MEC", "mec", "https://www.mec.ca/", "rgb(12, 169, 72)"));
+        SourcesService._sources.push(this.createSource("Sportium", "sportium", "https://www.sportium.ca/", "rgb(0, 152, 76)"));
+
         SourcesService._sources.push(this.createSource("Home Depot", "homedepot", "https://www.homedepot.ca/", "rgb(243, 130, 49)"));
         SourcesService._sources.push(this.createSource("Rona", "rona", "https://www.rona.ca/", "rgb(0, 46, 86)"));
     }
