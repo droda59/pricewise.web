@@ -245,20 +245,18 @@ export class Alerts extends BaseI18N {
         this.isUpdating = true;
 
         try {
-            alerts.forEach(async alert => {
-                const alertDeleted = await this._alertService.delete(this._userId, alert.id);
+            for (var i = 0; i < alerts.length; i++) {
+                const alertDeleted = await this._alertService.delete(this._userId, alerts[i].id);
                 if (!alertDeleted) {
                     throw new Error();
                 }
 
-                this.alerts.removeWhere(x => x.id == alert.id);
-                this.allAlerts.removeWhere(x => x.id == alert.id);
-            });
+                this.alerts.removeWhere(x => x.id == alerts[i].id);
+                this.allAlerts.removeWhere(x => x.id == alerts[i].id);
+            }
 
             this.clearSelection();
-
             this._ea.publish("alertDeleted", { alert: alert });
-
             this._toaster.showSuccess("alerts.alertDeleted");
         } catch(e) {
             this._toaster.showError("alerts.alertDeleted");
