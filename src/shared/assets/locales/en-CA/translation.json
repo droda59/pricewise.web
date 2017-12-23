@@ -32,6 +32,11 @@
             "lists_title": "Organize your products",
             "lists_description": "Organize your products into categories of your choice: Christmas wish list, birthday gifts, books to buy. Customize as you like!"
         },
+        "blog": {
+            "available": "PriceWise has a blog!",
+            "join": "Join in on the discussion!",
+            "description": "We will talk about shopping strategies, app features, and the technology behind PriceWise"
+        },
         "chrome": {
             "extensionAvailable": "PriceWise has a Chrome extension!",
             "easily": "Shop wisely more easily!",

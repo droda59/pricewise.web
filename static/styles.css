@@ -31,6 +31,14 @@ body {
     background-color: #02776f;
 }
 
+.ui.wordpress.button {
+    background: #00aadc;
+    color: white;
+}
+.ui.wordpress.button:hover {
+    background: #0087be;
+}
+
 .ui.transparent.label,
 .ui.transparent.labels .label {
     background-color: rgba(0, 0, 0, .03) !important;
