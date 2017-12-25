@@ -367,7 +367,7 @@ section {
     min-height: 700px;
     padding: 1em 0em;
 }
-#welcome .masthead h1.ui.header {
+#welcome .masthead .ui.header {
     margin-top: 3em;
     margin-bottom: 0em;
     font-size: 4em;
@@ -473,6 +473,12 @@ section {
     [class*="widescreen monitor only"]:not(.mobile),
     [class*="or lower hidden"] {
       display: none !important;
+    }
+
+    #welcome .masthead .ui.header {
+        margin-bottom: 1em;
+        font-size: 3em;
+        font-weight: normal;
     }
 
     #welcome .ui.vertical.stripe {

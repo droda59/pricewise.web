@@ -3,7 +3,7 @@
         <div class="ui inverted vertical masthead center aligned segment primary-dark">
             <div class="ui container">
                 <div class="ui large secondary inverted pointing menu">
-                    <div class="item">
+                    <div class="mobile hidden item">
                         <img src="/images/pricewise-logo.png">
                     </div>
                     <div class="right item">
@@ -16,14 +16,20 @@
                         <a href="https://www.facebook.com/PriceWiseCA/" target="_blank" class="ui facebook button mobile hidden">
                             <i class="facebook icon"></i>Facebook
                         </a>
-                        <a href="http://blog.pricewi.se/" target="_blank" class="ui wordpress button"
+                        <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
+                            <i class="facebook icon"></i>
+                        </a>
+                        <a href="http://blog.pricewi.se/" target="_blank" class="ui wordpress mobile hidden button"
                             data-analytics-category="Blog"
                             data-analytics-action="click"
                             data-analytics-label="nav-button">
                             <i class="wordpress icon"></i>Blog
                         </a>
-                        <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
-                            <i class="facebook icon"></i>
+                        <a href="http://blog.pricewi.se/" class="ui wordpress icon button mobile only"
+                            data-analytics-category="Blog"
+                            data-analytics-action="click"
+                            data-analytics-label="nav-button">
+                            <i class="wordpress icon"></i>
                         </a>
                         <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
                         <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
@@ -33,7 +39,10 @@
             </div>
 
             <div class="ui text container">
-                <h1 class="ui inverted header">PriceWise</h1>
+                <h1 class="ui inverted header">
+                    <img class="ui massive image" src="/images/pricewise-logo.png">
+                    <div class="content">PriceWise</div>
+                </h1>
                 <h3 i18n="welcome.planning">Planning to buy something?</h3>
                 <h2 i18n="welcome.stopPaying">Stop paying too much!</h2>
                 <a class="ui huge primary primary-action button" click.delegate="login()" i18n="[prepend]welcome.getStarted">&nbsp;<i class="right arrow icon"></i></a>
@@ -64,7 +73,7 @@
             </div>
         </div>
 
-        <div class="ui vertical stripe mobile hidden segment alternate">
+        <div class="ui vertical stripe segment alternate">
             <div class="ui container">
                 <div class="ui stackable center aligned grid">
                     <div class="fourteen wide column">
