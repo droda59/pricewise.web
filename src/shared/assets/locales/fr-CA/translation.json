@@ -118,7 +118,7 @@
         "listDeleted_failure": "Une erreur est survenue durant la suppression.",
         "listUpdated_success": "Liste enregistrée avec succès!",
         "listUpdated_failure": "Une erreur est survenue durant la mise à jour.",
-        "deleteConfirmation_title": "Supprimer une list",
+        "deleteConfirmation_title": "Supprimer une liste",
         "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste."
     },
     "sources": {
