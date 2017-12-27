@@ -1,46 +1,10 @@
 <template>
+    <require from="../shared/components/anonymous-nav-bar"></require>
     <div id="welcome">
         <div class="ui inverted vertical masthead center aligned segment primary-dark">
-            <div class="ui container">
-                <div class="ui large secondary inverted pointing menu">
-                    <div class="mobile hidden item">
-                        <img src="/images/pricewise-logo.png">
-                    </div>
-                    <div class="right item">
-                        <a href.one-time="chromeAppUrl" target="_blank" class="ui button mobile hidden" style="padding: 0;"
-                            data-analytics-category="Chrome Store"
-                            data-analytics-action="click"
-                            data-analytics-label="nav-button">
-                            <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png" height="38px;">
-                        </a>
-                        <a href="https://www.facebook.com/PriceWiseCA/" target="_blank" class="ui facebook button mobile hidden">
-                            <i class="facebook icon"></i>Facebook
-                        </a>
-                        <a href="fb://page/1745012672451697" class="ui facebook icon button mobile only">
-                            <i class="facebook icon"></i>
-                        </a>
-                        <a href="http://blog.pricewi.se/" target="_blank" class="ui wordpress mobile hidden button"
-                            data-analytics-category="Blog"
-                            data-analytics-action="click"
-                            data-analytics-label="nav-button">
-                            <i class="wordpress icon"></i>Blog
-                        </a>
-                        <a href="http://blog.pricewi.se/" class="ui wordpress icon button mobile only"
-                            data-analytics-category="Blog"
-                            data-analytics-action="click"
-                            data-analytics-label="nav-button">
-                            <i class="wordpress icon"></i>
-                        </a>
-                        <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
-                        <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
-                        <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
-                    </div>
-                </div>
-            </div>
-
+            <anonymous-nav-bar></anonymous-nav-bar>
             <div class="ui text container">
                 <h1 class="ui inverted header">
-                    <img class="ui massive image" src="/images/pricewise-logo.png">
                     <div class="content">PriceWise</div>
                 </h1>
                 <h3 i18n="welcome.planning">Planning to buy something?</h3>

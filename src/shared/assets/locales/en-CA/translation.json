@@ -149,5 +149,9 @@
             "settingsSaved_success": "User settings saved successfully!",
             "settingsSaved_failure": "An error occurred during the save."
         }
-    }
+    },
+    "unsubscribe" : {
+        "title" : "You will no longer receive notifications for this alert",
+        "changedYourMind" : "You can always reactivate notifications by going on the alert page."
+}
 }
