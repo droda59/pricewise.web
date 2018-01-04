@@ -20,8 +20,9 @@
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
             <list-menu
+                show.bind="lists.length"
                 lists.one-way="lists"
-                selected-list.two-way="currentListFilter"
+                selected-list.two-way="currentList"
                 delete.call="deleteList(list)"
                 share.call="shareList(list)">
             </list-menu>
@@ -34,12 +35,26 @@
                 activate.call="activateAlert(alert)">
             </alerts-list>
 
+            <div hide.bind="allAlerts.length" style="padding: 6em 0 4em 0;">
+                <p style="text-align: center;" i18n="alerts.noAlert">You are not watching any products right now.</p>
+                <p style="text-align: center;" i18n="alerts.getStarted">Get started!</p>
+                <div style="text-align: center;">
+                    <div class="ui primary primary-action button" click.delegate="showModal(createAlertModal)"
+                        i18n="[append]alerts.createAlert"
+                        data-analytics-category="Alerts"
+                        data-analytics-action="add"
+                        data-analytics-label="overlay">
+                        <i class="plus icon"></i>
+                    </div>
+                </div>
+            </div>
+
             <actions-menu show.bind="selectedAlerts.length">
                 <actions-menu-action text="alerts.actions.clearSelection" icon="remove" action.call="clearSelection()"></actions-menu-action>
                 <actions-menu-action text="alerts.actions.createList" icon="list" action.call="showModal(createListModal)" hide.bind="currentList"
                     analytics-category="List"
                     analytics-action="create"></actions-menu-action>
-                <div class="ui dropdown link item" hide.bind="currentList">
+                <div class="ui dropdown link item" hide.bind="currentList || !lists.length">
                     <i class="outdent icon"></i>
                     ${'alerts.actions.addToList' | t}
                     <div class="menu">
@@ -52,29 +67,13 @@
                 <actions-menu-action text="alerts.actions.removeFromList" icon="indent" action.call="removeFromList(selectedAlerts)" show.bind="currentList"
                     analytics-category="List"
                     analytics-action="remove"></actions-menu-action>
-                <actions-menu-action text="alerts.actions.deleteAlert" icon="indent" action.call="confirmDeleteAlert(selectedAlerts)" show.bind="currentList"
+                <actions-menu-action text="alerts.actions.deleteAlert" icon="trash" action.call="confirmDeleteAlert(selectedAlerts)"
                     analytics-category="List"
                     analytics-action="delete"></actions-menu-action>
             </actions-menu>
         </div>
 
-        <div class="ui overlay" hide.bind="allAlerts.length">
-            <div style="width: 100%; position: absolute; top: 50%; left: 0;">
-                <p style="text-align: center;" i18n="alerts.noAlert">You are not watching any products right now.</p>
-                <p style="text-align: center;" i18n="alerts.getStarted">Get started!</p>
-                <div style="text-align: center;">
-                    <div class="ui primary primary-action button" click.delegate="showModal(addSourceModal)"
-                        i18n="[append]alerts.createAlert"
-                        data-analytics-category="Alerts"
-                        data-analytics-action="add"
-                        data-analytics-label="overlay">
-                        <i class="plus icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <loader text="alerts.updating" is-active.one-way="isUpdating"></loader>
+        <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
         <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
         <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
         <confirmation-modal view-model.ref="confirmationModal" message="alerts.deleteConfirmation"></confirmation-modal>

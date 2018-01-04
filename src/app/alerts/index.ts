@@ -28,13 +28,12 @@ export class Alerts extends BaseI18N {
     createAlertModal: AddSourceModal;
     confirmationModal: ConfirmationModal;
     isUpdating: boolean;
-    currentList: List;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     allAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     selectedAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     lists: Array<List> = new Array<List>();
 
-    @bindable currentListFilter: List;
+    @bindable currentList: List;
 
     constructor(
             router: Router,
@@ -127,6 +126,16 @@ export class Alerts extends BaseI18N {
         }
     }
 
+    async saveList(list: List): Promise<void> {
+        if (list.id) {
+            await this._updateList(list);
+        } else {
+            await this._createList(list);
+        }
+
+        this.clearSelection();
+    }
+
     async deleteList(list: List) {
         this.isUpdating = true;
 
@@ -137,6 +146,7 @@ export class Alerts extends BaseI18N {
             }
 
             this.lists.remove(list);
+            this.currentList = undefined;
             this._ea.publish("listDeleted", { list: list });
 
             this._toaster.showSuccess("lists.listDeleted");
@@ -156,6 +166,9 @@ export class Alerts extends BaseI18N {
                 throw new Error();
             }
 
+            // TEMP
+            console.log("share url: " + sharedListUrl);
+
             list.isPublic = true;
 
             this._ea.publish("listShared", { list: list });
@@ -169,7 +182,7 @@ export class Alerts extends BaseI18N {
     }
 
     async removeFromList(alerts: Array<UserAlertSummary>): Promise<void> {
-        alerts.forEach(alert => this.currentList.alerts.remove(alert));
+        alerts.forEach(alert => this.currentList.alerts.removeWhere(x => x.id == alert.id));
 
         await this._saveList(this.currentList);
     }
@@ -192,17 +205,18 @@ export class Alerts extends BaseI18N {
         this._modalController.openOverlayModal(modal);
     }
 
-    async currentListFilterChanged(newValue: List, oldValue: List) {
+    async currentListChanged(newValue: List, oldValue: List) {
         if (newValue != oldValue) {
             this.isUpdating = true;
 
+            this.clearSelection();
+
             if (!newValue) {
-                this.currentList = undefined;
                 this.allAlerts = await this._alertService.getSummaries(this._userId);
                 this.alerts = this.allAlerts;
             } else {
-                this.currentList = await this._listService.get(this._userId, newValue.id);
-                this.alerts = this.currentList.alerts;
+                var selectedList = await this._listService.get(this._userId, newValue.id);
+                this.alerts = selectedList.alerts;
             }
 
             this.isUpdating = false;
@@ -226,9 +240,9 @@ export class Alerts extends BaseI18N {
                 throw new Error();
             }
 
-            this.currentListFilter = updatedList;
             var listIndex = this.lists.findIndex(x => x.id === updatedList.id);
             this.lists.splice(listIndex, 1, updatedList);
+            this.currentList = updatedList;
 
             this._ea.publish("listUpdated", { list: updatedList });
             this._toaster.showSuccess("lists.listUpdated");
@@ -249,7 +263,6 @@ export class Alerts extends BaseI18N {
             }
 
             this.lists.push(newList);
-            this.selectedAlerts = new Array<UserAlertSummary>();
 
             this._ea.publish("listCreated", { list: newList });
             this._toaster.showSuccess("lists.listCreated");
@@ -264,17 +277,18 @@ export class Alerts extends BaseI18N {
         this.isUpdating = true;
 
         try {
-            alerts.forEach(async alert => {
-                const alertDeleted = await this._alertService.delete(this._userId, alert.id);
+            for (var i = 0; i < alerts.length; i++) {
+                const alertDeleted = await this._alertService.delete(this._userId, alerts[i].id);
                 if (!alertDeleted) {
                     throw new Error();
                 }
 
-                this.alerts.removeWhere(x => x.id == alert.id);
-                this.allAlerts.removeWhere(x => x.id == alert.id);
-            });
-            this._ea.publish("alertDeleted", { alert: alert });
+                this.alerts.removeWhere(x => x.id == alerts[i].id);
+                this.allAlerts.removeWhere(x => x.id == alerts[i].id);
+            }
 
+            this.clearSelection();
+            this._ea.publish("alertDeleted", { alert: alert });
             this._toaster.showSuccess("alerts.alertDeleted");
         } catch(e) {
             this._toaster.showError("alerts.alertDeleted");

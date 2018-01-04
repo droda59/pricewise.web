@@ -15,7 +15,6 @@ export class ListMenu {
     @bindable lists: Array<List>;
     @bindable delete;
     @bindable share;
-    @bindable add;
 
     constructor(modalController: ConfirmationModalController) {
         this._modalController = modalController;

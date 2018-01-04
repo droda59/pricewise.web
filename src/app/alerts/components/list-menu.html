@@ -1,12 +1,7 @@
 <template>
     <require from="./list-label"></require>
 
-    <div class="ui text menu">
-        <div class="item" if.bind="add">
-            <a class="ui red large label" click.delegate="add()" i18n="[append]lists.createButton">
-                <i class="plus icon"></i>
-            </a>
-        </div>
+    <div class="ui text menu" style="margin-top: 0; padding-top: 1em;">
         <list-label if.bind="lists.length"
             click.call="selectList()"
             label="${'lists.noFilter' | t}"
@@ -21,5 +16,5 @@
     </div>
 
     <confirmation-modal view-model.ref="deleteConfirmationModal" message="lists.deleteConfirmation"></confirmation-modal>
-    <confirmation-modal view-model.ref="shareConfirmationModal" message="lists.deleteConfirmation"></confirmation-modal>
+    <confirmation-modal view-model.ref="shareConfirmationModal" message="lists.shareConfirmation"></confirmation-modal>
 </template>

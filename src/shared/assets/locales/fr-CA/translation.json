@@ -32,6 +32,11 @@
             "lists_title": "Organizez vos produits",
             "lists_description": "Organizez vos produits en catégories de votre choix : Liste de Noël, cadeaux de fête, livres à lire. Personnalisez comme vous le voulez!"
         },
+        "blog": {
+            "available": "PriceWise a un blog!",
+            "join": "Joignez-vous à la discussion!",
+            "description": "Nous discuterons de stratégies de magasinage, de fonctionalités de l'application et de la technologie derrière PriceWise"
+        },
         "chrome": {
             "extensionAvailable": "PriceWise a une extension Chrome!",
             "easily": "Magasinez intelligemment plus facilement!",
@@ -78,6 +83,7 @@
         "title": "Alertes",
         "watchedProducts": "Mes produits",
         "updating": "Mise à jour",
+        "working": "En cours",
         "noAlert": "Vous ne surveillez aucun produit pour le moment.",
         "getStarted": "Débutez maintenant!",
         "createAlert": "Créez une alerte de produit",
@@ -99,7 +105,7 @@
     },
     "lists": {
         "create": {
-            "title": "Créez une liste avec les produits que vous désirez",
+            "title": "Donnez un nom à votre liste qui contiendra les produits sélectionnés.",
             "name": "Nom",
             "save": "Enregistrer"
         },
@@ -114,8 +120,10 @@
         "listShared_failure": "Une erreur est survenue durant le partage.",
         "listUpdated_success": "Liste enregistrée avec succès!",
         "listUpdated_failure": "Une erreur est survenue durant la mise à jour.",
-        "deleteConfirmation_title": "Supprimer une list",
-        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste."
+        "deleteConfirmation_title": "Supprimer une liste",
+        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste.",
+        "shareConfirmation_title": "Partager une liste",
+        "shareConfirmation_description": "Êtes-vous certain de vouloir partager cette liste? Une fois partagée, elle deviendra accessible à tous ceux qui auront le lien."
     },
     "sources": {
         "add": "Ajouter",
