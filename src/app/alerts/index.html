@@ -11,7 +11,7 @@
         <div class="ui container" style="position: relative;">
             <div class="ui text menu" style="margin: 0; padding: 3em 0;">
                 <div class="item">
-                    <header-title text="alerts.watchedProducts"></h1>
+                    <header-title text="alerts.watchedProducts"></header-title>
                 </div>
             </div>
         </div>
@@ -30,6 +30,7 @@
             <alerts-list
                 show.bind="allAlerts.length"
                 alerts.one-way="alerts"
+                is-read-only.one-time="false"
                 selected-alerts.two-way="selectedAlerts"
                 add.call="showModal(createAlertModal)"
                 activate.call="activateAlert(alert)">

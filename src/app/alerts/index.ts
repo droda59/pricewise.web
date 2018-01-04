@@ -1,6 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
+import { AureliaConfiguration } from "aurelia-configuration";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N, BaseI18N } from "aurelia-i18n";
 import { Toaster } from "../shared/services/toaster";
@@ -21,6 +22,7 @@ export class Alerts extends BaseI18N {
     private _router: Router;
     private _ea: EventAggregator;
     private _modalController: ConfirmationModalController;
+    private _configuration: AureliaConfiguration;
     private _toaster: Toaster;
     private _userId: string;
 
@@ -40,6 +42,7 @@ export class Alerts extends BaseI18N {
             alertService: AlertService,
             listService: ListService,
             modalController: ConfirmationModalController,
+            configuration: AureliaConfiguration,
             toaster: Toaster,
             i18n: I18N,
             element: Element,
@@ -50,6 +53,7 @@ export class Alerts extends BaseI18N {
         this._router = router;
         this._alertService = alertService;
         this._listService = listService;
+        this._configuration = configuration
         this._ea = ea;
         this._modalController = modalController;
         this._toaster = toaster;
@@ -167,7 +171,7 @@ export class Alerts extends BaseI18N {
             }
 
             // TEMP
-            console.log("share url: " + sharedListUrl);
+            console.log("share url: " + `${this._configuration.get("web")}${sharedListUrl}`);
 
             list.isPublic = true;
 

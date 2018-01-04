@@ -6,6 +6,7 @@ import { UserAlertSummary } from "../../shared/models/user-alert-summary";
 export class AlertsList {
     @bindable selectedAlerts: Array<UserAlertSummary>;
     @bindable alerts: Array<UserAlertSummary>;
+    @bindable isReadOnly: boolean;
     @bindable add;
     @bindable activate;
 

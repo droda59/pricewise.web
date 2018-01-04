@@ -21,7 +21,7 @@ export class List implements IList {
     }
 }
 
-interface IList {
+export interface IList {
     id: string;
     name: string;
     alerts: Array<UserAlertSummary>;

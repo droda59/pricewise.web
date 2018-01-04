@@ -33,9 +33,10 @@ export class App {
         config.options.pushState = true;
 
         config.map([
-            { route: ["", "welcome"], name: "welcome",  moduleId: PLATFORM.moduleName("./homepage/index"), nav: true },
-            { route: "callback",      name: "callback", moduleId: PLATFORM.moduleName("./callback/index"), nav: false, title: this._i18n.tr("welcome.authenticating") },
-            { route: "user",          name: "user",     moduleId: PLATFORM.moduleName("./app/index"),      nav: true, activationStrategy: "replace", authRoute: true },
+            { route: ["", "welcome"], name: "welcome",    moduleId: PLATFORM.moduleName("./homepage/index"), nav: true },
+            { route: "callback",      name: "callback",   moduleId: PLATFORM.moduleName("./callback/index"), nav: false, title: this._i18n.tr("welcome.authenticating") },
+            { route: "user",          name: "user",       moduleId: PLATFORM.moduleName("./app/index"),      nav: true, activationStrategy: "replace", authRoute: true },
+            { route: "list/:listId",  name: "sharedlist", moduleId: PLATFORM.moduleName("./list/index"),     nav: false },
         ]);
 
         this.router = router;

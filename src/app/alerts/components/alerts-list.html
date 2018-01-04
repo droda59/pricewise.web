@@ -14,7 +14,7 @@
     <div class="ui one column grid">
         <div class="column">
             <div class="ui link cards">
-                <a class="ui mobile hidden add-alert card" click.delegate="add()"
+                <a class="ui mobile hidden add-alert card" if.one-time="add" click.delegate="add()"
                     data-analytics-category="Alerts"
                     data-analytics-action="add"
                     data-analytics-label="card">
@@ -24,7 +24,7 @@
                     </div>
                 </a>
                 <alert-card repeat.for="alert of alerts | sort:'title'" alert.one-time="alert" style="border-radius: 2px;" containerless>
-                    <div slot="top-action">
+                    <div slot="top-action" if.one-time="!isReadOnly">
                         <i class="right floated circular button">
                             <div class="ui fitted radio checkbox">
                                 <input type="checkbox" class="hidden" model.bind="alert" checked.bind="selectedAlerts">
@@ -32,7 +32,7 @@
                             </div>
                         </i>
                     </div>
-                    <div slot="bottom-action">
+                    <div slot="bottom-action" if.one-time="!isReadOnly">
                         <a class="right floated primary-action-hover" click.delegate="activate({ alert: alert })" hide.bind="alert.isActive"
                             i18n="[append]alert.activate"
                             data-analytics-category="Alerts"

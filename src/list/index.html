@@ -1,0 +1,20 @@
+<template>
+    <require from="../app/alerts/components/alerts-list"></require>
+    <require from="../app/shared/components/header-title"></require>
+
+    <div class="primary-dark" style="color: white;">
+        <div class="ui container" style="position: relative;">
+            <div class="ui text menu" style="margin: 0; padding: 3em 0;">
+                <div class="item">
+                    <header-title text.one-time="userName"></header-title>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="primary-light" style="padding-bottom: 2em;">
+        <div class="ui container">
+            <alerts-list alerts.one-way="alerts" is-read-only.one-time="true"></alerts-list>
+        </div>
+    </div>
+</template>
