@@ -152,6 +152,6 @@
     },
     "unsubscribe" : {
         "title" : "You will no longer receive notifications for this alert",
-        "changedYourMind" : "You can always reactivate notifications by going on the alert page."
+        "changedYourMind" : "You can always reactivate notifications by going to the alert page."
 }
 }

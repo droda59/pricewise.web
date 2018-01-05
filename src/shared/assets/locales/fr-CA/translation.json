@@ -151,7 +151,7 @@
         }
     },
     "unsubscribe" : {
-        "title" : "Vous ne recevrez plus de notifications pour cette alerte",
-        "changedYourMind" : "Vous pouvez en tout temps réactiver les notifications en vous rendant sur la page de l'alerte"
+        "title" : "Vous ne recevrez plus de notification pour ce produit",
+        "changedYourMind" : "Vous pouvez en tout temps réactiver les notification en vous rendant sur la page du produit"
 }
 }

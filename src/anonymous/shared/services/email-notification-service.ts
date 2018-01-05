@@ -3,7 +3,7 @@ import { AureliaConfiguration } from "aurelia-configuration";
 import { NewInstance, inject } from "aurelia-dependency-injection";
 
 @inject(NewInstance.of(HttpClient), AureliaConfiguration)
-export class AnonymousService {
+export class EmailNotificationService {
     private _httpClient: HttpClient;
 
     constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
@@ -17,15 +17,13 @@ export class AnonymousService {
                     }
                 })
                 .rejectErrorResponses()
-                .withBaseUrl(`${configure.get("api")}api/anonymous/`);
+                .withBaseUrl(`${configure.get("api")}api/emailnotification/`);
             });
     }
 
-    async desactivate(email: string, alertId: string): Promise<boolean> {
-        const response = await this._httpClient.fetch(`${email}/${alertId}/desactivatealert`, {
+    desactivate(email: string, alertId: string) {
+        this._httpClient.fetch(`${email}/${alertId}/deactivate`, {
             method: "put"
         });
-
-        return await response.json();
     }
 }

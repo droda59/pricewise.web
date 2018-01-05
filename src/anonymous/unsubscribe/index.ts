@@ -1,18 +1,18 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { AnonymousService } from "../shared/services/anonymous-service";
+import { EmailNotificationService } from "../shared/services/email-notification-service";
 
 @autoinject()
 export class Unsubscribe {
 
-    private _anonymousService: AnonymousService;
+    private _emailNotificationService: EmailNotificationService;
 
-    constructor(anonymousService: AnonymousService) {
-        this._anonymousService = anonymousService;
+    constructor(emailNotificationService: EmailNotificationService) {
+        this._emailNotificationService = emailNotificationService;
     }
 
-    async activate(route, routeConfig): Promise<void> {
+    activate(route, routeConfig) {
         if (route.email && route.alertId) {
-            this._anonymousService.desactivate(route.email, route.alertId);
+            this._emailNotificationService.desactivate(route.email, route.alertId);
         }
     }
 }
