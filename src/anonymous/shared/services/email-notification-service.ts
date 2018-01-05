@@ -21,8 +21,8 @@ export class EmailNotificationService {
             });
     }
 
-    desactivate(email: string, alertId: string) {
-        this._httpClient.fetch(`${email}/${alertId}/deactivate`, {
+    async desactivate(email: string, alertId: string): Promise<void> {
+        await this._httpClient.fetch(`${email}/${alertId}/deactivate`, {
             method: "put"
         });
     }
