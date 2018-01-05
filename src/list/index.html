@@ -6,7 +6,8 @@
         <div class="ui container" style="position: relative;">
             <div class="ui text menu" style="margin: 0; padding: 3em 0;">
                 <div class="item">
-                    <header-title text.one-time="userName"></header-title>
+                    <header-title if.one-time="!errorMessage" text.one-time="userName"></header-title>
+                    <h1 class="ui header header-title" if.one-time="errorMessage">${errorMessage & t: { context: 'title' }}</h1>
                 </div>
             </div>
         </div>
@@ -14,7 +15,14 @@
 
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
-            <alerts-list alerts.one-way="alerts" is-read-only.one-time="true"></alerts-list>
+            <div class="ui vertical basic segment primary-light" if.one-time="errorMessage" style="padding: 8em 0;">
+                <div class="ui stackable center aligned grid">
+                    <div class="eight wide column">
+                        <h3 class="ui header">${errorMessage & t: { context: 'description' }}</h3>
+                    </div>
+                </div>
+            </div>
+            <alerts-list alerts.one-time="alerts" is-read-only.one-time="true"></alerts-list>
         </div>
     </div>
 </template>

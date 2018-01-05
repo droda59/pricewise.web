@@ -112,6 +112,12 @@
         "noFilter": "Toutes",
         "createButton": "Créer liste",
         "updateButton": "Changer liste",
+        "errors": {
+            "notFound_title": "Liste non trouvée",
+            "notFound_description": "La liste demandée n'a pas été trouvée. Elle a peut-être été supprimée.",
+            "unauthorized_title": "Non autorisé",
+            "unauthorized_description": "Vous n'êtes pas autorisé à voir le contenu de cette liste. Elle n'est peut-être pas publique."
+        },
         "listCreated_success": "Liste créée avec succès!",
         "listCreated_failure": "Une erreur est survenue durant la création.",
         "listDeleted_success": "Liste supprimée avec succès!",

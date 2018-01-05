@@ -112,6 +112,13 @@
         "noFilter": "All",
         "createButton": "Create list",
         "updateButton": "Change list",
+        "errors": {
+            "notFound_title": "List not found",
+            "notFound_description": "The specified list was not found. It may have been deleted.",
+            "unauthorized_title": "Unauthorized",
+            "unauthorized_description": "You are not authorized to see the contents of the specified list. It may not be public."
+        },
+        "deleteConfirmation_description": "Are you sure you want to delete the selected product alerts?",
         "listCreated_success": "List created successfully!",
         "listCreated_failure": "An error occurred during the creation.",
         "listDeleted_success": "List deleted successfully!",
