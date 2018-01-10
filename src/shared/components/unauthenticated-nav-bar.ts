@@ -12,7 +12,6 @@ export class UnauthenticatedNavBar extends BaseI18N {
     private _router: Router;
     private _i18n: I18N;
 
-    isAuthenticated: boolean;
     chromeAppUrl: string;
 
     constructor(
@@ -29,16 +28,8 @@ export class UnauthenticatedNavBar extends BaseI18N {
         this.chromeAppUrl = configure.get("chrome");
     }
 
-    activate(): void {
-        this.isAuthenticated = this._authenticationService.isAuthenticated();
-    }
-
     login(): void {
         this._authenticationService.login();
-    }
-
-    logout(): void {
-        this._authenticationService.logout();
     }
 
     changeLanguage(): void {

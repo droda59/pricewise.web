@@ -84,7 +84,7 @@ export class AuthenticationService {
         localStorage.removeItem("expires_at");
 
         this._router.navigateToRoute("welcome");
-        this._eventAggregator.publish("authChange", false);
+        this._eventAggregator.publish("authChange", { authenticated: false });
 	}
 
     private async getOrCreateUser(profile: any): Promise<string> {

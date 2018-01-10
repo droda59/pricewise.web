@@ -7,11 +7,13 @@ import { SharedListService } from "./services/shared-list-service";
 import { Toaster } from "../app/shared/services/toaster";
 import { UserAlertSummary } from "../app/shared/models/user-alert-summary";
 import { ListService } from "../app/shared/services/list-service";
+import { AuthenticationService } from "../shared/services/authentication-service";
 
 @autoinject()
 export class SharedListPage extends BaseI18N {
     // private _i18n: I18N;
     private _sharedListService: SharedListService;
+    private _authenticationService: AuthenticationService;
     private _listService: ListService;
     private _toaster: Toaster;
     private _listId: string;
@@ -25,6 +27,7 @@ export class SharedListPage extends BaseI18N {
     constructor(
             sharedListService: SharedListService,
             listService: ListService,
+            authenticationService: AuthenticationService,
             toaster: Toaster,
             i18n: I18N,
             element: Element,
@@ -36,6 +39,7 @@ export class SharedListPage extends BaseI18N {
         // this._i18n = i18n;
         this._sharedListService = sharedListService;
         this._listService = listService;
+        this._authenticationService = authenticationService;
         this._toaster = toaster;
     }
     //
@@ -46,7 +50,7 @@ export class SharedListPage extends BaseI18N {
     // }
 
     async activate(route, routeConfig): Promise<void> {
-        this.isAuthenticated = !!this._userId;
+        this.isAuthenticated = this._authenticationService.isAuthenticated();
 
         if (route.listId) {
             this._listId = route.listId;

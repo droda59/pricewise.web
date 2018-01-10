@@ -32,7 +32,7 @@ export class Welcome extends BaseI18N {
     activate(): void {
         this.sources = this._sourcesService.sources;
 
-        var isAuthenticated = this._authenticationService.isAuthenticated();
+        const isAuthenticated = this._authenticationService.isAuthenticated();
         if (isAuthenticated) {
             this._router.navigateToRoute("user");
         }

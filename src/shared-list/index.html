@@ -1,9 +1,7 @@
 <template>
     <require from="../app/alerts/components/alerts-list"></require>
-    <require from="../app/shared/components/nav-bar"></require>
 
-    <nav-bar if.one-time="isAuthenticated"></nav-bar>
-    <unauthenticated-nav-bar if.one-time="!isAuthenticated"></unauthenticated-nav-bar>
+    <nav-bar></nav-bar>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">

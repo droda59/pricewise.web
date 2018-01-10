@@ -32,8 +32,7 @@
                             <i class="wordpress icon"></i>
                         </a>
                         <a class="ui basic inverted icon button" click.delegate="changeLanguage()" i18n="otherLanguage">Language</a>
-                        <a if.bind="!isAuthenticated" class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
-                        <a if.bind="isAuthenticated" class="ui inverted button" click.delegate="logout()" i18n="welcome.logOut">Log out</a>
+                        <a class="ui inverted button" click.delegate="login()" i18n="welcome.logIn">Log in</a>
                     </div>
                 </div>
             </div>

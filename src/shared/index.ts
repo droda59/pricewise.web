@@ -7,7 +7,7 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName("./components/footer/footer"),
         PLATFORM.moduleName("./components/overlay.html"),
         PLATFORM.moduleName("./components/loader.html"),
-        PLATFORM.moduleName("./components/unauthenticated-nav-bar"),
+        PLATFORM.moduleName("./components/nav-bar"),
     ];
 
     var valueConverters = [
