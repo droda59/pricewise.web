@@ -1,14 +1,20 @@
 <template>
     <require from="../app/alerts/components/alerts-list"></require>
-    <require from="../app/shared/components/header-title"></require>
+    <require from="../app/shared/components/nav-bar"></require>
+
+    <nav-bar if.one-time="isAuthenticated"></nav-bar>
+    <unauthenticated-nav-bar if.one-time="!isAuthenticated"></unauthenticated-nav-bar>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">
             <div class="ui text menu" style="margin: 0; padding: 3em 0;">
                 <div class="item">
-                    <header-title if.one-time="!errorMessage" text.one-time="userName"></header-title>
+                    <h1 class="ui header header-title" if.one-time="!errorMessage">${userName}'s list</h1>
                     <h1 class="ui header header-title" if.one-time="errorMessage">${errorMessage & t: { context: 'title' }}</h1>
                 </div>
+                <a class="ui primary primary-action button" if.one-time="isAuthenticated" click.delegate="follow()">
+                    Follow
+                </a>
             </div>
         </div>
     </div>

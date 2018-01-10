@@ -165,15 +165,21 @@ export class Alerts extends BaseI18N {
         this.isUpdating = true;
 
         try {
-            const sharedListUrl = await this._listService.share(this._userId, list.id);
-            if (!sharedListUrl) {
-                throw new Error();
+            if (list.isPublic) {
+                const sharedListUrl = await this._listService.share(this._userId, list.id);
+                if (!sharedListUrl) {
+                    throw new Error();
+                }
+
+                // TEMP
+                console.log("share url: " + `${this._configuration.get("web")}${sharedListUrl}`);
+
+                list.isPublic = true;
+            } else {
+                await this._listService.unshare(this._userId, list.id);
+
+                list.isPublic = false;
             }
-
-            // TEMP
-            console.log("share url: " + `${this._configuration.get("web")}${sharedListUrl}`);
-
-            list.isPublic = true;
 
             this._ea.publish("listShared", { list: list });
 

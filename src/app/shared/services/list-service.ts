@@ -46,6 +46,16 @@ export class ListService {
         return (<Array<any>>(await response.json())).map(x => new List(x));
     }
 
+    async getWatchedSummaries(userId: string): Promise<Array<List>> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/watched`, {
+            method: "get"
+        });
+
+        return (<Array<any>>(await response.json())).map(x => new List(x));
+    }
+
     async create(userId: string, list: List): Promise<List> {
         await fetchPolyfill;
 
@@ -86,5 +96,25 @@ export class ListService {
         });
 
         return await response.json();
+    }
+
+    async unshare(userId: string, listId: string): Promise<void> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${listId}/unshare`, {
+            method: "post"
+        });
+
+        await response.json();
+    }
+
+    async follow(userId: string, listId: string): Promise<void> {
+        await fetchPolyfill;
+
+        const response = await this._httpClient.fetch(`${userId}/${listId}/follow`, {
+            method: "post"
+        });
+
+        await response.json();
     }
 }

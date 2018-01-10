@@ -383,9 +383,6 @@ section {
 #welcome .ui.alternate.stripe {
     background-color: #F2F3F5;
 }
-#welcome .masthead .ui.menu .ui.button {
-    margin-left: 1.5em;
-}
 #welcome .ui.divided.grid:not([class*="vertically divided"])>.column:nth-child(4n+1),
 #welcome .ui.divided.grid:not([class*="vertically divided"])>.row>.column:nth-child(4n+1) {
     box-shadow: none;
@@ -396,6 +393,10 @@ section {
 }
 #login .column {
     max-width: 450px;
+}
+
+#unauthenticated-nav-bar .ui.menu .ui.button {
+    margin-left: 1.5em;
 }
 
 /*.pricewise .overlay {

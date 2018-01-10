@@ -15,7 +15,6 @@ export class UserPage {
         config.map([
             { route: ["", "alerts"],    name: "alerts",   moduleId: PLATFORM.moduleName("./alerts/index"),   nav: true,  title: this._i18n.tr("alerts.title") },
             { route: "alerts/:alertId", name: "alert",    moduleId: PLATFORM.moduleName("./alert/index") },
-            { route: "settings",        name: "settings", moduleId: PLATFORM.moduleName("./settings/index") },
         ]);
     }
 }
