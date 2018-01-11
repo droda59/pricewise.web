@@ -1,9 +1,11 @@
 import { autoinject } from "aurelia-dependency-injection";
+import { containerless } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { I18N } from "aurelia-i18n";
 import { AuthenticationService } from "../services/authentication-service";
 
 @autoinject()
+@containerless
 export class AuthenticatedNavBar {
     private _authenticationService: AuthenticationService;
     private _i18n: I18N;
@@ -17,6 +19,8 @@ export class AuthenticatedNavBar {
 
     logout(): void {
         this._authenticationService.logout();
+
+        this._router.navigateToRoute("welcome");
     }
 
     changeLanguage(): void {

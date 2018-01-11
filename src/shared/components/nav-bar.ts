@@ -16,7 +16,7 @@ export class NavBar {
         });
     }
 
-    activate(): void {
+    bind(): void {
         this.isAuthenticated = this._authenticationService.isAuthenticated();
     }
 }

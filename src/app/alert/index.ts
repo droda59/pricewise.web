@@ -5,7 +5,7 @@ import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
 import { AlertService } from "../shared/services/alert-service";
-import { SharedListService } from "../../list/services/shared-list-service";
+import { SharedListService } from "../../shared-list/services/shared-list-service";
 import { Toaster } from "../shared/services/toaster";
 
 @autoinject()

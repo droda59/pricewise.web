@@ -83,7 +83,6 @@ export class AuthenticationService {
         localStorage.removeItem("user_id");
         localStorage.removeItem("expires_at");
 
-        this._router.navigateToRoute("welcome");
         this._eventAggregator.publish("authChange", { authenticated: false });
 	}
 

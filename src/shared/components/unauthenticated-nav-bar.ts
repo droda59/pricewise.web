@@ -1,4 +1,5 @@
 import { autoinject } from "aurelia-dependency-injection";
+import { containerless } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N, BaseI18N } from "aurelia-i18n";
@@ -7,6 +8,7 @@ import { AuthenticationService } from "../services/authentication-service";
 import auth0 from "auth0-js";
 
 @autoinject()
+@containerless
 export class UnauthenticatedNavBar extends BaseI18N {
     private _authenticationService: AuthenticationService;
     private _router: Router;
