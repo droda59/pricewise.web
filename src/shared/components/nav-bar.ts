@@ -11,7 +11,7 @@ export class NavBar {
     constructor(authenticationService: AuthenticationService, ea: EventAggregator) {
         this._authenticationService = authenticationService;
 
-        ea.subscribe("authChange", payload => {
+        ea.subscribe("auth:change", payload => {
             this.isAuthenticated = payload["authenticated"];
         });
     }

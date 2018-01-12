@@ -81,6 +81,7 @@
     },
     "alerts": {
         "title": "Alertes",
+        "myAlerts": "Mes alertes",
         "watchedProducts": "Mes produits",
         "updating": "Mise à jour",
         "working": "En cours",
@@ -130,6 +131,13 @@
         "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste.",
         "shareConfirmation_title": "Partager une liste",
         "shareConfirmation_description": "Êtes-vous certain de vouloir partager cette liste? Une fois partagée, elle deviendra accessible à tous ceux qui auront le lien."
+    },
+    "followedLists": {
+        "title": "Listes suivies",
+        "listUnfollowed_success": "La liste n'est plus suivie!",
+        "listUnfollowed_failure": "Une erreur est survenue durant l'opération.",
+        "unfollowConfirmation_title": "Ne plus suivre la liste",
+        "unfollowConfirmation_description": "Êtes-vous certain de ne plus vouloir suivre cette liste? La liste existera toujours, mais vous ne recevrez plus d'alerte pour ses produits."
     },
     "sources": {
         "add": "Ajouter",

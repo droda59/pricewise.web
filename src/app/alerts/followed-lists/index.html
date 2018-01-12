@@ -1,0 +1,19 @@
+<template>
+    <require from="../components/list-menu"></require>
+    <require from="../components/alerts-list"></require>
+
+    <list-menu
+        show.one-time="lists.length"
+        lists.one-time="lists"
+        selected-list.two-way="currentList"
+        delete.call="confirmUnfollowList(list)">
+    </list-menu>
+
+    <alerts-list
+        alerts.one-time="alerts"
+        is-read-only.one-time="true">
+    </alerts-list>
+
+    <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
+    <confirmation-modal view-model.ref="confirmationModal" message="followedLists.unfollowConfirmation"></confirmation-modal>
+</template>

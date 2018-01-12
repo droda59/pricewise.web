@@ -1,82 +1,22 @@
 <template>
-    <require from="./components/list-menu"></require>
-    <require from="./components/create-list-modal"></require>
-    <require from="./components/alerts-list"></require>
-    <require from="../shared/components/add-source-modal"></require>
     <require from="../shared/components/header-title"></require>
-    <require from="../shared/components/actions-menu.html"></require>
-    <require from="../shared/components/actions-menu-action.html"></require>
+    <require from="../shared/components/sub-menu.html"></require>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">
             <div class="ui text menu" style="margin: 0; padding: 3em 0;">
                 <div class="item">
-                    <header-title text="alerts.watchedProducts"></header-title>
+                    <header-title>${ 'alerts.watchedProducts' & t}</header-title>
                 </div>
             </div>
+
+            <sub-menu if.one-time="showMenu" routes.bind="router.navigation"></sub-menu>
         </div>
     </div>
 
     <div class="primary-light" style="padding-bottom: 2em;">
         <div class="ui container">
-            <list-menu
-                show.bind="lists.length"
-                lists.one-way="lists"
-                selected-list.two-way="currentList"
-                delete.call="deleteList(list)"
-                share.call="shareList(list)">
-            </list-menu>
-
-            <alerts-list
-                show.bind="allAlerts.length"
-                alerts.one-way="alerts"
-                is-read-only.one-time="false"
-                selected-alerts.two-way="selectedAlerts"
-                add.call="showModal(createAlertModal)"
-                activate.call="activateAlert(alert)">
-            </alerts-list>
-
-            <div hide.bind="allAlerts.length" style="padding: 6em 0 4em 0;">
-                <p style="text-align: center;" i18n="alerts.noAlert">You are not watching any products right now.</p>
-                <p style="text-align: center;" i18n="alerts.getStarted">Get started!</p>
-                <div style="text-align: center;">
-                    <div class="ui primary primary-action button" click.delegate="showModal(createAlertModal)"
-                        i18n="[append]alerts.createAlert"
-                        data-analytics-category="Alerts"
-                        data-analytics-action="add"
-                        data-analytics-label="overlay">
-                        <i class="plus icon"></i>
-                    </div>
-                </div>
-            </div>
-
-            <actions-menu show.bind="selectedAlerts.length">
-                <actions-menu-action text="alerts.actions.clearSelection" icon="remove" action.call="clearSelection()"></actions-menu-action>
-                <actions-menu-action text="alerts.actions.createList" icon="list" action.call="showModal(createListModal)" hide.bind="currentList"
-                    analytics-category="List"
-                    analytics-action="create"></actions-menu-action>
-                <div class="ui dropdown link item" hide.bind="currentList || !lists.length">
-                    <i class="outdent icon"></i>
-                    ${'alerts.actions.addToList' | t}
-                    <div class="menu">
-                        <a repeat.for="list of lists | sort:'name'" class="item" click.delegate="addToList(selectedAlerts, list)"
-                            data-analytics-category="List"
-                            data-analytics-action="add"
-                            data-analytics-label="footer">${list.name}</a>
-                    </div>
-                </div>
-                <actions-menu-action text="alerts.actions.removeFromList" icon="indent" action.call="removeFromList(selectedAlerts)" show.bind="currentList"
-                    analytics-category="List"
-                    analytics-action="remove"></actions-menu-action>
-                <actions-menu-action text="alerts.actions.deleteAlert" icon="trash" action.call="confirmDeleteAlert(selectedAlerts)"
-                    analytics-category="List"
-                    analytics-action="delete"></actions-menu-action>
-            </actions-menu>
+            <router-view></router-view>
         </div>
-
-        <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
-        <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
-        <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
-        <confirmation-modal view-model.ref="confirmationModal" message="alerts.deleteConfirmation"></confirmation-modal>
     </div>
 </template>

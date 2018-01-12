@@ -13,6 +13,7 @@ export class ListMenu {
 
     @bindable selectedList: List;
     @bindable lists: Array<List>;
+    @bindable selectAllEnabled: boolean = false;
     @bindable delete;
     @bindable share;
 
@@ -30,6 +31,7 @@ export class ListMenu {
 
     shareList(list: List): void {
         if (list.isPublic) {
+            // TODO Unshare
         } else {
             this._modalController.confirm(this.shareConfirmationModal, async () => {
                 this.share({ list: list });

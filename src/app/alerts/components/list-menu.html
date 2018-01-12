@@ -2,7 +2,7 @@
     <require from="./list-label"></require>
 
     <div class="ui text menu" style="margin-top: 0; padding-top: 1em;">
-        <list-label if.bind="lists.length"
+        <list-label if.bind="selectAllEnabled && lists.length"
             click.call="selectList()"
             label="${'lists.noFilter' | t}"
             class-name="${selectedList ? 'transparent' : 'primary-action'}"></list-label>

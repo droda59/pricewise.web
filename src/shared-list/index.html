@@ -1,17 +1,17 @@
 <template>
     <require from="../app/alerts/components/alerts-list"></require>
+    <require from="../app/shared/components/header-title"></require>
+    <require from="../app/shared/components/back-button"></require>
 
     <div class="primary-dark" style="color: white;">
         <div class="ui container" style="position: relative;">
-            <div class="ui text menu" style="margin: 0; padding: 3em 0;">
-                <div class="item">
-                    <h1 class="ui header header-title" if.one-time="!errorMessage">${userName}'s list</h1>
-                    <h1 class="ui header header-title" if.one-time="errorMessage">${errorMessage & t: { context: 'title' }}</h1>
-                </div>
-                <a class="ui primary primary-action button" if.one-time="isAuthenticated" click.delegate="follow()">
-                    Follow
-                </a>
-            </div>
+            <back-button if.one-time="isAuthenticated"></back-button>
+
+            <header-title if.one-time="!errorMessage">${userName}'s list</header-title>
+            <header-title if.one-time="errorMessage">${errorMessage & t: { context: 'title' }}</header-title>
+            <a class="ui primary primary-action button" if.one-time="isAuthenticated && !errorMessage" click.delegate="follow()">
+                Follow
+            </a>
         </div>
     </div>
 

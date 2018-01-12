@@ -120,7 +120,7 @@ export class Sources extends BaseI18N {
                 try {
                     const alertDeleted = await this._alertService.delete(this._userId, this.alert.id);
                     if (alertDeleted) {
-                        this._router.navigateToRoute("user");
+                        this._router.navigateToRoute("alerts");
                     } else {
                         throw new Error();
                     }

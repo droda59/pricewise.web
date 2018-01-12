@@ -34,7 +34,7 @@ export class Welcome extends BaseI18N {
 
         const isAuthenticated = this._authenticationService.isAuthenticated();
         if (isAuthenticated) {
-            this._router.navigateToRoute("user");
+            this._router.navigateToRoute("alerts");
         }
     }
 }

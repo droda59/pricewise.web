@@ -50,7 +50,7 @@ export class AuthenticationService {
 
                 var routeToNavigate = await this.getOrCreateUser(authResult.idTokenPayload);
 
-                this._eventAggregator.publish("authChange", { authenticated: true });
+                this._eventAggregator.publish("auth:change", { authenticated: true });
                 this._router.navigate(routeToNavigate);
             } else if (err) {
                 console.log(err);
@@ -83,12 +83,12 @@ export class AuthenticationService {
         localStorage.removeItem("user_id");
         localStorage.removeItem("expires_at");
 
-        this._eventAggregator.publish("authChange", { authenticated: false });
+        this._eventAggregator.publish("auth:change", { authenticated: false });
 	}
 
     private async getOrCreateUser(profile: any): Promise<string> {
         var user;
-        var navigateTo = "user";
+        var navigateTo = "alerts";
 
         try {
             user = await this._userService.get(profile.sub);
