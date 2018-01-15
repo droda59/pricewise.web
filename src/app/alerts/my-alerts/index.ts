@@ -28,7 +28,9 @@ export class MyAlerts extends BaseI18N {
 
     createListModal: CreateListModal;
     createAlertModal: AddSourceModal;
-    confirmationModal: ConfirmationModal;
+    confirmDeleteAlertModal: ConfirmationModal;
+    confirmDeleteListModal: ConfirmationModal;
+    confirmShareListModal: ConfirmationModal;
     isUpdating: boolean;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     allAlerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
@@ -141,57 +143,6 @@ export class MyAlerts extends BaseI18N {
         this.clearSelection();
     }
 
-    async deleteList(list: List) {
-        this.isUpdating = true;
-
-        try {
-            const listDeleted = await this._listService.delete(this._userId, list.id);
-            if (!listDeleted) {
-                throw new Error();
-            }
-
-            this.lists.remove(list);
-            this.currentList = undefined;
-            this._ea.publish("list:deleted", { list: list });
-
-            this._toaster.showSuccess("lists.listDeleted");
-        } catch(e) {
-            this._toaster.showError("lists.listDeleted");
-        } finally {
-            this.isUpdating = false;
-        }
-    }
-
-    async shareList(list: List): Promise<void> {
-        this.isUpdating = true;
-
-        try {
-            if (list.isPublic) {
-                const sharedListUrl = await this._listService.share(this._userId, list.id);
-                if (!sharedListUrl) {
-                    throw new Error();
-                }
-
-                // TEMP
-                console.log("share url: " + `${this._configuration.get("web")}${sharedListUrl}`);
-
-                list.isPublic = true;
-            } else {
-                await this._listService.unshare(this._userId, list.id);
-
-                list.isPublic = false;
-            }
-
-            this._ea.publish("list:shared", { list: list });
-
-            this._toaster.showSuccess("lists.listShared");
-        } catch(e) {
-            this._toaster.showError("lists.listShared");
-        } finally {
-            this.isUpdating = false;
-        }
-    }
-
     async removeFromList(alerts: Array<UserAlertSummary>): Promise<void> {
         alerts.forEach(alert => this.currentList.alerts.removeWhere(x => x.id == alert.id));
 
@@ -209,7 +160,15 @@ export class MyAlerts extends BaseI18N {
     }
 
     confirmDeleteAlert(alerts: Array<UserAlertSummary>): void {
-        this._modalController.confirm(this.confirmationModal, async () => await this._deleteAlerts(alerts));
+        this._modalController.confirm(this.confirmDeleteAlertModal, async () => await this._deleteAlerts(alerts));
+    }
+
+    confirmDeleteList(list: List): void {
+        this._modalController.confirm(this.confirmDeleteListModal, async () => await this._deleteList(list));
+    }
+
+    confirmShareList(list: List): void {
+        this._modalController.confirm(this.confirmShareListModal, async () => await this._shareList(list));
     }
 
     showModal(modal: Modal): void {
@@ -303,6 +262,57 @@ export class MyAlerts extends BaseI18N {
             this._toaster.showSuccess("alerts.alertDeleted");
         } catch(e) {
             this._toaster.showError("alerts.alertDeleted");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
+    private async _deleteList(list: List) {
+        this.isUpdating = true;
+
+        try {
+            const listDeleted = await this._listService.delete(this._userId, list.id);
+            if (!listDeleted) {
+                throw new Error();
+            }
+
+            this.lists.remove(list);
+            this.currentList = undefined;
+            this._ea.publish("list:deleted", { list: list });
+
+            this._toaster.showSuccess("lists.listDeleted");
+        } catch(e) {
+            this._toaster.showError("lists.listDeleted");
+        } finally {
+            this.isUpdating = false;
+        }
+    }
+
+    private async _shareList(list: List): Promise<void> {
+        this.isUpdating = true;
+
+        try {
+            if (list.isPublic) {
+                const sharedListUrl = await this._listService.share(this._userId, list.id);
+                if (!sharedListUrl) {
+                    throw new Error();
+                }
+
+                // TEMP
+                console.log("share url: " + `${this._configuration.get("web")}${sharedListUrl}`);
+
+                list.isPublic = true;
+            } else {
+                await this._listService.unshare(this._userId, list.id);
+
+                list.isPublic = false;
+            }
+
+            this._ea.publish("list:shared", { list: list });
+
+            this._toaster.showSuccess("lists.listShared");
+        } catch(e) {
+            this._toaster.showError("lists.listShared");
         } finally {
             this.isUpdating = false;
         }

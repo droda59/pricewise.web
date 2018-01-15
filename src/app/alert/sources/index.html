@@ -107,5 +107,8 @@
 
     <loader is-active.one-way="isUpdatingAlert" text="alert.updating"></loader>
     <add-source-modal view-model.ref="addSourceModal" is-working.one-way="isAddingSource" add.call="addEntry(newAlertUrl)"></add-source-modal>
-    <confirmation-modal view-model.ref="confirmationModal" message="alert.sources.deleteConfirmation"></confirmation-modal>
+    <confirmation-modal view-model.ref="confirmationModal">
+        <div slot="header">${'alert.sources.deleteConfirmation' | t: {context: 'title' } & oneTime}</div>
+        <div slot="content">${'alert.sources.deleteConfirmation' | t: {context: 'description' } & oneTime}</div>
+    </confirmation-modal>
 </template>

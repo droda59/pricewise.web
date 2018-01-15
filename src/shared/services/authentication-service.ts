@@ -88,7 +88,7 @@ export class AuthenticationService {
 
     private async getOrCreateUser(profile: any): Promise<string> {
         var user;
-        var navigateTo = "alerts";
+        var navigateTo = "user/alerts";
 
         try {
             user = await this._userService.get(profile.sub);

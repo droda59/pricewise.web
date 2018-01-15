@@ -11,8 +11,8 @@
         select-all-enabled.one-time="true"
         lists.one-way="lists"
         selected-list.two-way="currentList"
-        delete.call="deleteList(list)"
-        share.call="shareList(list)">
+        delete.call="confirmDeleteList(list)"
+        share.call="confirmShareList(list)">
     </list-menu>
 
     <alerts-list
@@ -64,5 +64,16 @@
     <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
     <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
     <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
-    <confirmation-modal view-model.ref="confirmationModal" message="alerts.deleteConfirmation"></confirmation-modal>
+    <confirmation-modal view-model.ref="confirmDeleteAlertModal">
+        <div slot="header">${'alerts.deleteConfirmation' | t: {context: 'title' } & oneTime}</div>
+        <div slot="content">${'alerts.deleteConfirmation' | t: {context: 'description' } & oneTime}</div>
+    </confirmation-modal>
+    <confirmation-modal view-model.ref="confirmDeleteListModal">
+        <div slot="header">${'lists.deleteConfirmation' | t: {context: 'title' } & oneTime}</div>
+        <div slot="content">${'lists.deleteConfirmation' | t: {context: 'description' } & oneTime}</div>
+    </confirmation-modal>
+    <confirmation-modal view-model.ref="confirmShareListModal">
+        <div slot="header">${'lists.shareConfirmation' | t: {context: 'title' } & oneTime}</div>
+        <div slot="content">${'lists.shareConfirmation' | t: {context: 'description' } & oneTime}</div>
+    </confirmation-modal>
 </template>

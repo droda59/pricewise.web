@@ -19,7 +19,7 @@ export class FollowedLists extends BaseI18N {
     private _toaster: Toaster;
     private _userId: string;
 
-    confirmationModal: ConfirmationModal;
+    confirmUnfollowListModal: ConfirmationModal;
     isUpdating: boolean;
     alerts: Array<UserAlertSummary> = new Array<UserAlertSummary>();
     lists: Array<List> = new Array<List>();
@@ -59,7 +59,7 @@ export class FollowedLists extends BaseI18N {
     }
 
     confirmUnfollowList(list: List): void {
-        this._modalController.confirm(this.confirmationModal, async () => await this._unfollowList(list));
+        this._modalController.confirm(this.confirmUnfollowListModal, async () => await this._unfollowList(list));
     }
 
     private async _unfollowList(list: List) {
