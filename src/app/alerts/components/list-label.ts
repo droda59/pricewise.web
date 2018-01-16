@@ -9,4 +9,5 @@ export class ListLabel {
     @bindable click;
     @bindable delete;
     @bindable share;
+    @bindable unshare;
 }
