@@ -1,5 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
+import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
 import { Toaster } from "../../shared/services/toaster";
@@ -13,6 +14,7 @@ import { List } from "../../shared/models/list";
 @autoinject()
 export class FollowedLists extends BaseI18N {
     private _sharedListService: SharedListService;
+    private _router: Router;
     private _listService: ListService;
     private _ea: EventAggregator;
     private _modalController: ConfirmationModalController;
@@ -29,6 +31,7 @@ export class FollowedLists extends BaseI18N {
     constructor(
             listService: ListService,
             sharedListService: SharedListService,
+            router: Router,
             modalController: ConfirmationModalController,
             toaster: Toaster,
             i18n: I18N,
@@ -41,6 +44,7 @@ export class FollowedLists extends BaseI18N {
         this._ea = ea;
         this._listService = listService;
         this._sharedListService = sharedListService;
+        this._router = router;
         this._modalController = modalController;
         this._toaster = toaster;
     }
@@ -52,6 +56,10 @@ export class FollowedLists extends BaseI18N {
             this.currentList = this.lists[0];
             await this._updateSelectedList(this.currentList);
         }
+    }
+
+    navigateToSharedAlert(alert: UserAlertSummary): void {
+        this._router.navigateToRoute("alert", { alertId: alert.id, listId: this.currentList.id });
     }
 
     detached() {

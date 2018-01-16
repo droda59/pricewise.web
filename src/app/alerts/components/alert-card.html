@@ -2,12 +2,12 @@
     <div class="alert-card ${alert.isActive ? 'green' : 'inactive'} card">
         <div class="content">
             <slot name="top-action"></slot>
-            <a class="header" route-href="route: alert; params.bind: { alertId: alert.id }">${alert.title}</a>
+            <a class="header" click.delegate="navigateToAlert(alert)">${alert.title}</a>
             <div class="meta">
                 <small i18n="[prepend]alert.lastUpdatedTime">${alert.bestCurrentDeal.modifiedAt | rt}</small>
             </div>
         </div>
-        <a route-href="route: alert; params.bind: { alertId: alert.id }" class="image">
+        <a click.delegate="navigateToAlert(alert)" class="image">
             <img class="${alert.isPortaitSize ? 'portrait' : ''} ${alert.isLandscapeSize ? 'landscape' : ''}" src.bind="alert.imageUrl">
         </a>
         <div class="extra content">

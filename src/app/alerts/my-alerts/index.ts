@@ -155,6 +155,10 @@ export class MyAlerts extends BaseI18N {
         await this._saveList(list);
     }
 
+    navigateToAlert(alert: UserAlertSummary): void {
+        this._router.navigateToRoute("alert", { alertId: alert.id });
+    }
+
     clearSelection(): void {
         this.selectedAlerts = new Array<UserAlertSummary>();
     }

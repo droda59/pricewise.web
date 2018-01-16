@@ -19,6 +19,7 @@ export class AlertPage extends BaseI18N {
 
     @bindable title: string;
 
+    isReadOnly: boolean = false;
     isActive: boolean;
     imageUrl: string;
     router: Router;
@@ -48,6 +49,7 @@ export class AlertPage extends BaseI18N {
 
             var alert;
             if (route.listId) {
+                this.isReadOnly = true;
                 alert = await this._sharedListService.getAlertSummary(route.listId, this._alertId);
             } else {
                 alert = await this._alertService.getSummary(this._userId, this._alertId);
@@ -77,6 +79,7 @@ export class AlertPage extends BaseI18N {
     async titleChanged(newValue: string, oldValue: string): Promise<void> {
         if (newValue != oldValue) {
             try {
+                // TODO Pourquoi on re-get?
                 var currentAlert = await this._alertService.getSummary(this._userId, this._alertId);
                 currentAlert.title = this.title;
 

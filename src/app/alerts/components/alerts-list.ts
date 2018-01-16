@@ -9,8 +9,13 @@ export class AlertsList {
     @bindable isReadOnly: boolean;
     @bindable add;
     @bindable activate;
+    @bindable navigate;
 
     alertsChanged(): void {
         this.selectedAlerts = new Array<UserAlertSummary>();
+    }
+
+    navigateToAlert(alert: UserAlertSummary): void {
+        this.navigate({ alert: alert });
     }
 }

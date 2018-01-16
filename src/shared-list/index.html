@@ -7,10 +7,10 @@
         <div class="ui container" style="position: relative;">
             <back-button if.one-time="isAuthenticated"></back-button>
 
-            <header-title if.one-time="!errorMessage">${userName}'s list</header-title>
+            <header-title if.one-time="!errorMessage">${'sharedLists.title' & t: { listName: listName, userName: userName }}</header-title>
             <header-title if.one-time="errorMessage">${errorMessage & t: { context: 'title' }}</header-title>
             <a class="ui primary primary-action button" if.one-time="isAuthenticated && !errorMessage" click.delegate="follow()">
-                Follow
+                ${'sharedLists.followButton' & t}
             </a>
         </div>
     </div>
@@ -24,7 +24,10 @@
                     </div>
                 </div>
             </div>
-            <alerts-list alerts.one-time="alerts" is-read-only.one-time="true"></alerts-list>
+            <alerts-list
+                alerts.one-time="alerts"
+                is-read-only.one-time="true"
+                navigate.call="navigateToSharedAlert(alert)"></alerts-list>
         </div>
     </div>
 </template>

@@ -11,7 +11,8 @@
 
     <alerts-list
         alerts.one-time="alerts"
-        is-read-only.one-time="true">
+        is-read-only.one-time="true"
+        navigate.call="navigateToSharedAlert(alert)">
     </alerts-list>
 
     <loader text="alerts.working" is-active.one-way="isUpdating"></loader>

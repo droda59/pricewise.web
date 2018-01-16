@@ -132,6 +132,10 @@
         "shareConfirmation_title": "Partager une liste",
         "shareConfirmation_description": "Êtes-vous certain de vouloir partager cette liste? Une fois partagée, elle deviendra accessible à tous ceux qui auront le lien."
     },
+    "sharedLists": {
+        "title": "{{listName}}, par {{userName}}",
+        "followButton": "Ajouter à mes listes suivies"
+    },
     "followedLists": {
         "title": "Listes suivies",
         "listUnfollowed_success": "La liste n'est plus suivie!",

@@ -3,6 +3,7 @@ import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
 import { AlertService } from "../../shared/services/alert-service";
+import { SharedListService } from "../../../shared-list/services/shared-list-service";
 import { ProductService } from "../../shared/services/product-service";
 import { Toaster } from "../../shared/services/toaster";
 import { AlertEntry } from "../../shared/models/alert-entry";
@@ -16,6 +17,7 @@ import { ConfirmationModalController } from "../../../confirmation-modal-control
 export class Sources extends BaseI18N {
     private _router: Router;
     private _alertService: AlertService;
+    private _sharedListService: SharedListService;
     private _productService: ProductService;
     private _modalController: ConfirmationModalController;
     private _toaster: Toaster;
@@ -28,11 +30,13 @@ export class Sources extends BaseI18N {
     isSearchingProducts: boolean;
     isUpdatingAlert: boolean;
     isAddingSource: boolean;
+    isReadOnly: boolean = false;
     suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
     constructor(
             router: Router,
             alertService: AlertService,
+            sharedListService: SharedListService,
             productService: ProductService,
             modalController: ConfirmationModalController,
             toaster: Toaster,
@@ -43,6 +47,7 @@ export class Sources extends BaseI18N {
 
         this._router = router;
         this._alertService = alertService;
+        this._sharedListService = sharedListService;
         this._productService = productService;
         this._modalController = modalController;
         this._toaster = toaster;
@@ -53,7 +58,15 @@ export class Sources extends BaseI18N {
             this._userId = localStorage.getItem("user_id");
             this._alertId = route.alertId;
 
-            this.alert = await this._alertService.get(this._userId, this._alertId);
+            var alert;
+            if (route.listId) {
+                this.isReadOnly = true;
+                alert = await this._sharedListService.getAlertDetails(route.listId, this._alertId);
+            } else {
+                alert = await this._alertService.get(this._userId, this._alertId);
+            }
+
+            this.alert = alert;
             this.searchForSameProducts();
         }
     }
