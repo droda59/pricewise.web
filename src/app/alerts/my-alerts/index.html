@@ -12,7 +12,8 @@
         lists.one-way="lists"
         selected-list.two-way="currentList"
         delete.call="confirmDeleteList(list)"
-        share.call="confirmShareList(list)">
+        share.call="confirmShareList(list)"
+        unshare.call="confirmShareList(list)">
     </list-menu>
 
     <alerts-list
@@ -76,5 +77,9 @@
     <confirmation-modal view-model.ref="confirmShareListModal">
         <div slot="header">${'lists.shareConfirmation' | t: {context: 'title' } & oneTime}</div>
         <div slot="content">${'lists.shareConfirmation' | t: {context: 'description' } & oneTime}</div>
+    </confirmation-modal>
+    <confirmation-modal view-model.ref="confirmUnshareListModal">
+        <div slot="header">${'lists.unshareConfirmation' | t: {context: 'title' } & oneTime}</div>
+        <div slot="content">${'lists.unshareConfirmation' | t: {context: 'description' } & oneTime}</div>
     </confirmation-modal>
 </template>

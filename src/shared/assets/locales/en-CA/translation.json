@@ -126,12 +126,16 @@
         "listDeleted_failure": "An error occurred during the deletion.",
         "listShared_success": "List shared successfully!",
         "listShared_failure": "An error occurred during the share.",
+        "listUnshared_success": "List unshared successfully!",
+        "listUnshared_failure": "An error occurred during the unshare.",
         "listUpdated_success": "List saved successfully!",
         "listUpdated_failure": "An error occurred during the update.",
         "deleteConfirmation_title": "Delete list",
         "deleteConfirmation_description": "Are you sure you want to delete this list? It will not delete its products, only the list itself.",
         "shareConfirmation_title": "Share list",
-        "shareConfirmation_description": "Are you sure you want to share this list? Once shared, it will become accessible to anyone with its link."
+        "shareConfirmation_description": "Are you sure you want to share this list? Once shared, it will become accessible to anyone with its link.",
+        "unshareConfirmation_title": "Unshare list",
+        "unshareConfirmation_description": "Are you sure you want to unshare this list? No one else will have access to it anymore."
     },
     "sharedLists": {
         "title": "{{listName}}, by {{userName}}",

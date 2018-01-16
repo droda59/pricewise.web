@@ -9,6 +9,7 @@ export class ListMenu {
     @bindable lists: Array<List>;
     @bindable delete;
     @bindable share;
+    @bindable unshare;
 
     selectList(list?: List): void {
         if (!list && this.selectedList != null) {
@@ -20,6 +21,10 @@ export class ListMenu {
 
     shareList(list: List): void {
         this.share({ list: list });
+    }
+
+    unshareList(list: List): void {
+        this.unshare({ list: list });
     }
 
     deleteList(list: List) {
