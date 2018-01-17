@@ -12,7 +12,6 @@ import { Toaster } from "../shared/services/toaster";
 export class AlertPage extends BaseI18N {
     private _alertService: AlertService;
     private _sharedListService: SharedListService;
-    private _i18n: I18N;
     private _toaster: Toaster;
     private _userId: string;
     private _alertId: string;
@@ -29,14 +28,13 @@ export class AlertPage extends BaseI18N {
 
         this._alertService = alertService;
         this._sharedListService = sharedListService;
-        this._i18n = i18n;
         this._toaster = toaster;
     }
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
-            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources/index"), nav: true, title: this._i18n.tr("alert.sources.title") },
-            { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history/index"), nav: true, title: this._i18n.tr("alert.history.title") },
+            { route: ["", "sources"], name: "sources",  moduleId: PLATFORM.moduleName("./sources/index"), nav: true, title: "alert.sources.title" },
+            { route: "history",       name: "history",  moduleId: PLATFORM.moduleName("./history/index"), nav: true, title: "alert.history.title" },
         ]);
 
         this.router = router;

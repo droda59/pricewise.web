@@ -8,13 +8,9 @@ import { AuthorizeStep } from "./authorize-step";
 
 @autoinject()
 export class App {
-    private _i18n: I18N;
-
     router: Router;
 
     constructor(i18n: I18N, ea: EventAggregator) {
-        this._i18n = i18n;
-
         let language = localStorage.getItem("language");
         if (language) {
             i18n.setLocale(language);
@@ -24,14 +20,6 @@ export class App {
 
         ea.subscribe("i18n:locale:changed", payload => {
             localStorage.setItem("language", i18n.getLocale());
-
-            // if (router.currentInstruction) {
-            //     router.navigateToRoute(
-            //         router.currentInstruction.config.name,
-            //         router.currentInstruction.params,
-            //         { replace: true }
-            //     );
-            // }
         });
     }
 
@@ -42,7 +30,7 @@ export class App {
 
         config.map([
             { route: ["", "welcome"], name: "welcome",    moduleId: PLATFORM.moduleName("./homepage/index"),     nav: true },
-            { route: "callback",      name: "callback",   moduleId: PLATFORM.moduleName("./callback/index"),     nav: false, title: this._i18n.tr("welcome.authenticating") },
+            { route: "callback",      name: "callback",   moduleId: PLATFORM.moduleName("./callback/index"),     nav: false, title: "welcome.authenticating" },
 
             { route: "list/:listId",  name: "sharedlist", moduleId: PLATFORM.moduleName("./shared-list/index"),  nav: false },
 

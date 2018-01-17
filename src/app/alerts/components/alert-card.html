@@ -4,7 +4,7 @@
             <slot name="top-action"></slot>
             <a class="header" click.delegate="navigateToAlert(alert)">${alert.title}</a>
             <div class="meta">
-                <small i18n="[prepend]alert.lastUpdatedTime">${alert.bestCurrentDeal.modifiedAt | rt}</small>
+                <small i18n="[prepend]alert.lastUpdatedTime">${alert.bestCurrentDeal.modifiedAt & rt}</small>
             </div>
         </div>
         <a click.delegate="navigateToAlert(alert)" class="image">

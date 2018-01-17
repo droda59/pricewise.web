@@ -8,7 +8,6 @@ import { ListService } from "../shared/services/list-service";
 @autoinject()
 export class Alerts extends BaseI18N {
     private _listService: ListService;
-    private _i18n: I18N;
     private _userId: string;
 
     router: Router;
@@ -23,11 +22,10 @@ export class Alerts extends BaseI18N {
 
         this._userId = localStorage.getItem("user_id");
         this._listService = listService;
-        this._i18n = i18n;
     }
 
     configureRouter(config: RouterConfiguration, router: Router) {
-        config.title = this._i18n.tr("alerts.title");
+        config.title = "alerts.title";
         config.map([
             { route: ["", "myalerts"], name: "myalerts",  moduleId: PLATFORM.moduleName("./my-alerts/index"),      nav: true, title: "alerts.myAlerts" },
             { route: "followed",       name: "followed",  moduleId: PLATFORM.moduleName("./followed-lists/index"), nav: true, title: "followedLists.title" },

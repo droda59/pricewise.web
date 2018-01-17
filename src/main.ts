@@ -6,6 +6,8 @@ import "../semantic/dist/semantic.min.js";
 import { TCustomAttribute } from "aurelia-i18n";
 import { Aurelia } from "aurelia-framework";
 import { PLATFORM } from "aurelia-pal";
+import { AppRouter } from "aurelia-router";
+import { EventAggregator } from "aurelia-event-aggregator";
 import Backend from "i18next-xhr-backend";
 import * as Bluebird from "bluebird";
 
@@ -25,11 +27,11 @@ export async function configure(aurelia: Aurelia) {
                 production: ["pricewise.azurewebsites.net", "pricewi.se"]
             });
         })
-        .plugin(PLATFORM.moduleName("aurelia-i18n"), (instance) => {
+        .plugin(PLATFORM.moduleName("aurelia-i18n"), i18n => {
             let aliases = ["t", "i18n"];
             TCustomAttribute.configureAliases(aliases);
-            instance.i18next.use(Backend);
-            return instance.setup({
+            i18n.i18next.use(Backend);
+            return i18n.setup({
                 backend: {
                     loadPath: "./shared/assets/locales/{{lng}}/{{ns}}.json",
                 },
@@ -37,7 +39,15 @@ export async function configure(aurelia: Aurelia) {
                 lng : "en-CA",
                 fallbackLng : "fr-CA",
                 debug : false
-            });
+            }).then(() => {
+              const router = aurelia.container.get(AppRouter);
+              router.transformTitle = title => i18n.tr(title);
+
+              const eventAggregator = aurelia.container.get(EventAggregator);
+              eventAggregator.subscribe('i18n:locale:changed', () => {
+                  router.updateTitle();
+              });
+          })
         })
         .plugin(PLATFORM.moduleName("aurelia-google-analytics"), config => {
             config.init("UA-100559856-1");
