@@ -3,13 +3,13 @@ import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N, BaseI18N } from "aurelia-i18n";
 import { AureliaConfiguration } from "aurelia-configuration";
-import { Source } from "../shared/models/source";
-import { AuthenticationService } from "../shared/services/authentication-service";
-import { SourcesService } from "../shared/services/sources-service";
+import { Source } from "../../../shared/models/source";
+import { AuthenticationService } from "../../../shared/services/authentication-service";
+import { SourcesService } from "../../../shared/services/sources-service";
 import auth0 from "auth0-js";
 
 @autoinject()
-export class Welcome extends BaseI18N {
+export class AnonymousNavBar extends BaseI18N {
     private _authenticationService: AuthenticationService;
     private _sourcesService: SourcesService;
     private _router: Router;
