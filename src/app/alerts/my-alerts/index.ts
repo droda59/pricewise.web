@@ -10,6 +10,7 @@ import { ListService } from "../../shared/services/list-service";
 import { List } from "../../shared/models/list";
 import { UserAlertSummary } from "../../shared/models/user-alert-summary";
 import { CreateListModal } from "../components/create-list-modal";
+import { SharedListUrlModal } from "../components/shared-list-url-modal";
 import { AddSourceModal } from "../../shared/components/add-source-modal";
 import { ConfirmationModal } from "../../../shared/components/confirmation-modal";
 import { Modal } from "../../../shared/modal";
@@ -26,6 +27,7 @@ export class MyAlerts extends BaseI18N {
     private _toaster: Toaster;
     private _userId: string;
 
+    sharedListUrlModal: SharedListUrlModal;
     createListModal: CreateListModal;
     createAlertModal: AddSourceModal;
     confirmDeleteAlertModal: ConfirmationModal;
@@ -306,10 +308,10 @@ export class MyAlerts extends BaseI18N {
                 throw new Error();
             }
 
-            // TEMP
-            console.log("share url: " + `${this._configuration.get("web")}${sharedListUrl}`);
-
             list.isPublic = true;
+
+            this.sharedListUrlModal.url = `${this._configuration.get("web")}${sharedListUrl}`;
+            this.showModal(this.sharedListUrlModal);
 
             this._ea.publish("list:shared", { list: list });
 

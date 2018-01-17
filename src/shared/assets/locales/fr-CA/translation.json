@@ -138,7 +138,12 @@
     },
     "sharedLists": {
         "title": "{{listName}}, par {{userName}}",
-        "followButton": "Ajouter à mes listes suivies"
+        "followButton": "Ajouter à mes listes suivies",
+        "urlModal": {
+            "title": "Donnez cette adresse à vos amis pour leur donner accès à votre liste!",
+            "copyButton": "Copier",
+            "copySuccess": "Copiée au presse-papier!"
+        }
     },
     "followedLists": {
         "title": "Listes suivies",

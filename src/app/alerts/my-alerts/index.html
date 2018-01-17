@@ -1,6 +1,7 @@
 <template>
     <require from="../components/list-menu"></require>
     <require from="../components/create-list-modal"></require>
+    <require from="../components/shared-list-url-modal"></require>
     <require from="../components/alerts-list"></require>
     <require from="../../shared/components/add-source-modal"></require>
     <require from="../../shared/components/actions-menu.html"></require>
@@ -64,6 +65,7 @@
     </actions-menu>
 
     <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
+    <shared-list-url-modal view-model.ref="sharedListUrlModal"></shared-list-url-modal>
     <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
     <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
     <confirmation-modal view-model.ref="confirmDeleteAlertModal">

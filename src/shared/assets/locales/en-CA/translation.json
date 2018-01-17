@@ -139,7 +139,12 @@
     },
     "sharedLists": {
         "title": "{{listName}}, by {{userName}}",
-        "followButton": "Add to my followed lists"
+        "followButton": "Add to my followed lists",
+        "urlModal": {
+            "title": "Give this URL to your friends to give them access to your list!",
+            "copyButton": "Copy",
+            "copySuccess": "Copied to clipboard!"
+        }
     },
     "followedLists": {
         "title": "Followed lists",
