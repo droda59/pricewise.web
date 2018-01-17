@@ -26,11 +26,5 @@ export class AuthenticatedNavBar {
     changeLanguage(): void {
         var language = this._i18n.tr("otherLanguageCode");
         this._i18n.setLocale(language);
-
-        this._router.navigateToRoute(
-            this._router.currentInstruction.config.name,
-            this._router.currentInstruction.params,
-            { replace: true }
-        );
     }
 }

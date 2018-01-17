@@ -11,7 +11,7 @@
             label.one-way="list.name"
             click.call="selectList(list)"
             delete.call="deleteList(list)"
-            share.delegate="share && !list.isPublic ? shareList(list) : undefined"
+            share.delegate="share ? shareList(list) : undefined"
             unshare.delegate="unshare && list.isPublic ? unshareList(list) : undefined"
             class-name="${$parent.selectedList.id === list.id ? 'primary-action' : 'transparent'}"></list-label>
     </div>

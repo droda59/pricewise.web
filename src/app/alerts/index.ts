@@ -29,8 +29,8 @@ export class Alerts extends BaseI18N {
     configureRouter(config: RouterConfiguration, router: Router) {
         config.title = this._i18n.tr("alerts.title");
         config.map([
-            { route: ["", "myalerts"], name: "myalerts",  moduleId: PLATFORM.moduleName("./my-alerts/index"),      nav: true, title: this._i18n.tr("alerts.myAlerts") },
-            { route: "followed",       name: "followed",  moduleId: PLATFORM.moduleName("./followed-lists/index"), nav: true, title: this._i18n.tr("followedLists.title") },
+            { route: ["", "myalerts"], name: "myalerts",  moduleId: PLATFORM.moduleName("./my-alerts/index"),      nav: true, title: "alerts.myAlerts" },
+            { route: "followed",       name: "followed",  moduleId: PLATFORM.moduleName("./followed-lists/index"), nav: true, title: "followedLists.title" },
         ]);
 
         this.router = router;

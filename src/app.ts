@@ -24,6 +24,14 @@ export class App {
 
         ea.subscribe("i18n:locale:changed", payload => {
             localStorage.setItem("language", i18n.getLocale());
+
+            // if (router.currentInstruction) {
+            //     router.navigateToRoute(
+            //         router.currentInstruction.config.name,
+            //         router.currentInstruction.params,
+            //         { replace: true }
+            //     );
+            // }
         });
     }
 
@@ -38,9 +46,9 @@ export class App {
 
             { route: "list/:listId",  name: "sharedlist", moduleId: PLATFORM.moduleName("./shared-list/index"),  nav: false },
 
-            { route: "user/alerts",         name: "alerts",   moduleId: PLATFORM.moduleName("./app/alerts/index"),   activationStrategy: "replace", authRoute: true },
-            { route: "user/alert/:alertId", name: "alert",    moduleId: PLATFORM.moduleName("./app/alert/index"),    activationStrategy: "replace", authRoute: true, nav: false },
-            { route: "user/settings",       name: "settings", moduleId: PLATFORM.moduleName("./app/settings/index"), activationStrategy: "replace", authRoute: true },
+            { route: "user/alerts",         name: "alerts",   moduleId: PLATFORM.moduleName("./app/alerts/index"),   authRoute: true },
+            { route: "user/alert/:alertId", name: "alert",    moduleId: PLATFORM.moduleName("./app/alert/index"),    authRoute: true, nav: false },
+            { route: "user/settings",       name: "settings", moduleId: PLATFORM.moduleName("./app/settings/index"), authRoute: true },
         ]);
 
         this.router = router;
