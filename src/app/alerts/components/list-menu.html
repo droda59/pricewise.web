@@ -1,8 +1,8 @@
 <template>
     <div class="ui text menu" style="margin-top: 0; padding-top: 1em;">
         <div class="item" if.bind="selectAllEnabled && lists.length">
-            <div class="ui left ${selectedList ? 'transparent' : 'primary-action'} labeled button">
-                <a class="ui basic label" click.delegate="selectList()">${'lists.noFilter' & t}</a>
+            <div class="ui left labeled button">
+                <a class="ui basic ${selectedList ? 'transparent' : 'primary-action'} label" click.delegate="selectList()">${'lists.noFilter' & t}</a>
             </div>
         </div>
 
