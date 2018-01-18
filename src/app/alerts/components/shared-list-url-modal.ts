@@ -7,6 +7,12 @@ export class SharedListUrlModal extends Modal {
 
     @bindable url: string;
 
+    open(): void {
+        this.urlField.select();
+
+        super.open();
+    }
+
     copyToClipboard(): void {
         this.urlField.select();
         document.execCommand("Copy");

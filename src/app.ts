@@ -35,7 +35,7 @@ export class App {
             { route: "list/:listId",  name: "sharedlist", moduleId: PLATFORM.moduleName("./shared-list/index"),  nav: false },
 
             { route: "user/alerts",         name: "alerts",   moduleId: PLATFORM.moduleName("./app/alerts/index"),   authRoute: true },
-            { route: "user/alert/:alertId", name: "alert",    moduleId: PLATFORM.moduleName("./app/alert/index"),    authRoute: true, nav: false },
+            { route: "user/alert/:alertId/:listId?", name: "alert",    moduleId: PLATFORM.moduleName("./app/alert/index"),    authRoute: true, nav: false },
             { route: "user/settings",       name: "settings", moduleId: PLATFORM.moduleName("./app/settings/index"), authRoute: true },
         ]);
 

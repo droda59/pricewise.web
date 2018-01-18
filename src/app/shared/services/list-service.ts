@@ -101,30 +101,24 @@ export class ListService {
     async unshare(userId: string, listId: string): Promise<void> {
         await fetchPolyfill;
 
-        const response = await this._httpClient.fetch(`${userId}/${listId}/unshare`, {
+        await this._httpClient.fetch(`${userId}/${listId}/unshare`, {
             method: "post"
         });
-
-        await response.json();
     }
 
     async follow(userId: string, listId: string): Promise<void> {
         await fetchPolyfill;
 
-        const response = await this._httpClient.fetch(`${userId}/${listId}/follow`, {
+        await this._httpClient.fetch(`${userId}/${listId}/follow`, {
             method: "post"
         });
-
-        await response.json();
     }
 
     async unfollow(userId: string, listId: string): Promise<void> {
         await fetchPolyfill;
 
-        const response = await this._httpClient.fetch(`${userId}/${listId}/unfollow`, {
+        await this._httpClient.fetch(`${userId}/${listId}/unfollow`, {
             method: "post"
         });
-
-        await response.json();
     }
 }

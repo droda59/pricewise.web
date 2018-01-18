@@ -174,8 +174,12 @@ export class MyAlerts extends BaseI18N {
         this._modalController.confirm(this.confirmDeleteListModal, async () => await this._deleteList(list));
     }
 
-    confirmShareList(list: List): void {
-        this._modalController.confirm(this.confirmShareListModal, async () => await this._shareList(list));
+    async confirmShareList(list: List): Promise<void> {
+        if (list.isPublic) {
+            await this._shareList(list);
+        } else {
+            this._modalController.confirm(this.confirmShareListModal, async () => await this._shareList(list));
+        }
     }
 
     confirmUnshareList(list: List): void {

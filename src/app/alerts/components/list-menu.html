@@ -1,18 +1,30 @@
 <template>
-    <require from="./list-label"></require>
-
     <div class="ui text menu" style="margin-top: 0; padding-top: 1em;">
-        <list-label if.bind="selectAllEnabled && lists.length"
-            click.call="selectList()"
-            label="${'lists.noFilter' | t}"
-            class-name="${selectedList ? 'transparent' : 'primary-action'}"></list-label>
-        <list-label repeat.for="list of lists | sort:'name'"
-            list.one-way="list"
-            label.one-way="list.name"
-            click.call="selectList(list)"
-            delete.call="deleteList(list)"
-            share.delegate="share ? shareList(list) : undefined"
-            unshare.delegate="unshare && list.isPublic ? unshareList(list) : undefined"
-            class-name="${$parent.selectedList.id === list.id ? 'primary-action' : 'transparent'}"></list-label>
+        <div class="item" if.bind="selectAllEnabled && lists.length">
+            <div class="ui left ${selectedList ? 'transparent' : 'primary-action'} labeled button">
+                <a class="ui basic label" click.delegate="selectList()">${'lists.noFilter' & t}</a>
+            </div>
+        </div>
+
+        <div class="item" repeat.for="list of lists | sort:'name'">
+            <div class="ui left labeled button">
+                <a class="ui basic ${$parent.selectedList.id === list.id ? 'primary-action' : 'transparent'} label" click.delegate="selectList(list)">${list.name}</a>
+                <div if.one-way="unshare && list.isPublic" class="ui icon button" style="border-radius: 0" click.delegate="unshareList(list)"
+                    data-analytics-category="List"
+                    data-analytics-action="unshare">
+                    <i class="lock icon"></i>
+                </div>
+                <div if.one-time="share" class="ui icon button" style="border-radius: 0" click.delegate="shareList(list)"
+                    data-analytics-category="List"
+                    data-analytics-action="share">
+                    <i class="external share icon"></i>
+                </div>
+                <div if.one-time="delete" class="ui icon button" click.delegate="deleteList(list)"
+                    data-analytics-category="List"
+                    data-analytics-action="delete">
+                    <i class="delete share icon"></i>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

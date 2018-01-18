@@ -1,6 +1,6 @@
 ﻿import "../static/styles.css";
 import "../static/config.json";
-import "../semantic/dist/semantic.min.css";
+// import "../semantic/dist/semantic.min.css";
 import "../semantic/dist/semantic.min.js";
 
 import { TCustomAttribute } from "aurelia-i18n";
