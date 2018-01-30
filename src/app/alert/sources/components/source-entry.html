@@ -15,7 +15,7 @@
                     </td>
                     <td>
                         <div class="ui transparent input" style="width: 100%;">
-                            <input value.bind="note & updateTrigger:'blur'" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+                            <input value.bind="note & updateTrigger:'blur'" readonly.one-time="isReadOnly" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
                         </div>
                     </td>
                     <td class="collapsing">
@@ -29,7 +29,7 @@
                             </a>
                         </h4>
                     </td>
-                    <td class="collapsing">
+                    <td class="collapsing" if.one-time="!isReadOnly">
                         <div class="ui basic circular red icon button" click.delegate="remove()"
                             data-analytics-category="Sources"
                             data-analytics-action="remove">
@@ -64,7 +64,7 @@
                             </a>
                         </h4>
                     </td>
-                    <td class="right aligned collapsing">
+                    <td class="right aligned collapsing" if.one-time="!isReadOnly">
                         <div class="ui basic circular red icon button" click.delegate="remove()"
                             data-analytics-category="Sources"
                             data-analytics-action="remove">
@@ -75,7 +75,7 @@
                 <tr>
                     <td colspan="3">
                         <div class="ui transparent input" style="width: 100%;">
-                            <input value.bind="note & updateTrigger:'blur'" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+                            <input value.bind="note & updateTrigger:'blur'" readonly.one-time="isReadOnly" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
                         </div>
                     </td>
                 </tr>

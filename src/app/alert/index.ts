@@ -42,7 +42,6 @@ export class AlertPage extends BaseI18N {
 
     async activate(route, routeConfig): Promise<void> {
         if (route.alertId) {
-            this._userId = localStorage.getItem("user_id");
             this._alertId = route.alertId;
 
             var alert;
@@ -50,6 +49,7 @@ export class AlertPage extends BaseI18N {
                 this.isReadOnly = true;
                 alert = await this._sharedListService.getAlertSummary(route.listId, this._alertId);
             } else {
+                this._userId = localStorage.getItem("user_id");
                 alert = await this._alertService.getSummary(this._userId, this._alertId);
             }
 
@@ -75,7 +75,7 @@ export class AlertPage extends BaseI18N {
     }
 
     async titleChanged(newValue: string, oldValue: string): Promise<void> {
-        if (newValue != oldValue) {
+        if (!this.isReadOnly && newValue != oldValue) {
             try {
                 // TODO Pourquoi on re-get?
                 var currentAlert = await this._alertService.getSummary(this._userId, this._alertId);
@@ -94,15 +94,17 @@ export class AlertPage extends BaseI18N {
     }
 
     async changeActive(): Promise<void> {
-        try {
-            const alertUpdated = await this._alertService.activate(this._userId, this._alertId, this.isActive);
-            if (!alertUpdated) {
-                throw new Error();
-            }
+        if (!this.isReadOnly) {
+            try {
+                const alertUpdated = await this._alertService.activate(this._userId, this._alertId, this.isActive);
+                if (!alertUpdated) {
+                    throw new Error();
+                }
 
-            this._toaster.showSuccess("alert.alertSaved");
-        } catch(e) {
-            this._toaster.showError("alert.alertSaved");
+                this._toaster.showSuccess("alert.alertSaved");
+            } catch(e) {
+                this._toaster.showError("alert.alertSaved");
+            }
         }
     }
 }

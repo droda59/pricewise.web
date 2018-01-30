@@ -88,12 +88,12 @@ export class AuthenticationService {
 
     private async getOrCreateUser(profile: any): Promise<string> {
         var user;
-        var navigateTo = "user/alerts";
+        var navigateTo = "alerts";
 
         try {
             user = await this._userService.get(profile.sub);
             if (!user.firstName) {
-                navigateTo = "user/settings/account";
+                navigateTo = "settings/account";
             }
         } catch(err) {
             if (err.status === 404) {
@@ -105,7 +105,7 @@ export class AuthenticationService {
 
 				if (!profile.given_name) {
 					newUser.firstName = newUser.email;
-                    navigateTo = "user/settings/account";
+                    navigateTo = "settings/account";
 				}
 
                 user = await this._userService.create(newUser);

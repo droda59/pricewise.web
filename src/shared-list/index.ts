@@ -96,6 +96,6 @@ export class SharedListPage extends BaseI18N {
     }
 
     navigateToSharedAlert(alert: UserAlertSummary): void {
-        this._router.navigateToRoute("alert", { alertId: alert.id, listId: this._listId });
+        this._router.navigateToRoute("listalert", { alertId: alert.id, listId: this._listId });
     }
 }

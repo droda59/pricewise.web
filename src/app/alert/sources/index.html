@@ -3,7 +3,7 @@
     <require from="./components/source-entry"></require>
 
     <div class="ui container">
-        <div class="ui one column grid">
+        <div class="ui one column grid" if.one-time="!isReadOnly">
             <div class="column">
                 <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addSource()"
                     i18n="[append]alert.sources.addOtherSource"
@@ -20,7 +20,7 @@
                 <div class="ui text container">
                     <table class="ui very basic padded unstackable table">
                         <tbody>
-                            <tr as-element="source-entry" repeat.for="entry of alert.entries | sort:'lastPrice'" entry.bind="entry" remove-entry.call="removeEntry(entry)" save.call="save()"></tr>
+                            <tr as-element="source-entry" repeat.for="entry of alert.entries | sort:'lastPrice'" entry.bind="entry" is-read-only.bind="isReadOnly" remove-entry.call="removeEntry(entry)" save.call="save()"></tr>
                         </tbody>
                         <tfoot class="full-width">
                             <tr>
@@ -32,7 +32,7 @@
                                     </div>
                                 </th>
                             </tr>
-                            <tr class="mobile hidden">
+                            <tr class="mobile hidden" hide.one-time="isReadOnly">
                                 <th style="border: none;">
                                     <div class="ui icon labeled medium primary primary-action button" click.delegate="addSource()"
                                         i18n="[append]alert.sources.addOtherSource"
@@ -49,7 +49,7 @@
             </div>
 
             <div class="column">
-                <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addSource()"
+                <div class="ui icon large primary primary-action mobile only button" if.one-time="!isReadOnly" style="display: block; margin: 0;" click.delegate="addSource()"
                     i18n="[append]alert.sources.addOtherSource"
                     data-analytics-category="Sources"
                     data-analytics-action="add"
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="column">
+            <div class="column" if.one-time="!isReadOnly">
                 <div>
                     <loader is-active.one-way="isSearchingProducts" text="alert.sources.searchingSimilar"></loader>
 

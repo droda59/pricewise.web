@@ -1,5 +1,5 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { bindable } from "aurelia-framework";
+import { bindable, bindingMode } from "aurelia-framework";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { BaseI18N, I18N } from "aurelia-i18n";
 import { AlertEntry } from "../../../shared/models/alert-entry";
@@ -8,6 +8,7 @@ import { AlertEntry } from "../../../shared/models/alert-entry";
 export class SourceEntry extends BaseI18N {
     @bindable entry: AlertEntry;
     @bindable note: string;
+    @bindable({ defaultBindingMode: bindingMode.oneTime }) isReadOnly: boolean;
     @bindable save;
     @bindable removeEntry;
 
@@ -31,13 +32,15 @@ export class SourceEntry extends BaseI18N {
     }
 
     noteChanged(newValue: string, oldValue: string) {
-        if (this._loaded && newValue != oldValue) {
+        if (!this.isReadOnly && this._loaded && newValue != oldValue) {
             this.entry.note = newValue;
             this.save();
         }
     }
 
     remove(entry: AlertEntry) {
-        this.removeEntry({ entry: this.entry });
+        if (!this.isReadOnly) {
+            this.removeEntry({ entry: this.entry });
+        }
     }
 }

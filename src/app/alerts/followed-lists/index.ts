@@ -59,7 +59,7 @@ export class FollowedLists extends BaseI18N {
     }
 
     navigateToSharedAlert(alert: UserAlertSummary): void {
-        this._router.navigateToRoute("alert", { alertId: alert.id, listId: this.currentList.id });
+        this._router.navigateToRoute("listalert", { alertId: alert.id, listId: this.currentList.id });
     }
 
     detached() {

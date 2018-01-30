@@ -55,7 +55,6 @@ export class Sources extends BaseI18N {
 
     async activate(route): Promise<void> {
         if (route.alertId) {
-            this._userId = localStorage.getItem("user_id");
             this._alertId = route.alertId;
 
             var alert;
@@ -63,6 +62,7 @@ export class Sources extends BaseI18N {
                 this.isReadOnly = true;
                 alert = await this._sharedListService.getAlertDetails(route.listId, this._alertId);
             } else {
+                this._userId = localStorage.getItem("user_id");
                 alert = await this._alertService.get(this._userId, this._alertId);
             }
 
@@ -80,110 +80,118 @@ export class Sources extends BaseI18N {
     }
 
     async save(): Promise<void> {
-        this.isUpdatingAlert = true;
+        if (!this.isReadOnly) {
+            this.isUpdatingAlert = true;
 
-        try {
-            var updatedAlert = await this._alertService.update(this._userId, this.alert);
-            if (!updatedAlert) {
-                throw new Error();
+            try {
+                var updatedAlert = await this._alertService.update(this._userId, this.alert);
+                if (!updatedAlert) {
+                    throw new Error();
+                }
+
+                this._toaster.showSuccess("alert.alertSaved");
+            } catch(e) {
+                this._toaster.showError("alert.alertSaved");
+            } finally {
+                this.isUpdatingAlert = false;
             }
-
-            this._toaster.showSuccess("alert.alertSaved");
-        } catch(e) {
-            this._toaster.showError("alert.alertSaved");
-        } finally {
-            this.isUpdatingAlert = false;
         }
     }
 
     async addEntry(newEntryUrl: string): Promise<void> {
-        this.isAddingSource = true;
+        if (!this.isReadOnly) {
+            this.isAddingSource = true;
 
-        try {
-            var updatedAlert = await this._alertService.createEntry(this._userId, this._alertId, newEntryUrl);
-            if (updatedAlert) {
-                this.alert = updatedAlert;
-                this.searchForSameProducts();
-            } else {
-                throw new Error();
+            try {
+                var updatedAlert = await this._alertService.createEntry(this._userId, this._alertId, newEntryUrl);
+                if (updatedAlert) {
+                    this.alert = updatedAlert;
+                    this.searchForSameProducts();
+                } else {
+                    throw new Error();
+                }
+
+                this._toaster.showSuccess("alert.alertSaved");
+            } catch(e) {
+                var errorMessage = "";
+                if (e.status === 404) {
+                    errorMessage = "errors.sourceNotSupported";
+                } else if (e.status === 400) {
+                    errorMessage = "errors.parseError";
+                }
+
+                this._toaster.showException("alert.alertSaved", errorMessage);
+            } finally {
+                this.isAddingSource = false;
             }
-
-            this._toaster.showSuccess("alert.alertSaved");
-        } catch(e) {
-            var errorMessage = "";
-            if (e.status === 404) {
-                errorMessage = "errors.sourceNotSupported";
-            } else if (e.status === 400) {
-                errorMessage = "errors.parseError";
-            }
-
-            this._toaster.showException("alert.alertSaved", errorMessage);
-        } finally {
-            this.isAddingSource = false;
         }
     }
 
     removeEntry(entry: AlertEntry): void {
-        this._modalController.confirm(this.confirmationModal, async () => {
-            this.isUpdatingAlert = true;
+        if (!this.isReadOnly) {
+            this._modalController.confirm(this.confirmationModal, async () => {
+                this.isUpdatingAlert = true;
 
-            entry.isDeleted = true;
+                entry.isDeleted = true;
 
-            if (!this.alert.entries.filter(x => !x.isDeleted).length) {
-                try {
-                    const alertDeleted = await this._alertService.delete(this._userId, this.alert.id);
-                    if (alertDeleted) {
-                        this._router.navigateToRoute("alerts");
-                    } else {
-                        throw new Error();
+                if (!this.alert.entries.filter(x => !x.isDeleted).length) {
+                    try {
+                        const alertDeleted = await this._alertService.delete(this._userId, this.alert.id);
+                        if (alertDeleted) {
+                            this._router.navigateToRoute("alerts");
+                        } else {
+                            throw new Error();
+                        }
+
+                        this._toaster.showSuccess("alerts.alertDeleted");
+                    } catch(e) {
+                        this._toaster.showError("alerts.alertDeleted");
+                    } finally {
+                        this.isUpdatingAlert = false;
                     }
+                } else {
+                    try {
+                        var updatedAlert = await this._alertService.update(this._userId, this.alert);
+                        if (updatedAlert) {
+                            // This might rebind everything, but we need it when we remove an Entry. Maybe a dedicated route would help
+                            this.alert = updatedAlert;
+                            this.searchForSameProducts();
+                        } else {
+                            throw new Error();
+                        }
 
-                    this._toaster.showSuccess("alerts.alertDeleted");
-                } catch(e) {
-                    this._toaster.showError("alerts.alertDeleted");
-                } finally {
-                    this.isUpdatingAlert = false;
-                }
-            } else {
-                try {
-                    var updatedAlert = await this._alertService.update(this._userId, this.alert);
-                    if (updatedAlert) {
-                        // This might rebind everything, but we need it when we remove an Entry. Maybe a dedicated route would help
-                        this.alert = updatedAlert;
-                        this.searchForSameProducts();
-                    } else {
-                        throw new Error();
+                        this._toaster.showSuccess("alert.alertSaved");
+                    } catch(e) {
+                        this._toaster.showError("alert.alertSaved");
+                    } finally {
+                        this.isUpdatingAlert = false;
                     }
-
-                    this._toaster.showSuccess("alert.alertSaved");
-                } catch(e) {
-                    this._toaster.showError("alert.alertSaved");
-                } finally {
-                    this.isUpdatingAlert = false;
                 }
-            }
-        });
+            });
+        }
     }
 
     private async searchForSameProducts(): Promise<void> {
-        this.suggestedProducts = new Array<ProductInfo>();
+        if (!this.isReadOnly) {
+            this.suggestedProducts = new Array<ProductInfo>();
 
-        // Look for similar products only if there is a product identifier present
-        var productIdentifiers = this.alert.entries.map(x => x.productIdentifier).filter(x => !!x).filter((v, i, a) => a.indexOf(v) === i);
-        if (productIdentifiers.length) {
-            this.isSearchingProducts = true;
+            // Look for similar products only if there is a product identifier present
+            var productIdentifiers = this.alert.entries.map(x => x.productIdentifier).filter(x => !!x).filter((v, i, a) => a.indexOf(v) === i);
+            if (productIdentifiers.length) {
+                this.isSearchingProducts = true;
 
-            var alertEntriesUrls = this.alert.entries.map(x => x.source);
+                var alertEntriesUrls = this.alert.entries.map(x => x.source);
 
-            try {
-                var searchResults = [];//await this._productService.searchByProductIdentifier(productIdentifiers);
-                for (var j = 0; j < searchResults.length; j++) {
-                    if (!alertEntriesUrls.includes(searchResults[j].source)) {
-                        this.suggestedProducts.push(searchResults[j]);
+                try {
+                    var searchResults = [];//await this._productService.searchByProductIdentifier(productIdentifiers);
+                    for (var j = 0; j < searchResults.length; j++) {
+                        if (!alertEntriesUrls.includes(searchResults[j].source)) {
+                            this.suggestedProducts.push(searchResults[j]);
+                        }
                     }
+                } finally {
+                    this.isSearchingProducts = false;
                 }
-            } finally {
-                this.isSearchingProducts = false;
             }
         }
     }

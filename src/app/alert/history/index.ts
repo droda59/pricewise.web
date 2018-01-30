@@ -28,11 +28,11 @@ export class History extends BaseI18N {
             this._alertId = route.alertId;
 
             var alertHistory;
-            if (route.listId) {
+            if (route.listId === "history" || !route.listId) {
+                alertHistory = await this._alertService.getHistory(this._userId, this._alertId);
+            } else {
                 this.isReadOnly = true;
                 alertHistory = await this._sharedListService.getHistory(route.listId, this._alertId);
-            } else {
-                alertHistory = await this._alertService.getHistory(this._userId, this._alertId);
             }
 
             this.alertHistory = alertHistory;
