@@ -21,10 +21,10 @@
                     <td class="collapsing">
                         <h4>
                             <a class="header" href.bind="entry.productUrl" target="_blank">
-                                ${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}
+                                ${entry.lastPrice & nf: { style: 'currency', currency: 'CAD'}}
                                 &nbsp;
                                 <small hide.bind="entry.percentageChange == 0">
-                                    ( ${entry.percentageChange > 0 ? '+' : '-'}&nbsp;${entry.absolutePercentageChange | nf: { style: 'percent' }} )
+                                    ( ${entry.percentageChange > 0 ? '+' : '-'}&nbsp;${entry.absolutePercentageChange & nf: { style: 'percent' }} )
                                 </small>
                             </a>
                         </h4>
@@ -56,10 +56,10 @@
                     <td class="collapsing">
                         <h4>
                             <a class="header" href.bind="entry.productUrl" target="_blank">
-                                ${entry.lastPrice | nf: { style: 'currency', currency: 'CAD'}}
+                                ${entry.lastPrice & nf: { style: 'currency', currency: 'CAD'}}
                                 &nbsp;
                                 <small show.bind="entry.percentageChange">
-                                    ( ${entry.percentageChange > 0 ? '+' : '-'}&nbsp;${entry.absolutePercentageChange | nf: { style: 'percent' }} )
+                                    ( ${entry.percentageChange > 0 ? '+' : '-'}&nbsp;${entry.absolutePercentageChange & nf: { style: 'percent' }} )
                                 </small>
                             </a>
                         </h4>

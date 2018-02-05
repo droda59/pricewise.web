@@ -185,5 +185,9 @@
             "settingsSaved_success": "Informations enregistrées avec succès!",
             "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."
         }
-    }
+    },
+    "unsubscribe" : {
+        "title" : "Vous ne recevrez plus de notification pour ce produit",
+        "changedYourMind" : "Vous pouvez en tout temps réactiver les notifications en vous rendant sur la page du produit"
+}
 }

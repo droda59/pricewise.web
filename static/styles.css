@@ -405,6 +405,10 @@ section {
     box-shadow: none;
 }
 
+#anonymous-nav-bar .ui.button {
+    margin-left: 1.5em;
+}
+
 #login {
     height: 100%;
 }

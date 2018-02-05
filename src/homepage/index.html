@@ -8,7 +8,9 @@
                 </h1>
                 <h3 i18n="welcome.planning">Planning to buy something?</h3>
                 <h2 i18n="welcome.stopPaying">Stop paying too much!</h2>
-                <a class="ui huge primary primary-action button" click.delegate="login()" i18n="[prepend]welcome.getStarted">&nbsp;<i class="right arrow icon"></i></a>
+                <a class="ui huge primary primary-action button" click.delegate="login()" i18n="[prepend]welcome.getStarted">&nbsp;
+                    <i class="right arrow icon"></i>
+                </a>
                 <h5 i18n="welcome.shortDescription">Monitor products, and get notified when their price drops.</h5>
             </div>
         </div>
@@ -47,10 +49,8 @@
                     <div class="eight wide column">
                         <h3 class="ui header" i18n="welcome.blog.join">Join in on the discussion!</h3>
                         <p i18n="welcome.blog.description">We will talk about shopping strategies, app features, and the technology behind PriceWise</p>
-                        <a href="http://blog.pricewi.se/" target="_blank" class="ui large right wordpress button"
-                            data-analytics-category="Blog"
-                            data-analytics-action="click"
-                            data-analytics-label="button">
+                        <a href="http://blog.pricewi.se/" target="_blank" class="ui large right wordpress button" data-analytics-category="Blog"
+                            data-analytics-action="click" data-analytics-label="button">
                             <i class="wordpress icon"></i>Blog
                         </a>
                     </div>
@@ -65,9 +65,7 @@
                         <h1 class="ui header" i18n="welcome.chrome.extensionAvailable">PriceWise has a Chrome extension!</h1>
                     </div>
                     <div class="fourteen wide column">
-                        <a href.one-time="chromeAppUrl" target="_blank" class="ui centered medium image"
-                            data-analytics-category="Chrome Store"
-                            data-analytics-action="click"
+                        <a href.one-time="chromeAppUrl" target="_blank" class="ui centered medium image" data-analytics-category="Chrome Store" data-analytics-action="click"
                             data-analytics-label="badge">
                             <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_496x150.png"></img>
                         </a>
@@ -78,9 +76,7 @@
                         <h3 class="ui header" i18n="welcome.chrome.easily">Get wise more easily!</h3>
                         <p i18n="welcome.chrome.description">Create alerts for your products directly from your product page on our supported websites!</p>
                         <a class="ui large right google plus button" href.one-time="chromeAppUrl" target="_blank" i18n="[append]welcome.chrome.getApp"
-                            data-analytics-category="Chrome Store"
-                            data-analytics-action="click"
-                            data-analytics-label="button">
+                            data-analytics-category="Chrome Store" data-analytics-action="click" data-analytics-label="button">
                             <i class="chrome icon"></i>
                         </a>
                     </div>
