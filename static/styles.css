@@ -27,8 +27,17 @@ body {
 .ui.label.primary-action:hover,
 .ui.button.primary-action:hover,
 .ui.primary.button.primary-action:hover,
-.ui.primary.buttons .button.primary-action:hover {
+.ui.primary.buttons .button.primary-action:hover,
+.ui.basic.primary-action.label:hover {
     background-color: #02776f;
+}
+
+.ui.basic.primary-action.label:hover {
+    color: #fff;
+}
+.ui[class*="left labeled"].button > .label:only-child {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
 }
 
 .ui.wordpress.button {

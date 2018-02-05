@@ -139,10 +139,15 @@
     "sharedLists": {
         "title": "{{listName}}, par {{userName}}",
         "followButton": "Ajouter à mes listes suivies",
+        "listFollowed_success": "Liste suivie avec succès!",
+        "listFollowed_exception": "Une erreur est survenue durant l'opération. {{error}}",
         "urlModal": {
             "title": "Donnez cette adresse à vos amis pour leur donner accès à votre liste!",
             "copyButton": "Copier",
             "copySuccess": "Copiée au presse-papier!"
+        },
+        "errors": {
+            "cannotFollow": "Vous ne pouvez pas suivre votre propre liste."
         }
     },
     "followedLists": {

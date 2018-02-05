@@ -79,18 +79,22 @@ export class SharedListPage extends BaseI18N {
             try {
                 await this._listService.follow(this._userId, this._listId);
 
-                this._toaster.showSuccess("alerts.alertActivated");
+                this._toaster.showSuccess("sharedLists.listFollowed");
+
+                if (this.isAuthenticated) {
+                    this._router.navigateToRoute("alerts");
+                }
             } catch(e) {
                 var errorMessage = "";
                 if (e.status === 404) {
-                    errorMessage = "lists.errors.notFound";
+                    errorMessage = "lists.errors.notFound_description";
                 } else if (e.status === 401) {
-                    this.errorMessage = "lists.errors.unauthorized";
+                    this.errorMessage = "lists.errors.unauthorized_description";
                 } else if (e.status === 400) {
-                    errorMessage = "errors.parseError";
+                    errorMessage = "sharedLists.errors.cannotFollow";
                 }
 
-                this._toaster.showException("alerts.alertCreated", errorMessage);
+                this._toaster.showException("sharedLists.listFollowed", errorMessage);
             }
         }
     }
