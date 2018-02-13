@@ -4,9 +4,9 @@ import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N, BaseI18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
 import { SharedListService } from "./services/shared-list-service";
-import { Toaster } from "../app/shared/services/toaster";
-import { UserAlertSummary } from "../app/shared/models/user-alert-summary";
-import { ListService } from "../app/shared/services/list-service";
+import { Toaster } from "../shared/services/toaster";
+import { UserAlertSummary } from "../shared/models/user-alert-summary";
+import { ListService } from "../shared/services/list-service";
 import { AuthenticationService } from "../shared/services/authentication-service";
 
 @autoinject()

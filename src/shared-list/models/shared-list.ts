@@ -1,4 +1,4 @@
-import { List, IList } from "../../app/shared/models/list";
+import { List, IList } from "../../shared/models/list";
 
 export class SharedList extends List implements ISharedList {
     userName: string;

@@ -2,9 +2,9 @@ import { NewInstance, inject } from "aurelia-dependency-injection";
 import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { SharedList } from "../models/shared-list";
-import { UserAlert } from "../../app/shared/models/user-alert";
-import { UserAlertSummary } from "../../app/shared/models/user-alert-summary";
-import { ProductHistory } from "../../app/shared/models/product-history";
+import { UserAlert } from "../../shared/models/user-alert";
+import { UserAlertSummary } from "../../shared/models/user-alert-summary";
+import { ProductHistory } from "../../shared/models/product-history";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
 

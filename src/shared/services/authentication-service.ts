@@ -3,8 +3,8 @@ import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { Router } from "aurelia-router";
-import { UserService } from "../../app/shared/services/user-service";
-import { User } from "../../app/shared/models/user";
+import { UserService } from "../services/user-service";
+import { User } from "../models/user";
 import auth0 from "auth0-js";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
