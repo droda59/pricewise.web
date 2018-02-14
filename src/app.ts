@@ -30,7 +30,7 @@ export class App {
 
         config.map([
             { route: ["", "welcome"],               name: "welcome",     moduleId: PLATFORM.moduleName("./homepage/index"),    nav: true },
-            { route: "callback",                    name: "callback",    moduleId: PLATFORM.moduleName("./callback/index"),    nav: false, title: "welcome.authenticating" },
+            { route: "callback",                    name: "callback",    moduleId: PLATFORM.moduleName("./callback/index"),    nav: false, title: "callback.authenticating" },
             { route: "unsubscribe/:email/:alertId", name: "unsubscribe", moduleId: PLATFORM.moduleName("./unsubscribe/index"), nav: false },
 
             { route: "list/:listId",    name: "sharedlist", moduleId: PLATFORM.moduleName("./shared-list/index"),  nav: false },
