@@ -1,30 +1,30 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
-import { SourcesService } from "../services/sources-service";
-import { Source } from "../models/source";
+import { StoreService } from "../services/store-service";
+import { Store } from "../models/store";
 import { Modal } from "../modal";
 
 @autoinject()
-export class AddSourceModal extends Modal {
-    private _sourcesService: SourcesService;
+export class AddProductModal extends Modal {
+    private _storeService: StoreService;
 
     newAlertUrl: string;
-    sources: Array<Source>;
+    stores: Array<Store>;
 
     @bindable isWorking: boolean;
     @bindable add;
 
-    constructor(sourcesService: SourcesService) {
+    constructor(storeService: StoreService) {
         super();
 
-        this._sourcesService = sourcesService;
+        this._storeService = storeService;
     }
 
     bind(): void {
-        this.sources = this._sourcesService.sources;
+        this.stores = this._storeService.stores;
     }
 
-    createSource() {
+    createProduct() {
         this.add({ newAlertUrl: this.newAlertUrl });
         this.close();
     }

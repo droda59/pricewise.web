@@ -434,11 +434,11 @@ section {
     border-radius: 2px;
 }*/
 
-.pricewise .source-list .logo {
+.pricewise .store-list .logo {
     opacity: 0.5;
     transition: opacity .2s ease-in-out;
 }
-.pricewise .source-list .logo:hover {
+.pricewise .store-list .logo:hover {
     opacity: 1;
 }
 
@@ -447,10 +447,10 @@ section {
     width: auto;
 }
 
-.pricewise .add-source .title-column.column {
+.pricewise .add-product .title-column.column {
     max-width: 50%;
 }
-.pricewise .add-source .input-column.column {
+.pricewise .add-product .input-column.column {
     max-width: 60%;
 }
 
@@ -507,10 +507,10 @@ section {
         padding: 4em 1em;
     }
 
-    .source-list {
+    .store-list {
         padding: 0;
     }
-    .source-list .source-item {
+    .store-list .store-item {
         padding-left: 0;
         padding-right: 0;
     }
@@ -527,10 +527,10 @@ section {
         width: auto;
     }
 
-    .pricewise .add-source .title-column.column {
+    .pricewise .add-product .title-column.column {
         max-width: 80%;
     }
-    .pricewise .add-source .input-column.column {
+    .pricewise .add-product .input-column.column {
         max-width: 100%;
     }
 }

@@ -1,30 +1,21 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { EventAggregator } from "aurelia-event-aggregator";
-import { I18N, BaseI18N } from "aurelia-i18n";
 import { AureliaConfiguration } from "aurelia-configuration";
-import { Source } from "../shared/models/source";
-import { SourcesService } from "../shared/services/sources-service";
+import { Store } from "../shared/models/store";
+import { StoreService } from "../shared/services/store-service";
 
 @autoinject()
-export class Welcome extends BaseI18N {
-    private _sourcesService: SourcesService;
+export class Welcome {
+    private _storeService: StoreService;
 
-    sources: Array<Source>;
+    stores: Array<Store>;
     chromeAppUrl: string;
 
-    constructor(
-            sourcesService: SourcesService,
-            configure: AureliaConfiguration,
-            i18n: I18N,
-            element: Element,
-            ea: EventAggregator) {
-        super(i18n, element, ea);
-
-        this._sourcesService = sourcesService;
+    constructor(storeService: StoreService, configure: AureliaConfiguration) {
+        this._storeService = storeService;
         this.chromeAppUrl = configure.get("chrome");
     }
 
     activate(): void {
-        this.sources = this._sourcesService.sources;
+        this.stores = this._storeService.stores;
     }
 }

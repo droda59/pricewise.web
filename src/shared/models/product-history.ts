@@ -1,17 +1,17 @@
-import { Source } from "../models/source";
-import { SourcesService } from "../services/sources-service";
+import { Store } from "../models/store";
+import { StoreService } from "../services/store-service";
 
 export class ProductHistory implements IProductHistory {
     title: string;
     url: string;
     priceHistory: Array<PriceChange>;
-    source: Source;
+    store: Store;
 
     constructor(dto: IProductHistory) {
         (<any>Object).assign(this, dto);
 
         this.priceHistory = dto.priceHistory ? dto.priceHistory.map(changeDto => new PriceChange(changeDto)) : new Array<PriceChange>();
-        this.source = SourcesService.getSource(this.url);
+        this.store = StoreService.getStore(this.url);
     }
 }
 

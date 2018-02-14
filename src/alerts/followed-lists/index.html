@@ -17,7 +17,7 @@
 
     <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
     <confirmation-modal view-model.ref="confirmUnfollowListModal">
-        <div slot="header">${'followedLists.unfollowConfirmation' | t: {context: 'title' } & oneTime}</div>
-        <div slot="content">${'followedLists.unfollowConfirmation' | t: {context: 'description' } & oneTime}</div>
+        <div slot="header">${'followedLists.unfollowConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'followedLists.unfollowConfirmation' & t: {context: 'description' }}</div>
     </confirmation-modal>
 </template>

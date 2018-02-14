@@ -9,13 +9,13 @@
                                 data-analytics-category="Outbound Link"
                                 data-analytics-action="click"
                                 data-analytics-label="originalUrl">
-                                <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+                                <img src="/images/${entry.store.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
                             </a>
                         </div>
                     </td>
                     <td>
                         <div class="ui transparent input" style="width: 100%;">
-                            <input value.bind="note & updateTrigger:'blur'" readonly.one-time="isReadOnly" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+                            <input value.bind="note & updateTrigger:'blur'" readonly.one-time="isReadOnly" type="text" name="information[note]" i18n="[placeholder]alert.products.note" placeholder="Note">
                         </div>
                     </td>
                     <td class="collapsing">
@@ -31,7 +31,7 @@
                     </td>
                     <td class="collapsing" if.one-time="!isReadOnly">
                         <div class="ui basic circular red icon button" click.delegate="remove()"
-                            data-analytics-category="Sources"
+                            data-analytics-category="Products"
                             data-analytics-action="remove">
                             <i class="icon remove"></i>
                         </div>
@@ -49,7 +49,7 @@
                                 data-analytics-category="Outbound Link"
                                 data-analytics-action="click"
                                 data-analytics-label="originalUrl">
-                                <img src="/images/${entry.source.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
+                                <img src="/images/${entry.store.domain}-small.png" style="width: 50px; height: 50px; margin: 0;">
                             </a>
                         </div>
                     </td>
@@ -66,7 +66,7 @@
                     </td>
                     <td class="right aligned collapsing" if.one-time="!isReadOnly">
                         <div class="ui basic circular red icon button" click.delegate="remove()"
-                            data-analytics-category="Sources"
+                            data-analytics-category="Products"
                             data-analytics-action="remove">
                             <i class="icon remove"></i>
                         </div>
@@ -75,7 +75,7 @@
                 <tr>
                     <td colspan="3">
                         <div class="ui transparent input" style="width: 100%;">
-                            <input value.bind="note & updateTrigger:'blur'" readonly.one-time="isReadOnly" type="text" name="information[note]" i18n="[placeholder]alert.sources.note" placeholder="Note">
+                            <input value.bind="note & updateTrigger:'blur'" readonly.one-time="isReadOnly" type="text" name="information[note]" i18n="[placeholder]alert.products.note" placeholder="Note">
                         </div>
                     </td>
                 </tr>

@@ -3,7 +3,6 @@ import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { EventAggregator } from "aurelia-event-aggregator";
-import { I18N, BaseI18N } from "aurelia-i18n";
 import { Toaster } from "../../shared/services/toaster";
 import { AlertService } from "../../shared/services/alert-service";
 import { ListService } from "../../shared/services/list-service";
@@ -11,13 +10,13 @@ import { List } from "../../shared/models/list";
 import { UserAlertSummary } from "../../shared/models/user-alert-summary";
 import { CreateListModal } from "../components/create-list-modal";
 import { SharedListUrlModal } from "../components/shared-list-url-modal";
-import { AddSourceModal } from "../../shared/components/add-source-modal";
+import { AddProductModal } from "../../shared/components/add-product-modal";
 import { ConfirmationModal } from "../../shared/components/confirmation-modal";
 import { Modal } from "../../shared/modal";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 
 @autoinject()
-export class MyAlerts extends BaseI18N {
+export class MyAlerts {
     private _alertService: AlertService;
     private _listService: ListService;
     private _router: Router;
@@ -29,7 +28,7 @@ export class MyAlerts extends BaseI18N {
 
     sharedListUrlModal: SharedListUrlModal;
     createListModal: CreateListModal;
-    createAlertModal: AddSourceModal;
+    createAlertModal: AddProductModal;
     confirmDeleteAlertModal: ConfirmationModal;
     confirmDeleteListModal: ConfirmationModal;
     confirmShareListModal: ConfirmationModal;
@@ -49,11 +48,7 @@ export class MyAlerts extends BaseI18N {
             modalController: ConfirmationModalController,
             configuration: AureliaConfiguration,
             toaster: Toaster,
-            i18n: I18N,
-            element: Element,
             ea: EventAggregator) {
-        super(i18n, element, ea);
-
         this._userId = localStorage.getItem("user_id");
 
         this._router = router;
@@ -106,7 +101,7 @@ export class MyAlerts extends BaseI18N {
         } catch(e) {
             var errorMessage = "";
             if (e.status === 404) {
-                errorMessage = "errors.sourceNotSupported";
+                errorMessage = "errors.storeNotSupported";
             } else if (e.status === 400) {
                 errorMessage = "errors.parseError";
             }
@@ -274,9 +269,9 @@ export class MyAlerts extends BaseI18N {
 
             this.clearSelection();
             this._ea.publish("alert:deleted", { alert: alert });
-            this._toaster.showSuccess("alerts.alertDeleted");
+            this._toaster.showSuccess("alerts.alertsDeleted");
         } catch(e) {
-            this._toaster.showError("alerts.alertDeleted");
+            this._toaster.showError("alerts.alertsDeleted");
         } finally {
             this.isUpdating = false;
         }

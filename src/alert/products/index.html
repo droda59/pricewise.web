@@ -1,13 +1,13 @@
 <template>
-    <require from="../../shared/components/add-source-modal"></require>
-    <require from="./components/source-entry"></require>
+    <require from="../../shared/components/add-product-modal"></require>
+    <require from="./components/alert-product"></require>
 
     <div class="ui container">
         <div class="ui one column grid" if.one-time="!isReadOnly">
             <div class="column">
-                <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addSource()"
-                    i18n="[append]alert.sources.addOtherSource"
-                    data-analytics-category="Sources"
+                <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addProduct()"
+                    i18n="[append]alert.products.addOtherProduct"
+                    data-analytics-category="Products"
                     data-analytics-action="add"
                     data-analytics-label="button">
                     <i class="plus icon"></i>
@@ -20,7 +20,7 @@
                 <div class="ui text container">
                     <table class="ui very basic padded unstackable table">
                         <tbody>
-                            <tr as-element="source-entry" repeat.for="entry of alert.entries | sort:'lastPrice'" entry.bind="entry" is-read-only.bind="isReadOnly" remove-entry.call="removeEntry(entry)" save.call="save()"></tr>
+                            <tr as-element="alert-product" repeat.for="entry of alert.entries | sort:'lastPrice'" entry.bind="entry" is-read-only.bind="isReadOnly" remove-entry.call="removeEntry(entry)" save.call="save()"></tr>
                         </tbody>
                         <tfoot class="full-width">
                             <tr>
@@ -34,9 +34,9 @@
                             </tr>
                             <tr class="mobile hidden" hide.one-time="isReadOnly">
                                 <th style="border: none;">
-                                    <div class="ui icon labeled medium primary primary-action button" click.delegate="addSource()"
-                                        i18n="[append]alert.sources.addOtherSource"
-                                        data-analytics-category="Sources"
+                                    <div class="ui icon labeled medium primary primary-action button" click.delegate="addProduct()"
+                                        i18n="[append]alert.products.addOtherProduct"
+                                        data-analytics-category="Products"
                                         data-analytics-action="add"
                                         data-analytics-label="button">
                                         <i class="icon plus"></i>
@@ -49,9 +49,9 @@
             </div>
 
             <div class="column">
-                <div class="ui icon large primary primary-action mobile only button" if.one-time="!isReadOnly" style="display: block; margin: 0;" click.delegate="addSource()"
-                    i18n="[append]alert.sources.addOtherSource"
-                    data-analytics-category="Sources"
+                <div class="ui icon large primary primary-action mobile only button" if.one-time="!isReadOnly" style="display: block; margin: 0;" click.delegate="addProduct()"
+                    i18n="[append]alert.products.addOtherProduct"
+                    data-analytics-category="Products"
                     data-analytics-action="add"
                     data-analytics-label="button">
                     <i class="plus icon"></i>
@@ -60,16 +60,16 @@
 
             <div class="column" if.one-time="!isReadOnly">
                 <div>
-                    <loader is-active.one-way="isSearchingProducts" text="alert.sources.searchingSimilar"></loader>
+                    <loader is-active.one-way="isSearchingProducts" text="alert.products.searchingSimilar"></loader>
 
                     <div show.bind="suggestedProducts.length">
-                        <h3 i18n="alert.sources.addOtherSourceSuggestion">You might also want to add these sources to your alert</h3>
+                        <h3 i18n="alert.products.addOtherProductSuggestion">You might also want to add these products to your alert</h3>
 
                         <div class="ui link cards">
                             <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
                                 <div class="content">
                                     <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
-                                        data-analytics-category="Sources"
+                                        data-analytics-category="Products"
                                         data-analytics-action="add"
                                         data-analytics-label="suggestion"></i>
                                     <a class="header" href.bind="product.productUrl" target="_blank"
@@ -93,8 +93,8 @@
                                         data-analytics-label="originalUrl">
                                         ${product.price & nf: { style: 'currency', currency: 'CAD'}}
                                         <span i18n="alert.priceAt"></span>
-                                        <img class="ui avatar image" src="/images/${product.source.domain}-small.png">
-                                        ${product.source.name}
+                                        <img class="ui avatar image" src="/images/${product.store.domain}-small.png">
+                                        ${product.store.name}
                                     </a>
                                 </div>
                             </div>
@@ -106,9 +106,9 @@
     </div>
 
     <loader is-active.one-way="isUpdatingAlert" text="alert.updating"></loader>
-    <add-source-modal view-model.ref="addSourceModal" is-working.one-way="isAddingSource" add.call="addEntry(newAlertUrl)"></add-source-modal>
+    <add-product-modal view-model.ref="addProductModal" is-working.one-way="isAddingProduct" add.call="addEntry(newAlertUrl)"></add-product-modal>
     <confirmation-modal view-model.ref="confirmationModal">
-        <div slot="header">${'alert.sources.deleteConfirmation' | t: {context: 'title' } & oneTime}</div>
-        <div slot="content">${'alert.sources.deleteConfirmation' | t: {context: 'description' } & oneTime}</div>
+        <div slot="header">${'alert.products.deleteConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'alert.products.deleteConfirmation' & t: {context: 'description' }}</div>
     </confirmation-modal>
 </template>

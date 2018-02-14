@@ -2,7 +2,6 @@ import { autoinject } from "aurelia-dependency-injection";
 import { bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
-import { BaseI18N, I18N } from "aurelia-i18n";
 import { Toaster } from "../../shared/services/toaster";
 import { ConfirmationModal } from "../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
@@ -12,7 +11,7 @@ import { UserAlertSummary } from "../../shared/models/user-alert-summary";
 import { List } from "../../shared/models/list";
 
 @autoinject()
-export class FollowedLists extends BaseI18N {
+export class FollowedLists {
     private _sharedListService: SharedListService;
     private _router: Router;
     private _listService: ListService;
@@ -34,11 +33,7 @@ export class FollowedLists extends BaseI18N {
             router: Router,
             modalController: ConfirmationModalController,
             toaster: Toaster,
-            i18n: I18N,
-            element: Element,
             ea: EventAggregator) {
-        super(i18n, element, ea);
-
         this._userId = localStorage.getItem("user_id");
 
         this._ea = ea;

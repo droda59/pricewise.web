@@ -1,14 +1,14 @@
 <template>
-    <overlay class-name="add-source ${id}">
-        <form submit.delegate="createSource()" role="form" class="ui large add-source form ${isWorking ? 'loading' : ''}">
+    <overlay class-name="add-product ${id}">
+        <form submit.delegate="createProduct()" role="form" class="ui large add-product form ${isWorking ? 'loading' : ''}">
             <div class="ui one column center aligned grid">
                 <div class="title-column column">
-                    <h3 i18n="sources.addSource">Browse your favourite shopping site and paste the product URL</h3>
+                    <h3 i18n="products.browse">Browse your favourite shopping site and paste the product URL</h3>
                 </div>
                 <div class="input-column column">
                     <div class="ui large right action input" style="width: 100%;">
                         <input value.bind="newAlertUrl" type="url" placeholder="Url" autofocus style="width: auto;">
-                        <button class="ui primary primary-action button ${newAlertUrl.length ? '' : 'disabled'}" i18n="[append]sources.add">
+                        <button class="ui primary primary-action button ${newAlertUrl.length ? '' : 'disabled'}" i18n="[append]products.add">
                             <i class="add icon"></i>
                         </button>
                     </div>
@@ -16,16 +16,16 @@
             </div>
         </form>
 
-        <div class="ui padded basic segment source-list">
+        <div class="ui padded basic segment store-list">
             <div class="ui four column doubling grid">
                 <div class="row">
-                    <div repeat.for="source of sources" class="column source-item">
-                        <a href.bind="source.url" target="_blank"
+                    <div repeat.for="store of stores" class="column store-item">
+                        <a href.bind="store.url" target="_blank"
                             data-analytics-category="Outbound Link"
                             data-analytics-action="click"
-                            data-analytics-label="source">
+                            data-analytics-label="store">
                             <h2 class="ui icon header logo">
-                                <img class="ui icon image" src="/images/${source.domain}.png" alt.bind="source.name">
+                                <img class="ui icon image" src="/images/${store.domain}.png" alt.bind="store.name">
                             </h2>
                         </a>
                     </div>

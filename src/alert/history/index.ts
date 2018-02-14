@@ -1,12 +1,10 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { EventAggregator } from "aurelia-event-aggregator";
-import { BaseI18N, I18N } from "aurelia-i18n";
 import { ProductHistory } from "../../shared/models/product-history";
 import { AlertService } from "../../shared/services/alert-service";
 import { SharedListService } from "../../shared-list/services/shared-list-service";
 
 @autoinject()
-export class History extends BaseI18N {
+export class History {
     private _alertService: AlertService;
     private _sharedListService: SharedListService;
     private _userId: string;
@@ -15,9 +13,7 @@ export class History extends BaseI18N {
     isReadOnly: boolean = false;
     alertHistory: Array<ProductHistory>;
 
-    constructor(alertService: AlertService, sharedListService: SharedListService, i18n: I18N, element: Element, ea: EventAggregator) {
-        super(i18n, element, ea);
-
+    constructor(alertService: AlertService, sharedListService: SharedListService) {
         this._alertService = alertService;
         this._sharedListService = sharedListService;
     }

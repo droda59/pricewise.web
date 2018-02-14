@@ -1,7 +1,6 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { Router, RouterConfiguration } from "aurelia-router";
-import { EventAggregator } from "aurelia-event-aggregator";
-import { I18N, BaseI18N } from "aurelia-i18n";
+import { I18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
 import { SharedListService } from "./services/shared-list-service";
 import { Toaster } from "../shared/services/toaster";
@@ -10,7 +9,7 @@ import { ListService } from "../shared/services/list-service";
 import { AuthenticationService } from "../shared/services/authentication-service";
 
 @autoinject()
-export class SharedListPage extends BaseI18N {
+export class SharedListPage {
     private _i18n: I18N;
     private _sharedListService: SharedListService;
     private _authenticationService: AuthenticationService;
@@ -32,11 +31,7 @@ export class SharedListPage extends BaseI18N {
             router: Router,
             authenticationService: AuthenticationService,
             toaster: Toaster,
-            i18n: I18N,
-            element: Element,
-            ea: EventAggregator) {
-        super(i18n, element, ea);
-
+            i18n: I18N) {
         this._userId = localStorage.getItem("user_id");
 
         this._i18n = i18n;

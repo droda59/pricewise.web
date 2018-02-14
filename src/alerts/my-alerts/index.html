@@ -3,7 +3,7 @@
     <require from="../components/create-list-modal"></require>
     <require from="../components/shared-list-url-modal"></require>
     <require from="../../shared/components/alerts-list"></require>
-    <require from="../../shared/components/add-source-modal"></require>
+    <require from="../../shared/components/add-product-modal"></require>
     <require from="../../shared/components/actions-menu.html"></require>
     <require from="../../shared/components/actions-menu-action.html"></require>
 
@@ -48,7 +48,7 @@
             analytics-action="create"></actions-menu-action>
         <div class="ui dropdown link item" hide.bind="currentList || !lists.length">
             <i class="outdent icon"></i>
-            ${'alerts.actions.addToList' | t}
+            ${'alerts.actions.addToList' & t}
             <div class="menu">
                 <a repeat.for="list of lists | sort:'name'" class="item" click.delegate="addToList(selectedAlerts, list)"
                     data-analytics-category="List"
@@ -67,21 +67,21 @@
     <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
     <shared-list-url-modal view-model.ref="sharedListUrlModal"></shared-list-url-modal>
     <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
-    <add-source-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-source-modal>
+    <add-product-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-product-modal>
     <confirmation-modal view-model.ref="confirmDeleteAlertModal">
-        <div slot="header">${'alerts.deleteConfirmation' | t: {context: 'title' } & oneTime}</div>
-        <div slot="content">${'alerts.deleteConfirmation' | t: {context: 'description' } & oneTime}</div>
+        <div slot="header">${'alerts.deleteConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'alerts.deleteConfirmation' & t: {context: 'description' }}</div>
     </confirmation-modal>
     <confirmation-modal view-model.ref="confirmDeleteListModal">
-        <div slot="header">${'lists.deleteConfirmation' | t: {context: 'title' } & oneTime}</div>
-        <div slot="content">${'lists.deleteConfirmation' | t: {context: 'description' } & oneTime}</div>
+        <div slot="header">${'lists.deleteConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'lists.deleteConfirmation' & t: {context: 'description' }}</div>
     </confirmation-modal>
     <confirmation-modal view-model.ref="confirmShareListModal">
-        <div slot="header">${'lists.shareConfirmation' | t: {context: 'title' } & oneTime}</div>
-        <div slot="content">${'lists.shareConfirmation' | t: {context: 'description' } & oneTime}</div>
+        <div slot="header">${'lists.shareConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'lists.shareConfirmation' & t: {context: 'description' }}</div>
     </confirmation-modal>
     <confirmation-modal view-model.ref="confirmUnshareListModal">
-        <div slot="header">${'lists.unshareConfirmation' | t: {context: 'title' } & oneTime}</div>
-        <div slot="content">${'lists.unshareConfirmation' | t: {context: 'description' } & oneTime}</div>
+        <div slot="header">${'lists.unshareConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'lists.unshareConfirmation' & t: {context: 'description' }}</div>
     </confirmation-modal>
 </template>

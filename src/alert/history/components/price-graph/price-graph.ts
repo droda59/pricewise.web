@@ -3,19 +3,19 @@ import { I18N } from "aurelia-i18n";
 import { Coordinates } from "./models/coordinates";
 import { LineData, Dataset } from "./models/line-data";
 import { ProductHistory } from "../../../../shared/models/product-history";
-import { SourcesService } from "../../../../shared/services/sources-service";
+import { StoreService } from "../../../../shared/services/store-service";
 
 @autoinject()
 export class PriceGraph {
     @bindable data: Array<ProductHistory>;
 
-    private _sourcesService: SourcesService;
+    private _storeService: StoreService;
 
     simpleLineData: LineData;
     nativeOptions: any = {};
 
-    constructor(sourcesService: SourcesService, i18n: I18N) {
-        this._sourcesService = sourcesService;
+    constructor(storeService: StoreService, i18n: I18N) {
+        this._storeService = storeService;
         this.simpleLineData = <LineData>{
             labels: [],
             datasets: []
@@ -73,7 +73,7 @@ export class PriceGraph {
         newValue.forEach(product => {
             let pointColor = this.pickColor(product);
             let dataset = <Dataset>{
-                label: product.source.name,
+                label: product.store.name,
                 borderColor: pointColor,
                 pointColor: pointColor,
                 pointStrokeColor: "#b7b7b7",
@@ -105,8 +105,8 @@ export class PriceGraph {
     private pickColor(product: ProductHistory): string {
         var color = "rgb(220, 220, 220)";
 
-        if (product.source != null) {
-            color = product.source.color;
+        if (product.store != null) {
+            color = product.store.color;
         }
 
         return color;

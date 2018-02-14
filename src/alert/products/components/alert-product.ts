@@ -1,11 +1,9 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { bindable, bindingMode } from "aurelia-framework";
-import { EventAggregator } from "aurelia-event-aggregator";
-import { BaseI18N, I18N } from "aurelia-i18n";
 import { AlertEntry } from "../../../shared/models/alert-entry";
 
 @autoinject()
-export class SourceEntry extends BaseI18N {
+export class AlertProduct {
     @bindable entry: AlertEntry;
     @bindable note: string;
     @bindable({ defaultBindingMode: bindingMode.oneTime }) isReadOnly: boolean;
@@ -13,10 +11,6 @@ export class SourceEntry extends BaseI18N {
     @bindable removeEntry;
 
     private _loaded: boolean;
-
-    constructor(i18n: I18N, element: Element, ea: EventAggregator) {
-        super(i18n, element, ea);
-    }
 
     bind(): void {
         this._loaded = false;

@@ -1,7 +1,5 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { Router } from "aurelia-router";
-import { EventAggregator } from "aurelia-event-aggregator";
-import { BaseI18N, I18N } from "aurelia-i18n";
 import { AlertService } from "../../shared/services/alert-service";
 import { SharedListService } from "../../shared-list/services/shared-list-service";
 import { ProductService } from "../../shared/services/product-service";
@@ -9,12 +7,12 @@ import { Toaster } from "../../shared/services/toaster";
 import { AlertEntry } from "../../shared/models/alert-entry";
 import { UserAlert } from "../../shared/models/user-alert";
 import { ProductInfo } from "../../shared/models/product-info";
-import { AddSourceModal } from "../../shared/components/add-source-modal";
+import { AddProductModal } from "../../shared/components/add-product-modal";
 import { ConfirmationModal } from "../../shared/components/confirmation-modal";
 import { ConfirmationModalController } from "../../confirmation-modal-controller";
 
 @autoinject()
-export class Sources extends BaseI18N {
+export class Products {
     private _router: Router;
     private _alertService: AlertService;
     private _sharedListService: SharedListService;
@@ -25,11 +23,11 @@ export class Sources extends BaseI18N {
     private _alertId: string;
 
     confirmationModal: ConfirmationModal;
-    addSourceModal: AddSourceModal;
+    addProductModal: AddProductModal;
     alert: UserAlert;
     isSearchingProducts: boolean;
     isUpdatingAlert: boolean;
-    isAddingSource: boolean;
+    isAddingProduct: boolean;
     isReadOnly: boolean = false;
     suggestedProducts: Array<ProductInfo> = new Array<ProductInfo>();
 
@@ -39,12 +37,7 @@ export class Sources extends BaseI18N {
             sharedListService: SharedListService,
             productService: ProductService,
             modalController: ConfirmationModalController,
-            toaster: Toaster,
-            i18n: I18N,
-            element: Element,
-            ea: EventAggregator) {
-        super(i18n, element, ea);
-
+            toaster: Toaster) {
         this._router = router;
         this._alertService = alertService;
         this._sharedListService = sharedListService;
@@ -75,8 +68,8 @@ export class Sources extends BaseI18N {
         $(".ui.modals.page.dimmer").remove();
     }
 
-    addSource(): void {
-        this._modalController.openOverlayModal(this.addSourceModal);
+    addProduct(): void {
+        this._modalController.openOverlayModal(this.addProductModal);
     }
 
     async save(): Promise<void> {
@@ -100,7 +93,7 @@ export class Sources extends BaseI18N {
 
     async addEntry(newEntryUrl: string): Promise<void> {
         if (!this.isReadOnly) {
-            this.isAddingSource = true;
+            this.isAddingProduct = true;
 
             try {
                 var updatedAlert = await this._alertService.createEntry(this._userId, this._alertId, newEntryUrl);
@@ -115,14 +108,14 @@ export class Sources extends BaseI18N {
             } catch(e) {
                 var errorMessage = "";
                 if (e.status === 404) {
-                    errorMessage = "errors.sourceNotSupported";
+                    errorMessage = "errors.storeNotSupported";
                 } else if (e.status === 400) {
                     errorMessage = "errors.parseError";
                 }
 
                 this._toaster.showException("alert.alertSaved", errorMessage);
             } finally {
-                this.isAddingSource = false;
+                this.isAddingProduct = false;
             }
         }
     }
@@ -180,12 +173,12 @@ export class Sources extends BaseI18N {
             if (productIdentifiers.length) {
                 this.isSearchingProducts = true;
 
-                var alertEntriesUrls = this.alert.entries.map(x => x.source);
+                var alertEntriesUrls = this.alert.entries.map(x => x.store);
 
                 try {
                     var searchResults = [];//await this._productService.searchByProductIdentifier(productIdentifiers);
                     for (var j = 0; j < searchResults.length; j++) {
-                        if (!alertEntriesUrls.includes(searchResults[j].source)) {
+                        if (!alertEntriesUrls.includes(searchResults[j].store)) {
                             this.suggestedProducts.push(searchResults[j]);
                         }
                     }

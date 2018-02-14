@@ -1,12 +1,10 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { EventAggregator } from "aurelia-event-aggregator";
-import { BaseI18N, I18N } from "aurelia-i18n";
 import { Toaster } from "../../shared/services/toaster";
 import { UserService } from "../../shared/services/user-service";
 import { User } from "../../shared/models/user";
 
 @autoinject()
-export class AccountSettings extends BaseI18N {
+export class AccountSettings {
     private _userService: UserService;
     private _toaster: Toaster;
     private _userId: string;
@@ -14,9 +12,7 @@ export class AccountSettings extends BaseI18N {
     user: User;
     isUpdatingUser: boolean;
 
-    constructor(userService: UserService, toaster: Toaster, i18n: I18N, element: Element, ea: EventAggregator) {
-        super(i18n, element, ea);
-
+    constructor(userService: UserService, toaster: Toaster) {
         this._userService = userService;
         this._toaster = toaster;
         this._userId = localStorage.getItem("user_id");

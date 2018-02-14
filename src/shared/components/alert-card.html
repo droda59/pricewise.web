@@ -17,8 +17,8 @@
                 data-analytics-label="originalUrl">
                 ${alert.bestCurrentDeal.price & nf: { style: 'currency', currency: 'CAD'}}
                 <span i18n="alert.priceAt"></span>
-                <img class="ui avatar image" src="/images/${alert.bestCurrentDeal.source.domain}-small.png">
-                ${alert.bestCurrentDeal.source.name}
+                <img class="ui avatar image" src="/images/${alert.bestCurrentDeal.store.domain}-small.png">
+                ${alert.bestCurrentDeal.store.name}
             </a>
             <slot name="bottom-action"></slot>
         </div>

@@ -1,5 +1,5 @@
-import { Source } from "../models/source";
-import { SourcesService } from "../services/sources-service";
+import { Store } from "../models/store";
+import { StoreService } from "../services/store-service";
 
 export class ProductInfo implements IProductInfo {
     originalUrl: string;
@@ -11,7 +11,7 @@ export class ProductInfo implements IProductInfo {
     productIdentifier: string;
     isPortaitSize: boolean;
     isLandscapeSize: boolean;
-    source: Source;
+    store: Store;
 
     constructor();
     constructor(dto: IProductInfo);
@@ -31,7 +31,7 @@ export class ProductInfo implements IProductInfo {
             image.src = dto.imageUrl;
 
             this.lastUpdate = new Date(dto.lastUpdate);
-            this.source = SourcesService.getSource(this.originalUrl);
+            this.store = StoreService.getStore(this.originalUrl);
         }
     }
 }

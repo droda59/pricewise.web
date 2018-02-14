@@ -1,4 +1,4 @@
-export class Source {
+export class Store {
     name: string;
     domain: string;
     url: string;

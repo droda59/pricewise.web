@@ -1,5 +1,5 @@
-import { Source } from "../models/source";
-import { SourcesService } from "../services/sources-service";
+import { Store } from "../models/store";
+import { StoreService } from "../services/store-service";
 
 export class AlertEntry implements IAlertEntry {
     originalUrl: string;
@@ -12,7 +12,7 @@ export class AlertEntry implements IAlertEntry {
     percentageChange: number;
     absolutePercentageChange: number;
     isDeleted: boolean;
-    source: Source;
+    store: Store;
 
     constructor();
     constructor(dto: IAlertEntry);
@@ -22,7 +22,7 @@ export class AlertEntry implements IAlertEntry {
 
             this.createdAt = new Date(dto.createdAt);
             this.note = !!dto.note ? dto.note : "";
-            this.source = SourcesService.getSource(this.originalUrl);
+            this.store = StoreService.getStore(this.originalUrl);
             this.percentageChange = (this.lastPrice - this.originalPrice) / this.originalPrice;
             this.absolutePercentageChange = Math.abs(this.percentageChange);
         }

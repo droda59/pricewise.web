@@ -1,18 +1,18 @@
-import { Source } from "../models/source";
-import { SourcesService } from "../services/sources-service";
+import { Store } from "../models/store";
+import { StoreService } from "../services/store-service";
 
 export class Deal implements IDeal {
     price: number;
     originalUrl: string;
     productUrl: string;
     modifiedAt: Date;
-    source: Source;
+    store: Store;
 
     constructor(dto: IDeal) {
         (<any>Object).assign(this, dto);
 
         this.modifiedAt = new Date(dto.modifiedAt);
-        this.source = SourcesService.getSource(this.originalUrl);
+        this.store = StoreService.getStore(this.originalUrl);
     }
 }
 

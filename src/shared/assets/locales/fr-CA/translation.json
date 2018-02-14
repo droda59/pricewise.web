@@ -8,8 +8,10 @@
     "disclaimer": {
         "amazon": "Nous participons au programme Amazon Associates, un programme de publicité affilié conçu pour nous permettre de gagner des frais en reliant Amazon et ses sites affiliés."
     },
+    "callback": {
+        "authenticating": "Authentification"
+    },
     "welcome": {
-        "authenticating": "Authentification",
         "planning": "Vous prévoyez acheter quelque chose?",
         "stopPaying": "Arrêtez de payer trop cher!",
         "getStarted": "Débuter",
@@ -27,10 +29,10 @@
             "notifications_description": "Recevez une alerte quand les produits que vous voulez sont en vente ou en liquidation. Beaucoup de dineros épargnés!",
             "history_title": "Étudiez l'historique de prix d'un produit",
             "history_description": "Analysez l'historique, voyez quand les prix augmentent ou diminuent, et agissez lorsque c'est le temps.",
-            "sources_title": "Magasins disponibles",
-            "sources_description": "Vous pouvez surveiller les produits de ces magasins en ligne. D'autres seront ajoutés!",
-            "lists_title": "Organizez vos produits",
-            "lists_description": "Organizez vos produits en catégories de votre choix : Liste de Noël, cadeaux de fête, livres à lire. Personnalisez comme vous le voulez!"
+            "stores_title": "Magasins disponibles",
+            "stores_description": "Vous pouvez surveiller les produits de ces magasins en ligne. D'autres seront ajoutés!",
+            "lists_title": "Organizez vos alertes",
+            "lists_description": "Organizez vos alertes en catégories de votre choix : Liste de Noël, cadeaux de fête, livres à lire. Personnalisez comme vous le voulez!"
         },
         "blog": {
             "available": "PriceWise a un blog!",
@@ -40,7 +42,7 @@
         "chrome": {
             "extensionAvailable": "PriceWise a une extension Chrome!",
             "easily": "Magasinez intelligemment plus facilement!",
-            "description": "Créez des alertes directement à partir de la page de vos produits sur nos sites supportés!",
+            "description": "Créez des alertes directement à partir de la page de vos produits sur nos magasins supportés!",
             "getApp": "Installez l'application Chrome"
         }
     },
@@ -49,12 +51,12 @@
         "no": "Non"
     },
     "errors": {
-        "sourceNotSupported": "Le magasin spécifié n'est pas encore supporté.",
-        "parseError": "Une erreur s'est produite lors de l'analyse."
+        "storeNotSupported": "Le magasin spécifié n'est pas encore supporté.",
+        "parseError": "Une erreur s'est produite lors de l'analyse du produit."
     },
     "alert": {
         "title": "Retour aux alertes",
-        "emailOption": "Je veux recevoir des alertes par courriel pour ce produit",
+        "emailOption": "Je veux recevoir des notifications par courriel pour cette alerte",
         "updating": "Mise à jour",
         "deactivated": "Inactive",
         "activate": "Activer notifications courriel",
@@ -64,16 +66,15 @@
         "alertSaved_success": "Alerte sauvegardée avec succès!",
         "alertSaved_failure": "Une erreur s'est produite lors de la sauvegarde.",
         "alertSaved_exception": "Une erreur s'est produite lors de la sauvegarde. {{error}}",
-        "sources": {
-            "title": "Magasins",
-            "source": "Magasin",
+        "products": {
+            "title": "Produits",
             "price": "Prix",
             "note": "Note",
-            "addOtherSource": "Ajouter un magasin",
+            "addOtherProduct": "Ajouter un produit",
             "searchingSimilar": "Recherche de produits similaires...",
-            "addOtherSourceSuggestion": "Vous pourriez vouloir ajouter ces produits à votre alerte",
-            "deleteConfirmation_title": "Supprimer l'entrée de l'alerte",
-            "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer l'entrée sélectionnée de l'alerte?"
+            "addOtherProductSuggestion": "Vous pourriez vouloir ajouter ces produits à votre alerte",
+            "deleteConfirmation_title": "Supprimer le produit de l'alerte",
+            "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer le produit sélectionné de l'alerte?"
         },
         "history": {
             "title": "Historique de prix"
@@ -82,20 +83,19 @@
     "alerts": {
         "title": "Alertes",
         "myAlerts": "Mes alertes",
-        "watchedProducts": "Mes produits",
         "updating": "Mise à jour",
         "working": "En cours",
-        "noAlert": "Vous ne surveillez aucun produit pour le moment.",
+        "noAlert": "Vous n'avez aucune alerte pour le moment.",
         "getStarted": "Débutez maintenant!",
         "createAlert": "Créez une alerte de produit",
         "alertCreated_success": "Alerte créée avec succès!",
         "alertCreated_exception": "Une erreur est survenue durant la création. {{error}}",
         "alertActivated_success": "Alerte activée avec succès!",
         "alertActivated_failure": "Une erreur est survenue durant l'activation.",
-        "alertDeleted_success": "Alerte supprimée avec succès!",
-        "alertDeleted_failure": "Une erreur est survenue durant la suppression.",
-        "deleteConfirmation_title": "Supprimer une alerte",
-        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer les alertes de produit?",
+        "alertsDeleted_success": "Alertes supprimées avec succès!",
+        "alertsDeleted_failure": "Une erreur est survenue durant la suppression.",
+        "deleteConfirmation_title": "Supprimer des alertes",
+        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer les alertes sélectionnées?",
         "actions": {
             "clearSelection": "Effacer la sélection",
             "createList": "Créer une liste",
@@ -106,7 +106,7 @@
     },
     "lists": {
         "create": {
-            "title": "Donnez un nom à votre liste qui contiendra les produits sélectionnés.",
+            "title": "Donnez un nom à votre liste qui contiendra les alertes sélectionnés.",
             "name": "Nom",
             "save": "Enregistrer"
         },
@@ -130,7 +130,7 @@
         "listUpdated_success": "Liste enregistrée avec succès!",
         "listUpdated_failure": "Une erreur est survenue durant la mise à jour.",
         "deleteConfirmation_title": "Supprimer une liste",
-        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses produits ne seront pas supprimées, seulement la liste.",
+        "deleteConfirmation_description": "Êtes-vous certain de vouloir supprimer cette liste? Ses alertes ne seront pas supprimées, seulement la liste.",
         "shareConfirmation_title": "Partager une liste",
         "shareConfirmation_description": "Êtes-vous certain de vouloir partager cette liste? Une fois partagée, elle deviendra accessible à tous ceux qui auront le lien.",
         "unshareConfirmation_title": "Arrêter le partage d'une liste",
@@ -151,15 +151,15 @@
         }
     },
     "followedLists": {
-        "title": "Listes suivies",
+        "title": "Mes Listes Suivies",
         "listUnfollowed_success": "La liste n'est plus suivie!",
         "listUnfollowed_failure": "Une erreur est survenue durant l'opération.",
         "unfollowConfirmation_title": "Ne plus suivre la liste",
-        "unfollowConfirmation_description": "Êtes-vous certain de ne plus vouloir suivre cette liste? La liste existera toujours, mais vous ne recevrez plus d'alerte pour ses produits."
+        "unfollowConfirmation_description": "Êtes-vous certain de ne plus vouloir suivre cette liste? La liste existera toujours, mais vous ne recevrez plus d'alertes pour cette liste."
     },
-    "sources": {
+    "products": {
         "add": "Ajouter",
-        "addSource": "Naviguez sur les sites de vos magasins en ligne favoris et copiez l'URL de la page du produit"
+        "browse": "Naviguez sur les sites de vos magasins en ligne favoris et copiez l'URL de la page du produit"
     },
     "settings": {
         "title": "Préférences",
@@ -172,22 +172,22 @@
             "firstName": "Prénom",
             "lastName": "Nom de famille",
             "email": "Courriel",
-            "correspondenceLanguage": "Langue de Correspondance",
+            "correspondenceLanguage": "Langue de correspondance",
             "settingsSaved_success": "Informations enregistrées avec succès!",
             "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."
         },
         "alerts": {
             "title": "Alerte",
             "alertSettings": "Préférences d'alertes",
-            "priceDrop": "Je veux être averti quand le meilleur prix d'un produit <b>diminue</b>",
-            "priceRaise": "Je veux être averti quand le meilleur prix d'un produit <b>augmente</b>",
+            "priceDrop": "Je veux être averti quand le meilleur prix d'une alerte <b>diminue</b>",
+            "priceRaise": "Je veux être averti quand le meilleur prix d'une alerte <b>augmente</b>",
             "changeThreshold": "Je veux être averti seulement quand le meilleur prix d'une alerte change d'au moins: ",
             "settingsSaved_success": "Informations enregistrées avec succès!",
             "settingsSaved_failure": "Une erreur est survenue durant l'enregistrement."
         }
     },
     "unsubscribe" : {
-        "title" : "Vous ne recevrez plus de notification pour ce produit",
-        "changedYourMind" : "Vous pouvez en tout temps réactiver les notifications en vous rendant sur la page du produit"
-}
+        "title" : "Vous ne recevrez plus de notification pour cette alerte",
+        "changedYourMind" : "Vous pouvez en tout temps réactiver les notifications en vous rendant sur la page de l'alerte"
+    }
 }
