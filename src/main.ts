@@ -16,7 +16,6 @@ Bluebird.config({ warnings: { wForgottenReturn: false } });
 export async function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
-        .developmentLogging()
         .plugin(PLATFORM.moduleName("shared"))
         .plugin(PLATFORM.moduleName("aurelia-chart"))
         .plugin(PLATFORM.moduleName("aurelia-configuration"), config => {
