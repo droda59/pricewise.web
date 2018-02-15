@@ -441,6 +441,12 @@ section {
 .pricewise .store-list .logo:hover {
     opacity: 1;
 }
+.pricewise .store-list .store-item.unavailable a {
+    cursor: not-allowed;
+}
+.pricewise .store-list .store-item.unavailable .logo {
+    opacity: 0.1;
+}
 
 .pricewise .alert .ui.small.image {
     max-height: 160px;

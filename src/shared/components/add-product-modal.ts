@@ -20,8 +20,8 @@ export class AddProductModal extends Modal {
         this._storeService = storeService;
     }
 
-    bind(): void {
-        this.stores = this._storeService.stores;
+    async bind(): Promise<void> {
+        this.stores = await this._storeService.getStores();
     }
 
     createProduct() {

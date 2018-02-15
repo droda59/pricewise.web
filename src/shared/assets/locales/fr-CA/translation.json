@@ -159,7 +159,8 @@
     },
     "products": {
         "add": "Ajouter",
-        "browse": "Naviguez sur les sites de vos magasins en ligne favoris et copiez l'URL de la page du produit"
+        "browse": "Naviguez sur les sites de vos magasins en ligne favoris et copiez l'URL de la page du produit",
+        "storeUnavailable": "Ce magasin est indisponible pour le moment"
     },
     "settings": {
         "title": "Préférences",

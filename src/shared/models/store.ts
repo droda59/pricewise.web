@@ -3,4 +3,5 @@ export class Store {
     domain: string;
     url: string;
     color: string;
+    isAvailable: boolean = true;
 }

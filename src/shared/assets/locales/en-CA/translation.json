@@ -160,7 +160,8 @@
     },
     "products": {
         "add": "Add",
-        "browse": "Browse your favourite shopping site and paste the product URL"
+        "browse": "Browse your favourite shopping site and paste the product URL",
+        "storeUnavailable": "This store is unavailable at the moment"
     },
     "settings": {
         "title": "Settings",

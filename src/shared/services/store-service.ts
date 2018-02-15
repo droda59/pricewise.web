@@ -1,7 +1,27 @@
+import { NewInstance, inject } from "aurelia-dependency-injection";
+import { HttpClient, json } from "aurelia-fetch-client";
+import { AureliaConfiguration } from "aurelia-configuration";
 import { Store } from "../models/store";
 
+@inject(NewInstance.of(HttpClient), AureliaConfiguration)
 export class StoreService {
     private static _stores: Array<Store>;
+    private _httpClient: HttpClient;
+
+    constructor(httpClient: HttpClient, configure: AureliaConfiguration) {
+        this._httpClient = httpClient.configure(config => {
+            config
+                .useStandardConfiguration()
+                .withDefaults({
+                    headers: {
+                        "Accept": "application/json",
+                        "X-Requested-With": "Fetch"
+                    }
+                })
+                .rejectErrorResponses()
+                .withBaseUrl(`${configure.get("api")}api/storeavailability/`);
+            });
+    }
 
     static initialize() {
         StoreService._stores = new Array<Store>();
@@ -37,6 +57,20 @@ export class StoreService {
         return StoreService.storesLocal;
     }
 
+    async getStores(): Promise<Array<Store>> {
+        const availabilities = await this.getAvailability();
+        var stores = StoreService.storesLocal;
+        for (var i = 0; i < stores.length; i++) {
+            var store = stores[i];
+            var storeAvailability = availabilities.filter(availability => availability.domain == store.url);
+            if (storeAvailability.length) {
+                store.isAvailable = storeAvailability[0].isAvailable;
+            }
+        }
+
+        return stores;
+    }
+
     static getStore(url: string): Store {
         var allStores = this.storesLocal;
 
@@ -62,7 +96,29 @@ export class StoreService {
             name: name,
             domain: domain,
             url: url,
-            color: color
+            color: color,
+            isAvailable: true
         };
+    }
+
+    private async getAvailability(): Promise<Array<StoreAvailability>> {
+        const response = await this._httpClient.fetch("", {
+            method: "get"
+        });
+
+        return (<Array<any>>(await response.json())).map(x => new StoreAvailability(x));
+    }
+}
+
+class StoreAvailability {
+    domain: string;
+    isAvailable: boolean;
+
+    constructor();
+    constructor(dto: StoreAvailability);
+    constructor(dto?: StoreAvailability) {
+        if (dto) {
+            (<any>Object).assign(this, dto);
+        }
     }
 }

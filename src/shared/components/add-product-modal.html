@@ -15,15 +15,20 @@
                 </div>
             </div>
         </form>
-
+        
         <div class="ui padded basic segment store-list">
             <div class="ui four column doubling grid">
                 <div class="row">
-                    <div repeat.for="store of stores" class="column store-item">
-                        <a href.bind="store.url" target="_blank"
+                    <div repeat.for="store of stores" class="column store-item ${!store.isAvailable ? 'unavailable' : ''}">
+                        <a href.bind="store.url" target="_blank" if.one-time="store.isAvailable"
                             data-analytics-category="Outbound Link"
                             data-analytics-action="click"
                             data-analytics-label="store">
+                            <h2 class="ui icon header logo">
+                                <img class="ui icon image" src="/images/${store.domain}.png" alt.bind="store.name">
+                            </h2>
+                        </a>
+                        <a style="display: block;" if.one-time="!store.isAvailable" i18n="[data-tooltip]products.storeUnavailable">
                             <h2 class="ui icon header logo">
                                 <img class="ui icon image" src="/images/${store.domain}.png" alt.bind="store.name">
                             </h2>
