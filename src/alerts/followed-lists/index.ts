@@ -48,7 +48,11 @@ export class FollowedLists {
         this.lists = await this._listService.getWatchedSummaries(this._userId);
 
         if (this.lists.length) {
-            this.currentList = this.lists[0];
+            this.currentList = this.lists
+                .sort((a, b) => {
+                    return (a.name > b.name ? 1 : -1);
+                })[0];
+                
             await this._updateSelectedList(this.currentList);
         }
     }
