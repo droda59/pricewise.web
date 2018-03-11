@@ -3,8 +3,8 @@ import { HttpClient, json } from "aurelia-fetch-client";
 import { AureliaConfiguration } from "aurelia-configuration";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { Router } from "aurelia-router";
-import { UserService } from "../../app/shared/services/user-service";
-import { User } from "../../app/shared/models/user";
+import { UserService } from "../services/user-service";
+import { User } from "../models/user";
 import auth0 from "auth0-js";
 
 const fetchPolyfill = !self.fetch ? System.import("isomorphic-fetch") : Promise.resolve(self.fetch);
@@ -50,7 +50,7 @@ export class AuthenticationService {
 
                 var routeToNavigate = await this.getOrCreateUser(authResult.idTokenPayload);
 
-                this._eventAggregator.publish("authChange", { authenticated: true });
+                this._eventAggregator.publish("auth:change", { authenticated: true });
                 this._router.navigate(routeToNavigate);
             } else if (err) {
                 console.log(err);
@@ -83,18 +83,17 @@ export class AuthenticationService {
         localStorage.removeItem("user_id");
         localStorage.removeItem("expires_at");
 
-        this._router.navigateToRoute("welcome");
-        this._eventAggregator.publish("authChange", false);
+        this._eventAggregator.publish("auth:change", { authenticated: false });
 	}
 
     private async getOrCreateUser(profile: any): Promise<string> {
         var user;
-        var navigateTo = "user";
+        var navigateTo = "alerts";
 
         try {
             user = await this._userService.get(profile.sub);
             if (!user.firstName) {
-                navigateTo = "user/settings/account";
+                navigateTo = "settings/account";
             }
         } catch(err) {
             if (err.status === 404) {
@@ -106,7 +105,7 @@ export class AuthenticationService {
 
 				if (!profile.given_name) {
 					newUser.firstName = newUser.email;
-                    navigateTo = "user/settings/account";
+                    navigateTo = "settings/account";
 				}
 
                 user = await this._userService.create(newUser);

@@ -1,0 +1,22 @@
+<template>
+    <overlay class-name="${id}">
+        <h3 class="ui centered header" i18n="sharedLists.urlModal.title">Give this URL to your friends to give them access to your list!</h3>
+        <div class="field">
+            <div class="ui centered grid">
+                <div class="eight wide column">
+                    <div class="ui large right action input" style="width: 100%;">
+                        <input value.bind="url" ref="urlField" readonly type="text" autofocus style="width: auto;">
+                        <a class="ui primary primary-action button" i18n="[append]sharedLists.urlModal.copyButton" click.delegate="copyToClipboard()">
+                            <i class="clipboard icon"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row" show.one-way="copied">
+                    <div class="ui large positive message">
+                        <p i18n="sharedLists.urlModal.copySuccess">Copied!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </overlay>
+</template>

@@ -1,0 +1,7 @@
+<template>
+    <require from="./authenticated-nav-bar"></require>
+    <require from="./unauthenticated-nav-bar"></require>
+
+    <authenticated-nav-bar if.one-way="isAuthenticated"></authenticated-nav-bar>
+    <unauthenticated-nav-bar if.one-way="!isAuthenticated"></unauthenticated-nav-bar>
+</template>

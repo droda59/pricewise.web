@@ -4,9 +4,10 @@ import { FrameworkConfiguration } from "aurelia-framework";
 export function configure(config: FrameworkConfiguration) {
     var elements = [
         PLATFORM.moduleName("./components/confirmation-modal"),
-        PLATFORM.moduleName("./components/footer/footer"),
+        PLATFORM.moduleName("./components/footer.html"),
         PLATFORM.moduleName("./components/overlay.html"),
         PLATFORM.moduleName("./components/loader.html"),
+        PLATFORM.moduleName("./components/nav-bar"),
     ];
 
     var valueConverters = [

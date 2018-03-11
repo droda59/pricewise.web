@@ -1,7 +1,0 @@
-<template bindable="routes">
-    <div class="ui inverted secondary pointing text sub-menu menu">
-        <div repeat.for="route of routes" class="${route.isActive ? 'active' : ''} item">
-            <a href.bind="route.href">${route.title}</a>
-        </div>
-    </div>
-</template>

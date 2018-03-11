@@ -1,0 +1,22 @@
+<template>
+    <require from="../shared/components/header-title"></require>
+    <require from="../shared/components/sub-menu.html"></require>
+
+    <div class="primary-dark" style="color: white;">
+        <div class="ui container" style="position: relative;">
+            <div class="ui text menu" style="margin: 0; padding: 3em 0;">
+                <div class="item">
+                    <header-title>${ 'alerts.title' & t}</header-title>
+                </div>
+            </div>
+
+            <sub-menu if.one-time="showMenu" routes.bind="router.navigation"></sub-menu>
+        </div>
+    </div>
+
+    <div class="primary-light" style="padding-bottom: 2em;">
+        <div class="ui container">
+            <router-view></router-view>
+        </div>
+    </div>
+</template>

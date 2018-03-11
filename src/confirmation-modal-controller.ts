@@ -6,9 +6,13 @@ export class ConfirmationModalController {
             onApprove: onApprove
         })
         .modal("show");
+
+        modal.open();
     }
 
     openOverlayModal(modal: Modal): void {
         $(`.ui.dimmer .overlay.modal.${modal.id}`).modal("show");
+
+        modal.open();
     }
 }

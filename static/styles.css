@@ -27,8 +27,25 @@ body {
 .ui.label.primary-action:hover,
 .ui.button.primary-action:hover,
 .ui.primary.button.primary-action:hover,
-.ui.primary.buttons .button.primary-action:hover {
+.ui.primary.buttons .button.primary-action:hover,
+.ui.basic.primary-action.label:hover {
     background-color: #02776f;
+}
+
+.ui.basic.primary-action.label:hover {
+    color: #fff;
+}
+.ui[class*="left labeled"].button > .label:only-child {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.ui.wordpress.button {
+    background: #00aadc;
+    color: white;
+}
+.ui.wordpress.button:hover {
+    background: #0087be;
 }
 
 .ui.transparent.label,
@@ -40,6 +57,10 @@ body {
 .ui.transparent.label:hover,
 .ui.transparent.labels .label:hover {
     background-color: rgba(0, 0, 0, .1) !important;
+}
+
+.visibility-hidden {
+    visibility: hidden !important;
 }
 
 section {
@@ -173,6 +194,10 @@ section {
     border: none;
     text-align: right;
     opacity: 1;
+}
+
+.ui.basic.table tbody tr td table tr td {
+    border-top: none;
 }
 
 .ui.mini.form .ui.checkbox label {
@@ -359,7 +384,7 @@ section {
     min-height: 700px;
     padding: 1em 0em;
 }
-#welcome .masthead h1.ui.header {
+#welcome .masthead .ui.header {
     margin-top: 3em;
     margin-bottom: 0em;
     font-size: 4em;
@@ -375,12 +400,13 @@ section {
 #welcome .ui.alternate.stripe {
     background-color: #F2F3F5;
 }
-#welcome .masthead .ui.menu .ui.button {
-    margin-left: 1.5em;
-}
 #welcome .ui.divided.grid:not([class*="vertically divided"])>.column:nth-child(4n+1),
 #welcome .ui.divided.grid:not([class*="vertically divided"])>.row>.column:nth-child(4n+1) {
     box-shadow: none;
+}
+
+#anonymous-nav-bar .ui.button {
+    margin-left: 1.5em;
 }
 
 #login {
@@ -388,6 +414,10 @@ section {
 }
 #login .column {
     max-width: 450px;
+}
+
+#unauthenticated-nav-bar .ui.menu .ui.button {
+    margin-left: 1.5em;
 }
 
 /*.pricewise .overlay {
@@ -404,12 +434,18 @@ section {
     border-radius: 2px;
 }*/
 
-.pricewise .source-list .logo {
+.pricewise .store-list .logo {
     opacity: 0.5;
     transition: opacity .2s ease-in-out;
 }
-.pricewise .source-list .logo:hover {
+.pricewise .store-list .logo:hover {
     opacity: 1;
+}
+.pricewise .store-list .store-item.unavailable a {
+    cursor: not-allowed;
+}
+.pricewise .store-list .store-item.unavailable .logo {
+    opacity: 0.1;
 }
 
 .pricewise .alert .ui.small.image {
@@ -417,10 +453,10 @@ section {
     width: auto;
 }
 
-.pricewise .add-source .title-column.column {
+.pricewise .add-product .title-column.column {
     max-width: 50%;
 }
-.pricewise .add-source .input-column.column {
+.pricewise .add-product .input-column.column {
     max-width: 60%;
 }
 
@@ -467,14 +503,20 @@ section {
       display: none !important;
     }
 
+    #welcome .masthead .ui.header {
+        margin-bottom: 1em;
+        font-size: 3em;
+        font-weight: normal;
+    }
+
     #welcome .ui.vertical.stripe {
         padding: 4em 1em;
     }
 
-    .source-list {
+    .store-list {
         padding: 0;
     }
-    .source-list .source-item {
+    .store-list .store-item {
         padding-left: 0;
         padding-right: 0;
     }
@@ -491,10 +533,10 @@ section {
         width: auto;
     }
 
-    .pricewise .add-source .title-column.column {
+    .pricewise .add-product .title-column.column {
         max-width: 80%;
     }
-    .pricewise .add-source .input-column.column {
+    .pricewise .add-product .input-column.column {
         max-width: 100%;
     }
 }

@@ -2,10 +2,12 @@
     <div class="ui small basic confirmation modal ${id}">
         <div class="ui icon header">
             <i class="archive icon"></i>
-            ${message | t: {context: 'title' } & oneTime}
+            <slot name="header"></slot>
         </div>
         <div class="content">
-            <p>${message | t: {context: 'description' } & oneTime}</p>
+            <p>
+                <slot name="content"></slot>
+            </p>
         </div>
         <div class="actions">
             <div class="mobile hidden">

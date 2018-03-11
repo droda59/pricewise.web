@@ -1,0 +1,114 @@
+<template>
+    <require from="../../shared/components/add-product-modal"></require>
+    <require from="./components/alert-product"></require>
+
+    <div class="ui container">
+        <div class="ui one column grid" if.one-time="!isReadOnly">
+            <div class="column">
+                <div class="ui icon large primary primary-action mobile only button" style="display: block; margin: 0;" click.delegate="addProduct()"
+                    i18n="[append]alert.products.addOtherProduct"
+                    data-analytics-category="Products"
+                    data-analytics-action="add"
+                    data-analytics-label="button">
+                    <i class="plus icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui one column grid">
+            <div class="column">
+                <div class="ui text container">
+                    <table class="ui very basic padded unstackable table">
+                        <tbody>
+                            <tr as-element="alert-product" repeat.for="entry of alert.entries | sort:'lastPrice'" entry.bind="entry" is-read-only.bind="isReadOnly" remove-entry.call="removeEntry(entry)" save.call="save()"></tr>
+                        </tbody>
+                        <tfoot class="full-width">
+                            <tr>
+                                <th>
+                                    <div class="ui relaxed items">
+                                        <div class="ui text menu">
+                                            <div class="item" i18n="[prepend]alert.bestDealUpdatedTime">${alert.modifiedAt & rt}</div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="mobile hidden" hide.one-time="isReadOnly">
+                                <th style="border: none;">
+                                    <div class="ui icon labeled medium primary primary-action button" click.delegate="addProduct()"
+                                        i18n="[append]alert.products.addOtherProduct"
+                                        data-analytics-category="Products"
+                                        data-analytics-action="add"
+                                        data-analytics-label="button">
+                                        <i class="icon plus"></i>
+                                    </div>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="ui icon large primary primary-action mobile only button" if.one-time="!isReadOnly" style="display: block; margin: 0;" click.delegate="addProduct()"
+                    i18n="[append]alert.products.addOtherProduct"
+                    data-analytics-category="Products"
+                    data-analytics-action="add"
+                    data-analytics-label="button">
+                    <i class="plus icon"></i>
+                </div>
+            </div>
+
+            <div class="column" if.one-time="!isReadOnly">
+                <div>
+                    <loader is-active.one-way="isSearchingProducts" text="alert.products.searchingSimilar"></loader>
+
+                    <div show.bind="suggestedProducts.length">
+                        <h3 i18n="alert.products.addOtherProductSuggestion">You might also want to add these products to your alert</h3>
+
+                        <div class="ui link cards">
+                            <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
+                                <div class="content">
+                                    <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
+                                        data-analytics-category="Products"
+                                        data-analytics-action="add"
+                                        data-analytics-label="suggestion"></i>
+                                    <a class="header" href.bind="product.productUrl" target="_blank"
+                                        data-analytics-category="Outbound Link"
+                                        data-analytics-action="click"
+                                        data-analytics-label="originalUrl">${product.title}</a>
+                                    <div class="meta">
+                                        <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate & rt}</small>
+                                    </div>
+                                </div>
+                                <a class="image mobile hidden" href.bind="product.productUrl" target="_blank"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label="originalUrl">
+                                    <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
+                                </a>
+                                <div class="extra content">
+                                    <a href.bind="product.productUrl" target="_blank" class="right floated"
+                                        data-analytics-category="Outbound Link"
+                                        data-analytics-action="click"
+                                        data-analytics-label="originalUrl">
+                                        ${product.price & nf: { style: 'currency', currency: 'CAD'}}
+                                        <span i18n="alert.priceAt"></span>
+                                        <img class="ui avatar image" src="/images/${product.store.domain}-small.png">
+                                        ${product.store.name}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <loader is-active.one-way="isUpdatingAlert" text="alert.updating"></loader>
+    <add-product-modal view-model.ref="addProductModal" is-working.one-way="isAddingProduct" add.call="addEntry(newAlertUrl)"></add-product-modal>
+    <confirmation-modal view-model.ref="confirmationModal">
+        <div slot="header">${'alert.products.deleteConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'alert.products.deleteConfirmation' & t: {context: 'description' }}</div>
+    </confirmation-modal>
+</template>

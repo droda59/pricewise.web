@@ -1,0 +1,87 @@
+<template>
+    <require from="../components/list-menu"></require>
+    <require from="../components/create-list-modal"></require>
+    <require from="../components/shared-list-url-modal"></require>
+    <require from="../../shared/components/alerts-list"></require>
+    <require from="../../shared/components/add-product-modal"></require>
+    <require from="../../shared/components/actions-menu.html"></require>
+    <require from="../../shared/components/actions-menu-action.html"></require>
+
+    <list-menu
+        show.bind="lists.length"
+        select-all-enabled.one-time="true"
+        lists.one-way="lists"
+        selected-list.two-way="currentList"
+        delete.call="confirmDeleteList(list)"
+        share.call="confirmShareList(list)"
+        unshare.call="confirmUnshareList(list)">
+    </list-menu>
+
+    <alerts-list
+        show.bind="allAlerts.length"
+        alerts.one-way="alerts"
+        is-read-only.one-time="false"
+        selected-alerts.two-way="selectedAlerts"
+        navigate.call="navigateToAlert(alert)"
+        add.call="showModal(createAlertModal)"
+        activate.call="activateAlert(alert)">
+    </alerts-list>
+
+    <div hide.bind="allAlerts.length" style="padding: 6em 0 4em 0;">
+        <p style="text-align: center;" i18n="alerts.noAlert">You are not watching any products right now.</p>
+        <p style="text-align: center;" i18n="alerts.getStarted">Get started!</p>
+        <div style="text-align: center;">
+            <div class="ui primary primary-action button" click.delegate="showModal(createAlertModal)"
+                i18n="[append]alerts.createAlert"
+                data-analytics-category="Alerts"
+                data-analytics-action="add"
+                data-analytics-label="overlay">
+                <i class="plus icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <actions-menu show.bind="selectedAlerts.length">
+        <actions-menu-action text="alerts.actions.clearSelection" icon="remove" action.call="clearSelection()"></actions-menu-action>
+        <actions-menu-action text="alerts.actions.createList" icon="list" action.call="showModal(createListModal)" hide.bind="currentList"
+            analytics-category="List"
+            analytics-action="create"></actions-menu-action>
+        <div class="ui dropdown link item" hide.bind="currentList || !lists.length">
+            <i class="outdent icon"></i>
+            ${'alerts.actions.addToList' & t}
+            <div class="menu">
+                <a repeat.for="list of lists | sort:'name'" class="item" click.delegate="addToList(selectedAlerts, list)"
+                    data-analytics-category="List"
+                    data-analytics-action="add"
+                    data-analytics-label="footer">${list.name}</a>
+            </div>
+        </div>
+        <actions-menu-action text="alerts.actions.removeFromList" icon="indent" action.call="removeFromList(selectedAlerts)" show.bind="currentList"
+            analytics-category="List"
+            analytics-action="remove"></actions-menu-action>
+        <actions-menu-action text="alerts.actions.deleteAlert" icon="trash" action.call="confirmDeleteAlert(selectedAlerts)"
+            analytics-category="List"
+            analytics-action="delete"></actions-menu-action>
+    </actions-menu>
+
+    <loader text="alerts.working" is-active.one-way="isUpdating"></loader>
+    <shared-list-url-modal view-model.ref="sharedListUrlModal"></shared-list-url-modal>
+    <create-list-modal view-model.ref="createListModal" is-working.one-way="isUpdating" alerts.one-way="selectedAlerts" save.call="saveList(list)"></create-list-modal>
+    <add-product-modal view-model.ref="createAlertModal" is-working.one-way="isUpdating" add.call="createAlert(newAlertUrl)"></add-product-modal>
+    <confirmation-modal view-model.ref="confirmDeleteAlertModal">
+        <div slot="header">${'alerts.deleteConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'alerts.deleteConfirmation' & t: {context: 'description' }}</div>
+    </confirmation-modal>
+    <confirmation-modal view-model.ref="confirmDeleteListModal">
+        <div slot="header">${'lists.deleteConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'lists.deleteConfirmation' & t: {context: 'description' }}</div>
+    </confirmation-modal>
+    <confirmation-modal view-model.ref="confirmShareListModal">
+        <div slot="header">${'lists.shareConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'lists.shareConfirmation' & t: {context: 'description' }}</div>
+    </confirmation-modal>
+    <confirmation-modal view-model.ref="confirmUnshareListModal">
+        <div slot="header">${'lists.unshareConfirmation' & t: {context: 'title' }}</div>
+        <div slot="content">${'lists.unshareConfirmation' & t: {context: 'description' }}</div>
+    </confirmation-modal>
+</template>

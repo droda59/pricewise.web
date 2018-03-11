@@ -1,0 +1,19 @@
+<template>
+    <require from="../shared/components/header-title"></require>
+    <require from="../shared/components/back-button"></require>
+    <require from="../shared/components/sub-menu.html"></require>
+
+    <div class="primary-dark" style="color: white;">
+        <div class="ui container" style="position: relative; padding: 3em 0 0 0;">
+            <back-button></back-button>
+            <header-title>${'settings.title' & t}</header-title>
+            <sub-menu routes.one-time="router.navigation"></sub-menu>
+        </div>
+    </div>
+
+    <div class="primary-light" style="position: relative; padding-bottom: 2em;">
+        <div class="ui padded basic segment">
+            <router-view></router-view>
+        </div>
+    </div>
+</template>

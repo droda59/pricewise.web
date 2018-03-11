@@ -7,6 +7,8 @@ export class Modal {
         this.id = new Guid();
     }
 
+    open(): void {}
+
     protected close() {
         this.reset();
         $(`.ui.dimmer .overlay.modal.${this.id}`).modal("hide");

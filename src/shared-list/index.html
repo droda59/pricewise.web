@@ -1,0 +1,38 @@
+<template>
+    <require from="../shared/components/alerts-list"></require>
+    <require from="../shared/components/header-title"></require>
+    <require from="../shared/components/back-button"></require>
+
+    <div class="primary-dark" style="color: white;">
+        <div class="ui container" style="position: relative;">
+            <back-button if.one-time="isAuthenticated"></back-button>
+
+            <div class="ui text menu" style="margin: 0;padding: 0 0 3em 0;">
+                <div class="item">
+                    <header-title if.one-time="!errorMessage">${'sharedLists.title' & t: { listName: listName, userName: userName }}</header-title>
+                    <header-title if.one-time="errorMessage">${errorMessage & t: { context: 'title' }}</header-title>
+                </div>
+            </div>
+
+            <a class="ui primary primary-action button au-target" if.one-time="isAuthenticated && !errorMessage" click.delegate="follow()" style="margin: 0em 0 3em 0;">
+                ${'sharedLists.followButton' & t}
+            </a>
+        </div>
+    </div>
+
+    <div class="primary-light" style="padding-bottom: 2em;">
+        <div class="ui container">
+            <div class="ui vertical basic segment primary-light" if.one-time="errorMessage" style="padding: 8em 0;">
+                <div class="ui stackable center aligned grid">
+                    <div class="eight wide column">
+                        <h3 class="ui header">${errorMessage & t: { context: 'description' }}</h3>
+                    </div>
+                </div>
+            </div>
+            <alerts-list
+                alerts.one-time="alerts"
+                is-read-only.one-time="true"
+                navigate.call="navigateToSharedAlert(alert)"></alerts-list>
+        </div>
+    </div>
+</template>

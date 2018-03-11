@@ -1,0 +1,50 @@
+<template>
+    <div class="ui container">
+        <form class="ui form" submit.delegate="save()" role="form">
+            <div class="ui relaxed basic section" style="width: 80%; margin: 0 auto;">
+                <div class="ui text menu">
+                    <div class="item">
+                        <h3 class="ui header" i18n="settings.account.personalInformation">Personal Information</h3>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label i18n="settings.account.name">Name</label>
+                    <div class="two fields">
+                        <div class="field">
+                            <input value.bind="user.firstName" type="text" name="information[first-name]" i18n="[placeholder]settings.account.firstName" placeholder="First Name">
+                        </div>
+                        <div class="field">
+                            <input value.bind="user.lastName" type="text" name="information[last-name]" i18n="[placeholder]settings.account.lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label i18n="settings.account.email">Email</label>
+                            <input value.bind="user.email" type="email" name="information[email]" i18n="[placeholder]settings.account.email" placeholder="Email">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="fields">
+                        <div class="four wide field">
+                            <label i18n="settings.account.correspondenceLanguage">Correspondence Language</label>
+                            <select class="ui dropdown" value.bind="user.settings.correspondenceLanguage">
+                                <option value="en" i18n="english">English</option>
+                                <option value="fr" i18n="french">French</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="ui primary primary-action button" i18n="[append]settings.save"><i class="save icon"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <loader is-active.one-way="isUpdatingUser" text="settings.updating"></loader>
+</template>
