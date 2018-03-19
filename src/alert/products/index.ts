@@ -111,6 +111,8 @@ export class Products {
                     errorMessage = "errors.storeNotSupported";
                 } else if (e.status === 400) {
                     errorMessage = "errors.parseError";
+                } else if (e.status === 501) {
+                    errorMessage = "errors.correctPriceError";
                 }
 
                 this._toaster.showException("alert.alertSaved", errorMessage);
