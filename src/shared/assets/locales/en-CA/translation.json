@@ -52,7 +52,8 @@
     },
     "errors": {
         "storeNotSupported": "The specified store is not yet supported.",
-        "parseError": "There was a problem analyzing the product."
+        "parseError": "There was a problem analyzing the product.",
+        "correctPriceError": "PriceWise was unable to determine the correct price for the selected product."
     },
     "alert": {
         "title": "Back to alerts",

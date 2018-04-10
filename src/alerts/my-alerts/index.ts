@@ -104,6 +104,8 @@ export class MyAlerts {
                 errorMessage = "errors.storeNotSupported";
             } else if (e.status === 400) {
                 errorMessage = "errors.parseError";
+            } else if (e.status === 501) {
+                errorMessage = "errors.correctPriceError";
             }
 
             this._toaster.showException("alerts.alertCreated", errorMessage);

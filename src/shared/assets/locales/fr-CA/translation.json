@@ -52,7 +52,8 @@
     },
     "errors": {
         "storeNotSupported": "Le magasin spécifié n'est pas encore supporté.",
-        "parseError": "Une erreur s'est produite lors de l'analyse du produit."
+        "parseError": "Une erreur s'est produite lors de l'analyse du produit.",
+        "correctPriceError": "PriceWise n'a pas été capable de déterminer un prix pour le produit sélectionné."
     },
     "alert": {
         "title": "Retour aux alertes",
