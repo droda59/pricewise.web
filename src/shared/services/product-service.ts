@@ -26,12 +26,12 @@ export class ProductService {
             });
 	}
 
-    async searchByProductIdentifier(productIdentifiers: Array<string>): Promise<Array<ProductInfo>> {
+    async search(searchTerm: string): Promise<Array<ProductInfo>> {
         await fetchPolyfill;
 
         const response = await this._httpClient.fetch("", {
             method: "post",
-            body: json(productIdentifiers)
+            body: json(searchTerm)
         });
 
         return (<Array<any>>(await response.json())).map(x => new ProductInfo(x));

@@ -2,6 +2,7 @@ import { AlertEntry } from "./alert-entry";
 
 export class UserAlert implements IUserAlert {
     id: string;
+    title: string;
     modifiedAt: Date;
     entries: Array<AlertEntry>;
 
@@ -19,6 +20,7 @@ export class UserAlert implements IUserAlert {
 
 interface IUserAlert {
     id: string;
+    title: string;
     modifiedAt: Date;
     entries: Array<AlertEntry>;
 }

@@ -58,45 +58,43 @@
                 </div>
             </div>
 
-            <div class="column" if.one-time="!isReadOnly">
-                <div>
-                    <loader is-active.one-way="isSearchingProducts" text="alert.products.searchingSimilar"></loader>
+            <div class="column suggested-products" if.one-time="!isReadOnly">
+                <loader is-active.one-way="isSearchingProducts" text="alert.products.searchingSimilar" class-name="block transparent"></loader>
 
-                    <div show.bind="suggestedProducts.length">
-                        <h3 i18n="alert.products.addOtherProductSuggestion">You might also want to add these products to your alert</h3>
+                <div show.bind="suggestedProducts.length">
+                    <h2 i18n="alert.products.addOtherProductSuggestion">You might also want to add these products to your alert</h2>
 
-                        <div class="ui link cards">
-                            <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
-                                <div class="content">
-                                    <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
-                                        data-analytics-category="Products"
-                                        data-analytics-action="add"
-                                        data-analytics-label="suggestion"></i>
-                                    <a class="header" href.bind="product.productUrl" target="_blank"
-                                        data-analytics-category="Outbound Link"
-                                        data-analytics-action="click"
-                                        data-analytics-label="originalUrl">${product.title}</a>
-                                    <div class="meta">
-                                        <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate & rt}</small>
-                                    </div>
+                    <div class="ui link cards">
+                        <div class="card" repeat.for="product of suggestedProducts | sort:'price'" style="border-radius: 2px">
+                            <div class="content">
+                                <i class="right floated green circular button plus icon" click.delegate="addEntry(product.originalUrl)"
+                                    data-analytics-category="Products"
+                                    data-analytics-action="add"
+                                    data-analytics-label="suggestion"></i>
+                                <a class="header" href.bind="product.productUrl" target="_blank"
+                                    data-analytics-category="Outbound Link"
+                                    data-analytics-action="click"
+                                    data-analytics-label="originalUrl">${product.title}</a>
+                                <div class="meta">
+                                    <small i18n="[prepend]alert.lastUpdatedTime">${product.lastUpdate & rt}</small>
                                 </div>
-                                <a class="image mobile hidden" href.bind="product.productUrl" target="_blank"
+                            </div>
+                            <a class="image mobile hidden" href.bind="product.productUrl" target="_blank"
+                                data-analytics-category="Outbound Link"
+                                data-analytics-action="click"
+                                data-analytics-label="originalUrl">
+                                <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
+                            </a>
+                            <div class="extra content">
+                                <a href.bind="product.productUrl" target="_blank" class="right floated"
                                     data-analytics-category="Outbound Link"
                                     data-analytics-action="click"
                                     data-analytics-label="originalUrl">
-                                    <img class="${product.isPortaitSize ? 'portrait' : ''} ${product.isLandscapeSize ? 'landscape' : ''}" src.bind="product.imageUrl">
+                                    ${product.price & nf: { style: 'currency', currency: 'CAD'}}
+                                    <span i18n="alert.priceAt"></span>
+                                    <img class="ui avatar image" src="/images/${product.store.domain}-small.png">
+                                    ${product.store.name}
                                 </a>
-                                <div class="extra content">
-                                    <a href.bind="product.productUrl" target="_blank" class="right floated"
-                                        data-analytics-category="Outbound Link"
-                                        data-analytics-action="click"
-                                        data-analytics-label="originalUrl">
-                                        ${product.price & nf: { style: 'currency', currency: 'CAD'}}
-                                        <span i18n="alert.priceAt"></span>
-                                        <img class="ui avatar image" src="/images/${product.store.domain}-small.png">
-                                        ${product.store.name}
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
