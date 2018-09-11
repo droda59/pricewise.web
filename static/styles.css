@@ -158,6 +158,12 @@ section {
 .pricewise .ui.dimmer {
   position: fixed!important;
 }
+.pricewise .ui.block.dimmer {
+  position: absolute!important;
+}
+.pricewise .ui.transparent.dimmer {
+  background-color: transparent;
+}
 .pricewise .ui.inverted.dimmer .ui.loader:before {
     border-color: rgba(0,129,121, 0.2);
 }
@@ -213,6 +219,7 @@ section {
 
 .pricewise .alert-card {
     border-radius: 2px;
+    width: calc(33% - 1em)
 }
 .pricewise .alert-card .ui.radio.checkbox {
     min-width: 24px;

@@ -1,5 +1,7 @@
-<template bindable="isActive, text">
-    <div class="ui ${isActive ? 'active': ''} inverted dimmer">
-        <div class="ui text loader">${text & t}</div>
+<template bindable="isActive, text, className">
+    <div class="ui ${isActive ? 'active': ''} inverted dimmer ${className}">
+        <div class="content">
+            <div class="ui text loader">${text & t}</div>
+        </div>
     </div>
 </template>
