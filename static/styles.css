@@ -219,7 +219,6 @@ section {
 
 .pricewise .alert-card {
     border-radius: 2px;
-    width: calc(33% - 1em)
 }
 .pricewise .alert-card .ui.radio.checkbox {
     min-width: 24px;
@@ -234,6 +233,10 @@ section {
 .pricewise .alert-card .ui.radio.checkbox label:after {
     width: 24px;
     height: 24px;
+}
+
+.pricewise .ui.cards > .card {
+    width: calc(50% - 1em);
 }
 
 .pricewise .ui.cards > .green.card,
@@ -558,6 +561,10 @@ section {
     [class*="or lower hidden"]:not(.mobile) {
       display: none !important;
     }
+
+    .pricewise .ui.cards > .card {
+        width: calc(50% - 1em);
+    }
   }
 
   /* Computer / Desktop / iPad Landscape */
@@ -569,6 +576,10 @@ section {
     [class*="widescreen monitor only"]:not(.computer),
     [class*="or lower hidden"]:not(.tablet):not(.mobile) {
       display: none !important;
+    }
+
+    .pricewise .ui.cards > .card {
+        width: calc(33% - 1em);
     }
   }
 
@@ -582,6 +593,10 @@ section {
     [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
       display: none !important;
     }
+
+    .pricewise .ui.cards > .card {
+        width: calc(25% - 1em);
+    }
   }
 
   /* Widescreen Monitor */
@@ -593,5 +608,9 @@ section {
     [class*="widescreen monitor hidden"],
     [class*="widescreen monitor or lower hidden"] {
       display: none !important;
+    }
+
+    .pricewise .ui.cards > .card {
+        width: calc(16% - 1em);
     }
   }
