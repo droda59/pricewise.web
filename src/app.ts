@@ -1,6 +1,5 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { Aurelia } from "aurelia-framework";
-import { Router, RouterConfiguration } from "aurelia-router";
+import { Router, RouterConfiguration, NavigationInstruction, Next } from "aurelia-router";
 import { EventAggregator } from "aurelia-event-aggregator";
 import { I18N } from "aurelia-i18n";
 import { PLATFORM } from "aurelia-pal";
@@ -26,6 +25,15 @@ export class App {
     configureRouter(config: RouterConfiguration, router: Router) {
         config.title = "PriceWise";
         config.addPipelineStep("authorize", AuthorizeStep);
+        config.addPostRenderStep({
+            run(navigationInstruction: NavigationInstruction, next: Next) {
+              if (navigationInstruction.router.isNavigatingNew) {
+                window.scroll(0, 0);
+              }
+              return next();
+            }
+          });
+
         config.options.pushState = true;
 
         config.map([

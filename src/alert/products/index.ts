@@ -170,23 +170,20 @@ export class Products {
         if (!this.isReadOnly) {
             this.suggestedProducts = new Array<ProductInfo>();
 
-            // Look for similar products only if there is a product identifier present
-            var productIdentifiers = this.alert.entries.map(x => x.productIdentifier).filter(x => !!x).filter((v, i, a) => a.indexOf(v) === i);
-            if (productIdentifiers.length) {
-                this.isSearchingProducts = true;
+            // Look for similar products
+            this.isSearchingProducts = true;
 
-                var alertEntriesUrls = this.alert.entries.map(x => x.store);
+            var alertEntriesUrls = this.alert.entries.map(x => x.productUrl);
 
-                try {
-                    var searchResults = [];//await this._productService.searchByProductIdentifier(productIdentifiers);
-                    for (var j = 0; j < searchResults.length; j++) {
-                        if (!alertEntriesUrls.includes(searchResults[j].store)) {
-                            this.suggestedProducts.push(searchResults[j]);
-                        }
+            try {
+                var searchResults = await this._productService.search(this.alert.title);
+                for (var j = 0; j < searchResults.length; j++) {
+                    if (!alertEntriesUrls.includes(searchResults[j].productUrl)) {
+                        this.suggestedProducts.push(searchResults[j]);
                     }
-                } finally {
-                    this.isSearchingProducts = false;
                 }
+            } finally {
+                this.isSearchingProducts = false;
             }
         }
     }
