@@ -11,7 +11,7 @@
         "web": "https://pricewise-web-staging.azurewebsites.net/"
     },
     "production": {
-        "api": "https://price-alerts-api.azurewebsites.net/",
+        "api": "https://api.pricewi.se/",
         "web": "https://pricewi.se/"
     }
 }

@@ -23,7 +23,7 @@ export async function configure(aurelia: Aurelia) {
             config.setEnvironments({
                 development: ["localhost"],
                 staging: ["pricewise-web-staging.azurewebsites.net"],
-                production: ["pricewise.azurewebsites.net", "pricewi.se"]
+                production: ["pricewi.se"]
             });
         })
         .plugin(PLATFORM.moduleName("aurelia-i18n"), i18n => {
